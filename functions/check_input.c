@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   check_input.c                                      :+:    :+:            */
+/*   input_syntax.c                                      :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/02/02 17:32:12 by rkieboom      #+#    #+#                 */
-/*   Updated: 2022/10/29 00:11:05 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/29 00:20:49 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header.h"
 
 // Called when user input has unclosed quotes.
-// Stores current gnl.buf and prompts user for input again using read_input()
+// Stores current gnl.buf and prompts user for input again using input_read()
 static void	quote(t_ms *ms)
 {
 	char	*newstr;
@@ -22,7 +22,7 @@ static void	quote(t_ms *ms)
 	newstr = ft_strdup(ms->gnl.buf);
 	if (!newstr)
 		ft_ret_exit(1, 1);
-	read_input(ms, 1);
+	input_read(ms, 1);
 	if (!ms->gnl.buf)
 	{
 		free(newstr);
@@ -39,7 +39,7 @@ static void	quote(t_ms *ms)
 
 // Checks if gnl.buf contains unclosed quotes.
 // User remains in this function unrtil input has closed quotes.
-void	check_input_quotes(t_ms *ms)
+void	input_syntax_quotes(t_ms *ms)
 {
 	int		i;
 
@@ -63,7 +63,7 @@ void	check_input_quotes(t_ms *ms)
 	}
 }
 
-static int	check_ret_error(t_ms *v)
+static int	input_error(t_ms *v)
 {
 	ft_putendl_fd("minishell-4.2$: \
 syntax error near unexpected token ;", 2);
@@ -74,7 +74,7 @@ syntax error near unexpected token ;", 2);
 }
 
 // Checking semicolons syntax error
-int	check_input(t_ms *v)
+int	input_syntax_semicolon(t_ms *v)
 {
 	int		i;
 	char	*str;
@@ -83,11 +83,11 @@ int	check_input(t_ms *v)
 	str = v->gnl.buf;
 	while (str[i])
 	{
-		i += skipspaces(str + i);
+		i += str_skip_whitespace(str + i);
 		if (!str[i])
 			return (1);
 		if (str[i] == ';')
-			return (check_ret_error(v));
+			return (input_error(v));
 		else
 			while (str[i] && str[i] != ';')
 				i++;

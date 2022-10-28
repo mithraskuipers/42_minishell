@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/28 21:57:11 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/10/29 00:12:30 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/29 00:25:23 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,15 +120,15 @@ int		syntax_error_parse(t_ms *ms);
 int		syntax_error(t_newcommand *cmd, int i);
 
 void	execution(t_ms *ms, t_newcommand *cmd, int k);
-int		skipspaces(const char *str);
+int		str_skip_whitespace(const char *str);
 
 void	check_quote(t_ms *ms, char *c);
 char	*add_new_line(char *str);
 int		cmd_len(char **str);
 
-int		check_input(t_ms *v);
-void	read_input(t_ms *ms, int option);
-void	check_input_quotes(t_ms *ms);
+int		input_syntax_semicolon(t_ms *v);
+void	input_read(t_ms *ms, int mode);
+void	input_syntax_quotes(t_ms *ms);
 
 int		create_cmd(t_ms *v, int k);
 

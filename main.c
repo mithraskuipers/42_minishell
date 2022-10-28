@@ -6,7 +6,7 @@
 /*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/23 22:40:21 by rkieboom      #+#    #+#                 */
-/*   Updated: 2022/10/29 00:12:04 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/29 00:22:52 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,12 @@ static void	loop(t_ms *ms)
 {
 	while (1)
 	{
-		read_input(ms, 0);
-		check_input_quotes(ms);
+		input_read(ms, 0);
+		input_syntax_quotes(ms);
 		if (!ms->gnl.buf)
 			continue ;
 		add_history(ms->gnl.buf);
-		if (check_input(ms))
+		if (input_syntax_semicolon(ms))
 			continue ;
 		if (!new_parse(ms) && !ms->hdoc_break)//heredoc break before here
 		{

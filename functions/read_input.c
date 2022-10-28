@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/28 21:56:51 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/10/29 00:11:22 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/29 00:21:02 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,10 +56,10 @@ static void	setup(t_ms *ms)
 }
 
 //Reads input and saves it in ms->gnl.buf
-void	read_input(t_ms *ms, int option)
+void	input_read(t_ms *ms, int mode)
 {
 	setup(ms);
-	if (option == 0)
+	if (mode == 0)
 	{
 		while (!ms->gnl.buf)
 		{

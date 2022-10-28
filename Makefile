@@ -6,7 +6,7 @@
 #    By: mikuiper <mikuiper@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/10/28 21:58:30 by mikuiper      #+#    #+#                  #
-#    Updated: 2022/10/29 00:07:27 by mikuiper      ########   odam.nl          #
+#    Updated: 2022/10/29 00:27:17 by mikuiper      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,7 +60,7 @@ SRCS =					main.c \
 						$(SRCS.EXECUTE)
 						
 						
-FUNCTIONS =				functions/ft_skipspaces.c \
+FUNCTIONS =				functions/str_skip_whitespace.c \
 						functions/add_new_line.c \
 						functions/check_input.c \
 						functions/read_input.c \

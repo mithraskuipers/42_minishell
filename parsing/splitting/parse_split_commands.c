@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/24 14:35:00 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/10/29 00:11:22 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/29 00:25:23 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static int	arraysize(const char *s, char c, t_ms *ms)
 
 	i = 0;
 	k = 0;
-	i = skipspaces(s);
+	i = str_skip_whitespace(s);
 	if (s[i] == '\0')
 		return (0);
 	ms->parse.comma1 = 0;

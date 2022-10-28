@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_skipspaces.c                                    :+:    :+:            */
+/*   ft_str_skip_whitespace.c                                    :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-int	skipspaces(const char *str)
+int	str_skip_whitespace(const char *str)
 {
 	int	i;
 
