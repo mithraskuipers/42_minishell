@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/28 21:57:24 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/10/29 00:11:22 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/29 01:06:46 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void	heredoc_allocation(t_ms *ms, int k)
 			ft_calloc(sizeof(t_heredoc), \
 			ms->tokens[i].double_redirection_left);
 			if (!ms->tokens[i].heredoc)
-				ft_ret_exit(1, 1);
+				return_exit(1, PRNT_ERRNO_NL);
 		}
 		i++;
 	}

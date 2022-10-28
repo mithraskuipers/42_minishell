@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/28 21:57:38 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/10/29 00:11:22 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/29 01:06:46 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ char	*heredoc_create_str(t_ms *ms, char *str, int length)
 	ft_bzero(&vars, sizeof(t_vars));
 	vars.newstr = ft_calloc(length + 1, sizeof(char));
 	if (!vars.newstr)
-		ft_ret_exit(1, 1);
+		return_exit(1, PRNT_ERRNO_NL);
 	while (str[vars.i])
 	{
 		if (str[vars.i] == '$')

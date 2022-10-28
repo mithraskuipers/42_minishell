@@ -6,7 +6,7 @@
 /*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/11 21:58:05 by rkieboom      #+#    #+#                 */
-/*   Updated: 2022/10/17 14:13:11 by rkieboom      ########   odam.nl         */
+/*   Updated: 2022/10/29 00:54:39 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static int	single_redirection_right(t_newcommand *v, int i)
 	, O_RDWR | O_TRUNC | O_CREAT, 0644);
 	if (v->tokens->stdout_fd < 0)
 	{
-		ft_ret_exit(0, 1);
+		return_exit(0, 1);
 		return (1);
 	}
 	close(v->tokens->stdout_fd);
@@ -34,7 +34,7 @@ static int	double_redirection_right(t_newcommand *v, int i)
 	, O_RDWR | O_APPEND | O_CREAT, 0644);
 	if (v->tokens->stdout_fd < 0)
 	{
-		ft_ret_exit(0, 1);
+		return_exit(0, 1);
 		return (1);
 	}
 	close(v->tokens->stdout_fd);

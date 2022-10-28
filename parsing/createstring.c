@@ -6,7 +6,7 @@
 /*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/11/28 15:03:53 by rkieboom      #+#    #+#                 */
-/*   Updated: 2022/10/29 00:11:22 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/29 01:06:46 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void	return_ret_status(t_vars *vars)
 {
 	vars->temp = ft_itoa(g_global.status);
 	if (!vars->temp)
-		ft_ret_exit(1, 1);
+		return_exit(1, PRNT_ERRNO_NL);
 	ft_memcpy(vars->newstr + vars->x, vars->temp, ft_strlen(vars->temp));
 	vars->length -= ft_strlen(vars->newstr);
 	vars->length++;
@@ -43,7 +43,7 @@ static void	set_env_value(t_ms *ms, t_vars *vars)
 	vars->length++;
 	vars->temp = ft_strdup(search_env(ms->env, vars->str + vars->i, 0, 0));
 	if (!vars->temp)
-		ft_ret_exit(1, 1);
+		return_exit(1, PRNT_ERRNO_NL);
 	ft_memcpy(vars->newstr + vars->x, vars->temp, ft_strlen(vars->temp));
 	while (vars->newstr[vars->x])
 		vars->x++;
@@ -78,7 +78,7 @@ static void	init_vars(t_ms *ms, t_vars *vars, int length, char *str)
 	vars->str = str;
 	vars->newstr = ft_calloc(vars->length + 1, sizeof(char));
 	if (!vars->newstr)
-		ft_ret_exit(1, 1);
+		return_exit(1, PRNT_ERRNO_NL);
 	ms->parse.comma1 = 0;
 	ms->parse.comma2 = 0;
 	vars->i = -1;

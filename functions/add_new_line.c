@@ -6,7 +6,7 @@
 /*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/05/14 23:34:24 by rkieboom      #+#    #+#                 */
-/*   Updated: 2022/09/21 21:33:37 by rkieboom      ########   odam.nl         */
+/*   Updated: 2022/10/29 01:06:46 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	*add_new_line(char *str)
 	length = ft_strlen(str);
 	result = ft_calloc(length + 2, sizeof(char));
 	if (!result)
-		ft_ret_exit(1, 1);
+		return_exit(1, PRNT_ERRNO_NL);
 	ft_strlcpy(result, str, length + 1);
 	result[length] = '\n';
 	result[length + 1] = '\0';

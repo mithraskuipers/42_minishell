@@ -6,12 +6,13 @@
 /*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/05/17 12:47:05 by rkieboom      #+#    #+#                 */
-/*   Updated: 2022/10/29 00:12:30 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/29 01:09:30 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../env_list.h"
 #include <stdio.h>
+#include "../../header.h"
 
 void	env_add_content(t_env **v, char *envname, char *envcontent)
 {
@@ -20,12 +21,12 @@ void	env_add_content(t_env **v, char *envname, char *envcontent)
 
 	name = ft_strdup(envname);
 	if (!name)
-		ft_ret_exit(1, 1);
+		return_exit(1, PRNT_ERRNO_NL);
 	if (envcontent)
 	{
 		content = ft_strdup(envcontent);
 		if (!content)
-			ft_ret_exit(1, 1);
+			return_exit(1, PRNT_ERRNO_NL);
 	}
 	else
 		content = 0;
@@ -45,7 +46,7 @@ void	env_change_content(t_env *v, char *envname, char *envcontent)
 		{
 			temp->content = ft_strdup(envcontent);
 			if (!temp->content)
-				ft_ret_exit(1, 1);
+				return_exit(1, PRNT_ERRNO_NL);
 		}
 		else
 			temp->content = 0;

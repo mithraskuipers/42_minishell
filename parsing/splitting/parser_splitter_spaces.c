@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   parse_split_spaces.c                               :+:    :+:            */
+/*   parser_splitter_spaces.c                               :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
@@ -69,7 +69,7 @@ static char	**splitter(t_ms *ms, const char *str, char **result)
 				result[vars.k] = ft_substr \
 				(str, vars.i - vars.length, vars.length);
 				if (!result[vars.k])
-					ft_ret_exit(1, 1);
+					return_exit(1, PRNT_ERRNO_NL);
 				vars.k++;
 				vars.length = 0;
 			}
@@ -82,7 +82,7 @@ static char	**splitter(t_ms *ms, const char *str, char **result)
 }
 
 //Splits on spaces
-char	**parse_split_spaces(t_ms *ms, const char *str, char c)
+char	**parser_splitter_spaces(t_ms *ms, const char *str, char c)
 {
 	int		length;
 	char	**result;
@@ -92,7 +92,7 @@ char	**parse_split_spaces(t_ms *ms, const char *str, char c)
 	length = arraysize(str, c, ms);
 	result = ft_calloc(length + 1, sizeof(char *));
 	if (!result)
-		ft_ret_exit(1, 1);
+		return_exit(1, PRNT_ERRNO_NL);
 	result = splitter(ms, str, result);
 	result[length] = NULL;
 	return (result);

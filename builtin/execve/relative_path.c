@@ -6,7 +6,7 @@
 /*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/07 10:02:49 by rkieboom      #+#    #+#                 */
-/*   Updated: 2022/10/24 14:52:04 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/29 01:06:46 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,16 +31,16 @@ static char	*create_path(char **paths, char *newpath, int i, char *name)
 
 	newpath = ft_strdup(paths[i]);
 	if (!newpath)
-		ft_ret_exit(1, 1);
+		return_exit(1, PRNT_ERRNO_NL);
 	temp = newpath;
 	newpath = ft_strjoin(newpath, "/");
 	if (!newpath)
-		ft_ret_exit(1, 1);
+		return_exit(1, PRNT_ERRNO_NL);
 	free(temp);
 	temp = newpath;
 	newpath = ft_strjoin(newpath, name);
 	if (!newpath)
-		ft_ret_exit(1, 1);
+		return_exit(1, PRNT_ERRNO_NL);
 	free(temp);
 	temp = newpath;
 	return (newpath);
@@ -58,7 +58,7 @@ static char	*get_path(char *name, char *ENV_PATH)
 		return (0);
 	paths = ft_split(ENV_PATH, ':');
 	if (!paths)
-		ft_ret_exit(1, 1);
+		return_exit(1, PRNT_ERRNO_NL);
 	while (paths[i])
 	{
 		newpath = create_path(paths, newpath, i, name);

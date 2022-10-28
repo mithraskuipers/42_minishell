@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/28 21:57:11 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/10/29 00:25:23 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/29 01:15:32 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@
 
 # define __DUP__ "MINISHELL_DUP_537425"
 
+# define PRNT_ERRNO_NL 1
+
 typedef struct s_parse
 {
 	char		***commands;
@@ -35,11 +37,11 @@ typedef struct s_parse
 	int			comma2;
 }				t_parse;
 
-typedef struct s_gnl
+typedef struct s_line
 {
-	int			fd;
-	char		*buf;
-}				t_gnl;
+	int			fd; // TODO: ONGEBRUIKT?
+	char		*array;
+}				t_line;
 
 typedef struct s_heredoc_data
 {
@@ -76,7 +78,7 @@ typedef struct s_tokens
 
 typedef struct s_newcommand
 {
-	int						id;
+	int						id; // TODO: ONGEBRUIKT?
 	int						fd[2];
 	int						read_pipe;
 	char					**command;
@@ -90,7 +92,7 @@ typedef struct s_ms
 	int				stdout_cpy;
 	int				stdin_cpy;
 	t_parse			parse;
-	t_gnl			gnl;
+	t_line			line;
 	t_env			*env;
 	t_tokens		*tokens;
 	t_newcommand	*cmd;
@@ -108,7 +110,7 @@ typedef struct s_global
 
 extern t_global	g_global;
 
-int		new_parse(t_ms *ms);
+int		parser_wrapper(t_ms *ms);
 
 void	free_all(t_ms *ms);
 void	free_commands(t_ms *ms, t_newcommand *temp, \
@@ -126,7 +128,7 @@ void	check_quote(t_ms *ms, char *c);
 char	*add_new_line(char *str);
 int		cmd_len(char **str);
 
-int		input_syntax_semicolon(t_ms *v);
+int		input_syntax_semicolons(t_ms *v);
 void	input_read(t_ms *ms, int mode);
 void	input_syntax_quotes(t_ms *ms);
 

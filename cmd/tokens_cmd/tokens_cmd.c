@@ -6,7 +6,7 @@
 /*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/03/17 16:25:48 by rkieboom      #+#    #+#                 */
-/*   Updated: 2022/10/29 00:10:00 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/29 01:06:46 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	tokens_cmd(t_ms *v, t_newcommand *cmd, int k)
 	{
 		temp->tokens = ft_calloc(1, sizeof(t_tokens));
 		if (!temp->tokens)
-			ft_ret_exit(1, 1);
+			return_exit(1, PRNT_ERRNO_NL);
 		temp = temp->next;
 	}
 	count_tokens(v, cmd, k);

@@ -6,7 +6,7 @@
 /*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/29 10:34:48 by rkieboom      #+#    #+#                 */
-/*   Updated: 2022/10/29 00:11:05 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/29 00:29:51 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,12 +54,12 @@ static void	free_parse_commands(t_ms *ms)
 	}
 }
 
-static void	free_gnl_buf(t_ms *ms)
+static void	free_line_buf(t_ms *ms)
 {
-	if (ms->gnl.buf)
+	if (ms->line.array)
 	{
-		free(ms->gnl.buf);
-		ms->gnl.buf = NULL;
+		free(ms->line.array);
+		ms->line.array = NULL;
 	}
 }
 
@@ -71,7 +71,7 @@ void	free_all(t_ms *ms)
 	totalcommands = 0;
 	while (ms->parse.commands[totalcommands])
 		totalcommands++;
-	free_gnl_buf(ms);
+	free_line_buf(ms);
 	free_heredoc(ms, totalcommands);
 	free_tokens(ms);
 	free_parse_commands(ms);

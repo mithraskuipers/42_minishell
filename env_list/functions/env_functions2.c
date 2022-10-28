@@ -6,11 +6,12 @@
 /*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/23 22:52:25 by rkieboom      #+#    #+#                 */
-/*   Updated: 2022/10/29 00:12:30 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/29 01:09:35 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../env_list.h"
+#include "../../header.h"
 
 int	env_has_data(t_env *v, char *find)
 {

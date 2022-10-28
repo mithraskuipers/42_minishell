@@ -6,7 +6,7 @@
 /*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/08/29 14:08:53 by rkieboom      #+#    #+#                 */
-/*   Updated: 2022/10/29 00:10:00 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/29 01:06:46 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ void	set_tokens(t_ms *v, t_newcommand *pipes, int k)
 			vars.temp->tokens->token[vars.token_local_c] = \
 			ft_strdup(ret_token(v, k, vars.token_c + 1));
 			if (!vars.temp->tokens->token[vars.token_local_c])
-				ft_ret_exit(1, 1);
+				return_exit(1, PRNT_ERRNO_NL);
 			vars.temp->tokens->token_pos[vars.token_local_c] = \
 			get_token_pos(v, k, vars.token_c + 1);
 			vars.token_c++;

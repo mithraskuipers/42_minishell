@@ -6,7 +6,7 @@
 /*   By: spelle <spelle@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/05/19 14:07:09 by spelle        #+#    #+#                 */
-/*   Updated: 2022/10/23 22:51:43 by rkieboom      ########   odam.nl         */
+/*   Updated: 2022/10/29 01:06:46 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static void	get_attr(t_env **env, char *str, int i)
 		i++;
 	name = ft_substr(str, 0, i);
 	if (!name)
-		ft_ret_exit(1, 1);
+		return_exit(1, PRNT_ERRNO_NL);
 	if (!str[i])
 		content = 0;
 	else
@@ -47,7 +47,7 @@ static void	get_attr(t_env **env, char *str, int i)
 		str += i + 1;
 		content = ft_substr(str, 0, ft_strlen(str));
 		if (!content)
-			ft_ret_exit(1, 1);
+			return_exit(1, PRNT_ERRNO_NL);
 	}
 	if (env_exist(*env, name))
 		env_change_content(*env, name, content);

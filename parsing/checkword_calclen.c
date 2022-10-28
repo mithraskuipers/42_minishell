@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/24 14:35:23 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/10/29 00:11:22 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/29 01:06:46 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ t_ms *ms, char *str, int *i, int *length)
 	{
 		temp = ft_itoa(g_global.status);
 		if (!temp)
-			ft_ret_exit(1, 1);
+			return_exit(1, PRNT_ERRNO_NL);
 		(*length) += ft_strlen(temp);
 		free(temp);
 		(*i)++;

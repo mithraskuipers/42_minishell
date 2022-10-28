@@ -6,7 +6,7 @@
 /*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/12 00:44:55 by rkieboom      #+#    #+#                 */
-/*   Updated: 2022/10/29 00:11:25 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/29 01:06:46 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,14 +49,14 @@ static void	setup_execve(t_ms *ms, t_newcommand *cmd, char **command)
 	status = 0;
 	g_global.pid = fork();
 	if (g_global.pid < 0)
-		ft_ret_exit(1, 1);
+		return_exit(1, PRNT_ERRNO_NL);
 	if (g_global.pid == 0)
 	{
 		signals_dfl();
 		env_lstadd_back(&ms->env, \
 		env_lst_new(ft_strdup(__DUP__), ft_strdup("")));
 		if (redirections(cmd))
-			ft_ret_exit(1, 0);
+			return_exit(1, 0);
 		run_cmd(ms, command, 1);
 	}
 	else

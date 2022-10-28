@@ -6,7 +6,7 @@
 /*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/24 12:02:32 by rkieboom      #+#    #+#                 */
-/*   Updated: 2022/10/28 21:59:40 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/29 00:54:39 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	ft_fork(pid_t *pid, int *fd)
 			close(fd[1]);
 		}
 		dprintf(2, "Fork failed!\n");
-		ft_ret_exit(0, 1);
+		return_exit(0, 1);
 		g_global.status = 1;
 		return (1);
 	}
@@ -35,7 +35,7 @@ int	ft_pipe(int *fd)
 	if (pipe(fd) < 0)
 	{
 		dprintf(2, "Pipe failed!\n");
-		ft_ret_exit(0, 1);
+		return_exit(0, 1);
 		g_global.status = 1;
 		return (1);
 	}

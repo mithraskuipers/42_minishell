@@ -6,7 +6,7 @@
 /*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/06/29 14:29:46 by rkieboom      #+#    #+#                 */
-/*   Updated: 2022/10/29 00:10:03 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/29 01:11:45 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static int	go_home(t_env *env)
 	oldpwd = getcwd(0, 0);
 	if (chdir(home) < 0)
 	{
-		ft_ret_exit(0, 1);
+		return_exit(0, 1);
 		if (oldpwd)
 			free(oldpwd);
 		return (1);
@@ -71,7 +71,7 @@ static	int	go_old_pwd(t_env *env)
 	{
 		if (newold)
 			free(newold);
-		ft_ret_exit(0, 1);
+		return_exit(0, 1);
 		return (1);
 	}
 	ft_putendl_fd(oldpwd, 2);

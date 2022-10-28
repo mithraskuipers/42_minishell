@@ -6,7 +6,7 @@
 /*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/20 09:15:36 by rkieboom      #+#    #+#                 */
-/*   Updated: 2022/10/23 14:05:07 by rkieboom      ########   odam.nl         */
+/*   Updated: 2022/10/29 00:54:39 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
  * @param print 2 prints errno without newline
  * @param print 0 doesn't print
 **/
-void	ft_ret_exit(int ret, int print)
+void	return_exit(int ret, int print)
 {
 	if (print == 1)
 	{

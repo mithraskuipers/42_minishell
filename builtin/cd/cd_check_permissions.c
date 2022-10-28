@@ -6,7 +6,7 @@
 /*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/18 03:19:07 by rkieboom      #+#    #+#                 */
-/*   Updated: 2022/10/23 22:56:57 by rkieboom      ########   odam.nl         */
+/*   Updated: 2022/10/29 01:11:41 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ getcwd: cannot access parent directories: No such file or directory", 2);
 	{
 		if (oldpwd)
 			free(oldpwd);
-		ft_ret_exit(0, 1);
+		return_exit(0, 1);
 		return (1);
 	}
 	change_pwds(env, oldpwd);

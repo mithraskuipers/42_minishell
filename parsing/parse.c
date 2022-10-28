@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/24 14:34:50 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/10/29 00:11:22 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/29 01:06:46 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 typedef struct s_vars
 {
 	int		i;
-	int		length;
+	int		n_words;
 	char	**splitted;
 }				t_vars;
 
@@ -59,26 +59,24 @@ static void	parsing(t_ms *ms)
 	}
 }
 
-static void	init_allocate(t_ms *ms, t_vars *vars)
+static void	parser_input_splitter(t_ms *ms, t_vars *vars)
 {
 	ft_bzero(vars, sizeof(t_vars));
-	vars->splitted = parse_split_commands(ms, ';');
-	while (vars->splitted[vars->length])
-		vars->length++;
-	ms->parse.commands = ft_calloc(vars->length + 1, sizeof(char **));
+	vars->splitted = parser_splitter_semicolon(ms, ';');
+	while (vars->splitted[vars->n_words])
+		vars->n_words++;
+	ms->parse.commands = ft_calloc(vars->n_words + 1, sizeof(char **));
 	if (!ms->parse.commands)
-		ft_ret_exit(1, 1);
-	ms->parse.commands[vars->length] = 0;
-	ms->tokens = ft_calloc(vars->length, sizeof(t_tokens));
+		return_exit(1, PRNT_ERRNO_NL);
+	ms->parse.commands[vars->n_words] = 0;
+	ms->tokens = ft_calloc(vars->n_words, sizeof(t_tokens));
 	if (!ms->tokens)
-		ft_ret_exit(1, 1);
-	while (vars->length)
+		return_exit(1, PRNT_ERRNO_NL);
+	while (vars->n_words)
 	{
-		ms->parse.commands[vars->i] = \
-		parse_split_spaces(ms, vars->splitted[vars->i], ' ');
-		parse_split_tokens(ms, \
-		parse_arraysize(ms->parse.commands[vars->i], ms), vars->i);
-		vars->length--;
+		ms->parse.commands[vars->i] = parser_splitter_spaces(ms, vars->splitted[vars->i], ' ');
+		parse_split_tokens(ms, parse_arraysize(ms->parse.commands[vars->i], ms), vars->i);
+		vars->n_words--;
 		vars->i++;
 	}
 }
@@ -86,23 +84,23 @@ static void	init_allocate(t_ms *ms, t_vars *vars)
 // (1) scans input and allocates memory
 // (2) adjusts input for easy parsing
 // (3) extracts and stores tokens
-int	new_parse(t_ms *ms)
+int	parser_wrapper(t_ms *ms)
 {
 	t_vars	vars;
 
-	init_allocate(ms, &vars);
+	parser_input_splitter(ms, &vars);
 	tokens(ms);
-	while (vars.splitted[vars.length])
-		vars.length++;
-	tilde_expansion(ms, vars.length);
+	while (vars.splitted[vars.n_words])
+		vars.n_words++;
+	tilde_expansion(ms, vars.n_words);
 	if (syntax_error_parse(ms))
 	{
 		freemem(vars.splitted);
 		return (1);
 	}
-	allocate_heredoc(ms, vars.length);
+	allocate_heredoc(ms, vars.n_words);
 	freemem(vars.splitted);
 	parsing(ms);
-	set_heredoc(ms, vars.length);
+	set_heredoc(ms, vars.n_words);
 	return (0);
 }

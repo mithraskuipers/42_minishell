@@ -6,11 +6,12 @@
 /*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/05/11 13:56:28 by rkieboom      #+#    #+#                 */
-/*   Updated: 2022/10/29 00:12:30 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/29 01:09:01 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../env_list.h"
+#include "../../header.h"
 #include <stdio.h>
 #include <unistd.h>
 
@@ -25,13 +26,13 @@ static void	set_name_value(char *envp, char **name, char **value)
 		i++;
 	result = ft_calloc(i + 1, sizeof(char));
 	if (!result)
-		ft_ret_exit(1, 1);
+		return_exit(1, PRNT_ERRNO_NL);
 	ft_strlcpy(result, envp, i + 1);
 	*name = result;
 	i += 1;
 	*value = ft_strdup(envp + i);
 	if (!(*value))
-		ft_ret_exit(1, 1);
+		return_exit(1, PRNT_ERRNO_NL);
 }
 
 //Creates the environment linked list

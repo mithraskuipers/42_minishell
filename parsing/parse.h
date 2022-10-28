@@ -6,7 +6,7 @@
 /*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/11/27 15:01:52 by rkieboom      #+#    #+#                 */
-/*   Updated: 2022/10/29 00:11:22 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/29 00:56:48 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,11 @@
 
 # include "../header.h"
 
-int		new_parse(t_ms *ms);
+int		parser_wrapper(t_ms *ms);
 int		parse_arraysize(char **str, t_ms *ms);
 
-char	**parse_split_commands(t_ms *ms, char c);
-char	**parse_split_spaces(t_ms *ms, const char *str, char c);
+char	**parser_splitter_semicolon(t_ms *ms, char c);
+char	**parser_splitter_spaces(t_ms *ms, const char *str, char c);
 void	parse_split_tokens(t_ms *ms, int size, int k);
 
 void	tokens(t_ms *ms);

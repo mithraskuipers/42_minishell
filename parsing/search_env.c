@@ -6,7 +6,7 @@
 /*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/19 17:27:24 by rkieboom      #+#    #+#                 */
-/*   Updated: 2022/10/24 09:51:55 by rkieboom      ########   odam.nl         */
+/*   Updated: 2022/10/29 01:06:46 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ char	*search_env(t_env *v, char *name, int length, char *temp)
 	}
 	temp = ft_substr(name, 0, length);
 	if (!temp)
-		ft_ret_exit(1, 1);
+		return_exit(1, PRNT_ERRNO_NL);
 	while (v)
 	{
 		if (ft_strncmp(temp, v->name, length + 1) == 0)

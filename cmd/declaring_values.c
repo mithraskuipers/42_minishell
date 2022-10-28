@@ -6,7 +6,7 @@
 /*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/03/17 13:14:16 by rkieboom      #+#    #+#                 */
-/*   Updated: 2022/10/29 00:10:00 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/29 01:06:46 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,12 +55,12 @@ static void	first_cmd(t_ms *v, t_newcommand *temp, int k)
 		ft_error("Something went wrong func first_cmd!\n");
 	temp->command = ft_calloc(j + 1, sizeof(char *));
 	if (!temp->command)
-		ft_ret_exit(1, 1);
+		return_exit(1, PRNT_ERRNO_NL);
 	while (j)
 	{
 		temp->command[i] = ft_strdup(v->parse.commands[k][i]);
 		if (!temp->command[i])
-			ft_ret_exit(1, 1);
+			return_exit(1, PRNT_ERRNO_NL);
 		j--;
 		i++;
 	}
@@ -81,7 +81,7 @@ static void	middle_cmd(t_ms *v, t_newcommand *temp, int pipes, int k)
 		ft_error("Something went wrong in func middle_cmd\n");
 	temp->command = ft_calloc(j - i, sizeof(char *));
 	if (!temp->command)
-		ft_ret_exit(1, 1);
+		return_exit(1, PRNT_ERRNO_NL);
 	j = j - i - 1;
 	i++;
 	l = 0;
@@ -89,7 +89,7 @@ static void	middle_cmd(t_ms *v, t_newcommand *temp, int pipes, int k)
 	{
 		temp->command[l] = ft_strdup(v->parse.commands[k][i]);
 		if (!temp->command[l])
-			ft_ret_exit(1, 1);
+			return_exit(1, PRNT_ERRNO_NL);
 		l++;
 		i++;
 		j--;
@@ -112,7 +112,7 @@ static void	last_cmd(t_ms *v, t_newcommand *temp, int pipes, int k)
 		return ;
 	temp->command = ft_calloc(i - j, sizeof(char *));
 	if (!temp->command)
-		ft_ret_exit(1, 1);
+		return_exit(1, PRNT_ERRNO_NL);
 	j = i - j - 1;
 	i = 0;
 	l = pipe_location(v, k, pipes) + 1;
@@ -120,7 +120,7 @@ static void	last_cmd(t_ms *v, t_newcommand *temp, int pipes, int k)
 	{
 		temp->command[i] = ft_strdup(v->parse.commands[k][l + i]);
 		if (!temp->command[i])
-			ft_ret_exit(1, 1);
+			return_exit(1, PRNT_ERRNO_NL);
 		i++;
 		j--;
 	}
@@ -149,7 +149,7 @@ void	declaring_values(t_ms *v, t_newcommand *pipes_cmd, int pipes, int k)
 		{
 			temp->next = ft_calloc(1, sizeof(t_newcommand));
 			if (!temp->next)
-				ft_ret_exit(1, 1);
+				return_exit(1, PRNT_ERRNO_NL);
 			temp->next->prev = temp;
 			temp = temp->next;
 		}

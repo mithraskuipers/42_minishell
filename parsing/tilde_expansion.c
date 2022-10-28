@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/24 14:35:52 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/10/29 00:11:22 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/29 01:06:46 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static char	*expand(t_env *env, char *str)
 	length = calc_len(env, str);
 	newstr = ft_calloc(length + 1, sizeof(char));
 	if (!newstr)
-		ft_ret_exit(1, 1);
+		return_exit(1, PRNT_ERRNO_NL);
 	temp = env_get_content(env, "HOME");
 	i = ft_strlcpy(newstr, temp, ft_strlen(temp) + 1);
 	ft_strlcpy(newstr + i, str + 1, ft_strlen(str + 1) + 1);

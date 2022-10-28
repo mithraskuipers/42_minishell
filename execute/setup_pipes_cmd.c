@@ -6,7 +6,7 @@
 /*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/12 01:09:17 by rkieboom      #+#    #+#                 */
-/*   Updated: 2022/10/29 00:11:22 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/29 01:06:46 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static int	start_commands(t_ms *ms, t_newcommand *temp, pid_t *pids, int i)
 			dup2(temp->read_pipe, 0);
 			close(temp->read_pipe);
 			if (redirections(temp))
-				ft_ret_exit(1, 0);
+				return_exit(1, 0);
 			run_cmd(ms, set_cmd(temp), 1);
 		}
 		else
@@ -85,7 +85,7 @@ static int	last_command(t_ms *ms, t_newcommand *temp, pid_t *pids, int len)
 		dup2(temp->read_pipe, 0);
 		close(temp->read_pipe);
 		if (redirections(temp))
-			ft_ret_exit(1, 0);
+			return_exit(1, 0);
 		run_cmd(ms, set_cmd(temp), 1);
 	}
 	else
@@ -109,7 +109,7 @@ void	setup_pipe_cmd(t_ms *ms, t_newcommand *cmd)
 
 	pids = ft_calloc(len + 1, sizeof(pid_t));
 	if (!pids)
-		ft_ret_exit(1, 1);
+		return_exit(1, PRNT_ERRNO_NL);
 	pids[len] = 0;
 	cmd->read_pipe = dup(0);
 	if (start_commands(ms, cmd, pids, 0))

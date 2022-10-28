@@ -1,0 +1,6 @@
+{
+	"files.associations": {
+		"splash.h": "c",
+		"unistd.h": "c"
+	}
+}

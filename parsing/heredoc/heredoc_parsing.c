@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/28 21:57:42 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/10/29 00:11:22 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/29 01:06:46 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,14 @@ static void	heredoc_allocate(t_heredoc *heredoc, int len)
 		{
 			heredoc->data = ft_calloc(1, sizeof(t_heredoc_data));
 			if (!heredoc->data)
-				ft_ret_exit(1, 1);
+				return_exit(1, PRNT_ERRNO_NL);
 			data = heredoc->data;
 		}
 		else
 		{
 			data->next = ft_calloc(1, sizeof(t_heredoc_data));
 			if (!data->next)
-				ft_ret_exit(1, 1);
+				return_exit(1, PRNT_ERRNO_NL);
 			data = data->next;
 		}
 		len--;
@@ -60,7 +60,7 @@ static void	heredoc_parse_str(t_ms *ms, t_heredoc *heredoc, t_heredoc_data *data
 	temp = ft_calloc(4096, sizeof(char));
 	len = read(heredoc->pipe[0], temp, 4096);
 	if (len < 0)
-		ft_ret_exit(1, 1);
+		return_exit(1, PRNT_ERRNO_NL);
 	temp[len] = 0;
 	arr = ft_split(temp, '\n'); //protect
 	while (arr[i])
@@ -76,7 +76,7 @@ static void	heredoc_parse_str(t_ms *ms, t_heredoc *heredoc, t_heredoc_data *data
 		{
 			data->str = ft_strdup(arr[i]);//protect
 			if (!data->str)
-				ft_ret_exit(1, 1);
+				return_exit(1, PRNT_ERRNO_NL);
 			data = data->next;
 			i++;
 		}
@@ -104,7 +104,7 @@ static void heredoc_noparse_str(t_heredoc *heredoc, t_heredoc_data *data)
 	temp = ft_calloc(4096, sizeof(char));
 	len = read(heredoc->pipe[0], temp, 4096);
 	if (len < 0)
-		ft_ret_exit(1, 1);
+		return_exit(1, PRNT_ERRNO_NL);
 	temp[len] = 0;
 	arr = ft_split(temp, '\n'); //protect
 	while (arr[i])

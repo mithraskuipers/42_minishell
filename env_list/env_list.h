@@ -6,7 +6,7 @@
 /*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/23 22:54:00 by rkieboom      #+#    #+#                 */
-/*   Updated: 2022/10/29 00:12:30 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/29 00:54:39 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,6 @@ t_env	*env_get(t_env *v, char *find);
 int		env_has_data(t_env *v, char *find);
 int		env_exist(t_env *v, char *find);
 
-void	ft_ret_exit(int ret, int print);
+void	return_exit(int ret, int print);
 
 #endif

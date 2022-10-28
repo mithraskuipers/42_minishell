@@ -6,7 +6,7 @@
 #    By: mikuiper <mikuiper@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/10/28 21:58:30 by mikuiper      #+#    #+#                  #
-#    Updated: 2022/10/29 00:27:17 by mikuiper      ########   odam.nl          #
+#    Updated: 2022/10/29 00:58:46 by mikuiper      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,7 +54,7 @@ SRCS =					main.c \
 						$(SRCS.ENV.LIST) \
 						$(SRCS.ENV.LIST.FUNC) \
 						$(SRCS.FREE) \
-						$(SRCS.GNL) \
+						$(SRCS.line) \
 						$(SRCS.PARSING) \
 						$(SRCS.CREATE.CMD) \
 						$(SRCS.EXECUTE)
@@ -129,8 +129,8 @@ SRCS.FREE =				free/free_all.c \
 
 SRCS.PARSING =			parsing/parse.c \
 						parsing/parse_arraysize.c \
-						parsing/splitting/parse_split_spaces.c \
-						parsing/splitting/parse_split_commands.c \
+						parsing/splitting/parser_splitter_spaces.c \
+						parsing/splitting/parser_splitter_semicolons.c \
 						parsing/splitting/parse_split_tokens.c \
 						parsing/checkword.c \
 						parsing/checkword_calclen.c \

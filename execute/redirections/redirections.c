@@ -6,7 +6,7 @@
 /*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/11 22:09:17 by rkieboom      #+#    #+#                 */
-/*   Updated: 2022/10/24 10:19:22 by rkieboom      ########   odam.nl         */
+/*   Updated: 2022/10/29 01:06:46 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	redir_left(t_newcommand *v)
 v->tokens->heredoc[v->tokens->double_redirection_left - 1].data);
 		if (dup2(v->tokens->heredoc \
 	[v->tokens->double_redirection_left - 1].pipe[0], 0) < 0)
-			ft_ret_exit(1, 1);
+			return_exit(1, PRNT_ERRNO_NL);
 		close(v->tokens->heredoc \
 	[v->tokens->double_redirection_left - 1].pipe[0]);
 		return (0);
@@ -43,7 +43,7 @@ v->tokens->heredoc[v->tokens->double_redirection_left - 1].data);
 		return (1);
 	}
 	if (dup2(v->tokens->stdin_fd, 0) < 0)
-		ft_ret_exit(1, 1);
+		return_exit(1, PRNT_ERRNO_NL);
 	close(v->tokens->stdin_fd);
 	return (0);
 }
@@ -58,11 +58,11 @@ int	redir_right(t_newcommand *v)
 		v->command[v->tokens->last_r + 1], O_RDWR | O_TRUNC | O_CREAT, 0644);
 	if (v->tokens->stdout_fd < 0)
 	{
-		ft_ret_exit(0, 1);
+		return_exit(0, 1);
 		return (1);
 	}
 	if (dup2(v->tokens->stdout_fd, 1) < 0)
-		ft_ret_exit(1, 1);
+		return_exit(1, PRNT_ERRNO_NL);
 	close(v->tokens->stdout_fd);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/17 15:28:34 by rkieboom      #+#    #+#                 */
-/*   Updated: 2022/10/29 00:11:22 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/29 01:06:46 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void	cpy_fds(t_ms *ms)
 	ms->stdin_cpy = dup(0);
 	ms->stdout_cpy = dup(1);
 	if (ms->stdin_cpy < 0 || ms->stdout_cpy < 0)
-		ft_ret_exit(1, 1);
+		return_exit(1, PRNT_ERRNO_NL);
 }
 
 static void	reset_fds(t_ms *ms, t_newcommand *cmd)

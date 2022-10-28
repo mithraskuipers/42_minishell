@@ -6,7 +6,7 @@
 /*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/05/25 17:00:06 by rkieboom      #+#    #+#                 */
-/*   Updated: 2022/10/29 00:11:25 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/29 01:06:46 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static char	*get_full_env(t_env *env)
 	length = ft_strlen(env->name) + ft_strlen(env->content) + 2;
 	str = ft_calloc(length, sizeof(char));
 	if (!str)
-		ft_ret_exit(1, 1);
+		return_exit(1, PRNT_ERRNO_NL);
 	str[length - 1] = 0;
 	while (env->name[i])
 	{
@@ -69,7 +69,7 @@ static char	**recreate_envp(t_env *env)
 	length = get_length(env);
 	envp = ft_calloc(length + 1, sizeof(char *));
 	if (!envp)
-		ft_ret_exit(1, 1);
+		return_exit(1, PRNT_ERRNO_NL);
 	envp[length] = 0;
 	length = 0;
 	while (env)
@@ -95,8 +95,8 @@ void	ft_execve(t_ms *ms, char **str)
 	else
 		path = relative_path(str[0], ms->env);
 	if (path && execve(path, str, envp) < 0)
-		ft_ret_exit(1, 1);
+		return_exit(1, PRNT_ERRNO_NL);
 	else
-		ft_ret_exit(g_global.status, 0);
+		return_exit(g_global.status, 0);
 	exit(0);
 }

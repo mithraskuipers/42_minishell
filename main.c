@@ -6,7 +6,7 @@
 /*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/23 22:40:21 by rkieboom      #+#    #+#                 */
-/*   Updated: 2022/10/29 00:22:52 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/29 01:24:36 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,19 +16,19 @@
 
 t_global	g_global;
 
-//Loop where minishell will be in continous
-static void	loop(t_ms *ms)
+//loop where minishell will be in continous
+static void	minishell(t_ms *ms)
 {
 	while (1)
 	{
 		input_read(ms, 0);
 		input_syntax_quotes(ms);
-		if (!ms->gnl.buf)
+		if (!ms->line.array)
 			continue ;
-		add_history(ms->gnl.buf);
-		if (input_syntax_semicolon(ms))
+		add_history(ms->line.array);
+		if (input_syntax_semicolons(ms))
 			continue ;
-		if (!new_parse(ms) && !ms->hdoc_break)//heredoc break before here
+		if (!parser_wrapper(ms) && !ms->hdoc_break)//heredoc break before here
 		{
 			create_cmd(ms, 0);
 			if (!syntax_error(ms->cmd, 0))
@@ -39,7 +39,7 @@ static void	loop(t_ms *ms)
 }
 
 //Increases the ENV SHLVL
-static void	increase_shlvl(t_ms *ms)
+static void	update_shell_level(t_ms *ms)
 {
 	int		shlvl;
 	char	*newnum;
@@ -52,7 +52,7 @@ static void	increase_shlvl(t_ms *ms)
 	shlvl++;
 	newnum = ft_itoa(shlvl);
 	if (!newnum)
-		ft_ret_exit(1, 1);
+		return_exit(1, PRNT_ERRNO_NL);
 	env_change_content(ms->env, "SHLVL", newnum);
 	free(newnum);
 }
@@ -92,10 +92,10 @@ int	main(int argc, char **argv, char **envp)
 	ft_bzero(&g_global, sizeof(t_global));
 	ms.env = create_envp(ms.env, envp);
 	fix_signals(&ms.env);
-	increase_shlvl(&ms);
+	update_shell_level(&ms);
 	tcgetattr(0, &g_global.termios_save);
 	g_global.termios_new = g_global.termios_save;
 	g_global.termios_new.c_lflag &= ~ECHOCTL;
-	loop(&ms);
+	minishell(&ms);
 	return (0);
 }

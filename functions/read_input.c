@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/28 21:56:51 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/10/29 00:21:02 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/29 00:36:06 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,29 +14,29 @@
 #include <readline/readline.h>
 #include <readline/history.h>
 
-static int	check_spaces(t_ms *ms)
+static int	input_is_whitespace(t_ms *ms)
 {
 	int	i;
 
 	i = 0;
-	while (ms->gnl.buf[i] && (ms->gnl.buf[i] == 32 \
-	|| (ms->gnl.buf[i] >= 9 && ms->gnl.buf[i] <= 13)))
+	while (ms->line.array[i] && (ms->line.array[i] == 32 \
+	|| (ms->line.array[i] >= 9 && ms->line.array[i] <= 13)))
 		i++;
-	if (ms->gnl.buf[i])
+	if (ms->line.array[i])
 		return (0);
 	return (1);
 }
 
-static void	reset_buf(t_ms *ms)
+static void	input_clean_array(t_ms *ms)
 {
-	if (ms->gnl.buf)
+	if (ms->line.array)
 	{
-		free(ms->gnl.buf);
-		ms->gnl.buf = 0;
+		free(ms->line.array);
+		ms->line.array = 0;
 	}
 }
 
-static void	print_error(t_ms *ms)
+static void	input_error(t_ms *ms)
 {
 	ft_putstr_fd(\
 "minishell-4.2$: unexpected EOF while looking for matching `", 2);
@@ -46,38 +46,37 @@ static void	print_error(t_ms *ms)
 		ft_putstr_fd("\"'\n", 2);
 }
 
-static void	setup(t_ms *ms)
+static void	terminal_params(t_ms *ms)
 {
 	ms->hdoc_break = 0;
 	tcsetattr(0, 0, &g_global.termios_new);
 	signal(SIGINT, sig_handler);
 	signal(SIGQUIT, SIG_IGN);
-	reset_buf(ms);
+	input_clean_array(ms);
 }
 
-//Reads input and saves it in ms->gnl.buf
 void	input_read(t_ms *ms, int mode)
 {
-	setup(ms);
+	terminal_params(ms);
 	if (mode == 0)
 	{
-		while (!ms->gnl.buf)
+		while (!ms->line.array)
 		{
-			ms->gnl.buf = readline("minishell-4.2$ ");
-			if (!ms->gnl.buf)
+			ms->line.array = readline("minishell-4.2$ ");
+			if (!ms->line.array)
 			{
 				ft_putendl_fd("exit", 1);
 				tcsetattr(0, 0, &g_global.termios_save);
 				exit(0);
 			}
-			if (ms->gnl.buf && check_spaces(ms))
-				reset_buf(ms);
+			if (ms->line.array && input_is_whitespace(ms))
+				input_clean_array(ms);
 		}
 	}
 	else
 	{
-		ms->gnl.buf = readline("> ");
-		if (ms->gnl.buf == NULL)
-			print_error(ms);
+		ms->line.array = readline("> ");
+		if (ms->line.array == NULL)
+			input_error(ms);
 	}
 }

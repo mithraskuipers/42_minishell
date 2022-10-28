@@ -1,16 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   parse_split_commands.c                             :+:    :+:            */
+/*   parser_splitter_semicolons.c                       :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/10/24 14:35:00 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/10/29 00:25:23 by mikuiper      ########   odam.nl         */
+/*   Created: 2022/10/29 00:58:15 by mikuiper      #+#    #+#                 */
+/*   Updated: 2022/10/29 01:07:34 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../parse.h"
+#include "../../header.h"
 
 static int	arraysize(const char *s, char c, t_ms *ms)
 {
@@ -54,19 +55,19 @@ static char	**splitter(t_ms *ms, char c, char **result, int i)
 
 	strlength = 0;
 	arrayindex = 0;
-	while (arrayindex != arraysize(ms->gnl.buf, c, ms))
+	while (arrayindex != arraysize(ms->line.array, c, ms))
 	{
-		findstart(ms->gnl.buf, c, &i, &start);
-		while (ms->gnl.buf[i] && (ms->gnl.buf[i] != c || \
+		findstart(ms->line.array, c, &i, &start);
+		while (ms->line.array[i] && (ms->line.array[i] != c || \
 				(ms->parse.comma1 == 1 || ms->parse.comma2 == 1)))
 		{
-			check_quote(ms, &ms->gnl.buf[i]);
+			check_quote(ms, &ms->line.array[i]);
 			i++;
 			strlength++;
 		}
-		result[arrayindex] = ft_substr(ms->gnl.buf, start, strlength);
+		result[arrayindex] = ft_substr(ms->line.array, start, strlength);
 		if (!result[arrayindex])
-			ft_ret_exit(1, 1);
+			return_exit(1, PRNT_ERRNO_NL);
 		strlength = 0;
 		arrayindex++;
 		i++;
@@ -75,15 +76,15 @@ static char	**splitter(t_ms *ms, char c, char **result, int i)
 	return (result);
 }
 
-char	**parse_split_commands(t_ms *ms, char c)
+char	**parser_splitter_semicolon(t_ms *ms, char c)
 {
 	char	**result;
 
-	if (!ms->gnl.buf)
+	if (!ms->line.array)
 		return (NULL);
-	result = ft_calloc(arraysize(ms->gnl.buf, c, ms) + 1, sizeof(char *));
+	result = ft_calloc(arraysize(ms->line.array, c, ms) + 1, sizeof(char *));
 	if (!result)
-		ft_ret_exit(1, 1);
+		return_exit(1, PRNT_ERRNO_NL);
 	result = splitter(ms, c, result, 0);
 	return (result);
 }

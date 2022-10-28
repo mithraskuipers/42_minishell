@@ -6,7 +6,7 @@
 /*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/03/17 12:47:40 by rkieboom      #+#    #+#                 */
-/*   Updated: 2022/10/29 00:10:00 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/29 01:06:46 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,13 @@ static void	create_command(t_ms *v, t_newcommand *cmd, int k)
 		i++;
 	cmd->command = ft_calloc(i + 1, sizeof(char *));
 	if (!cmd->command)
-		ft_ret_exit(1, 1);
+		return_exit(1, PRNT_ERRNO_NL);
 	i = 0;
 	while (v->parse.commands[k][i])
 	{
 		cmd->command[i] = ft_strdup(v->parse.commands[k][i]);
 		if (!cmd->command[i])
-			ft_ret_exit(1, 1);
+			return_exit(1, PRNT_ERRNO_NL);
 		i++;
 	}
 }
@@ -45,7 +45,7 @@ int	create_cmd(t_ms *v, int k)
 		k++;
 	v->cmd = ft_calloc(k, sizeof(t_newcommand));
 	if (!v->cmd)
-		ft_ret_exit(1, 1);
+		return_exit(1, PRNT_ERRNO_NL);
 	while (i < k)
 	{
 		pipes = v->tokens[i].pipe;

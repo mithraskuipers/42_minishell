@@ -6,7 +6,7 @@
 /*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/11/30 00:29:12 by rkieboom      #+#    #+#                 */
-/*   Updated: 2022/10/29 00:11:08 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/29 01:06:46 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,10 @@ static void	allocate_tokens_vars(t_ms *ms)
 		}
 		ms->tokens[k].token = ft_calloc(total + 1, sizeof(char *));
 		if (!ms->tokens[k].token)
-			ft_ret_exit(1, 1);
+			return_exit(1, PRNT_ERRNO_NL);
 		ms->tokens[k].token_pos = ft_calloc(total + 1, sizeof(int));
 		if (!ms->tokens[k].token_pos)
-			ft_ret_exit(1, 1);
+			return_exit(1, PRNT_ERRNO_NL);
 		ms->tokens[k].total = total;
 		total = 0;
 		k++;

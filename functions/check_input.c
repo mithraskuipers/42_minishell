@@ -13,31 +13,31 @@
 #include "../header.h"
 
 // Called when user input has unclosed quotes.
-// Stores current gnl.buf and prompts user for input again using input_read()
+// Stores current line.array and prompts user for input again using input_read()
 static void	quote(t_ms *ms)
 {
 	char	*newstr;
 	char	*temp;
 
-	newstr = ft_strdup(ms->gnl.buf);
+	newstr = ft_strdup(ms->line.array);
 	if (!newstr)
-		ft_ret_exit(1, 1);
+		return_exit(1, PRNT_ERRNO_NL);
 	input_read(ms, 1);
-	if (!ms->gnl.buf)
+	if (!ms->line.array)
 	{
 		free(newstr);
 		return ;
 	}
-	temp = ms->gnl.buf;
+	temp = ms->line.array;
 	newstr = add_new_line(newstr);
-	ms->gnl.buf = ft_strjoin(newstr, ms->gnl.buf);
-	if (!ms->gnl.buf)
-		ft_ret_exit(1, 1);
+	ms->line.array = ft_strjoin(newstr, ms->line.array);
+	if (!ms->line.array)
+		return_exit(1, PRNT_ERRNO_NL);
 	free(temp);
 	free(newstr);
 }
 
-// Checks if gnl.buf contains unclosed quotes.
+// Checks if line.array contains unclosed quotes.
 // User remains in this function unrtil input has closed quotes.
 void	input_syntax_quotes(t_ms *ms)
 {
@@ -46,13 +46,13 @@ void	input_syntax_quotes(t_ms *ms)
 	i = 0;
 	while (1)
 	{
-		if (!ms->gnl.buf)
+		if (!ms->line.array)
 			return ;
 		ms->parse.comma1 = 0;
 		ms->parse.comma2 = 0;
-		while (ms->gnl.buf[i])
+		while (ms->line.array[i])
 		{
-			check_quote(ms, &ms->gnl.buf[i]);
+			check_quote(ms, &ms->line.array[i]);
 			i++;
 		}
 		if (ms->parse.comma1 == 1 || ms->parse.comma2 == 1)
@@ -67,20 +67,20 @@ static int	input_error(t_ms *v)
 {
 	ft_putendl_fd("minishell-4.2$: \
 syntax error near unexpected token ;", 2);
-	free(v->gnl.buf);
-	v->gnl.buf = 0;
+	free(v->line.array);
+	v->line.array = 0;
 	g_global.status = 258;
 	return (1);
 }
 
 // Checking semicolons syntax error
-int	input_syntax_semicolon(t_ms *v)
+int	input_syntax_semicolons(t_ms *v)
 {
 	int		i;
 	char	*str;
 
 	i = 0;
-	str = v->gnl.buf;
+	str = v->line.array;
 	while (str[i])
 	{
 		i += str_skip_whitespace(str + i);
