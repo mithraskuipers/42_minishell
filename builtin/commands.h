@@ -6,7 +6,7 @@
 /*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/05/11 16:35:27 by rkieboom      #+#    #+#                 */
-/*   Updated: 2022/10/23 23:01:52 by rkieboom      ########   odam.nl         */
+/*   Updated: 2022/10/29 00:11:25 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,13 @@
 # include <sys/stat.h>
 # include <fcntl.h>
 
-int		cd(t_list *v, char **str);
+int		cd(t_ms *v, char **str);
 int		env(t_env *v);
 int		pwd(void);
 int		echo(char **str);
 int		export(t_env **v, char **str);
 int		unset(t_env **v, char **str);
-void	ft_execve(t_list *list, char **str);
+void	ft_execve(t_ms *ms, char **str);
 void	ft_ret_exit(int ret, int print);
 void	ft_exit(char **str);
 
@@ -38,7 +38,7 @@ void	ft_exit(char **str);
 
 int		cd_check_permissions(char *path);
 int		cd_exec_cmd(t_env *env, char *path);
-int		cd_tilde_expansion(t_list *list, char *str);
+int		cd_tilde_expansion(t_ms *ms, char *str);
 
 char	*relative_path(char *PATH, t_env *env);
 char	*absolute_path(char *PATH);

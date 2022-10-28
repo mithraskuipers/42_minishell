@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/28 21:57:34 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/10/28 21:57:36 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/29 00:11:22 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void	heredoc_env(char *str, t_env *env, int *length, int *i)
 		(*i)++;
 }
 
-int	heredoc_get_str_len(t_list *list, char *str)
+int	heredoc_get_str_len(t_ms *ms, char *str)
 {
 	int	i;
 	int	newlength;
@@ -35,7 +35,7 @@ int	heredoc_get_str_len(t_list *list, char *str)
 		{
 			i++;
 			if (str[i] && (ft_isalnum(str[i]) || str[i] == '_'))
-				heredoc_env(str, list->env, &newlength, &i);
+				heredoc_env(str, ms->env, &newlength, &i);
 			else
 				newlength++;
 		}

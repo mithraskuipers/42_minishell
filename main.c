@@ -6,7 +6,7 @@
 /*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/23 22:40:21 by rkieboom      #+#    #+#                 */
-/*   Updated: 2022/10/27 22:54:24 by rkieboom      ########   odam.nl         */
+/*   Updated: 2022/10/29 00:12:04 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,43 +17,43 @@
 t_global	g_global;
 
 //Loop where minishell will be in continous
-static void	loop(t_list *list)
+static void	loop(t_ms *ms)
 {
 	while (1)
 	{
-		read_input(list, 0);
-		check_input_quotes(list);
-		if (!list->gnl.buf)
+		read_input(ms, 0);
+		check_input_quotes(ms);
+		if (!ms->gnl.buf)
 			continue ;
-		add_history(list->gnl.buf);
-		if (check_input(list))
+		add_history(ms->gnl.buf);
+		if (check_input(ms))
 			continue ;
-		if (!new_parse(list) && !list->hdoc_break)//heredoc break before here
+		if (!new_parse(ms) && !ms->hdoc_break)//heredoc break before here
 		{
-			create_cmd(list, 0);
-			if (!syntax_error(list->cmd, 0))
-				execution(list, list->cmd, 0);
+			create_cmd(ms, 0);
+			if (!syntax_error(ms->cmd, 0))
+				execution(ms, ms->cmd, 0);
 		}
-		free_all(list);
+		free_all(ms);
 	}
 }
 
 //Increases the ENV SHLVL
-static void	increase_shlvl(t_list *list)
+static void	increase_shlvl(t_ms *ms)
 {
 	int		shlvl;
 	char	*newnum;
 
-	if (!list->env)
+	if (!ms->env)
 		return ;
-	if (!env_exist(list->env, "SHLVL") && !env_has_data(list->env, "SHLVL"))
+	if (!env_exist(ms->env, "SHLVL") && !env_has_data(ms->env, "SHLVL"))
 		return ;
-	shlvl = ft_atoi(env_get_content(list->env, "SHLVL"));
+	shlvl = ft_atoi(env_get_content(ms->env, "SHLVL"));
 	shlvl++;
 	newnum = ft_itoa(shlvl);
 	if (!newnum)
 		ft_ret_exit(1, 1);
-	env_change_content(list->env, "SHLVL", newnum);
+	env_change_content(ms->env, "SHLVL", newnum);
 	free(newnum);
 }
 
@@ -84,18 +84,18 @@ static void	fix_signals(t_env **env)
 
 int	main(int argc, char **argv, char **envp)
 {
-	t_list	list;
+	t_ms	ms;
 
 	(void)argc;
 	(void)argv;
-	ft_bzero(&list, sizeof(t_list));
+	ft_bzero(&ms, sizeof(t_ms));
 	ft_bzero(&g_global, sizeof(t_global));
-	list.env = create_envp(list.env, envp);
-	fix_signals(&list.env);
-	increase_shlvl(&list);
+	ms.env = create_envp(ms.env, envp);
+	fix_signals(&ms.env);
+	increase_shlvl(&ms);
 	tcgetattr(0, &g_global.termios_save);
 	g_global.termios_new = g_global.termios_save;
 	g_global.termios_new.c_lflag &= ~ECHOCTL;
-	loop(&list);
+	loop(&ms);
 	return (0);
 }

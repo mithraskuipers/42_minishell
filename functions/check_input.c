@@ -6,7 +6,7 @@
 /*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/02/02 17:32:12 by rkieboom      #+#    #+#                 */
-/*   Updated: 2022/10/24 14:20:30 by rkieboom      ########   odam.nl         */
+/*   Updated: 2022/10/29 00:11:05 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,24 @@
 
 // Called when user input has unclosed quotes.
 // Stores current gnl.buf and prompts user for input again using read_input()
-static void	quote(t_list *list)
+static void	quote(t_ms *ms)
 {
 	char	*newstr;
 	char	*temp;
 
-	newstr = ft_strdup(list->gnl.buf);
+	newstr = ft_strdup(ms->gnl.buf);
 	if (!newstr)
 		ft_ret_exit(1, 1);
-	read_input(list, 1);
-	if (!list->gnl.buf)
+	read_input(ms, 1);
+	if (!ms->gnl.buf)
 	{
 		free(newstr);
 		return ;
 	}
-	temp = list->gnl.buf;
+	temp = ms->gnl.buf;
 	newstr = add_new_line(newstr);
-	list->gnl.buf = ft_strjoin(newstr, list->gnl.buf);
-	if (!list->gnl.buf)
+	ms->gnl.buf = ft_strjoin(newstr, ms->gnl.buf);
+	if (!ms->gnl.buf)
 		ft_ret_exit(1, 1);
 	free(temp);
 	free(newstr);
@@ -39,31 +39,31 @@ static void	quote(t_list *list)
 
 // Checks if gnl.buf contains unclosed quotes.
 // User remains in this function unrtil input has closed quotes.
-void	check_input_quotes(t_list *list)
+void	check_input_quotes(t_ms *ms)
 {
 	int		i;
 
 	i = 0;
 	while (1)
 	{
-		if (!list->gnl.buf)
+		if (!ms->gnl.buf)
 			return ;
-		list->parse.comma1 = 0;
-		list->parse.comma2 = 0;
-		while (list->gnl.buf[i])
+		ms->parse.comma1 = 0;
+		ms->parse.comma2 = 0;
+		while (ms->gnl.buf[i])
 		{
-			check_quote(list, &list->gnl.buf[i]);
+			check_quote(ms, &ms->gnl.buf[i]);
 			i++;
 		}
-		if (list->parse.comma1 == 1 || list->parse.comma2 == 1)
-			quote(list);
+		if (ms->parse.comma1 == 1 || ms->parse.comma2 == 1)
+			quote(ms);
 		else
 			break ;
 		i = 0;
 	}
 }
 
-static int	check_ret_error(t_list *v)
+static int	check_ret_error(t_ms *v)
 {
 	ft_putendl_fd("minishell-4.2$: \
 syntax error near unexpected token ;", 2);
@@ -74,7 +74,7 @@ syntax error near unexpected token ;", 2);
 }
 
 // Checking semicolons syntax error
-int	check_input(t_list *v)
+int	check_input(t_ms *v)
 {
 	int		i;
 	char	*str;

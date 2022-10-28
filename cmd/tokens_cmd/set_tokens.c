@@ -6,7 +6,7 @@
 /*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/08/29 14:08:53 by rkieboom      #+#    #+#                 */
-/*   Updated: 2022/10/23 00:51:29 by rkieboom      ########   odam.nl         */
+/*   Updated: 2022/10/29 00:10:00 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ typedef struct s_vars
 }				t_vars;
 
 //Return the token we are at
-static char	*ret_token(t_list *v, int k, int token_count)
+static char	*ret_token(t_ms *v, int k, int token_count)
 {
 	int	count;
 	int	i;
@@ -46,7 +46,7 @@ static char	*ret_token(t_list *v, int k, int token_count)
 	return (v->tokens[k].token[i]);
 }
 
-static int	get_resetter(t_list *v, int k, int i)
+static int	get_resetter(t_ms *v, int k, int i)
 {
 	while (i > 0)
 	{
@@ -65,7 +65,7 @@ static int	get_resetter(t_list *v, int k, int i)
  * *token_pos = 0 will return >
  * *token_pos = 1 will return <
 **/
-static int	get_token_pos(t_list *v, int k, int token_count)
+static int	get_token_pos(t_ms *v, int k, int token_count)
 {
 	int	i;
 	int	count;
@@ -90,7 +90,7 @@ static int	get_token_pos(t_list *v, int k, int token_count)
 }
 
 //Set the token values
-void	set_tokens(t_list *v, t_newcommand *pipes, int k)
+void	set_tokens(t_ms *v, t_newcommand *pipes, int k)
 {
 	t_vars	vars;
 

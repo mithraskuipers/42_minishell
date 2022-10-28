@@ -6,7 +6,7 @@
 /*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/04 19:50:14 by rkieboom      #+#    #+#                 */
-/*   Updated: 2022/10/04 23:15:30 by rkieboom      ########   odam.nl         */
+/*   Updated: 2022/10/29 00:11:22 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static void	free_cmd(t_newcommand *temp, int j, int k)
 		free(temp);
 }
 
-void	free_commands(t_list *list, t_newcommand *temp, \
+void	free_commands(t_ms *ms, t_newcommand *temp, \
 						t_newcommand *temp2, int totalcommands)
 {
 	int	i;
@@ -49,7 +49,7 @@ void	free_commands(t_list *list, t_newcommand *temp, \
 	while (totalcommands)
 	{
 		k = 0;
-		temp = &list->cmd[i];
+		temp = &ms->cmd[i];
 		while (temp)
 		{
 			temp2 = temp->next;
@@ -60,5 +60,5 @@ void	free_commands(t_list *list, t_newcommand *temp, \
 		i++;
 		totalcommands--;
 	}
-	free(list->cmd);
+	free(ms->cmd);
 }

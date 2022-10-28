@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/28 21:57:11 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/10/28 21:57:13 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/29 00:12:30 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ typedef struct s_newcommand
 	struct s_newcommand		*prev;
 }				t_newcommand;
 
-typedef struct s_list
+typedef struct s_ms
 {
 	int				stdout_cpy;
 	int				stdin_cpy;
@@ -95,7 +95,7 @@ typedef struct s_list
 	t_tokens		*tokens;
 	t_newcommand	*cmd;
 	int				hdoc_break;
-}				t_list;
+}				t_ms;
 
 typedef struct s_global
 {
@@ -108,29 +108,29 @@ typedef struct s_global
 
 extern t_global	g_global;
 
-int		new_parse(t_list *list);
+int		new_parse(t_ms *ms);
 
-void	free_all(t_list *list);
-void	free_commands(t_list *list, t_newcommand *temp, \
+void	free_all(t_ms *ms);
+void	free_commands(t_ms *ms, t_newcommand *temp, \
 						t_newcommand *temp2, int totalcommands);
-void	free_heredoc(t_list *list, int totalcommands);
+void	free_heredoc(t_ms *ms, int totalcommands);
 
 void	ft_error(char *msg);
-int		syntax_error_parse(t_list *list);
+int		syntax_error_parse(t_ms *ms);
 int		syntax_error(t_newcommand *cmd, int i);
 
-void	execution(t_list *list, t_newcommand *cmd, int k);
+void	execution(t_ms *ms, t_newcommand *cmd, int k);
 int		skipspaces(const char *str);
 
-void	check_quote(t_list *list, char *c);
+void	check_quote(t_ms *ms, char *c);
 char	*add_new_line(char *str);
 int		cmd_len(char **str);
 
-int		check_input(t_list *v);
-void	read_input(t_list *list, int option);
-void	check_input_quotes(t_list *list);
+int		check_input(t_ms *v);
+void	read_input(t_ms *ms, int option);
+void	check_input_quotes(t_ms *ms);
 
-int		create_cmd(t_list *v, int k);
+int		create_cmd(t_ms *v, int k);
 
 void	sig_handler(int sign_num);
 

@@ -6,7 +6,7 @@
 /*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/06 00:34:52 by rkieboom      #+#    #+#                 */
-/*   Updated: 2022/10/23 00:14:06 by rkieboom      ########   odam.nl         */
+/*   Updated: 2022/10/29 00:11:22 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ typedef struct s_vars
 	int	length;
 }				t_vars;
 
-static void	check_len(t_list *list, t_vars *vars, char **str)
+static void	check_len(t_ms *ms, t_vars *vars, char **str)
 {
 	vars->length++;
 	if (check_char(&str[vars->j][vars->i]))
@@ -29,12 +29,12 @@ static void	check_len(t_list *list, t_vars *vars, char **str)
 		vars->p = 0;
 	while (str[vars->j][vars->i])
 	{	
-		check_quote(list, &str[vars->j][vars->i]);
-		if (list->parse.comma1 == 0 && list->parse.comma2 == 0 \
+		check_quote(ms, &str[vars->j][vars->i]);
+		if (ms->parse.comma1 == 0 && ms->parse.comma2 == 0 \
 		&& ((vars->p == 1 && !check_char(&str[vars->j][vars->i]) \
 		&& array_thingy(&vars->p))))
 			vars->length++;
-		else if (list->parse.comma1 == 0 && list->parse.comma2 == 0 \
+		else if (ms->parse.comma1 == 0 && ms->parse.comma2 == 0 \
 		&& (((vars->p == 0 && check_char(&str[vars->j][vars->i]) \
 		&& array_thingy(&vars->p)))))
 			vars->length++;
@@ -43,17 +43,17 @@ static void	check_len(t_list *list, t_vars *vars, char **str)
 }
 
 //Calculates what the size should be
-int	parse_arraysize(char **str, t_list *list)
+int	parse_arraysize(char **str, t_ms *ms)
 {
 	t_vars	vars;
 
 	ft_bzero(&vars, sizeof(t_vars));
 	while (str[vars.j])
 	{
-		if (check_char_str(list, str[vars.j]) == 0)
+		if (check_char_str(ms, str[vars.j]) == 0)
 			vars.length++;
 		else
-			check_len(list, &vars, str);
+			check_len(ms, &vars, str);
 		vars.i = 0;
 		vars.j++;
 	}

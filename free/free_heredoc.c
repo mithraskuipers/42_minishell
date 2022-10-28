@@ -6,7 +6,7 @@
 /*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/21 04:04:12 by rkieboom      #+#    #+#                 */
-/*   Updated: 2022/09/25 23:01:09 by rkieboom      ########   odam.nl         */
+/*   Updated: 2022/10/29 00:11:22 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void	free_heredoc_data(t_heredoc_data *data)
 	}
 }
 
-void	free_heredoc(t_list *list, int totalcommands)
+void	free_heredoc(t_ms *ms, int totalcommands)
 {
 	int				i;
 	int				j;
@@ -35,18 +35,18 @@ void	free_heredoc(t_list *list, int totalcommands)
 	while (totalcommands)
 	{
 		j = 0;
-		while (list->tokens != NULL && &list->tokens[i] != NULL && \
-		list->tokens[i].double_redirection_left)
+		while (ms->tokens != NULL && &ms->tokens[i] != NULL && \
+		ms->tokens[i].double_redirection_left)
 		{
-			if (list->tokens != NULL && &list->tokens[i] != NULL && \
-			list->tokens[i].heredoc && list->tokens[i].heredoc[j].data)
-				free_heredoc_data(list->tokens[i].heredoc[j].data);
-			list->tokens[i].double_redirection_left--;
+			if (ms->tokens != NULL && &ms->tokens[i] != NULL && \
+			ms->tokens[i].heredoc && ms->tokens[i].heredoc[j].data)
+				free_heredoc_data(ms->tokens[i].heredoc[j].data);
+			ms->tokens[i].double_redirection_left--;
 			j++;
 		}
-		if (list->tokens != NULL && \
-		&list->tokens[i] != NULL && list->tokens[i].heredoc)
-			free(list->tokens[i].heredoc);
+		if (ms->tokens != NULL && \
+		&ms->tokens[i] != NULL && ms->tokens[i].heredoc)
+			free(ms->tokens[i].heredoc);
 		i++;
 		totalcommands--;
 	}

@@ -6,13 +6,13 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/24 14:35:00 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/10/24 14:35:01 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/29 00:11:22 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../parse.h"
 
-static int	arraysize(const char *s, char c, t_list *list)
+static int	arraysize(const char *s, char c, t_ms *ms)
 {
 	int	i;
 	int	k;
@@ -22,19 +22,19 @@ static int	arraysize(const char *s, char c, t_list *list)
 	i = skipspaces(s);
 	if (s[i] == '\0')
 		return (0);
-	list->parse.comma1 = 0;
-	list->parse.comma2 = 0;
+	ms->parse.comma1 = 0;
+	ms->parse.comma2 = 0;
 	while (s[i])
 	{
-		check_quote(list, (char *)s + i);
-		if (s[i] == c && (list->parse.comma1 == 0 && list->parse.comma2 == 0))
+		check_quote(ms, (char *)s + i);
+		if (s[i] == c && (ms->parse.comma1 == 0 && ms->parse.comma2 == 0))
 			k++;
 		while (s[i] && s[i + 1] && s[i] == c)
 			i++;
 		i++;
 	}
-	list->parse.comma1 = 0;
-	list->parse.comma2 = 0;
+	ms->parse.comma1 = 0;
+	ms->parse.comma2 = 0;
 	return (k + 1);
 }
 
@@ -46,7 +46,7 @@ static void	findstart(const char *s, char c, int *i, int *start)
 		*start = *i;
 }
 
-static char	**splitter(t_list *list, char c, char **result, int i)
+static char	**splitter(t_ms *ms, char c, char **result, int i)
 {
 	int	strlength;
 	int	arrayindex;
@@ -54,17 +54,17 @@ static char	**splitter(t_list *list, char c, char **result, int i)
 
 	strlength = 0;
 	arrayindex = 0;
-	while (arrayindex != arraysize(list->gnl.buf, c, list))
+	while (arrayindex != arraysize(ms->gnl.buf, c, ms))
 	{
-		findstart(list->gnl.buf, c, &i, &start);
-		while (list->gnl.buf[i] && (list->gnl.buf[i] != c || \
-				(list->parse.comma1 == 1 || list->parse.comma2 == 1)))
+		findstart(ms->gnl.buf, c, &i, &start);
+		while (ms->gnl.buf[i] && (ms->gnl.buf[i] != c || \
+				(ms->parse.comma1 == 1 || ms->parse.comma2 == 1)))
 		{
-			check_quote(list, &list->gnl.buf[i]);
+			check_quote(ms, &ms->gnl.buf[i]);
 			i++;
 			strlength++;
 		}
-		result[arrayindex] = ft_substr(list->gnl.buf, start, strlength);
+		result[arrayindex] = ft_substr(ms->gnl.buf, start, strlength);
 		if (!result[arrayindex])
 			ft_ret_exit(1, 1);
 		strlength = 0;
@@ -75,15 +75,15 @@ static char	**splitter(t_list *list, char c, char **result, int i)
 	return (result);
 }
 
-char	**parse_split_commands(t_list *list, char c)
+char	**parse_split_commands(t_ms *ms, char c)
 {
 	char	**result;
 
-	if (!list->gnl.buf)
+	if (!ms->gnl.buf)
 		return (NULL);
-	result = ft_calloc(arraysize(list->gnl.buf, c, list) + 1, sizeof(char *));
+	result = ft_calloc(arraysize(ms->gnl.buf, c, ms) + 1, sizeof(char *));
 	if (!result)
 		ft_ret_exit(1, 1);
-	result = splitter(list, c, result, 0);
+	result = splitter(ms, c, result, 0);
 	return (result);
 }

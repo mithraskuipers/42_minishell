@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/24 14:35:52 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/10/24 14:35:53 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/29 00:11:22 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ static char	*expand(t_env *env, char *str)
 	return (newstr);
 }
 
-void	tilde_expansion(t_list *list, int length)
+void	tilde_expansion(t_ms *ms, int length)
 {
 	int	i;
 	int	k;
@@ -65,11 +65,11 @@ void	tilde_expansion(t_list *list, int length)
 	while (k < length)
 	{
 		i = 0;
-		while (list->parse.commands[k][i])
+		while (ms->parse.commands[k][i])
 		{
-			if (is_tilde(list->parse.commands[k][i]))
-				list->parse.commands[k][i] = \
-				expand(list->env, list->parse.commands[k][i]);
+			if (is_tilde(ms->parse.commands[k][i]))
+				ms->parse.commands[k][i] = \
+				expand(ms->env, ms->parse.commands[k][i]);
 			i++;
 		}
 		k++;

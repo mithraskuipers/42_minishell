@@ -6,7 +6,7 @@
 /*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/11/28 15:03:53 by rkieboom      #+#    #+#                 */
-/*   Updated: 2022/10/24 09:51:39 by rkieboom      ########   odam.nl         */
+/*   Updated: 2022/10/29 00:11:22 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,12 @@ static void	return_ret_status(t_vars *vars)
 	vars->i++;
 }
 
-static void	set_env_value(t_list *list, t_vars *vars)
+static void	set_env_value(t_ms *ms, t_vars *vars)
 {
 	vars->length -= ft_strlen(\
-	search_env(list->env, vars->str + vars->i, 0, 0));
+	search_env(ms->env, vars->str + vars->i, 0, 0));
 	vars->length++;
-	vars->temp = ft_strdup(search_env(list->env, vars->str + vars->i, 0, 0));
+	vars->temp = ft_strdup(search_env(ms->env, vars->str + vars->i, 0, 0));
 	if (!vars->temp)
 		ft_ret_exit(1, 1);
 	ft_memcpy(vars->newstr + vars->x, vars->temp, ft_strlen(vars->temp));
@@ -55,7 +55,7 @@ static void	set_env_value(t_list *list, t_vars *vars)
 	vars->i--;
 }
 
-static void	return_dollar_value(t_list *list, t_vars *vars)
+static void	return_dollar_value(t_ms *ms, t_vars *vars)
 {
 	if (vars->str[vars->i + 1] == '?')
 		return_ret_status(vars);
@@ -67,11 +67,11 @@ static void	return_dollar_value(t_list *list, t_vars *vars)
 		return ;
 	}
 	else
-		set_env_value(list, vars);
+		set_env_value(ms, vars);
 	free(vars->temp);
 }
 
-static void	init_vars(t_list *list, t_vars *vars, int length, char *str)
+static void	init_vars(t_ms *ms, t_vars *vars, int length, char *str)
 {
 	ft_bzero(vars, sizeof(t_vars));
 	vars->length = length;
@@ -79,29 +79,29 @@ static void	init_vars(t_list *list, t_vars *vars, int length, char *str)
 	vars->newstr = ft_calloc(vars->length + 1, sizeof(char));
 	if (!vars->newstr)
 		ft_ret_exit(1, 1);
-	list->parse.comma1 = 0;
-	list->parse.comma2 = 0;
+	ms->parse.comma1 = 0;
+	ms->parse.comma2 = 0;
 	vars->i = -1;
 }
 
-char	*createstring(t_list *list, char *str, int length)
+char	*createstring(t_ms *ms, char *str, int length)
 {
 	t_vars	vars;
 
-	init_vars(list, &vars, length, str);
+	init_vars(ms, &vars, length, str);
 	while (vars.length > 0)
 	{
 		vars.i++;
-		check_quote(list, &str[vars.i]);
-		if (str[vars.i] == '$' && list->parse.comma1 == 0)
-			return_dollar_value(list, &vars);
-		else if (str[vars.i] == '\"' && ((list->parse.comma1 == 0 \
-		&& list->parse.comma2 == 1) || (list->parse.comma1 == 0 \
-		&& list->parse.comma2 == 0)))
+		check_quote(ms, &str[vars.i]);
+		if (str[vars.i] == '$' && ms->parse.comma1 == 0)
+			return_dollar_value(ms, &vars);
+		else if (str[vars.i] == '\"' && ((ms->parse.comma1 == 0 \
+		&& ms->parse.comma2 == 1) || (ms->parse.comma1 == 0 \
+		&& ms->parse.comma2 == 0)))
 			continue ;
-		else if (str[vars.i] == '\'' && ((list->parse.comma2 == 0 \
-		&& list->parse.comma1 == 1) || (list->parse.comma1 == 0 \
-		&& list->parse.comma2 == 0)))
+		else if (str[vars.i] == '\'' && ((ms->parse.comma2 == 0 \
+		&& ms->parse.comma1 == 1) || (ms->parse.comma1 == 0 \
+		&& ms->parse.comma2 == 0)))
 			continue ;
 		else
 			vars.newstr[vars.x] = str[vars.i];

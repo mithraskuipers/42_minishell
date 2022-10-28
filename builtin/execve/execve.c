@@ -6,7 +6,7 @@
 /*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/05/25 17:00:06 by rkieboom      #+#    #+#                 */
-/*   Updated: 2022/10/24 14:51:36 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/29 00:11:25 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,16 +84,16 @@ static char	**recreate_envp(t_env *env)
 	return (envp);
 }
 
-void	ft_execve(t_list *list, char **str)
+void	ft_execve(t_ms *ms, char **str)
 {
 	char	*path;
 	char	**envp;
 
-	envp = recreate_envp(list->env);
+	envp = recreate_envp(ms->env);
 	if (is_absolute_path(str[0]))
 		path = absolute_path(str[0]);
 	else
-		path = relative_path(str[0], list->env);
+		path = relative_path(str[0], ms->env);
 	if (path && execve(path, str, envp) < 0)
 		ft_ret_exit(1, 1);
 	else

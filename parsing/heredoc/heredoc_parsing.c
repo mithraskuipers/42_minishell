@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/28 21:57:42 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/10/28 21:57:45 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/29 00:11:22 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static void	free_split(char **arr)
 	free(arr);
 }
 
-static void	heredoc_parse_str(t_list *list, t_heredoc *heredoc, t_heredoc_data *data)
+static void	heredoc_parse_str(t_ms *ms, t_heredoc *heredoc, t_heredoc_data *data)
 {
 	int		i;
 	int		len;
@@ -85,8 +85,8 @@ static void	heredoc_parse_str(t_list *list, t_heredoc *heredoc, t_heredoc_data *
 			free_split(arr);
 			return ;
 		}
-		len = heredoc_get_str_len(list, arr[i]);
-		data->str = heredoc_create_str(list, arr[i], len);
+		len = heredoc_get_str_len(ms, arr[i]);
+		data->str = heredoc_create_str(ms, arr[i], len);
 		i++;
 		data = data->next;
 	}
@@ -124,10 +124,10 @@ static void heredoc_noparse_str(t_heredoc *heredoc, t_heredoc_data *data)
 }
 
 //Expand data if there were no quotes
-void	heredoc_parse(t_list *list, int k, int i)
+void	heredoc_parse(t_ms *ms, int k, int i)
 {
-	if (list->tokens[k].heredoc[i].heredoc_q == 0)
-		heredoc_parse_str(list, &list->tokens[k].heredoc[i], NULL);
+	if (ms->tokens[k].heredoc[i].heredoc_q == 0)
+		heredoc_parse_str(ms, &ms->tokens[k].heredoc[i], NULL);
 	else
-		heredoc_noparse_str(&list->tokens[k].heredoc[i], NULL);
+		heredoc_noparse_str(&ms->tokens[k].heredoc[i], NULL);
 }

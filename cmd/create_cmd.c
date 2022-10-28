@@ -6,14 +6,14 @@
 /*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/03/17 12:47:40 by rkieboom      #+#    #+#                 */
-/*   Updated: 2022/10/27 23:10:01 by rkieboom      ########   odam.nl         */
+/*   Updated: 2022/10/29 00:10:00 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cmd.h"
 
 //If there is no pipes we just create one simpe CMD
-static void	create_command(t_list *v, t_newcommand *cmd, int k)
+static void	create_command(t_ms *v, t_newcommand *cmd, int k)
 {
 	int	i;
 
@@ -35,7 +35,7 @@ static void	create_command(t_list *v, t_newcommand *cmd, int k)
 
 // Creates a command struct with the data from the parse and token structs.
 // Used to execute the commands
-int	create_cmd(t_list *v, int k)
+int	create_cmd(t_ms *v, int k)
 {
 	int	i;
 	int	pipes;

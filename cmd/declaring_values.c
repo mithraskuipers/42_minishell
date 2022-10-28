@@ -6,7 +6,7 @@
 /*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/03/17 13:14:16 by rkieboom      #+#    #+#                 */
-/*   Updated: 2022/10/28 21:58:45 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/29 00:10:00 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
  * *token_pos = 0 will return 4
  * *token_pos = 1 will return 6
 **/
-int	pipe_location(t_list *v, int k, int token_pos)
+int	pipe_location(t_ms *v, int k, int token_pos)
 {
 	int	i;
 	int	len;
@@ -44,7 +44,7 @@ int	pipe_location(t_list *v, int k, int token_pos)
 }
 
 //Creates the first CMD
-static void	first_cmd(t_list *v, t_newcommand *temp, int k)
+static void	first_cmd(t_ms *v, t_newcommand *temp, int k)
 {
 	int	i;
 	int	j;
@@ -67,7 +67,7 @@ static void	first_cmd(t_list *v, t_newcommand *temp, int k)
 }
 
 //Creates all CMD's in the middle
-static void	middle_cmd(t_list *v, t_newcommand *temp, int pipes, int k)
+static void	middle_cmd(t_ms *v, t_newcommand *temp, int pipes, int k)
 {
 	int	i;
 	int	j;
@@ -97,7 +97,7 @@ static void	middle_cmd(t_list *v, t_newcommand *temp, int pipes, int k)
 }
 
 //Creates the last CMD
-static void	last_cmd(t_list *v, t_newcommand *temp, int pipes, int k)
+static void	last_cmd(t_ms *v, t_newcommand *temp, int pipes, int k)
 {
 	int	i;
 	int	j;
@@ -127,7 +127,7 @@ static void	last_cmd(t_list *v, t_newcommand *temp, int pipes, int k)
 }
 
 //Make multiple commands
-void	declaring_values(t_list *v, t_newcommand *pipes_cmd, int pipes, int k)
+void	declaring_values(t_ms *v, t_newcommand *pipes_cmd, int pipes, int k)
 {
 	int				i;
 	t_newcommand	*temp;

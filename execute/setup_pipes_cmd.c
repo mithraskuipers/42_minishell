@@ -6,7 +6,7 @@
 /*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/12 01:09:17 by rkieboom      #+#    #+#                 */
-/*   Updated: 2022/10/28 22:00:00 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/29 00:11:22 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static int	get_cmd_len(t_newcommand *temp)
 	return (i);
 }
 
-static int	start_commands(t_list *list, t_newcommand *temp, pid_t *pids, int i)
+static int	start_commands(t_ms *ms, t_newcommand *temp, pid_t *pids, int i)
 {
 	while (temp->next)
 	{
@@ -45,7 +45,7 @@ static int	start_commands(t_list *list, t_newcommand *temp, pid_t *pids, int i)
 			close(temp->read_pipe);
 			if (redirections(temp))
 				ft_ret_exit(1, 0);
-			run_cmd(list, set_cmd(temp), 1);
+			run_cmd(ms, set_cmd(temp), 1);
 		}
 		else
 		{
@@ -59,7 +59,7 @@ static int	start_commands(t_list *list, t_newcommand *temp, pid_t *pids, int i)
 	return (0);
 }
 
-static int	last_command(t_list *list, t_newcommand *temp, pid_t *pids, int len)
+static int	last_command(t_ms *ms, t_newcommand *temp, pid_t *pids, int len)
 {
 	int	i;
 	int	status;
@@ -86,7 +86,7 @@ static int	last_command(t_list *list, t_newcommand *temp, pid_t *pids, int len)
 		close(temp->read_pipe);
 		if (redirections(temp))
 			ft_ret_exit(1, 0);
-		run_cmd(list, set_cmd(temp), 1);
+		run_cmd(ms, set_cmd(temp), 1);
 	}
 	else
 	{
@@ -101,7 +101,7 @@ static int	last_command(t_list *list, t_newcommand *temp, pid_t *pids, int len)
 }
 
 //Multiple commands with Pipes execution
-void	setup_pipe_cmd(t_list *list, t_newcommand *cmd)
+void	setup_pipe_cmd(t_ms *ms, t_newcommand *cmd)
 {
 	pid_t		*pids;
 	const int	len = get_cmd_len(cmd);
@@ -112,7 +112,7 @@ void	setup_pipe_cmd(t_list *list, t_newcommand *cmd)
 		ft_ret_exit(1, 1);
 	pids[len] = 0;
 	cmd->read_pipe = dup(0);
-	if (start_commands(list, cmd, pids, 0))
+	if (start_commands(ms, cmd, pids, 0))
 	{
 		while (pids[i])
 		{
@@ -121,7 +121,7 @@ void	setup_pipe_cmd(t_list *list, t_newcommand *cmd)
 		}
 	}
 	else
-		g_global.status = last_command(list, cmd, pids, len - 1);
+		g_global.status = last_command(ms, cmd, pids, len - 1);
 	free(pids);
 }
 

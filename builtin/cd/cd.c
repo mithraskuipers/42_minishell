@@ -6,7 +6,7 @@
 /*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/06/29 14:29:46 by rkieboom      #+#    #+#                 */
-/*   Updated: 2022/10/24 14:07:18 by rkieboom      ########   odam.nl         */
+/*   Updated: 2022/10/29 00:10:03 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ static	int	go_old_pwd(t_env *env)
 	return (0);
 }
 
-int	cd(t_list *v, char **str)
+int	cd(t_ms *v, char **str)
 {
 	if (!str[1])
 		return (go_home(v->env));

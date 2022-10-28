@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/28 21:57:38 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/10/28 21:57:40 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/29 00:11:22 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,14 @@ typedef struct s_vars
 	char	*temp;
 }				t_vars;
 
-static void	found_dollar_sign(t_list *list, t_vars *vars, char *str)
+static void	found_dollar_sign(t_ms *ms, t_vars *vars, char *str)
 {
 	vars->i++;
 	if (str[vars->i] \
 	&& (ft_isalnum(str[vars->i]) \
 	|| str[vars->i] == '_'))
 	{
-		vars->temp = search_env(list->env, str + vars->i, 0, 0);
+		vars->temp = search_env(ms->env, str + vars->i, 0, 0);
 		vars->j += ft_strlcpy(\
 		vars->newstr + vars->j, \
 		vars->temp, ft_strlen(vars->temp) + 1);
@@ -43,7 +43,7 @@ static void	found_dollar_sign(t_list *list, t_vars *vars, char *str)
 	}
 }
 
-char	*heredoc_create_str(t_list *list, char *str, int length)
+char	*heredoc_create_str(t_ms *ms, char *str, int length)
 {
 	t_vars	vars;
 
@@ -54,7 +54,7 @@ char	*heredoc_create_str(t_list *list, char *str, int length)
 	while (str[vars.i])
 	{
 		if (str[vars.i] == '$')
-			found_dollar_sign(list, &vars, str);
+			found_dollar_sign(ms, &vars, str);
 		else
 		{
 			vars.newstr[vars.j] = str[vars.i];

@@ -6,7 +6,7 @@
 /*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/05/11 16:56:29 by rkieboom      #+#    #+#                 */
-/*   Updated: 2022/10/24 09:18:09 by rkieboom      ########   odam.nl         */
+/*   Updated: 2022/10/29 00:11:22 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,21 +29,21 @@ void	ft_error(char *msg)
 
 // Receives char and checks whether it is a quote.
 // If so, turn on quote toggle.
-void	check_quote(t_list *list, char *c)
+void	check_quote(t_ms *ms, char *c)
 {
 	if (*c == '\'')
 	{
-		if (list->parse.comma1 == 0 && list->parse.comma2 == 0)
-			list->parse.comma1 = 1;
+		if (ms->parse.comma1 == 0 && ms->parse.comma2 == 0)
+			ms->parse.comma1 = 1;
 		else
-			list->parse.comma1 = 0;
+			ms->parse.comma1 = 0;
 	}
 	if (*c == '\"')
 	{
-		if (list->parse.comma2 == 0 && list->parse.comma1 == 0)
-			list->parse.comma2 = 1;
+		if (ms->parse.comma2 == 0 && ms->parse.comma1 == 0)
+			ms->parse.comma2 = 1;
 		else
-			list->parse.comma2 = 0;
+			ms->parse.comma2 = 0;
 	}
 }
 

@@ -6,14 +6,14 @@
 /*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/03/17 16:25:48 by rkieboom      #+#    #+#                 */
-/*   Updated: 2022/10/23 00:45:23 by rkieboom      ########   odam.nl         */
+/*   Updated: 2022/10/29 00:10:00 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "tokens.h"
 
 //Sets the tokens to CMD
-void	tokens_cmd(t_list *v, t_newcommand *cmd, int k)
+void	tokens_cmd(t_ms *v, t_newcommand *cmd, int k)
 {
 	t_newcommand	*temp;
 

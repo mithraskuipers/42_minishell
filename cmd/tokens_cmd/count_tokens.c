@@ -6,7 +6,7 @@
 /*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/08/27 03:28:59 by rkieboom      #+#    #+#                 */
-/*   Updated: 2022/10/23 00:45:48 by rkieboom      ########   odam.nl         */
+/*   Updated: 2022/10/29 00:10:03 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ typedef struct s_vars
 	int				t;
 }				t_vars;
 
-static void	check_token(t_list *v, t_vars *vars, t_newcommand *temp, int k)
+static void	check_token(t_ms *v, t_vars *vars, t_newcommand *temp, int k)
 {
 	if (!ft_strncmp(temp->command[vars->i], ">>", 3) \
 	&& v->tokens[k].token_pos[vars->t] == vars->i + vars->wc + temp->id)
@@ -48,7 +48,7 @@ static void	check_token(t_list *v, t_vars *vars, t_newcommand *temp, int k)
 }
 
 //Counts the amount of tokens we have and wich ones
-void	count_tokens(t_list *v, t_newcommand *temp, int k)
+void	count_tokens(t_ms *v, t_newcommand *temp, int k)
 {
 	t_vars	vars;
 

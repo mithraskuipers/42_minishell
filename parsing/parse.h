@@ -6,7 +6,7 @@
 /*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/11/27 15:01:52 by rkieboom      #+#    #+#                 */
-/*   Updated: 2022/10/28 21:58:10 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/29 00:11:22 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,38 +15,38 @@
 
 # include "../header.h"
 
-int		new_parse(t_list *list);
-int		parse_arraysize(char **str, t_list *list);
+int		new_parse(t_ms *ms);
+int		parse_arraysize(char **str, t_ms *ms);
 
-char	**parse_split_commands(t_list *list, char c);
-char	**parse_split_spaces(t_list *list, const char *str, char c);
-void	parse_split_tokens(t_list *list, int size, int k);
+char	**parse_split_commands(t_ms *ms, char c);
+char	**parse_split_spaces(t_ms *ms, const char *str, char c);
+void	parse_split_tokens(t_ms *ms, int size, int k);
 
-void	tokens(t_list *list);
-char	*checkword(t_list *list, char *str);
-int		checkword_calclen(t_list *list, char *str, int i, int length);
-char	*createstring(t_list *list, char *str, int length);
+void	tokens(t_ms *ms);
+char	*checkword(t_ms *ms, char *str);
+int		checkword_calclen(t_ms *ms, char *str, int i, int length);
+char	*createstring(t_ms *ms, char *str, int length);
 
-void	check_quote(t_list *list, char *c);
-int		check_char_str(t_list *list, char *str);
+void	check_quote(t_ms *ms, char *c);
+int		check_char_str(t_ms *ms, char *str);
 int		check_char(char *c);
 int		check_exist(char *PATH);
 
-void	allocate_heredoc(t_list *list, int k);
-void	set_heredoc(t_list *list, int k);
-void	heredoc_parse(t_list *list, int k, int i);
-int		heredoc_get_str_len(t_list *list, char *str);
-char	*heredoc_create_str(t_list *list, char *str, int length);
+void	allocate_heredoc(t_ms *ms, int k);
+void	set_heredoc(t_ms *ms, int k);
+void	heredoc_parse(t_ms *ms, int k, int i);
+int		heredoc_get_str_len(t_ms *ms, char *str);
+char	*heredoc_create_str(t_ms *ms, char *str, int length);
 
-void	get_heredoc_eof(t_list *list, int k);
-int		get_heredoc_input(t_list *list, int k);
+void	get_heredoc_eof(t_ms *ms, int k);
+int		get_heredoc_input(t_ms *ms, int k);
 
 int		array_thingy(int *p);
 
-int		ft_execve(t_list *list, char **str, int ret);
+int		ft_execve(t_ms *ms, char **str, int ret);
 
 char	*search_env(t_env *v, char *name, int length, char *temp);
-void	tilde_expansion(t_list *list, int length);
+void	tilde_expansion(t_ms *ms, int length);
 
 int		ft_fork(pid_t *pid, int *fd);
 int		ft_pipe(int *fd);
