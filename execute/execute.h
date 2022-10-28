@@ -45,8 +45,8 @@ int		tokens_exist(t_newcommand *cmd);
  * 
 **/
 
-void	ft_pipe(t_newcommand *temp);
-void	ft_fork(pid_t *pid);
+int		ft_pipe(t_newcommand *temp);
+int		ft_fork(pid_t *pid);
 
 char	**set_cmd(t_newcommand *cmd);
 void	setup_builtin(t_list *list, \

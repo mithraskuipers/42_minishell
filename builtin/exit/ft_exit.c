@@ -6,7 +6,7 @@
 /*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/04 12:03:50 by rkieboom      #+#    #+#                 */
-/*   Updated: 2022/10/23 18:52:22 by rkieboom      ########   odam.nl         */
+/*   Updated: 2022/10/27 16:36:40 by rkieboom      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	ft_exit(char **str)
 		i++;
 	tcsetattr(0, 0, &g_global.termios_save);
 	if (i == 1)
-		exit(0);
+		exit(g_global.status);
 	if (check_errors(str, i))
 	{
 		g_global.status = 1;

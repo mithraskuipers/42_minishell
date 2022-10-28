@@ -6,7 +6,7 @@
 #    By: rkieboom <rkieboom@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/02/03 16:05:06 by rkieboom      #+#    #+#                  #
-#    Updated: 2022/10/24 14:52:38 by mikuiper      ########   odam.nl          #
+#    Updated: 2022/10/27 16:09:33 by rkieboom      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -181,12 +181,12 @@ all : $(NAME)
 $(OBJDIR)%.o : %.c $(INCLUDES)
 	@mkdir -p $(OBJDIR)
 	@printf "$(GR)+$(RC)"
-	@$(CC) $(CFLAGS) -c $< -o $@ -I/Users/$(USER)/.brew/opt/readline/include/
+	@$(CC) $(CFLAGS) -c $< -o $@ -I/opt/homebrew/opt/readline/include
 
 # Linking
 $(NAME)	: $(LIBFTLIB) $(SRCS)  $(OBJS) $(INCLUDES)
 	@printf "\n$(GR)=== Compiled [$(CC) $(CFLAGS)] ===\n--- $(SRC)$(RC)\n"
-	@$(CC) $(CFLAGS) $(LIBFTLIB) $(OBJS) -o $(NAME) -lreadline -L/Users/$(USER)/.brew/opt/readline/lib
+	@$(CC) $(CFLAGS) $(LIBFTLIB) $(OBJS) -o $(NAME) -lreadline -L/opt/homebrew/opt/readline/lib
 
 $(LIBFTLIB) :
 	make -C $(LIBFTDIR)

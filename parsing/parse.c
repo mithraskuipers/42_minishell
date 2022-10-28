@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/24 14:34:50 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/10/24 14:34:52 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/27 16:20:48 by rkieboom      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,6 @@ static void	parsing(t_list *list)
 	}
 }
 
-//Splits on ';'
-//Allocate and set all values to 0
 static void	init_allocate(t_list *list, t_vars *vars)
 {
 	ft_bzero(vars, sizeof(t_vars));
@@ -71,7 +69,7 @@ static void	init_allocate(t_list *list, t_vars *vars)
 	if (!list->parse.commands)
 		ft_ret_exit(1, 1);
 	list->parse.commands[vars->length] = 0;
-	list->tokens = calloc(vars->length, sizeof(t_tokens));
+	list->tokens = ft_calloc(vars->length, sizeof(t_tokens));
 	if (!list->tokens)
 		ft_ret_exit(1, 1);
 	while (vars->length)

@@ -12,15 +12,27 @@
 
 #include "execute.h"
 
-void	ft_fork(pid_t *pid)
+int	ft_fork(pid_t *pid)
 {
 	*pid = fork();
 	if (*pid < 0)
-		ft_ret_exit(1, 1);
+	{
+		dprintf(2, "Fork failed!\n");
+		ft_ret_exit(0, 1);
+		g_global.status = 1;
+		return (1);
+	}
+	return(0);
 }
 
-void	ft_pipe(t_newcommand *temp)
+int	ft_pipe(t_newcommand *temp)
 {
 	if (pipe(temp->fd) < 0)
-		ft_ret_exit(1, 1);
+	{
+		dprintf(2, "Pipe failed!\n");
+		ft_ret_exit(0, 1);
+		g_global.status = 1;
+		return (1);
+	}
+	return (0);
 }

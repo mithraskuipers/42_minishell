@@ -6,7 +6,7 @@
 /*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/23 22:40:21 by rkieboom      #+#    #+#                 */
-/*   Updated: 2022/10/24 14:52:48 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/27 16:13:36 by rkieboom      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ static void	increase_shlvl(t_list *list)
 	free(newnum);
 }
 
-//Handles SIGUSR1 SIGNAL
+// Handles SIGUSR1 SIGNAL
 static void	sighand(int signum)
 {
 	(void)signum;

@@ -25,12 +25,15 @@ static int	get_cmd_len(t_newcommand *temp)
 	return (i);
 }
 
-static void	start_commands(t_list *list, t_newcommand *temp, pid_t *pids, int i)
+static int	start_commands(t_list *list, t_newcommand *temp, pid_t *pids, int i)
 {
 	while (temp->next)
 	{
-		ft_pipe(temp);
-		ft_fork(&pids[i]);
+		if (ft_pipe(temp) || ft_fork(&pids[i]))
+		{
+			pids[i] = 0;
+			return (1);
+		}
 		if (!pids[i])
 		{
 			signals_dfl();
@@ -52,6 +55,7 @@ static void	start_commands(t_list *list, t_newcommand *temp, pid_t *pids, int i)
 		}
 		temp = temp->next;
 	}
+	return (0);
 }
 
 static int	return_status(int status)
@@ -72,7 +76,8 @@ static int	last_command(t_list *list, t_newcommand *temp, pid_t *pids, int len)
 	status = 0;
 	while (temp->next)
 		temp = temp->next;
-	ft_fork(&pids[len]);
+	if (ft_fork(&pids[len]))
+		return (1);
 	if (!pids[len])
 	{
 		signals_dfl();
@@ -97,12 +102,21 @@ void	setup_pipe_cmd(t_list *list, t_newcommand *cmd)
 {
 	pid_t		*pids;
 	const int	len = get_cmd_len(cmd);
+	int i = 0;
 
 	pids = ft_calloc(len, sizeof(pid_t));
 	if (!pids)
 		ft_ret_exit(1, 1);
 	cmd->read_pipe = dup(0);
-	start_commands(list, cmd, pids, 0);
-	g_global.status = last_command(list, cmd, pids, len - 1);
+	if (start_commands(list, cmd, pids, 0))
+	{
+		while (pids[i])
+		{
+			waitpid(pids[i], NULL, WUNTRACED);
+			i++;
+		}
+	}
+	else
+		g_global.status = last_command(list, cmd, pids, len - 1);
 	free(pids);
 }
