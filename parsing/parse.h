@@ -6,7 +6,7 @@
 /*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/11/27 15:01:52 by rkieboom      #+#    #+#                 */
-/*   Updated: 2022/10/29 00:56:48 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/29 01:32:28 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int		parse_arraysize(char **str, t_ms *ms);
 
 char	**parser_splitter_semicolon(t_ms *ms, char c);
 char	**parser_splitter_spaces(t_ms *ms, const char *str, char c);
-void	parse_split_tokens(t_ms *ms, int size, int k);
+void	parser_separate_words_tokens(t_ms *ms, int size, int k);
 
 void	tokens(t_ms *ms);
 char	*checkword(t_ms *ms, char *str);

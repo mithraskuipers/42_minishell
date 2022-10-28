@@ -6,7 +6,7 @@
 /*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/12 00:44:55 by rkieboom      #+#    #+#                 */
-/*   Updated: 2022/10/29 01:06:46 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/29 01:29:24 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ static void	setup_execve(t_ms *ms, t_newcommand *cmd, char **command)
 		env_lstadd_back(&ms->env, \
 		env_lst_new(ft_strdup(__DUP__), ft_strdup("")));
 		if (redirections(cmd))
-			return_exit(1, 0);
+			return_exit(1, NO_PRNT);
 		run_cmd(ms, command, 1);
 	}
 	else

@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/28 21:57:11 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/10/29 01:15:32 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/29 01:29:31 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@
 
 # define __DUP__ "MINISHELL_DUP_537425"
 
+# define NO_PRNT 0
 # define PRNT_ERRNO_NL 1
 
 typedef struct s_parse

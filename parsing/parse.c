@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/24 14:34:50 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/10/29 01:06:46 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/29 01:32:28 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ static void	parser_input_splitter(t_ms *ms, t_vars *vars)
 	while (vars->n_words)
 	{
 		ms->parse.commands[vars->i] = parser_splitter_spaces(ms, vars->splitted[vars->i], ' ');
-		parse_split_tokens(ms, parse_arraysize(ms->parse.commands[vars->i], ms), vars->i);
+		parser_separate_words_tokens(ms, parse_arraysize(ms->parse.commands[vars->i], ms), vars->i);
 		vars->n_words--;
 		vars->i++;
 	}

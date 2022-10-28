@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   parse_split_tokens.c                               :+:    :+:            */
+/*   parser_separate_words_tokens.c                     :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/10/24 14:35:11 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/10/29 01:06:46 by mikuiper      ########   odam.nl         */
+/*   Created: 2022/10/29 01:32:56 by mikuiper      #+#    #+#                 */
+/*   Updated: 2022/10/29 01:32:57 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ static void	func(t_ms *ms, t_vars *vars, int k)
 
 //Seperate tokens
 //Example: echo hallo>out = echo hallo > out
-void	parse_split_tokens(t_ms *ms, int size, int k)
+void	parser_separate_words_tokens(t_ms *ms, int size, int k)
 {
 	t_vars	vars;
 

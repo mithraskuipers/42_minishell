@@ -6,7 +6,7 @@
 #    By: mikuiper <mikuiper@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/10/28 21:58:30 by mikuiper      #+#    #+#                  #
-#    Updated: 2022/10/29 00:58:46 by mikuiper      ########   odam.nl          #
+#    Updated: 2022/10/29 01:32:28 by mikuiper      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -131,7 +131,7 @@ SRCS.PARSING =			parsing/parse.c \
 						parsing/parse_arraysize.c \
 						parsing/splitting/parser_splitter_spaces.c \
 						parsing/splitting/parser_splitter_semicolons.c \
-						parsing/splitting/parse_split_tokens.c \
+						parsing/splitting/parser_separate_words_tokens.c \
 						parsing/checkword.c \
 						parsing/checkword_calclen.c \
 						parsing/createstring.c \

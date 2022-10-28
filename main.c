@@ -6,7 +6,7 @@
 /*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/23 22:40:21 by rkieboom      #+#    #+#                 */
-/*   Updated: 2022/10/29 01:24:36 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/29 01:35:29 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,20 +41,20 @@ static void	minishell(t_ms *ms)
 //Increases the ENV SHLVL
 static void	update_shell_level(t_ms *ms)
 {
-	int		shlvl;
-	char	*newnum;
+	int		current_level;
+	char	*incremented_level;
 
 	if (!ms->env)
 		return ;
 	if (!env_exist(ms->env, "SHLVL") && !env_has_data(ms->env, "SHLVL"))
 		return ;
-	shlvl = ft_atoi(env_get_content(ms->env, "SHLVL"));
-	shlvl++;
-	newnum = ft_itoa(shlvl);
-	if (!newnum)
+	current_level = ft_atoi(env_get_content(ms->env, "SHLVL"));
+	current_level++;
+	incremented_level = ft_itoa(current_level);
+	if (!incremented_level)
 		return_exit(1, PRNT_ERRNO_NL);
-	env_change_content(ms->env, "SHLVL", newnum);
-	free(newnum);
+	env_change_content(ms->env, "SHLVL", incremented_level);
+	free(incremented_level);
 }
 
 // Handles SIGUSR1 SIGNAL
@@ -99,3 +99,8 @@ int	main(int argc, char **argv, char **envp)
 	minishell(&ms);
 	return (0);
 }
+
+// TODO:
+// combine the first few initalization lines in separate function
+// rename fix_signals
+// combine terminal parameters configuration lines in separate function
