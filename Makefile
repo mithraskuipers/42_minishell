@@ -6,7 +6,7 @@
 #    By: mikuiper <mikuiper@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/10/28 21:58:30 by mikuiper      #+#    #+#                  #
-#    Updated: 2022/10/28 21:58:32 by mikuiper      ########   odam.nl          #
+#    Updated: 2022/10/29 00:07:27 by mikuiper      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -185,12 +185,12 @@ linux : $(LIBFTLIB) $(SRCS)  $(OBJS)
 $(OBJDIR)%.o : %.c $(INCLUDES)
 	@mkdir -p $(OBJDIR)
 	@printf "$(GR)+$(RC)"
-	@$(CC) $(CFLAGS) -c $< -o $@ -I/opt/homebrew/opt/readline/include
+	@$(CC) $(CFLAGS) -c $< -o $@ -I/usr/local/opt/readline/include
 
 # Linking
 $(NAME)	: $(LIBFTLIB) $(SRCS)  $(OBJS) $(INCLUDES)
 	@printf "\n$(GR)=== Compiled [$(CC) $(CFLAGS)] ===\n--- $(SRC)$(RC)\n"
-	@$(CC) $(CFLAGS) $(LIBFTLIB) $(OBJS) -o $(NAME) -lreadline -L/opt/homebrew/opt/readline/lib
+	@$(CC) $(CFLAGS) $(LIBFTLIB) $(OBJS) -o $(NAME) -lreadline -L/usr/local/opt/readline/lib
 
 $(LIBFTLIB) :
 	make -C $(LIBFTDIR)
