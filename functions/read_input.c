@@ -3,10 +3,10 @@
 /*                                                        ::::::::            */
 /*   read_input.c                                       :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
+/*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/02/02 17:37:44 by rkieboom      #+#    #+#                 */
-/*   Updated: 2022/10/23 23:00:28 by rkieboom      ########   odam.nl         */
+/*   Created: 2022/10/28 21:56:51 by mikuiper      #+#    #+#                 */
+/*   Updated: 2022/10/28 21:56:58 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static void	print_error(t_list *list)
 
 static void	setup(t_list *list)
 {
-	g_global.heredoc_break = 0;
+	list->hdoc_break = 0;
 	tcsetattr(0, 0, &g_global.termios_new);
 	signal(SIGINT, sig_handler);
 	signal(SIGQUIT, SIG_IGN);

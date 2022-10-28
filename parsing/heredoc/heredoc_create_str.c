@@ -3,10 +3,10 @@
 /*                                                        ::::::::            */
 /*   heredoc_create_str.c                               :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
+/*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/09/14 21:21:20 by rkieboom      #+#    #+#                 */
-/*   Updated: 2022/10/24 09:50:22 by rkieboom      ########   odam.nl         */
+/*   Created: 2022/10/28 21:57:38 by mikuiper      #+#    #+#                 */
+/*   Updated: 2022/10/28 21:57:40 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@ char	*heredoc_create_str(t_list *list, char *str, int length)
 			vars.j++;
 		}
 	}
-	free(str);
 	vars.newstr[length] = 0;
 	return (vars.newstr);
 }

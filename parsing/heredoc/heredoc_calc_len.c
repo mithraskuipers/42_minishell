@@ -3,10 +3,10 @@
 /*                                                        ::::::::            */
 /*   heredoc_calc_len.c                                 :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
+/*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/09/10 00:20:25 by rkieboom      #+#    #+#                 */
-/*   Updated: 2022/10/24 09:50:18 by rkieboom      ########   odam.nl         */
+/*   Created: 2022/10/28 21:57:34 by mikuiper      #+#    #+#                 */
+/*   Updated: 2022/10/28 21:57:36 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 

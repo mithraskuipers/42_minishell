@@ -6,7 +6,7 @@
 /*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/11 15:33:40 by rkieboom      #+#    #+#                 */
-/*   Updated: 2022/10/24 13:56:57 by rkieboom      ########   odam.nl         */
+/*   Updated: 2022/10/28 13:32:25 by rkieboom      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,9 @@ int		tokens_exist(t_newcommand *cmd);
  * 
 **/
 
-int		ft_pipe(t_newcommand *temp);
-int		ft_fork(pid_t *pid);
+int		ft_pipe(int *fd);
+int		ft_fork(pid_t *pid, int *fd);
+int		get_return_status(int status);
 
 char	**set_cmd(t_newcommand *cmd);
 void	setup_builtin(t_list *list, \

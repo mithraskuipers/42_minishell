@@ -6,7 +6,7 @@
 /*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/03/17 13:14:16 by rkieboom      #+#    #+#                 */
-/*   Updated: 2022/10/23 00:44:25 by rkieboom      ########   odam.nl         */
+/*   Updated: 2022/10/28 21:58:45 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,3 +155,6 @@ void	declaring_values(t_list *v, t_newcommand *pipes_cmd, int pipes, int k)
 		}
 	}
 }
+//cat main.c | cat | cat | cat | cat | cat
+
+

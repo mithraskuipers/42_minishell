@@ -6,7 +6,7 @@
 /*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/12 01:09:17 by rkieboom      #+#    #+#                 */
-/*   Updated: 2022/10/24 14:08:10 by rkieboom      ########   odam.nl         */
+/*   Updated: 2022/10/28 22:00:00 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,9 @@ static int	start_commands(t_list *list, t_newcommand *temp, pid_t *pids, int i)
 {
 	while (temp->next)
 	{
-		if (ft_pipe(temp) || ft_fork(&pids[i]))
+		if (ft_pipe(temp->fd) || ft_fork(&pids[i], temp->fd)) //ft_fork miss pipes cleanen
 		{
+			close(temp->read_pipe);
 			pids[i] = 0;
 			return (1);
 		}
@@ -58,15 +59,6 @@ static int	start_commands(t_list *list, t_newcommand *temp, pid_t *pids, int i)
 	return (0);
 }
 
-static int	return_status(int status)
-{
-	if (WIFEXITED(status))
-		return (WEXITSTATUS(status));
-	else if (WIFSIGNALED(status))
-		return (WTERMSIG(status) + 128);
-	return (1);
-}
-
 static int	last_command(t_list *list, t_newcommand *temp, pid_t *pids, int len)
 {
 	int	i;
@@ -76,8 +68,17 @@ static int	last_command(t_list *list, t_newcommand *temp, pid_t *pids, int len)
 	status = 0;
 	while (temp->next)
 		temp = temp->next;
-	if (ft_fork(&pids[len]))
+	if (ft_fork(&pids[len], NULL))
+	{
+		close(temp->read_pipe);
+		pids[len] = 0;
+		while (pids[i])
+		{
+			waitpid(pids[i], NULL, WUNTRACED);
+			i++;
+		}
 		return (1);
+	}
 	if (!pids[len])
 	{
 		signals_dfl();
@@ -91,10 +92,12 @@ static int	last_command(t_list *list, t_newcommand *temp, pid_t *pids, int len)
 	{
 		close(temp->read_pipe);
 		while (i < (len + 1))
-			waitpid(pids[i++], &status, WUNTRACED);
+		{
+			waitpid(pids[i], &status, WUNTRACED);
 			i++;
+		}
 	}
-	return (return_status(status));
+	return (get_return_status(status));
 }
 
 //Multiple commands with Pipes execution
@@ -104,9 +107,10 @@ void	setup_pipe_cmd(t_list *list, t_newcommand *cmd)
 	const int	len = get_cmd_len(cmd);
 	int i = 0;
 
-	pids = ft_calloc(len, sizeof(pid_t));
+	pids = ft_calloc(len + 1, sizeof(pid_t));
 	if (!pids)
 		ft_ret_exit(1, 1);
+	pids[len] = 0;
 	cmd->read_pipe = dup(0);
 	if (start_commands(list, cmd, pids, 0))
 	{
@@ -120,3 +124,11 @@ void	setup_pipe_cmd(t_list *list, t_newcommand *cmd)
 		g_global.status = last_command(list, cmd, pids, len - 1);
 	free(pids);
 }
+
+
+/*
+
+
+
+
+*/

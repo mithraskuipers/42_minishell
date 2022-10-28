@@ -6,7 +6,7 @@
 /*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/23 22:40:21 by rkieboom      #+#    #+#                 */
-/*   Updated: 2022/10/27 16:13:36 by rkieboom      ########   odam.nl         */
+/*   Updated: 2022/10/27 22:54:24 by rkieboom      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static void	loop(t_list *list)
 		add_history(list->gnl.buf);
 		if (check_input(list))
 			continue ;
-		if (!new_parse(list) && g_global.heredoc_break == 0)
+		if (!new_parse(list) && !list->hdoc_break)//heredoc break before here
 		{
 			create_cmd(list, 0);
 			if (!syntax_error(list->cmd, 0))

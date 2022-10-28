@@ -6,7 +6,7 @@
 /*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/11/27 15:01:52 by rkieboom      #+#    #+#                 */
-/*   Updated: 2022/10/24 10:59:07 by rkieboom      ########   odam.nl         */
+/*   Updated: 2022/10/28 21:58:10 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,20 +34,25 @@ int		check_exist(char *PATH);
 
 void	allocate_heredoc(t_list *list, int k);
 void	set_heredoc(t_list *list, int k);
-void	heredoc_parse(t_list *list, int k);
+void	heredoc_parse(t_list *list, int k, int i);
 int		heredoc_get_str_len(t_list *list, char *str);
 char	*heredoc_create_str(t_list *list, char *str, int length);
 
 void	get_heredoc_eof(t_list *list, int k);
-void	get_heredoc_input(t_list *list, int k);
-void	get_heredoc_q(t_list *list, int k);
+int		get_heredoc_input(t_list *list, int k);
 
 int		array_thingy(int *p);
 
 int		ft_execve(t_list *list, char **str, int ret);
-void	signal_handler_hdoc(int signum);
 
 char	*search_env(t_env *v, char *name, int length, char *temp);
 void	tilde_expansion(t_list *list, int length);
+
+int		ft_fork(pid_t *pid, int *fd);
+int		ft_pipe(int *fd);
+int		get_return_status(int status);
+
+void	signals(void);
+void	signals_dfl(void);
 
 #endif

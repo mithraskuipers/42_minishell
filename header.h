@@ -3,10 +3,10 @@
 /*                                                        ::::::::            */
 /*   header.h                                           :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
+/*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/11/12 19:04:45 by rkieboom      #+#    #+#                 */
-/*   Updated: 2022/10/23 01:45:20 by rkieboom      ########   odam.nl         */
+/*   Created: 2022/10/28 21:57:11 by mikuiper      #+#    #+#                 */
+/*   Updated: 2022/10/28 21:57:13 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,7 @@ typedef struct s_list
 	t_env			*env;
 	t_tokens		*tokens;
 	t_newcommand	*cmd;
+	int				hdoc_break;
 }				t_list;
 
 typedef struct s_global
@@ -102,7 +103,6 @@ typedef struct s_global
 	pid_t			pid;
 	struct termios	termios_save;
 	struct termios	termios_new;
-	int				heredoc_break;
 	int				__dup__;
 }				t_global;
 

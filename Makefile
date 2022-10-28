@@ -3,10 +3,10 @@
 #                                                         ::::::::             #
 #    Makefile                                           :+:    :+:             #
 #                                                      +:+                     #
-#    By: rkieboom <rkieboom@student.codam.nl>         +#+                      #
+#    By: mikuiper <mikuiper@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
-#    Created: 2022/02/03 16:05:06 by rkieboom      #+#    #+#                  #
-#    Updated: 2022/10/27 16:09:33 by rkieboom      ########   odam.nl          #
+#    Created: 2022/10/28 21:58:30 by mikuiper      #+#    #+#                  #
+#    Updated: 2022/10/28 21:58:32 by mikuiper      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -136,12 +136,12 @@ SRCS.PARSING =			parsing/parse.c \
 						parsing/checkword_calclen.c \
 						parsing/createstring.c \
 						parsing/tokens.c \
-						parsing/heredoc/heredoc_functions.c \
-						parsing/heredoc/heredoc_functions2.c \
-						parsing/heredoc/heredoc_parsing.c \
+						parsing/heredoc/allocate_heredoc.c \
+						parsing/heredoc/get_heredoc_input.c \
 						parsing/heredoc/heredoc_calc_len.c \
 						parsing/heredoc/heredoc_create_str.c \
-						parsing/heredoc/signal_handler_hdoc.c \
+						parsing/heredoc/heredoc_parsing.c \
+						parsing/heredoc/set_heredoc.c \
 						parsing/check_chars.c \
 						parsing/search_env.c \
 						parsing/tilde_expansion.c \
@@ -176,6 +176,10 @@ VPATH := $(SRCDIR) $(OBJDIR) $(shell find $(SRCDIR) -type d)
 # ================================== RULES =================================== #
 
 all : $(NAME)
+
+linux : $(LIBFTLIB) $(SRCS)  $(OBJS)
+	@printf "\n$(GR)=== Compiled [$(CC) $(CFLAGS)] ===\n--- $(SRC)$(RC)\n"
+	@$(CC) $(INCLUDES_L) $(CFLAGS) $(LIBFTLIB) $(OBJS) -o $(NAME) -lreadline -l:libft.a
 
 # Compiling
 $(OBJDIR)%.o : %.c $(INCLUDES)
