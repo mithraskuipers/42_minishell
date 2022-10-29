@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/29 01:32:56 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/10/29 01:32:57 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/29 17:27:30 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static void	init_vars(t_vars *vars, int size)
 
 static void	func(t_ms *ms, t_vars *vars, int k)
 {
-	if (ms->parse.comma1 == 0 && ms->parse.comma2 == 0 \
+	if (ms->parse.squote == 0 && ms->parse.dquote == 0 \
 	&& ((vars->p == 1 && \
 	!check_char(&ms->parse.commands[k][vars->j][vars->i + 1]) \
 	&& array_thingy(&vars->p)) || (!ms->parse.commands[k] \
@@ -67,7 +67,7 @@ static void	func(t_ms *ms, t_vars *vars, int k)
 		vars->start = vars->i + 1;
 		vars->x++;
 	}
-	else if (ms->parse.comma1 == 0 && ms->parse.comma2 == 0 \
+	else if (ms->parse.squote == 0 && ms->parse.dquote == 0 \
 	&& (((vars->p == 0 && check_char(&ms->parse.commands[k] \
 	[vars->j][vars->i + 1]) && array_thingy(&vars->p)))))
 	{

@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/24 14:35:23 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/10/29 01:06:46 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/29 17:27:30 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ static void	double_quote(t_ms *ms, char *str, int *i, int *length)
 			(*i)++;
 			(*length)++;
 		}
-		ms->parse.comma2 = 0;
+		ms->parse.dquote = 0;
 	}
 	(*length)--;
 }
@@ -77,7 +77,7 @@ static void	single_quote(t_ms *ms, char *str, int *i, int *length)
 	{
 		(*i)++;
 		(*length)++;
-		ms->parse.comma1 = 0;
+		ms->parse.squote = 0;
 	}
 	(*length)--;
 }
@@ -90,7 +90,7 @@ int	checkword_calclen(t_ms *ms, char *str, int i, int length)
 	{
 		check_quote(ms, &str[i]);
 		while (str[i] == ' ' && str[i + 1] && \
-		ms->parse.comma1 == 0 && ms->parse.comma2 == 0)
+		ms->parse.squote == 0 && ms->parse.dquote == 0)
 			i++;
 		if (str[i] == '$')
 		{

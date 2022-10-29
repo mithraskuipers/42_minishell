@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/28 21:57:11 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/10/29 16:00:06 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/29 17:27:30 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@
 typedef struct s_parse
 {
 	char		***commands;
-	int			comma1;
-	int			comma2;
+	int			squote;
+	int			dquote;
 }				t_parse;
 
 typedef struct s_line

@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/24 14:35:16 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/10/29 00:11:22 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/29 17:27:30 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,11 @@ int	check_char_str(t_ms *ms, char *str)
 	while (str[i])
 	{
 		check_quote(ms, &str[i]);
-		if ((ms->parse.comma1 == 0 && ms->parse.comma2 == 0) && \
+		if ((ms->parse.squote == 0 && ms->parse.dquote == 0) && \
 			((str[i] == '>' && str[i + 1] == '>') || \
 			(str[i] == '<' && str[i + 1] == '<')))
 			return (2);
-		if ((ms->parse.comma1 == 0 && ms->parse.comma2 == 0) && \
+		if ((ms->parse.squote == 0 && ms->parse.dquote == 0) && \
 			((str[i] == '>' || str[i] == '<') || str[i] == '|'))
 			return (1);
 		i++;
