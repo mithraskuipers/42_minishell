@@ -6,14 +6,14 @@
 /*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/08 15:13:45 by rkieboom      #+#    #+#                 */
-/*   Updated: 2022/10/29 12:42:28 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/29 13:48:15 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "tokens.h"
 
 //Init heredoc tokens
-void	set_heredoc_tokens(t_ms *ms, t_cmdlist *cmd, int k)
+void	set_heredoc_tokens(t_ms *ms, t_cmdlist *cmdlist, int k)
 {
 	int	i;
 	int	heredoc_c;
@@ -24,12 +24,12 @@ void	set_heredoc_tokens(t_ms *ms, t_cmdlist *cmd, int k)
 	{
 		if (!ft_strncmp(ms->tokens[k].token[i], "|", 2))
 		{
-			cmd = cmd->next;
+			cmdlist = cmdlist->next;
 		}
 		else if (!ft_strncmp(ms->tokens[k].token[i], "<<", 3))
 		{
-			if (!cmd->tokens->heredoc)
-				cmd->tokens->heredoc = &ms->tokens[k].heredoc[heredoc_c];
+			if (!cmdlist->tokens->heredoc)
+				cmdlist->tokens->heredoc = &ms->tokens[k].heredoc[heredoc_c];
 			heredoc_c++;
 		}
 		i++;

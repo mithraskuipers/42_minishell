@@ -1,36 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   clean_commands.c                                   :+:    :+:            */
+/*   clean_cmds.c                                   :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/29 13:04:03 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/10/29 13:04:41 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/29 13:35:24 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header.h"
 
-void	clean_commands(t_ms *ms)
+void	clean_cmds(t_ms *ms)
 {
 	int	i;
 	int	j;
 
 	i = 0;
-	if (ms->parse.commands)
+	if (ms->input.cmds)
 	{
-		while (ms->parse.commands[i])
+		while (ms->input.cmds[i])
 		{
 			j = 0;
-			while (ms->parse.commands[i][j])
+			while (ms->input.cmds[i][j])
 			{
-				free(ms->parse.commands[i][j]);
+				free(ms->input.cmds[i][j]);
 				j++;
 			}
-			free(ms->parse.commands[i]);
+			free(ms->input.cmds[i]);
 			i++;
 		}
-		free(ms->parse.commands);
+		free(ms->input.cmds);
 	}
 }

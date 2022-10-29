@@ -6,23 +6,23 @@
 /*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/07 15:57:41 by rkieboom      #+#    #+#                 */
-/*   Updated: 2022/10/29 12:42:28 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/29 13:50:59 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "execute.h"
 
-static int	calc_len(t_cmdlist *cmd)
+static int	calc_len(t_cmdlist *cmdlist)
 {
 	int	i;
 
 	i = 0;
-	while (cmd->command[i])
+	while (cmdlist->command[i])
 		i++;
-	return (i - (cmd->tokens->total * 2));
+	return (i - (cmdlist->tokens->total * 2));
 }
 
-static char	*get_str(t_cmdlist *cmd, int i)
+static char	*get_str(t_cmdlist *cmdlist, int i)
 {
 	int	token_c;
 	int	c;
@@ -31,35 +31,35 @@ static char	*get_str(t_cmdlist *cmd, int i)
 	token_c = 0;
 	c = 0;
 	s = 0;
-	while (cmd->command[c + s])
+	while (cmdlist->command[c + s])
 	{
-		if (token_c < cmd->tokens->total && \
-		((c + s) == cmd->tokens->token_pos[token_c]))
+		if (token_c < cmdlist->tokens->total && \
+		((c + s) == cmdlist->tokens->token_pos[token_c]))
 		{
 			s += 2;
 			token_c++;
 		}
 		if (c == i)
-			return (cmd->command[c + s]);
+			return (cmdlist->command[c + s]);
 		c++;
 	}
 	return (0);
 }
 
-char	**set_cmd(t_cmdlist *cmd)
+char	**set_cmd(t_cmdlist *cmdlist)
 {
 	int		i;
 	int		length;
 	char	**newstr;
 
 	i = 0;
-	if (!cmd->tokens || cmd->tokens->total == 0)
-		return (cmd->command);
-	length = calc_len(cmd);
+	if (!cmdlist->tokens || cmdlist->tokens->total == 0)
+		return (cmdlist->command);
+	length = calc_len(cmdlist);
 	newstr = ft_calloc(length + 1, sizeof(char *));
 	while (i < length)
 	{
-		newstr[i] = get_str(cmd, i);
+		newstr[i] = get_str(cmdlist, i);
 		i++;
 	}
 	newstr[length] = 0;

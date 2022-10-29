@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/28 21:57:47 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/10/29 00:11:22 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/29 13:35:24 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	get_heredoc_eof(t_ms *ms, int k)
 		if (!ft_strncmp(ms->tokens[k].token[token_c], "<<", 3))
 		{
 			ms->tokens[k].heredoc[c].eof = \
-			ms->parse.commands[k][ms->tokens[k].token_pos[token_c] + 1];
+			ms->input.cmds[k][ms->tokens[k].token_pos[token_c] + 1];
 			total--;
 			c++;
 		}

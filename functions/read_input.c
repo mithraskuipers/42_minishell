@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/28 21:56:51 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/10/29 00:36:06 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/29 13:32:02 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static void	input_error(t_ms *ms)
 {
 	ft_putstr_fd(\
 "minishell-4.2$: unexpected EOF while looking for matching `", 2);
-	if (ms->parse.comma1)
+	if (ms->input.squote)
 		ft_putstr_fd("''\n", 2);
 	else
 		ft_putstr_fd("\"'\n", 2);

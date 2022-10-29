@@ -6,7 +6,7 @@
 /*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/12 01:09:17 by rkieboom      #+#    #+#                 */
-/*   Updated: 2022/10/29 12:54:28 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/29 13:58:06 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,18 +101,18 @@ static int	last_command(t_ms *ms, t_cmdlist *temp, pid_t *pids, int len)
 }
 
 //Multiple commands with Pipes executor
-void	setup_pipe_cmd(t_ms *ms, t_cmdlist *cmd)
+void	setup_pipe_cmd(t_ms *ms, t_cmdlist *cmdlist)
 {
 	pid_t		*pids;
-	const int	len = get_cmd_len(cmd);
+	const int	len = get_cmd_len(cmdlist);
 	int i = 0;
 
 	pids = ft_calloc(len + 1, sizeof(pid_t));
 	if (!pids)
 		return_exit(1, PRNT_ERRNO_NL);
 	pids[len] = 0;
-	cmd->read_pipe = dup(0);
-	if (start_commands(ms, cmd, pids, 0))
+	cmdlist->read_pipe = dup(0);
+	if (start_commands(ms, cmdlist, pids, 0))
 	{
 		while (pids[i])
 		{
@@ -121,7 +121,7 @@ void	setup_pipe_cmd(t_ms *ms, t_cmdlist *cmd)
 		}
 	}
 	else
-		g_global.status = last_command(ms, cmd, pids, len - 1);
+		g_global.status = last_command(ms, cmdlist, pids, len - 1);
 	free(pids);
 }
 

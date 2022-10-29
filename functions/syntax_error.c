@@ -6,7 +6,7 @@
 /*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/18 10:21:40 by rkieboom      #+#    #+#                 */
-/*   Updated: 2022/10/29 12:42:28 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/29 14:27:59 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,6 @@ static int	first(t_vars *vars, t_ms *ms)
 	vars->j = 0;
 	while (vars->i < vars->k && (&ms->tokens[vars->i] == NULL \
 	|| ms->tokens[vars->i].total == 0))
-		vars->i++;
 	if (vars->i == vars->k)
 		return (1);
 	if (!ft_strncmp(ms->tokens[vars->i].token[0], "|", 2) \
@@ -85,7 +84,7 @@ int	syntax_error_parse(t_ms *ms)
 	t_vars	vars;
 
 	ft_bzero(&vars, sizeof(t_vars));
-	while (ms->parse.commands[vars.k])
+	while (ms->input.cmds[vars.k])
 		vars.k++;
 	while (vars.i < vars.k)
 	{
@@ -102,15 +101,15 @@ int	syntax_error_parse(t_ms *ms)
 }
 
 //Checks syntax errors for tokens
-int	parser_syntax_tokens(t_cmdlist *cmd, int i)
+int	parser_syntax_tokens(t_cmdlist *cmdlist, int i)
 {
-	if (!cmd->tokens || cmd->tokens->total == 0)
+	if (!cmdlist->tokens || cmdlist->tokens->total == 0)
 		return (0);
-	while (i < cmd->tokens->total)
+	while (i < cmdlist->tokens->total)
 	{
-		if (i + 1 == cmd->tokens->total)
+		if (i + 1 == cmdlist->tokens->total)
 		{
-			if (cmd->tokens->token_pos[i] == cmd_len(cmd->command) - 1) 
+			if (cmdlist->tokens->token_pos[i] == cmd_len(cmdlist->command) - 1) 
 			{
 				ft_putendl_fd(\
 "minishell-4.2$: syntax error near unexpected token `newline'", 2);
@@ -118,10 +117,10 @@ int	parser_syntax_tokens(t_cmdlist *cmd, int i)
 				return (1);
 			}
 		}
-		else if (cmd->tokens->token_pos[i] + 1 == cmd->tokens->token_pos[i + 1])
+		else if (cmdlist->tokens->token_pos[i] + 1 == cmdlist->tokens->token_pos[i + 1])
 		{
 			ft_putstr_fd("minishell-4.2$: syntax error near token ", 2);
-			ft_putendl_fd(cmd->tokens->token[i + 1], 2);
+			ft_putendl_fd(cmdlist->tokens->token[i + 1], 2);
 			g_global.status = 258;
 			return (1);
 		}
