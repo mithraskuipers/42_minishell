@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   syntax_error.c                                     :+:    :+:            */
+/*   input_syntax_error.c                               :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
+/*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/05/18 10:21:40 by rkieboom      #+#    #+#                 */
-/*   Updated: 2022/10/29 12:42:28 by mikuiper      ########   odam.nl         */
+/*   Created: 2022/10/29 15:55:39 by mikuiper      #+#    #+#                 */
+/*   Updated: 2022/10/29 15:55:42 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 

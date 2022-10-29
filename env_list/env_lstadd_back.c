@@ -3,10 +3,10 @@
 /*                                                        ::::::::            */
 /*   env_lstadd_back.c                                  :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: spelle <spelle@student.codam.nl>             +#+                     */
+/*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2021/03/09 14:53:16 by spelle        #+#    #+#                 */
-/*   Updated: 2022/10/29 00:12:30 by mikuiper      ########   odam.nl         */
+/*   Created: 2022/10/29 15:51:32 by mikuiper      #+#    #+#                 */
+/*   Updated: 2022/10/29 15:51:34 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 

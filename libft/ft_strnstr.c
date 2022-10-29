@@ -3,10 +3,10 @@
 /*                                                        ::::::::            */
 /*   ft_strnstr.c                                       :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
+/*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/10/31 18:09:13 by rkieboom      #+#    #+#                 */
-/*   Updated: 2021/03/09 15:50:58 by spelle        ########   odam.nl         */
+/*   Created: 2022/10/29 15:51:53 by mikuiper      #+#    #+#                 */
+/*   Updated: 2022/10/29 15:51:54 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 

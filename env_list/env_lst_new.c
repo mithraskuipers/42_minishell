@@ -3,10 +3,10 @@
 /*                                                        ::::::::            */
 /*   env_lst_new.c                                      :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: spelle <spelle@student.codam.nl>             +#+                     */
+/*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2021/03/09 14:53:58 by spelle        #+#    #+#                 */
-/*   Updated: 2022/10/29 00:13:40 by mikuiper      ########   odam.nl         */
+/*   Created: 2022/10/29 15:49:42 by mikuiper      #+#    #+#                 */
+/*   Updated: 2022/10/29 15:49:43 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 

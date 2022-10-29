@@ -3,10 +3,10 @@
 /*                                                        ::::::::            */
 /*   ft_itoa.c                                          :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
+/*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/11/04 15:32:52 by rkieboom      #+#    #+#                 */
-/*   Updated: 2021/03/09 15:54:07 by spelle        ########   odam.nl         */
+/*   Created: 2022/10/29 15:50:02 by mikuiper      #+#    #+#                 */
+/*   Updated: 2022/10/29 15:50:04 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 

@@ -3,10 +3,10 @@
 /*                                                        ::::::::            */
 /*   unset.c                                            :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: spelle <spelle@student.codam.nl>             +#+                     */
+/*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2021/05/19 20:01:05 by spelle        #+#    #+#                 */
-/*   Updated: 2022/10/23 22:51:51 by rkieboom      ########   odam.nl         */
+/*   Created: 2022/10/29 15:49:02 by mikuiper      #+#    #+#                 */
+/*   Updated: 2022/10/29 15:49:04 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 

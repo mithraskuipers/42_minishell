@@ -3,10 +3,10 @@
 /*                                                        ::::::::            */
 /*   ft_calloc.c                                        :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: rkieboom <marvin@codam.nl>                   +#+                     */
+/*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/10/31 12:33:00 by rkieboom      #+#    #+#                 */
-/*   Updated: 2021/03/09 15:54:22 by spelle        ########   odam.nl         */
+/*   Created: 2022/10/29 15:51:37 by mikuiper      #+#    #+#                 */
+/*   Updated: 2022/10/29 15:51:39 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 

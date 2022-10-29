@@ -1,28 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_lstclear_bonus.c                                :+:    :+:            */
+/*   str_skip_whitespace.c                              :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/10/29 15:50:06 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/10/29 15:50:08 by mikuiper      ########   odam.nl         */
+/*   Created: 2022/10/29 15:57:26 by mikuiper      #+#    #+#                 */
+/*   Updated: 2022/10/29 15:57:27 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-void	ft_lstclear(t_libft **lst, void (*del)(void*))
+int	str_skip_whitespace(const char *str)
 {
-	t_libft	*temp;
-	t_libft	*list;
+	int	i;
 
-	list = *lst;
-	while (list)
-	{
-		ft_lstdelone(list, del);
-		temp = list->next;
-		list = temp;
-	}
-	*lst = NULL;
+	i = 0;
+	while (str[i] != '\0' && (str[i] == ' ' || str[i] == '\t'))
+		i++;
+	return (i);
 }

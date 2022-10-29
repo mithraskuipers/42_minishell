@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_exit.c                                          :+:    :+:            */
+/*   ms_exit.c                                          :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/04 12:03:50 by rkieboom      #+#    #+#                 */
-/*   Updated: 2022/10/29 15:13:31 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/29 15:48:04 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static void	print_and_exit(char *str, int ret)
 	exit(ret);
 }
 
-int	check_errors(char **str, int i)
+static int	check_errors(char **str, int i)
 {
 	if (all_num(str[1]) || !ft_strncmp(str[1], "-", 2))
 	{

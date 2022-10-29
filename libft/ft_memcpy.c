@@ -3,10 +3,10 @@
 /*                                                        ::::::::            */
 /*   ft_memcpy.c                                        :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
+/*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/11/02 13:30:29 by rkieboom      #+#    #+#                 */
-/*   Updated: 2021/03/09 15:53:29 by spelle        ########   odam.nl         */
+/*   Created: 2022/10/29 15:51:16 by mikuiper      #+#    #+#                 */
+/*   Updated: 2022/10/29 15:51:18 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 

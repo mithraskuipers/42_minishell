@@ -3,10 +3,10 @@
 /*                                                        ::::::::            */
 /*   ft_lstadd_back_bonus.c                             :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
+/*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/11/13 15:50:50 by rkieboom      #+#    #+#                 */
-/*   Updated: 2021/03/09 15:55:45 by spelle        ########   odam.nl         */
+/*   Created: 2022/10/29 15:51:08 by mikuiper      #+#    #+#                 */
+/*   Updated: 2022/10/29 15:51:10 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 

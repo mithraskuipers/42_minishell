@@ -1,21 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_str_skip_whitespace.c                                    :+:    :+:            */
+/*   cmd_len.c                                          :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
+/*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/11/29 10:15:46 by rkieboom      #+#    #+#                 */
-/*   Updated: 2021/10/11 15:56:07 by spelle        ########   odam.nl         */
+/*   Created: 2022/10/29 15:58:56 by mikuiper      #+#    #+#                 */
+/*   Updated: 2022/10/29 15:59:05 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	str_skip_whitespace(const char *str)
+#include "../header.h"
+#include <unistd.h>
+
+int	cmd_len(char **str)
 {
 	int	i;
 
 	i = 0;
-	while (str[i] != '\0' && (str[i] == ' ' || str[i] == '\t'))
+	while (str[i])
 		i++;
 	return (i);
 }

@@ -6,7 +6,7 @@
 #    By: mikuiper <mikuiper@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/10/28 21:58:30 by mikuiper      #+#    #+#                  #
-#    Updated: 2022/10/29 15:37:01 by mikuiper      ########   odam.nl          #
+#    Updated: 2022/10/29 16:01:14 by mikuiper      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,7 +45,7 @@ SRCS =					main.c \
 						signals.c \
 						$(INIT) \
 						$(SPLASH) \
-						$(FUNCTIONS) \
+						$(TOOLS) \
 						$(INPUT) \
 						$(SRCS.COMMANDS.CD) \
 						$(SRCS.COMMANDS.ECHO) \
@@ -64,11 +64,11 @@ SRCS =					main.c \
 						$(SRCS.EXECUTE)
 						
 						
-FUNCTIONS =				functions/str_skip_whitespace.c \
-						functions/syntax_error.c \
-						functions/array_thingy.c \
-						functions/functions.c \
-						functions/signal_handler.c \
+TOOLS =					tools/str_skip_whitespace.c \
+						tools/array_thingy.c \
+						tools/ft_error.c \
+						tools/signal_handler.c \
+						tools/cmd_len.c \
 
 EXPANDER =				expander/env_var_len.c \
 
@@ -76,6 +76,7 @@ INPUT =					input/input_read.c \
 						input/input_add_newline.c \
 						input/input_check.c \
 						input/input_syntax_quotes.c \
+						input/input_syntax_error.c \
 
 INIT =					init/init.c \
 

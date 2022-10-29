@@ -3,10 +3,10 @@
 /*                                                        ::::::::            */
 /*   ft_lstsize_bonus.c                                 :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
+/*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/11/13 14:24:31 by rkieboom      #+#    #+#                 */
-/*   Updated: 2021/03/09 14:14:59 by spelle        ########   odam.nl         */
+/*   Created: 2022/10/29 15:51:12 by mikuiper      #+#    #+#                 */
+/*   Updated: 2022/10/29 15:51:13 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 

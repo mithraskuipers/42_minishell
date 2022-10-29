@@ -3,10 +3,10 @@
 /*                                                        ::::::::            */
 /*   ft_isalnum.c                                       :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
+/*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/10/31 17:45:33 by rkieboom      #+#    #+#                 */
-/*   Updated: 2021/03/09 15:55:53 by spelle        ########   odam.nl         */
+/*   Created: 2022/10/29 15:51:58 by mikuiper      #+#    #+#                 */
+/*   Updated: 2022/10/29 15:51:59 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
