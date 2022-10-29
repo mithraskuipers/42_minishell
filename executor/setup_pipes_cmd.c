@@ -6,7 +6,7 @@
 /*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/12 01:09:17 by rkieboom      #+#    #+#                 */
-/*   Updated: 2022/10/29 01:29:24 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/29 12:30:27 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ static int	last_command(t_ms *ms, t_newcommand *temp, pid_t *pids, int len)
 	return (get_return_status(status));
 }
 
-//Multiple commands with Pipes execution
+//Multiple commands with Pipes executor
 void	setup_pipe_cmd(t_ms *ms, t_newcommand *cmd)
 {
 	pid_t		*pids;

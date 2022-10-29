@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/28 21:57:11 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/10/29 10:37:36 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/29 12:35:51 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,7 +122,7 @@ void	ft_error(char *msg);
 int		syntax_error_parse(t_ms *ms);
 int		parser_syntax_tokens(t_newcommand *cmd, int i);
 
-void	execution(t_ms *ms, t_newcommand *cmd, int k);
+void	executor(t_ms *ms, t_newcommand *cmd, int cmd_i);
 int		str_skip_whitespace(const char *str);
 
 void	check_quote(t_ms *ms, char *c);

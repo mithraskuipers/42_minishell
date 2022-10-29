@@ -6,7 +6,7 @@
 #    By: mikuiper <mikuiper@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/10/28 21:58:30 by mikuiper      #+#    #+#                  #
-#    Updated: 2022/10/29 10:38:19 by mikuiper      ########   odam.nl          #
+#    Updated: 2022/10/29 12:32:10 by mikuiper      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,7 @@ SRCDIR	= ./
 OBJDIR	= bin/
 LIBFTDIR = libft/
 
-INCLUDES = header.h parsing/parse.h execute/execute.h cosmetics/splash.h \
+INCLUDES = header.h parser/parse.h executor/execute.h cosmetics/splash.h \
 libft/libft.h env_list/env_list.h builtin/commands.h cmd/cmd.h cmd/tokens_cmd/tokens.h
 
 LIBFTLIB = $(LIBFTDIR)/libft.a
@@ -108,15 +108,15 @@ SRCS.ENV.LIST.FUNC =	env_list/functions/env_init.c \
 						env_list/functions/env_functions.c \
 						env_list/functions/env_functions2.c \
 
-SRCS.EXECUTE =			execute/execute.c execute/run_cmd.c \
-						execute/exec_functions.c \
-						execute/set_cmd.c \
-						execute/redirections/loop_over_redirs.c \
-						execute/redirections/redirections.c \
-						execute/redirections/heredoc.c \
-						execute/setup_single_cmd.c \
-						execute/setup_pipes_cmd.c \
-						execute/setup_builtin.c \
+SRCS.EXECUTE =			executor/execute.c executor/run_cmd.c \
+						executor/exec_functions.c \
+						executor/set_cmd.c \
+						executor/redirections/loop_over_redirs.c \
+						executor/redirections/redirections.c \
+						executor/redirections/heredoc.c \
+						executor/setup_single_cmd.c \
+						executor/setup_pipes_cmd.c \
+						executor/setup_builtin.c \
 						
 
 SRCS.NEWEXECUTE =		newexecute/execute.c newexecute/run_cmd.c \
@@ -134,24 +134,24 @@ SRCS.FREE =				free/free_all.c \
 						free/free_commands.c \
 						free/free_heredoc.c \
 
-SRCS.parser =			parsing/parse.c \
-						parsing/parse_arraysize.c \
-						parsing/splitting/parser_splitter_spaces.c \
-						parsing/splitting/parser_splitter_semicolons.c \
-						parsing/splitting/parser_separate_words_tokens.c \
-						parsing/checkword.c \
-						parsing/checkword_calclen.c \
-						parsing/createstring.c \
-						parsing/tokens.c \
-						parsing/heredoc/allocate_heredoc.c \
-						parsing/heredoc/get_heredoc_input.c \
-						parsing/heredoc/heredoc_calc_len.c \
-						parsing/heredoc/heredoc_create_str.c \
-						parsing/heredoc/heredoc_parsing.c \
-						parsing/heredoc/set_heredoc.c \
-						parsing/check_chars.c \
-						parsing/search_env.c \
-						parsing/tilde_expansion.c \
+SRCS.parser =			parser/parse.c \
+						parser/parse_arraysize.c \
+						parser/splitting/parser_splitter_spaces.c \
+						parser/splitting/parser_splitter_semicolons.c \
+						parser/splitting/parser_separate_words_tokens.c \
+						parser/checkword.c \
+						parser/checkword_calclen.c \
+						parser/createstring.c \
+						parser/tokens.c \
+						parser/heredoc/allocate_heredoc.c \
+						parser/heredoc/get_heredoc_input.c \
+						parser/heredoc/heredoc_calc_len.c \
+						parser/heredoc/heredoc_create_str.c \
+						parser/heredoc/heredoc_parsing.c \
+						parser/heredoc/set_heredoc.c \
+						parser/check_chars.c \
+						parser/search_env.c \
+						parser/tilde_expansion.c \
 
 SRCS.CREATE.CMD =		cmd/parser_command_creation.c \
 						cmd/parser_command_pipes.c \
