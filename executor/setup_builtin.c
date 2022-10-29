@@ -6,7 +6,7 @@
 /*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/17 15:28:34 by rkieboom      #+#    #+#                 */
-/*   Updated: 2022/10/29 01:06:46 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/29 12:42:28 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static void	cpy_fds(t_ms *ms)
 		return_exit(1, PRNT_ERRNO_NL);
 }
 
-static void	reset_fds(t_ms *ms, t_newcommand *cmd)
+static void	reset_fds(t_ms *ms, t_cmdlist *cmd)
 {
 	if (cmd->tokens->last_l != -1)
 		dup2(ms->stdin_cpy, STDIN_FILENO);
@@ -30,7 +30,7 @@ static void	reset_fds(t_ms *ms, t_newcommand *cmd)
 	close(ms->stdout_cpy);
 }
 
-static void	with_tokens(t_ms *ms, t_newcommand *cmd, char **command)
+static void	with_tokens(t_ms *ms, t_cmdlist *cmd, char **command)
 {
 	cpy_fds(ms);
 	if (loop_over_redirs(cmd, 0, cmd->tokens->total))
@@ -56,7 +56,7 @@ static void	with_tokens(t_ms *ms, t_newcommand *cmd, char **command)
 }
 
 void	setup_builtin(t_ms *ms, \
-t_newcommand *cmd, char **command, int token_exist)
+t_cmdlist *cmd, char **command, int token_exist)
 {
 	if (token_exist)
 		with_tokens(ms, cmd, command);

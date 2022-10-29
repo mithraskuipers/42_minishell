@@ -6,7 +6,7 @@
 /*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/12 00:44:55 by rkieboom      #+#    #+#                 */
-/*   Updated: 2022/10/29 01:29:24 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/29 12:54:28 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static int	return_status(int status)
 	return (1);
 }
 
-static void	setup_execve(t_ms *ms, t_newcommand *cmd, char **command)
+static void	setup_execve(t_ms *ms, t_cmdlist *cmd, char **command)
 {
 	int	status;
 
@@ -52,7 +52,7 @@ static void	setup_execve(t_ms *ms, t_newcommand *cmd, char **command)
 		return_exit(1, PRNT_ERRNO_NL);
 	if (g_global.pid == 0)
 	{
-		signals_dfl();
+		update_signals_default();
 		env_lstadd_back(&ms->env, \
 		env_lst_new(ft_strdup(__DUP__), ft_strdup("")));
 		if (redirections(cmd))
@@ -66,7 +66,7 @@ static void	setup_execve(t_ms *ms, t_newcommand *cmd, char **command)
 
 // Executes one command no Pipes
 // Command is the temp command with the redirections removed as arguments
-void	setup_single_cmd(t_ms *ms, t_newcommand *cmd)
+void	setup_single_cmd(t_ms *ms, t_cmdlist *cmd)
 {
 	char	**command;
 

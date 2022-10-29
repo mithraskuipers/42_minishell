@@ -6,7 +6,7 @@
 /*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/05/11 16:35:27 by rkieboom      #+#    #+#                 */
-/*   Updated: 2022/10/29 00:54:39 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/29 12:55:09 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int		check_exist(char *PATH);
 int		check_permission(char *PATH);
 void	export_declare_list(t_env *v);
 void	ft_swap(char **s1, char **s2);//Not ness
-void	signals(void);
-void	signals_dfl(void);
+void	update_signals_handler(void);
+void	update_signals_default(void);
 
 #endif

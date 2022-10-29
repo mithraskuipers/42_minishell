@@ -6,13 +6,13 @@
 /*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/12 01:09:17 by rkieboom      #+#    #+#                 */
-/*   Updated: 2022/10/29 12:30:27 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/29 12:54:28 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "execute.h"
 
-static int	get_cmd_len(t_newcommand *temp)
+static int	get_cmd_len(t_cmdlist *temp)
 {
 	int	i;
 
@@ -25,7 +25,7 @@ static int	get_cmd_len(t_newcommand *temp)
 	return (i);
 }
 
-static int	start_commands(t_ms *ms, t_newcommand *temp, pid_t *pids, int i)
+static int	start_commands(t_ms *ms, t_cmdlist *temp, pid_t *pids, int i)
 {
 	while (temp->next)
 	{
@@ -37,7 +37,7 @@ static int	start_commands(t_ms *ms, t_newcommand *temp, pid_t *pids, int i)
 		}
 		if (!pids[i])
 		{
-			signals_dfl();
+			update_signals_default();
 			dup2(temp->fd[1], STDOUT_FILENO);
 			close(temp->fd[1]);
 			close(temp->fd[0]);
@@ -59,7 +59,7 @@ static int	start_commands(t_ms *ms, t_newcommand *temp, pid_t *pids, int i)
 	return (0);
 }
 
-static int	last_command(t_ms *ms, t_newcommand *temp, pid_t *pids, int len)
+static int	last_command(t_ms *ms, t_cmdlist *temp, pid_t *pids, int len)
 {
 	int	i;
 	int	status;
@@ -81,7 +81,7 @@ static int	last_command(t_ms *ms, t_newcommand *temp, pid_t *pids, int len)
 	}
 	if (!pids[len])
 	{
-		signals_dfl();
+		update_signals_default();
 		dup2(temp->read_pipe, 0);
 		close(temp->read_pipe);
 		if (redirections(temp))
@@ -101,7 +101,7 @@ static int	last_command(t_ms *ms, t_newcommand *temp, pid_t *pids, int len)
 }
 
 //Multiple commands with Pipes executor
-void	setup_pipe_cmd(t_ms *ms, t_newcommand *cmd)
+void	setup_pipe_cmd(t_ms *ms, t_cmdlist *cmd)
 {
 	pid_t		*pids;
 	const int	len = get_cmd_len(cmd);

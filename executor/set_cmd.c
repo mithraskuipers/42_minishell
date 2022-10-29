@@ -6,13 +6,13 @@
 /*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/07 15:57:41 by rkieboom      #+#    #+#                 */
-/*   Updated: 2022/10/28 21:59:48 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/29 12:42:28 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "execute.h"
 
-static int	calc_len(t_newcommand *cmd)
+static int	calc_len(t_cmdlist *cmd)
 {
 	int	i;
 
@@ -22,7 +22,7 @@ static int	calc_len(t_newcommand *cmd)
 	return (i - (cmd->tokens->total * 2));
 }
 
-static char	*get_str(t_newcommand *cmd, int i)
+static char	*get_str(t_cmdlist *cmd, int i)
 {
 	int	token_c;
 	int	c;
@@ -46,7 +46,7 @@ static char	*get_str(t_newcommand *cmd, int i)
 	return (0);
 }
 
-char	**set_cmd(t_newcommand *cmd)
+char	**set_cmd(t_cmdlist *cmd)
 {
 	int		i;
 	int		length;

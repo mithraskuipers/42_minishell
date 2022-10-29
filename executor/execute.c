@@ -6,7 +6,7 @@
 /*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/11 15:26:49 by rkieboom      #+#    #+#                 */
-/*   Updated: 2022/10/29 12:35:18 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/29 12:55:15 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,20 @@
 //This is were we execute our Command
 /**
  * TODO: Redirections in pipes
+ * @Rowan, I removed the unnecessary 3rd argument, as it made the code
+ * more difficult to read.
 **/
-void	executor(t_ms *ms, t_newcommand *cmd, int cmd_i)
+void	executor(t_ms *ms, t_cmdlist *cmd)
 {
 	int	i;
+	int	cmd_i;
 
 	i = 0;
+	cmd_i = 0;
 	while (ms->parse.commands[cmd_i])
 		cmd_i++;
 	tcsetattr(0, 0, &g_global.termios_save);
-	signals();
+	update_signals_handler();
 	while (i < cmd_i)
 	{
 		if (!cmd[i].next)

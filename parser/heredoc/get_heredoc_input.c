@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/28 21:57:30 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/10/29 00:29:51 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/29 12:54:28 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ int	get_heredoc_input(t_ms *ms, int k)
 		}
 		if (!g_global.pid)
 		{
-			signals_dfl();
+			update_signals_default();
 			heredoc_write_to_pipe(ms, k, i);
 		}
 		else

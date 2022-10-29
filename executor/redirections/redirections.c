@@ -6,13 +6,13 @@
 /*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/11 22:09:17 by rkieboom      #+#    #+#                 */
-/*   Updated: 2022/10/29 01:06:46 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/29 12:42:28 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../execute.h"
 
-int	tokens_exist(t_newcommand *cmd)
+int	tokens_exist(t_cmdlist *cmd)
 {
 	if (cmd->tokens && cmd->tokens->total > 0)
 		return (1);
@@ -20,7 +20,7 @@ int	tokens_exist(t_newcommand *cmd)
 		return (0);
 }
 
-int	redir_left(t_newcommand *v)
+int	redir_left(t_cmdlist *v)
 {
 	if (!ft_strncmp(v->command[v->tokens->last_l], "<<", 3))
 	{
@@ -48,7 +48,7 @@ v->tokens->heredoc[v->tokens->double_redirection_left - 1].data);
 	return (0);
 }
 
-int	redir_right(t_newcommand *v)
+int	redir_right(t_cmdlist *v)
 {
 	if (!strncmp(v->command[v->tokens->last_r], ">>", 3))
 		v->tokens->stdout_fd = open(\
@@ -67,7 +67,7 @@ int	redir_right(t_newcommand *v)
 	return (0);
 }
 
-int	redirections(t_newcommand *cmd)
+int	redirections(t_cmdlist *cmd)
 {
 	if (tokens_exist(cmd) && loop_over_redirs(cmd, 0, cmd->tokens->total))
 		return (1);

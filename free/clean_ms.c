@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   free_all.c                                         :+:    :+:            */
+/*   clean_ms.c                                         :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
+/*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/11/29 10:34:48 by rkieboom      #+#    #+#                 */
-/*   Updated: 2022/10/29 00:29:51 by mikuiper      ########   odam.nl         */
+/*   Created: 2022/10/29 13:13:29 by mikuiper      #+#    #+#                 */
+/*   Updated: 2022/10/29 13:13:31 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header.h"
 
-static void	free_tokens(t_ms *ms)
+static void	clean_tokens(t_ms *ms)
 {
 	int	i;
 
@@ -31,30 +31,7 @@ static void	free_tokens(t_ms *ms)
 	free(ms->tokens);
 }
 
-static void	free_parse_commands(t_ms *ms)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	if (ms->parse.commands)
-	{
-		while (ms->parse.commands[i])
-		{
-			j = 0;
-			while (ms->parse.commands[i][j])
-			{
-				free(ms->parse.commands[i][j]);
-				j++;
-			}
-			free(ms->parse.commands[i]);
-			i++;
-		}
-		free(ms->parse.commands);
-	}
-}
-
-static void	free_line_buf(t_ms *ms)
+static void	clean_line_array(t_ms *ms)
 {
 	if (ms->line.array)
 	{
@@ -64,18 +41,18 @@ static void	free_line_buf(t_ms *ms)
 }
 
 //Frees all stuff
-void	free_all(t_ms *ms)
+void	clean_ms(t_ms *ms)
 {
 	int	totalcommands;
 
 	totalcommands = 0;
 	while (ms->parse.commands[totalcommands])
 		totalcommands++;
-	free_line_buf(ms);
+	clean_line_array(ms);
 	free_heredoc(ms, totalcommands);
-	free_tokens(ms);
-	free_parse_commands(ms);
-	free_commands(ms, 0, 0, totalcommands);
+	clean_tokens(ms);
+	clean_commands(ms);
+	clean_cmdlist(ms, totalcommands);
 	ms->cmd = 0;
 	ms->tokens = 0;
 }

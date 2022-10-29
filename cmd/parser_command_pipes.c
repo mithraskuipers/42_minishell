@@ -44,7 +44,7 @@ int	pipe_location(t_ms *v, int k, int token_pos)
 }
 
 //Creates the first CMD
-static void	first_cmd(t_ms *v, t_newcommand *temp, int k)
+static void	first_cmd(t_ms *v, t_cmdlist *temp, int k)
 {
 	int	i;
 	int	j;
@@ -67,7 +67,7 @@ static void	first_cmd(t_ms *v, t_newcommand *temp, int k)
 }
 
 //Creates all CMD's in the middle
-static void	middle_cmd(t_ms *v, t_newcommand *temp, int pipes, int k)
+static void	middle_cmd(t_ms *v, t_cmdlist *temp, int pipes, int k)
 {
 	int	i;
 	int	j;
@@ -97,7 +97,7 @@ static void	middle_cmd(t_ms *v, t_newcommand *temp, int pipes, int k)
 }
 
 //Creates the last CMD
-static void	last_cmd(t_ms *v, t_newcommand *temp, int pipes, int k)
+static void	last_cmd(t_ms *v, t_cmdlist *temp, int pipes, int k)
 {
 	int	i;
 	int	j;
@@ -127,10 +127,10 @@ static void	last_cmd(t_ms *v, t_newcommand *temp, int pipes, int k)
 }
 
 //Make multiple commands
-void	parser_command_pipes(t_ms *v, t_newcommand *pipes_cmd, int pipes, int k)
+void	parser_command_pipes(t_ms *v, t_cmdlist *pipes_cmd, int pipes, int k)
 {
 	int				i;
-	t_newcommand	*temp;
+	t_cmdlist	*temp;
 
 	temp = pipes_cmd;
 	i = 0;
@@ -147,7 +147,7 @@ void	parser_command_pipes(t_ms *v, t_newcommand *pipes_cmd, int pipes, int k)
 		pipes--;
 		if (pipes >= 0)
 		{
-			temp->next = ft_calloc(1, sizeof(t_newcommand));
+			temp->next = ft_calloc(1, sizeof(t_cmdlist));
 			if (!temp->next)
 				return_exit(1, PRNT_ERRNO_NL);
 			temp->next->prev = temp;

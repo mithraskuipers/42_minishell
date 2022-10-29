@@ -6,13 +6,13 @@
 /*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/11 21:58:05 by rkieboom      #+#    #+#                 */
-/*   Updated: 2022/10/29 00:54:39 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/29 12:42:28 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../execute.h"
 
-static int	single_redirection_right(t_newcommand *v, int i)
+static int	single_redirection_right(t_cmdlist *v, int i)
 {
 	v->tokens->stdout_fd = open(\
 	v->command[v->tokens->token_pos[i] + 1] \
@@ -27,7 +27,7 @@ static int	single_redirection_right(t_newcommand *v, int i)
 	return (0);
 }
 
-static int	double_redirection_right(t_newcommand *v, int i)
+static int	double_redirection_right(t_cmdlist *v, int i)
 {
 	v->tokens->stdout_fd = open(\
 	v->command[v->tokens->token_pos[i] + 1] \
@@ -42,7 +42,7 @@ static int	double_redirection_right(t_newcommand *v, int i)
 	return (0);
 }
 
-static int	single_redirection_left(t_newcommand *v, int i)
+static int	single_redirection_left(t_cmdlist *v, int i)
 {
 	v->tokens->stdin_fd = open(\
 	v->command[v->tokens->token_pos[i] + 1], O_RDONLY);
@@ -58,12 +58,12 @@ static int	single_redirection_left(t_newcommand *v, int i)
 	return (0);
 }
 
-static void	double_redirection_left(t_newcommand *v, int i)
+static void	double_redirection_left(t_cmdlist *v, int i)
 {
 	v->tokens->last_l = v->tokens->token_pos[i];
 }
 
-int	loop_over_redirs(t_newcommand *v, int i, int total)
+int	loop_over_redirs(t_cmdlist *v, int i, int total)
 {
 	v->tokens->last_l = -1;
 	v->tokens->last_r = -1;

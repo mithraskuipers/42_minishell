@@ -6,7 +6,7 @@
 #    By: mikuiper <mikuiper@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/10/28 21:58:30 by mikuiper      #+#    #+#                  #
-#    Updated: 2022/10/29 12:32:10 by mikuiper      ########   odam.nl          #
+#    Updated: 2022/10/29 13:04:23 by mikuiper      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -130,8 +130,9 @@ SRCS.NEWEXECUTE =		newexecute/execute.c newexecute/run_cmd.c \
 						newexecute/pipes/setup_pipes.c \
 						newexecute/pipes/clear_pipes.c \
 
-SRCS.FREE =				free/free_all.c \
-						free/free_commands.c \
+SRCS.FREE =				free/clean_ms.c \
+						free/clean_commands.c \
+						free/clean_cmdlist.c \
 						free/free_heredoc.c \
 
 SRCS.parser =			parser/parse.c \

@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/28 21:57:11 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/10/29 12:35:51 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/29 13:11:01 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,16 +77,16 @@ typedef struct s_tokens
 	t_heredoc	*heredoc;
 }				t_tokens;
 
-typedef struct s_newcommand
+typedef struct s_cmdlist
 {
 	int						id; // TODO: ONGEBRUIKT?
 	int						fd[2];
 	int						read_pipe;
 	char					**command;
 	struct s_tokens			*tokens;
-	struct s_newcommand		*next;
-	struct s_newcommand		*prev;
-}				t_newcommand;
+	struct s_cmdlist		*next;
+	struct s_cmdlist		*prev;
+}				t_cmdlist;
 
 typedef struct s_ms
 {
@@ -96,7 +96,7 @@ typedef struct s_ms
 	t_line			line;
 	t_env			*env;
 	t_tokens		*tokens;
-	t_newcommand	*cmd;
+	t_cmdlist	*cmd;
 	int				hdoc_break;
 }				t_ms;
 
@@ -113,16 +113,16 @@ extern t_global	g_global;
 
 int		parser_wrapper(t_ms *ms);
 
-void	free_all(t_ms *ms);
-void	free_commands(t_ms *ms, t_newcommand *temp, \
-						t_newcommand *temp2, int totalcommands);
+void	clean_ms(t_ms *ms);
+void	clean_cmdlist(t_ms *ms, int totalcommands);
+void	clean_commands(t_ms *ms);
 void	free_heredoc(t_ms *ms, int totalcommands);
 
 void	ft_error(char *msg);
 int		syntax_error_parse(t_ms *ms);
-int		parser_syntax_tokens(t_newcommand *cmd, int i);
+int		parser_syntax_tokens(t_cmdlist *cmd, int i);
 
-void	executor(t_ms *ms, t_newcommand *cmd, int cmd_i);
+void	executor(t_ms *ms, t_cmdlist *cmd);
 int		str_skip_whitespace(const char *str);
 
 void	check_quote(t_ms *ms, char *c);
@@ -135,7 +135,7 @@ void	input_syntax_quotes(t_ms *ms);
 
 int		parser_command_creation(t_ms *ms, int k);
 
-void	sig_handler(int sign_num);
+void	sig_handler(int signal_code);
 
 void	init_signals(t_env **env);
 

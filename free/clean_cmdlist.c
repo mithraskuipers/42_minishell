@@ -1,19 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   free_commands.c                                    :+:    :+:            */
+/*   clean_cmdlist.c                                    :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
+/*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/09/04 19:50:14 by rkieboom      #+#    #+#                 */
-/*   Updated: 2022/10/29 00:11:22 by mikuiper      ########   odam.nl         */
+/*   Created: 2022/10/29 13:13:34 by mikuiper      #+#    #+#                 */
+/*   Updated: 2022/10/29 13:20:48 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
+// TODO: created separate function free_cmdlist_tokens() for clarity and 
+// improving readability of free_cmdlist().
+
 #include "../header.h"
 
-static void	free_cmd(t_newcommand *temp, int j, int k)
+static void	free_cmdlist_tokens(t_cmdlist *temp)
 {
+	free(temp->tokens->token);
+	free(temp->tokens->token_pos);
+	free(temp->tokens);	
+}
+
+static void	free_cmdlist(t_cmdlist *temp, int k)
+{
+	int	j;
+
+	j = 0;
 	while (temp->command && temp->command[j])
 	{
 		free(temp->command[j]);
@@ -31,30 +44,33 @@ static void	free_cmd(t_newcommand *temp, int j, int k)
 			free(temp->tokens->token[j]);
 			j++;
 		}
-		free(temp->tokens->token);
-		free(temp->tokens->token_pos);
-		free(temp->tokens);
+		free_cmdlist_tokens(temp);
 	}
 	if (k != 0)
 		free(temp);
 }
 
-void	free_commands(t_ms *ms, t_newcommand *temp, \
-						t_newcommand *temp2, int totalcommands)
+
+// TODO: Removed arguments 2 and 3, added those inside the function
+void	clean_cmdlist(t_ms *ms, int totalcommands)
 {
 	int	i;
 	int	k;
+	t_cmdlist	*temp1;
+	t_cmdlist	*temp2;
 
+	temp1 = 0;
+	temp2 = 0;
 	i = 0;
 	while (totalcommands)
 	{
 		k = 0;
-		temp = &ms->cmd[i];
-		while (temp)
+		temp1 = &ms->cmd[i];
+		while (temp1)
 		{
-			temp2 = temp->next;
-			free_cmd(temp, 0, k);
-			temp = temp2;
+			temp2 = temp1->next;
+			free_cmdlist(temp1, k);
+			temp1 = temp2;
 			k++;
 		}
 		i++;

@@ -13,7 +13,7 @@
 #include "cmd.h"
 
 //If there is no pipes we just create one simpe CMD
-static void	parser_command_no_pipes(t_ms *v, t_newcommand *cmd, int k)
+static void	parser_command_no_pipes(t_ms *v, t_cmdlist *cmd, int k)
 {
 	int	i;
 
@@ -43,7 +43,7 @@ int	parser_command_creation(t_ms *ms, int k)
 	i = 0;
 	while (ms->parse.commands[k])
 		k++;
-	ms->cmd = ft_calloc(k, sizeof(t_newcommand));
+	ms->cmd = ft_calloc(k, sizeof(t_cmdlist));
 	if (!ms->cmd)
 		return_exit(1, PRNT_ERRNO_NL);
 	while (i < k)

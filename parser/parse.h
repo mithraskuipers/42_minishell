@@ -6,7 +6,7 @@
 /*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/11/27 15:01:52 by rkieboom      #+#    #+#                 */
-/*   Updated: 2022/10/29 01:32:28 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/29 12:56:02 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int		ft_fork(pid_t *pid, int *fd);
 int		ft_pipe(int *fd);
 int		get_return_status(int status);
 
-void	signals(void);
-void	signals_dfl(void);
+void	update_signals_handler(void);
+void	update_signals_default(void);
 
 #endif
