@@ -6,13 +6,13 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/29 15:07:13 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/10/29 15:07:14 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/29 21:06:27 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../env_list.h"
+#include "env_list.h"
 #include <stdio.h>
-#include "../../header.h"
+#include "../header.h"
 
 void	env_add_content(t_env **v, char *envname, char *envcontent)
 {

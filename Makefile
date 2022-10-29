@@ -6,7 +6,7 @@
 #    By: mikuiper <mikuiper@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/10/28 21:58:30 by mikuiper      #+#    #+#                  #
-#    Updated: 2022/10/29 20:19:02 by mikuiper      ########   odam.nl          #
+#    Updated: 2022/10/29 21:11:35 by mikuiper      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -65,9 +65,6 @@ SRCS =					main.c \
 						$(SRCS.CREATE.CMD) \
 						$(SRCS.EXECUTE) \
 
-#$(SRCS.NEWEXECUTE)
-						
-						
 TOOLS =					tools/str_skip_whitespace.c \
 						tools/ft_error.c \
 						tools/signal_handler.c \
@@ -116,34 +113,21 @@ SRCS.ENV.LIST =			env_list/env_lst_new.c \
 						env_list/env_lstsize.c \
 						env_lst_remove.c \
 
-SRCS.ENV.LIST.FUNC =	env_list/tools/env_init.c \
-						env_list/tools/env_tools_manipulation.c \
-						env_list/tools/env_tools_check.c \
-						env_list/tools/env_tools_get.c \
+SRCS.ENV.LIST.FUNC =	env_list/env_init.c \
+						env_list/env_tools_manipulation.c \
+						env_list/env_tools_check.c \
+						env_list/env_tools_get.c \
 
 SRCS.EXECUTE =			executor/execute.c \
 						executor/executor_command_wrapper.c \
 						executor/exec_functions.c \
 						executor/executor_get_command.c \
-						executor/redirs/redirs_looper.c \
-						executor/redirs/redirs.c \
-						executor/redirs/heredoc.c \
+						executor/redirections/redirs_looper.c \
+						executor/redirections/redirs.c \
+						executor/redirections/heredoc.c \
 						executor/executor_single_cmd.c \
 						executor/executor_pipes_cmd.c \
 						executor/executor_builtin.c \
-						
-
-SRCS.NEWEXECUTE =		newexecute/execute.c \
-						newexecute/executor_command_wrapper.c \
-						newexecute/executor_get_command.c \
-						newexecute/redirs/redirection_functions.c \
-						newexecute/redirs/redirs.c \
-						newexecute/redirs/set_redirs.c \
-						newexecute/redirs/get_last_redir.c \
-						newexecute/pipes/heredoc_pipes.c \
-						newexecute/pipes/pipes.c \
-						newexecute/pipes/executor_pipes.c \
-						newexecute/pipes/clear_pipes.c \
 
 SRCS.CLEAN =			clean/clean_ms.c \
 						clean/clean_commands.c \

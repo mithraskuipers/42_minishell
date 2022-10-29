@@ -6,13 +6,13 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/29 15:05:19 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/10/29 19:51:04 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/29 21:06:22 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../env_list.h"
+#include "env_list.h"
 #include <stdio.h>
-#include "../../header.h"
+#include "../header.h"
 
 char	*env_get_name(t_env *v, char *key)
 {

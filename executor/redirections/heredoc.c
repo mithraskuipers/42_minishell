@@ -1,41 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   env_tools_check.c                                  :+:    :+:            */
+/*   heredoc.c                                          :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/10/23 22:52:25 by rkieboom      #+#    #+#                 */
-/*   Updated: 2022/10/29 19:50:56 by mikuiper      ########   odam.nl         */
+/*   Created: 2022/10/17 12:48:35 by rkieboom      #+#    #+#                 */
+/*   Updated: 2022/10/29 21:09:22 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../env_list.h"
-#include "../../header.h"
+#include "../execute.h"
 
-int	env_has_data(t_env *v, char *key)
+void	heredoc_set_pipe(t_heredoc *heredoc, t_heredoc_data *data)
 {
-	while (v)
+	if (pipe(heredoc->pipe) < 0)
+		return_exit(1, PRNT_ERRNO_NL);
+	while (data)
 	{
-		if (!ft_strncmp(v->name, key, ft_strlen(key) + 1))
-		{
-			if (v->content)
-				return (1);
-			else
-				return (0);
-		}
-		v = v->next;
+		ft_putendl_fd(data->str, heredoc->pipe[1]);
+		data = data->next;
 	}
-	return (0);
-}
-
-int	env_exist(t_env *v, char *key)
-{
-	while (v)
-	{
-		if (!ft_strncmp(v->name, key, ft_strlen(key) + 1))
-			return (1);
-		v = v->next;
-	}
-	return (0);
+	close(heredoc->pipe[1]);
 }

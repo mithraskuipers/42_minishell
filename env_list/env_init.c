@@ -6,12 +6,12 @@
 /*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/05/11 13:56:28 by rkieboom      #+#    #+#                 */
-/*   Updated: 2022/10/29 01:09:01 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/29 21:06:06 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../env_list.h"
-#include "../../header.h"
+#include "env_list.h"
+#include "../header.h"
 #include <stdio.h>
 #include <unistd.h>
 
