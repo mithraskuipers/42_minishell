@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   setup_single_cmd.c                                 :+:    :+:            */
+/*   executor_single_cmd.c                                 :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
@@ -42,7 +42,7 @@ static int	return_status(int status)
 	return (1);
 }
 
-static void	setup_execve(t_ms *ms, t_cmdlist *cmd, char **command)
+static void	executor_execve(t_ms *ms, t_cmdlist *cmd, char **command)
 {
 	int	status;
 
@@ -66,15 +66,15 @@ static void	setup_execve(t_ms *ms, t_cmdlist *cmd, char **command)
 
 // Executes one command no Pipes
 // Command is the temp command with the redirs removed as arguments
-void	setup_single_cmd(t_ms *ms, t_cmdlist *cmd)
+void	executor_single_cmd(t_ms *ms, t_cmdlist *cmd)
 {
 	char	**command;
 
 	command = set_cmd(cmd);
 	if (is_builtin(command[0]))
-		setup_builtin(ms, cmd, command, tokens_present(cmd));
+		executor_builtin(ms, cmd, command, tokens_present(cmd));
 	else
-		setup_execve(ms, cmd, command);
+		executor_execve(ms, cmd, command);
 	if (command && tokens_present(cmd))
 		free(command);
 }

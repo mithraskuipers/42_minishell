@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   setup_pipes_cmd.c                                  :+:    :+:            */
+/*   executor_pipes_cmd.c                                  :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
@@ -101,7 +101,7 @@ static int	last_command(t_ms *ms, t_cmdlist *temp, pid_t *pids, int len)
 }
 
 //Multiple commands with Pipes executor
-void	setup_pipe_cmd(t_ms *ms, t_cmdlist *cmd)
+void	executor_pipe_cmd(t_ms *ms, t_cmdlist *cmd)
 {
 	pid_t		*pids;
 	const int	len = get_cmd_len(cmd);

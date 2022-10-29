@@ -6,7 +6,7 @@
 #    By: mikuiper <mikuiper@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/10/28 21:58:30 by mikuiper      #+#    #+#                  #
-#    Updated: 2022/10/29 18:07:21 by mikuiper      ########   odam.nl          #
+#    Updated: 2022/10/29 18:28:25 by mikuiper      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -125,9 +125,9 @@ SRCS.EXECUTE =			executor/execute.c executor/run_cmd.c \
 						executor/redirs/redirs_looper.c \
 						executor/redirs/redirs.c \
 						executor/redirs/heredoc.c \
-						executor/setup_single_cmd.c \
-						executor/setup_pipes_cmd.c \
-						executor/setup_builtin.c \
+						executor/executor_single_cmd.c \
+						executor/executor_pipes_cmd.c \
+						executor/executor_builtin.c \
 						
 
 SRCS.NEWEXECUTE =		newexecute/execute.c newexecute/run_cmd.c \
@@ -138,7 +138,7 @@ SRCS.NEWEXECUTE =		newexecute/execute.c newexecute/run_cmd.c \
 						newexecute/redirs/get_last_redir.c \
 						newexecute/pipes/heredoc_pipes.c \
 						newexecute/pipes/pipes.c \
-						newexecute/pipes/setup_pipes.c \
+						newexecute/pipes/executor_pipes.c \
 						newexecute/pipes/clear_pipes.c \
 
 SRCS.CLEAN =			clean/clean_ms.c \

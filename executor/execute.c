@@ -6,7 +6,7 @@
 /*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/11 15:26:49 by rkieboom      #+#    #+#                 */
-/*   Updated: 2022/10/29 18:07:21 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/29 18:28:25 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ void	executor(t_ms *ms, t_cmdlist *cmd)
 	while (i < cmd_i)
 	{
 		if (!cmd[i].next)
-			setup_single_cmd(ms, &cmd[i]);
+			executor_single_cmd(ms, &cmd[i]);
 		else
-			setup_pipe_cmd(ms, &cmd[i]);
+			executor_pipe_cmd(ms, &cmd[i]);
 		i++;
 	}
 }
