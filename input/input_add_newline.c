@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   add_new_line.c                                     :+:    :+:            */
+/*   input_add_newline.c                                     :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
@@ -12,7 +12,7 @@
 
 #include "../header.h"
 
-char	*add_new_line(char *str)
+char	*input_add_newline(char *str)
 {
 	int		length;
 	char	*result;

@@ -6,7 +6,7 @@
 #    By: mikuiper <mikuiper@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/10/28 21:58:30 by mikuiper      #+#    #+#                  #
-#    Updated: 2022/10/29 13:04:23 by mikuiper      ########   odam.nl          #
+#    Updated: 2022/10/29 15:08:07 by mikuiper      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,6 +46,7 @@ SRCS =					main.c \
 						$(INIT) \
 						$(SPLASH) \
 						$(FUNCTIONS) \
+						$(INPUT) \
 						$(SRCS.COMMANDS.CD) \
 						$(SRCS.COMMANDS.ECHO) \
 						$(SRCS.COMMANDS.ENV) \
@@ -64,13 +65,14 @@ SRCS =					main.c \
 						
 						
 FUNCTIONS =				functions/str_skip_whitespace.c \
-						functions/add_new_line.c \
 						functions/check_input.c \
-						functions/read_input.c \
 						functions/syntax_error.c \
 						functions/array_thingy.c \
 						functions/functions.c \
 						functions/signal_handler.c \
+
+INPUT =					input/input_read.c \
+						input/input_add_newline.c \
 
 INIT =					init/init.c \
 
@@ -104,9 +106,10 @@ SRCS.ENV.LIST =			env_list/env_lst_new.c \
 						env_list/env_lstsize.c \
 						env_lst_remove.c \
 
-SRCS.ENV.LIST.FUNC =	env_list/functions/env_init.c \
-						env_list/functions/env_functions.c \
-						env_list/functions/env_functions2.c \
+SRCS.ENV.LIST.FUNC =	env_list/tools/env_init.c \
+						env_list/tools/env_tools_manipulation.c \
+						env_list/tools/env_tools_check.c \
+						env_list/tools/env_tools_get.c \
 
 SRCS.EXECUTE =			executor/execute.c executor/run_cmd.c \
 						executor/exec_functions.c \

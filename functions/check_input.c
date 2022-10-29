@@ -29,7 +29,7 @@ static void	quote(t_ms *ms)
 		return ;
 	}
 	temp = ms->line.array;
-	newstr = add_new_line(newstr);
+	newstr = input_add_newline(newstr);
 	ms->line.array = ft_strjoin(newstr, ms->line.array);
 	if (!ms->line.array)
 		return_exit(1, PRNT_ERRNO_NL);

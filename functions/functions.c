@@ -6,19 +6,12 @@
 /*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/05/11 16:56:29 by rkieboom      #+#    #+#                 */
-/*   Updated: 2022/10/29 00:11:22 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/29 14:58:40 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header.h"
 #include <unistd.h>
-
-int	ft_putstr(char *str)
-{
-	if (write(1, str, ft_strlen(str)) == -1)
-		return (-1);
-	return (0);
-}
 
 void	ft_error(char *msg)
 {
