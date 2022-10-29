@@ -6,18 +6,18 @@
 /*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/08/29 14:08:13 by rkieboom      #+#    #+#                 */
-/*   Updated: 2022/10/29 13:47:49 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/29 12:42:28 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "tokens.h"
 
 //Allocate the token variables
-void	init_new_tokens(t_cmdlist *cmdlist)
+void	init_new_tokens(t_cmdlist *cmd)
 {
 	t_cmdlist	*temp;
 
-	temp = cmdlist;
+	temp = cmd;
 	while (temp)
 	{
 		if (temp->tokens && temp->tokens->total > 0)

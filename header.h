@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/28 21:57:11 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/10/29 13:44:29 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/29 13:11:01 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,12 @@
 # define NO_PRNT 0
 # define PRNT_ERRNO_NL 1
 
-typedef struct s_input
+typedef struct s_parse
 {
-	char		***cmds;
-	int			squote;
-	int			dquote;
-}				t_input;
+	char		***commands;
+	int			comma1;
+	int			comma2;
+}				t_parse;
 
 typedef struct s_line
 {
@@ -92,11 +92,11 @@ typedef struct s_ms
 {
 	int				stdout_cpy;
 	int				stdin_cpy;
-	t_input			input;
+	t_parse			parse;
 	t_line			line;
 	t_env			*env;
 	t_tokens		*tokens;
-	t_cmdlist		*cmdlist;
+	t_cmdlist	*cmd;
 	int				hdoc_break;
 }				t_ms;
 
@@ -114,15 +114,15 @@ extern t_global	g_global;
 int		parser_wrapper(t_ms *ms);
 
 void	clean_ms(t_ms *ms);
-void	clean_cmdlist(t_ms *ms, int n_cmds);
-void	clean_cmds(t_ms *ms);
-void	free_heredoc(t_ms *ms, int n_cmds);
+void	clean_cmdlist(t_ms *ms, int totalcommands);
+void	clean_commands(t_ms *ms);
+void	free_heredoc(t_ms *ms, int totalcommands);
 
 void	ft_error(char *msg);
 int		syntax_error_parse(t_ms *ms);
-int		parser_syntax_tokens(t_cmdlist *cmdlist, int i);
+int		parser_syntax_tokens(t_cmdlist *cmd, int i);
 
-void	executor(t_ms *ms, t_cmdlist *cmdlist);
+void	executor(t_ms *ms, t_cmdlist *cmd);
 int		str_skip_whitespace(const char *str);
 
 void	check_quote(t_ms *ms, char *c);

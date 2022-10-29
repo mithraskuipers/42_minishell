@@ -6,7 +6,7 @@
 /*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/21 04:04:12 by rkieboom      #+#    #+#                 */
-/*   Updated: 2022/10/29 13:34:02 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/29 00:11:22 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,13 @@ static void	free_heredoc_data(t_heredoc_data *data)
 	}
 }
 
-void	free_heredoc(t_ms *ms, int n_cmds)
+void	free_heredoc(t_ms *ms, int totalcommands)
 {
 	int				i;
 	int				j;
 
 	i = 0;
-	while (n_cmds)
+	while (totalcommands)
 	{
 		j = 0;
 		while (ms->tokens != NULL && &ms->tokens[i] != NULL && \
@@ -48,6 +48,6 @@ void	free_heredoc(t_ms *ms, int n_cmds)
 		&ms->tokens[i] != NULL && ms->tokens[i].heredoc)
 			free(ms->tokens[i].heredoc);
 		i++;
-		n_cmds--;
+		totalcommands--;
 	}
 }

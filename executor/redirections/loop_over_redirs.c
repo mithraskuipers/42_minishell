@@ -6,84 +6,84 @@
 /*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/11 21:58:05 by rkieboom      #+#    #+#                 */
-/*   Updated: 2022/10/29 13:54:05 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/29 12:42:28 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../execute.h"
 
-static int	single_redirection_right(t_cmdlist *cmdlist, int i)
+static int	single_redirection_right(t_cmdlist *v, int i)
 {
-	cmdlist->tokens->stdout_fd = open(\
-	cmdlist->command[cmdlist->tokens->token_pos[i] + 1] \
+	v->tokens->stdout_fd = open(\
+	v->command[v->tokens->token_pos[i] + 1] \
 	, O_RDWR | O_TRUNC | O_CREAT, 0644);
-	if (cmdlist->tokens->stdout_fd < 0)
+	if (v->tokens->stdout_fd < 0)
 	{
 		return_exit(0, 1);
 		return (1);
 	}
-	close(cmdlist->tokens->stdout_fd);
-	cmdlist->tokens->last_r = cmdlist->tokens->token_pos[i];
+	close(v->tokens->stdout_fd);
+	v->tokens->last_r = v->tokens->token_pos[i];
 	return (0);
 }
 
-static int	double_redirection_right(t_cmdlist *cmdlist, int i)
+static int	double_redirection_right(t_cmdlist *v, int i)
 {
-	cmdlist->tokens->stdout_fd = open(\
-	cmdlist->command[cmdlist->tokens->token_pos[i] + 1] \
+	v->tokens->stdout_fd = open(\
+	v->command[v->tokens->token_pos[i] + 1] \
 	, O_RDWR | O_APPEND | O_CREAT, 0644);
-	if (cmdlist->tokens->stdout_fd < 0)
+	if (v->tokens->stdout_fd < 0)
 	{
 		return_exit(0, 1);
 		return (1);
 	}
-	close(cmdlist->tokens->stdout_fd);
-	cmdlist->tokens->last_r = cmdlist->tokens->token_pos[i];
+	close(v->tokens->stdout_fd);
+	v->tokens->last_r = v->tokens->token_pos[i];
 	return (0);
 }
 
-static int	single_redirection_left(t_cmdlist *cmdlist, int i)
+static int	single_redirection_left(t_cmdlist *v, int i)
 {
-	cmdlist->tokens->stdin_fd = open(\
-	cmdlist->command[cmdlist->tokens->token_pos[i] + 1], O_RDONLY);
-	if (cmdlist->tokens->stdin_fd < 0)
+	v->tokens->stdin_fd = open(\
+	v->command[v->tokens->token_pos[i] + 1], O_RDONLY);
+	if (v->tokens->stdin_fd < 0)
 	{
 		ft_putstr_fd("minishell-4.2$: no such file or directory: ", 2);
-		ft_putstr_fd(cmdlist->command[cmdlist->tokens->token_pos[i] + 1], 2);
+		ft_putstr_fd(v->command[v->tokens->token_pos[i] + 1], 2);
 		ft_putchar_fd('\n', 2);
 		return (1);
 	}
-	close(cmdlist->tokens->stdin_fd);
-	cmdlist->tokens->last_l = cmdlist->tokens->token_pos[i];
+	close(v->tokens->stdin_fd);
+	v->tokens->last_l = v->tokens->token_pos[i];
 	return (0);
 }
 
-static void	double_redirection_left(t_cmdlist *cmdlist, int i)
+static void	double_redirection_left(t_cmdlist *v, int i)
 {
-	cmdlist->tokens->last_l = cmdlist->tokens->token_pos[i];
+	v->tokens->last_l = v->tokens->token_pos[i];
 }
 
-int	loop_over_redirs(t_cmdlist *cmdlist, int i, int total)
+int	loop_over_redirs(t_cmdlist *v, int i, int total)
 {
-	cmdlist->tokens->last_l = -1;
-	cmdlist->tokens->last_r = -1;
+	v->tokens->last_l = -1;
+	v->tokens->last_r = -1;
 	while (i < total)
 	{
-		if (!ft_strncmp(cmdlist->tokens->token[i], "<<", 3))
-			double_redirection_left(cmdlist, i);
-		else if (!ft_strncmp(cmdlist->tokens->token[i], "<", 2))
+		if (!ft_strncmp(v->tokens->token[i], "<<", 3))
+			double_redirection_left(v, i);
+		else if (!ft_strncmp(v->tokens->token[i], "<", 2))
 		{
-			if (single_redirection_left(cmdlist, i))
+			if (single_redirection_left(v, i))
 				return (1);
 		}
-		else if (!ft_strncmp(cmdlist->tokens->token[i], ">>", 3))
+		else if (!ft_strncmp(v->tokens->token[i], ">>", 3))
 		{
-			if (double_redirection_right(cmdlist, i))
+			if (double_redirection_right(v, i))
 				return (1);
 		}
-		else if (!ft_strncmp(cmdlist->tokens->token[i], ">", 2))
+		else if (!ft_strncmp(v->tokens->token[i], ">", 2))
 		{
-			if (single_redirection_right(cmdlist, i))
+			if (single_redirection_right(v, i))
 				return (1);
 		}
 		i++;

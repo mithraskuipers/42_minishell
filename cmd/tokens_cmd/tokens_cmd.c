@@ -6,18 +6,18 @@
 /*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/03/17 16:25:48 by rkieboom      #+#    #+#                 */
-/*   Updated: 2022/10/29 13:47:07 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/29 12:42:28 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "tokens.h"
 
 //Sets the tokens to CMD
-void	tokens_cmd(t_ms *v, t_cmdlist *cmdlist, int k)
+void	tokens_cmd(t_ms *v, t_cmdlist *cmd, int k)
 {
 	t_cmdlist	*temp;
 
-	temp = cmdlist;
+	temp = cmd;
 	if (v->tokens[k].total == 0)
 		return ;
 	while (temp)
@@ -27,7 +27,7 @@ void	tokens_cmd(t_ms *v, t_cmdlist *cmdlist, int k)
 			return_exit(1, PRNT_ERRNO_NL);
 		temp = temp->next;
 	}
-	count_tokens(v, cmdlist, k);
-	init_new_tokens(cmdlist);
-	set_tokens(v, cmdlist, k);
+	count_tokens(v, cmd, k);
+	init_new_tokens(cmd);
+	set_tokens(v, cmd, k);
 }

@@ -29,13 +29,13 @@ static int	arraysize(const char *s, char c, t_ms *ms)
 	i = str_skip_whitespace(s);
 	if (s[i] == '\0')
 		return (0);
-	ms->input.squote = 0;
-	ms->input.dquote = 0;
+	ms->parse.comma1 = 0;
+	ms->parse.comma2 = 0;
 	while (s[i])
 	{
 		check_quote(ms, (char *)s + i);
 		if (s[i] == c && \
-			(ms->input.squote == 0 && ms->input.dquote == 0) && \
+			(ms->parse.comma1 == 0 && ms->parse.comma2 == 0) && \
 			i > 0 && s[i - 1] != c)
 			k++;
 		i++;
@@ -48,8 +48,8 @@ static int	arraysize(const char *s, char c, t_ms *ms)
 static void	init_vars(t_ms *ms, t_vars *vars)
 {
 	ft_bzero(vars, sizeof(t_vars));
-	ms->input.squote = 0;
-	ms->input.dquote = 0;
+	ms->parse.comma1 = 0;
+	ms->parse.comma2 = 0;
 }
 
 static char	**splitter(t_ms *ms, const char *str, char **result)
@@ -60,7 +60,7 @@ static char	**splitter(t_ms *ms, const char *str, char **result)
 	while (str[vars.i])
 	{
 		check_quote(ms, (char *)str + vars.i);
-		if (str[vars.i] != ' ' || ms->input.squote || ms->input.dquote)
+		if (str[vars.i] != ' ' || ms->parse.comma1 || ms->parse.comma2)
 			vars.length++;
 		else
 		{

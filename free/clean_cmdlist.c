@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/29 13:13:34 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/10/29 13:42:42 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/29 13:20:48 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static void	free_cmdlist(t_cmdlist *temp, int k)
 
 
 // TODO: Removed arguments 2 and 3, added those inside the function
-void	clean_cmdlist(t_ms *ms, int n_cmds)
+void	clean_cmdlist(t_ms *ms, int totalcommands)
 {
 	int	i;
 	int	k;
@@ -62,10 +62,10 @@ void	clean_cmdlist(t_ms *ms, int n_cmds)
 	temp1 = 0;
 	temp2 = 0;
 	i = 0;
-	while (n_cmds)
+	while (totalcommands)
 	{
 		k = 0;
-		temp1 = &ms->cmdlist[i];
+		temp1 = &ms->cmd[i];
 		while (temp1)
 		{
 			temp2 = temp1->next;
@@ -74,7 +74,7 @@ void	clean_cmdlist(t_ms *ms, int n_cmds)
 			k++;
 		}
 		i++;
-		n_cmds--;
+		totalcommands--;
 	}
-	free(ms->cmdlist);
+	free(ms->cmd);
 }

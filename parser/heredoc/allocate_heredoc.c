@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/28 21:57:24 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/10/29 13:35:24 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/29 10:18:42 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,10 @@ static void	get_heredoc_q(t_ms *ms, int k)
 		if (!ft_strncmp(ms->tokens[k].token[i], "<<", 3))
 		{
 			pos = ms->tokens[k].token_pos[i] + 1;
-			if (!ms->input.cmds[k][pos])
+			if (!ms->parse.commands[k][pos])
 				return ;
-			if (ms->input.cmds[k][pos][0] == '\"' \
-			|| ms->input.cmds[k][pos][0] == '\'')
+			if (ms->parse.commands[k][pos][0] == '\"' \
+			|| ms->parse.commands[k][pos][0] == '\'')
 				ms->tokens[k].heredoc[current].heredoc_q = 1;
 			current++;
 		}

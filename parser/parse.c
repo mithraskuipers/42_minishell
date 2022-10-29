@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/24 14:34:50 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/10/29 13:35:24 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/29 10:18:42 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,15 +43,15 @@ static void	parser(t_ms *ms)
 
 	j = 0;
 	x = 0;
-	while (ms->input.cmds[j])
+	while (ms->parse.commands[j])
 	{
 		i = 0;
 		x = 0;
-		while (ms->input.cmds[j][i] != NULL)
+		while (ms->parse.commands[j][i] != NULL)
 		{
-			ms->input.cmds[j][i - x] = \
-			checkword(ms, ms->input.cmds[j][i]);
-			if (!ms->input.cmds[j][i])
+			ms->parse.commands[j][i - x] = \
+			checkword(ms, ms->parse.commands[j][i]);
+			if (!ms->parse.commands[j][i])
 				x++;
 			i++;
 		}
@@ -65,17 +65,17 @@ static void	parser_input_splitter(t_ms *ms, t_vars *vars)
 	vars->splitted = parser_splitter_semicolon(ms, ';');
 	while (vars->splitted[vars->n_words])
 		vars->n_words++;
-	ms->input.cmds = ft_calloc(vars->n_words + 1, sizeof(char **));
-	if (!ms->input.cmds)
+	ms->parse.commands = ft_calloc(vars->n_words + 1, sizeof(char **));
+	if (!ms->parse.commands)
 		return_exit(1, PRNT_ERRNO_NL);
-	ms->input.cmds[vars->n_words] = 0;
+	ms->parse.commands[vars->n_words] = 0;
 	ms->tokens = ft_calloc(vars->n_words, sizeof(t_tokens));
 	if (!ms->tokens)
 		return_exit(1, PRNT_ERRNO_NL);
 	while (vars->n_words)
 	{
-		ms->input.cmds[vars->i] = parser_splitter_spaces(ms, vars->splitted[vars->i], ' ');
-		parser_separate_words_tokens(ms, parse_arraysize(ms->input.cmds[vars->i], ms), vars->i);
+		ms->parse.commands[vars->i] = parser_splitter_spaces(ms, vars->splitted[vars->i], ' ');
+		parser_separate_words_tokens(ms, parse_arraysize(ms->parse.commands[vars->i], ms), vars->i);
 		vars->n_words--;
 		vars->i++;
 	}

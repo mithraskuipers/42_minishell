@@ -6,7 +6,7 @@
 /*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/12 00:44:55 by rkieboom      #+#    #+#                 */
-/*   Updated: 2022/10/29 13:56:26 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/29 12:54:28 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static int	return_status(int status)
 	return (1);
 }
 
-static void	setup_execve(t_ms *ms, t_cmdlist *cmdlist, char **command)
+static void	setup_execve(t_ms *ms, t_cmdlist *cmd, char **command)
 {
 	int	status;
 
@@ -55,7 +55,7 @@ static void	setup_execve(t_ms *ms, t_cmdlist *cmdlist, char **command)
 		update_signals_default();
 		env_lstadd_back(&ms->env, \
 		env_lst_new(ft_strdup(__DUP__), ft_strdup("")));
-		if (redirections(cmdlist))
+		if (redirections(cmd))
 			return_exit(1, NO_PRNT);
 		run_cmd(ms, command, 1);
 	}
@@ -66,15 +66,15 @@ static void	setup_execve(t_ms *ms, t_cmdlist *cmdlist, char **command)
 
 // Executes one command no Pipes
 // Command is the temp command with the redirections removed as arguments
-void	setup_single_cmd(t_ms *ms, t_cmdlist *cmdlist)
+void	setup_single_cmd(t_ms *ms, t_cmdlist *cmd)
 {
 	char	**command;
 
-	command = set_cmd(cmdlist);
+	command = set_cmd(cmd);
 	if (is_builtin(command[0]))
-		setup_builtin(ms, cmdlist, command, tokens_exist(cmdlist));
+		setup_builtin(ms, cmd, command, tokens_exist(cmd));
 	else
-		setup_execve(ms, cmdlist, command);
-	if (command && tokens_exist(cmdlist))
+		setup_execve(ms, cmd, command);
+	if (command && tokens_exist(cmd))
 		free(command);
 }

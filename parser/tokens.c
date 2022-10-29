@@ -6,7 +6,7 @@
 /*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/11/30 00:29:12 by rkieboom      #+#    #+#                 */
-/*   Updated: 2022/10/29 13:35:24 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/29 10:31:31 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,12 @@ static void	allocate_tokens_vars(t_ms *ms)
 
 	cmd = 0;
 	total = 0;
-	while (ms->input.cmds[cmd])
+	while (ms->parse.commands[cmd])
 	{
 		j = 0;
-		while (ms->input.cmds[cmd][j])
+		while (ms->parse.commands[cmd][j])
 		{
-			if (check_char(ms->input.cmds[cmd][j]))
+			if (check_char(ms->parse.commands[cmd][j]))
 				total++;
 			j++;
 		}
@@ -48,15 +48,15 @@ static void	set_tokens(t_ms *ms)
 	int	cmd;
 
 	cmd = 0;
-	while (ms->input.cmds[cmd])
+	while (ms->parse.commands[cmd])
 	{
 		tkn = 0;
 		wrd = 0;
-		while (ms->input.cmds[cmd][wrd])
+		while (ms->parse.commands[cmd][wrd])
 		{
-			if (check_char(ms->input.cmds[cmd][wrd]))
+			if (check_char(ms->parse.commands[cmd][wrd]))
 			{
-				ms->tokens[cmd].token[tkn] = ft_strdup(ms->input.cmds[cmd][wrd]);
+				ms->tokens[cmd].token[tkn] = ft_strdup(ms->parse.commands[cmd][wrd]);
 				ms->tokens[cmd].token_pos[tkn] = wrd;
 				tkn++;
 			}
@@ -73,7 +73,7 @@ static void	identify_tokens(t_ms *ms)
 	int	j;
 
 	i = 0;
-	while (ms->input.cmds[i])
+	while (ms->parse.commands[i])
 	{
 		j = 0;
 		while (j < ms->tokens[i].total)

@@ -58,7 +58,7 @@ static void	first_cmd(t_ms *v, t_cmdlist *temp, int k)
 		return_exit(1, PRNT_ERRNO_NL);
 	while (j)
 	{
-		temp->command[i] = ft_strdup(v->input.cmds[k][i]);
+		temp->command[i] = ft_strdup(v->parse.commands[k][i]);
 		if (!temp->command[i])
 			return_exit(1, PRNT_ERRNO_NL);
 		j--;
@@ -87,7 +87,7 @@ static void	middle_cmd(t_ms *v, t_cmdlist *temp, int pipes, int k)
 	l = 0;
 	while (j)
 	{
-		temp->command[l] = ft_strdup(v->input.cmds[k][i]);
+		temp->command[l] = ft_strdup(v->parse.commands[k][i]);
 		if (!temp->command[l])
 			return_exit(1, PRNT_ERRNO_NL);
 		l++;
@@ -105,7 +105,7 @@ static void	last_cmd(t_ms *v, t_cmdlist *temp, int pipes, int k)
 
 	i = 0;
 	j = pipe_location(v, k, pipes);
-	while (v->input.cmds[k][i + j])
+	while (v->parse.commands[k][i + j])
 		i++;
 	i += j;
 	if (i - j == 1)
@@ -118,7 +118,7 @@ static void	last_cmd(t_ms *v, t_cmdlist *temp, int pipes, int k)
 	l = pipe_location(v, k, pipes) + 1;
 	while (j)
 	{
-		temp->command[i] = ft_strdup(v->input.cmds[k][l + i]);
+		temp->command[i] = ft_strdup(v->parse.commands[k][l + i]);
 		if (!temp->command[i])
 			return_exit(1, PRNT_ERRNO_NL);
 		i++;

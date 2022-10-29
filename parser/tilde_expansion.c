@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/24 14:35:52 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/10/29 13:35:24 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/29 01:06:46 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,11 +65,11 @@ void	tilde_expansion(t_ms *ms, int length)
 	while (k < length)
 	{
 		i = 0;
-		while (ms->input.cmds[k][i])
+		while (ms->parse.commands[k][i])
 		{
-			if (is_tilde(ms->input.cmds[k][i]))
-				ms->input.cmds[k][i] = \
-				expand(ms->env, ms->input.cmds[k][i]);
+			if (is_tilde(ms->parse.commands[k][i]))
+				ms->parse.commands[k][i] = \
+				expand(ms->env, ms->parse.commands[k][i]);
 			i++;
 		}
 		k++;

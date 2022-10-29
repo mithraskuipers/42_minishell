@@ -13,21 +13,21 @@
 #include "cmd.h"
 
 //If there is no pipes we just create one simpe CMD
-static void	parser_command_no_pipes(t_ms *v, t_cmdlist *cmdlist, int k)
+static void	parser_command_no_pipes(t_ms *v, t_cmdlist *cmd, int k)
 {
 	int	i;
 
 	i = 0;
-	while (v->input.cmds[k][i])
+	while (v->parse.commands[k][i])
 		i++;
-	cmdlist->command = ft_calloc(i + 1, sizeof(char *));
-	if (!cmdlist->command)
+	cmd->command = ft_calloc(i + 1, sizeof(char *));
+	if (!cmd->command)
 		return_exit(1, PRNT_ERRNO_NL);
 	i = 0;
-	while (v->input.cmds[k][i])
+	while (v->parse.commands[k][i])
 	{
-		cmdlist->command[i] = ft_strdup(v->input.cmds[k][i]);
-		if (!cmdlist->command[i])
+		cmd->command[i] = ft_strdup(v->parse.commands[k][i]);
+		if (!cmd->command[i])
 			return_exit(1, PRNT_ERRNO_NL);
 		i++;
 	}
@@ -41,20 +41,20 @@ int	parser_command_creation(t_ms *ms, int k)
 	int	pipes;
 
 	i = 0;
-	while (ms->input.cmds[k])
+	while (ms->parse.commands[k])
 		k++;
-	ms->cmdlist = ft_calloc(k, sizeof(t_cmdlist));
-	if (!ms->cmdlist)
+	ms->cmd = ft_calloc(k, sizeof(t_cmdlist));
+	if (!ms->cmd)
 		return_exit(1, PRNT_ERRNO_NL);
 	while (i < k)
 	{
 		pipes = ms->tokens[i].pipe;
 		if (pipes == 0)
-			parser_command_no_pipes(ms, &ms->cmdlist[i], i);
+			parser_command_no_pipes(ms, &ms->cmd[i], i);
 		else
-			parser_command_pipes(ms, &ms->cmdlist[i], pipes, i);
+			parser_command_pipes(ms, &ms->cmd[i], pipes, i);
 		if (ms->tokens[i].total)
-			tokens_cmd(ms, &ms->cmdlist[i], i);
+			tokens_cmd(ms, &ms->cmd[i], i);
 		i++;
 	}
 	return (0);

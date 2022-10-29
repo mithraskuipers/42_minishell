@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/29 00:58:15 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/10/29 13:32:17 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/29 01:07:34 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,19 +23,19 @@ static int	arraysize(const char *s, char c, t_ms *ms)
 	i = str_skip_whitespace(s);
 	if (s[i] == '\0')
 		return (0);
-	ms->input.squote = 0;
-	ms->input.dquote = 0;
+	ms->parse.comma1 = 0;
+	ms->parse.comma2 = 0;
 	while (s[i])
 	{
 		check_quote(ms, (char *)s + i);
-		if (s[i] == c && (ms->input.squote == 0 && ms->input.dquote == 0))
+		if (s[i] == c && (ms->parse.comma1 == 0 && ms->parse.comma2 == 0))
 			k++;
 		while (s[i] && s[i + 1] && s[i] == c)
 			i++;
 		i++;
 	}
-	ms->input.squote = 0;
-	ms->input.dquote = 0;
+	ms->parse.comma1 = 0;
+	ms->parse.comma2 = 0;
 	return (k + 1);
 }
 
@@ -59,7 +59,7 @@ static char	**splitter(t_ms *ms, char c, char **result, int i)
 	{
 		findstart(ms->line.array, c, &i, &start);
 		while (ms->line.array[i] && (ms->line.array[i] != c || \
-				(ms->input.squote == 1 || ms->input.dquote == 1)))
+				(ms->parse.comma1 == 1 || ms->parse.comma2 == 1)))
 		{
 			check_quote(ms, &ms->line.array[i]);
 			i++;

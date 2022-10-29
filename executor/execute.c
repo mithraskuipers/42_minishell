@@ -6,7 +6,7 @@
 /*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/11 15:26:49 by rkieboom      #+#    #+#                 */
-/*   Updated: 2022/10/29 13:49:03 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/29 12:55:15 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,23 +18,23 @@
  * @Rowan, I removed the unnecessary 3rd argument, as it made the code
  * more difficult to read.
 **/
-void	executor(t_ms *ms, t_cmdlist *cmdlist)
+void	executor(t_ms *ms, t_cmdlist *cmd)
 {
 	int	i;
 	int	cmd_i;
 
 	i = 0;
 	cmd_i = 0;
-	while (ms->input.cmds[cmd_i])
+	while (ms->parse.commands[cmd_i])
 		cmd_i++;
 	tcsetattr(0, 0, &g_global.termios_save);
 	update_signals_handler();
 	while (i < cmd_i)
 	{
-		if (!cmdlist[i].next)
-			setup_single_cmd(ms, &cmdlist[i]);
+		if (!cmd[i].next)
+			setup_single_cmd(ms, &cmd[i]);
 		else
-			setup_pipe_cmd(ms, &cmdlist[i]);
+			setup_pipe_cmd(ms, &cmd[i]);
 		i++;
 	}
 }

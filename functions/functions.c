@@ -6,7 +6,7 @@
 /*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/05/11 16:56:29 by rkieboom      #+#    #+#                 */
-/*   Updated: 2022/10/29 13:32:17 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/29 00:11:22 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,17 +33,17 @@ void	check_quote(t_ms *ms, char *c)
 {
 	if (*c == '\'')
 	{
-		if (ms->input.squote == 0 && ms->input.dquote == 0)
-			ms->input.squote = 1;
+		if (ms->parse.comma1 == 0 && ms->parse.comma2 == 0)
+			ms->parse.comma1 = 1;
 		else
-			ms->input.squote = 0;
+			ms->parse.comma1 = 0;
 	}
 	if (*c == '\"')
 	{
-		if (ms->input.dquote == 0 && ms->input.squote == 0)
-			ms->input.dquote = 1;
+		if (ms->parse.comma2 == 0 && ms->parse.comma1 == 0)
+			ms->parse.comma2 = 1;
 		else
-			ms->input.dquote = 0;
+			ms->parse.comma2 = 0;
 	}
 }
 

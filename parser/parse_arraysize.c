@@ -6,7 +6,7 @@
 /*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/06 00:34:52 by rkieboom      #+#    #+#                 */
-/*   Updated: 2022/10/29 13:32:17 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/29 00:11:22 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,11 @@ static void	check_len(t_ms *ms, t_vars *vars, char **str)
 	while (str[vars->j][vars->i])
 	{	
 		check_quote(ms, &str[vars->j][vars->i]);
-		if (ms->input.squote == 0 && ms->input.dquote == 0 \
+		if (ms->parse.comma1 == 0 && ms->parse.comma2 == 0 \
 		&& ((vars->p == 1 && !check_char(&str[vars->j][vars->i]) \
 		&& array_thingy(&vars->p))))
 			vars->length++;
-		else if (ms->input.squote == 0 && ms->input.dquote == 0 \
+		else if (ms->parse.comma1 == 0 && ms->parse.comma2 == 0 \
 		&& (((vars->p == 0 && check_char(&str[vars->j][vars->i]) \
 		&& array_thingy(&vars->p)))))
 			vars->length++;

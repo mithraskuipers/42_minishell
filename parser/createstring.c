@@ -6,7 +6,7 @@
 /*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/11/28 15:03:53 by rkieboom      #+#    #+#                 */
-/*   Updated: 2022/10/29 13:32:17 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/29 01:06:46 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,8 +79,8 @@ static void	init_vars(t_ms *ms, t_vars *vars, int length, char *str)
 	vars->newstr = ft_calloc(vars->length + 1, sizeof(char));
 	if (!vars->newstr)
 		return_exit(1, PRNT_ERRNO_NL);
-	ms->input.squote = 0;
-	ms->input.dquote = 0;
+	ms->parse.comma1 = 0;
+	ms->parse.comma2 = 0;
 	vars->i = -1;
 }
 
@@ -93,15 +93,15 @@ char	*createstring(t_ms *ms, char *str, int length)
 	{
 		vars.i++;
 		check_quote(ms, &str[vars.i]);
-		if (str[vars.i] == '$' && ms->input.squote == 0)
+		if (str[vars.i] == '$' && ms->parse.comma1 == 0)
 			return_dollar_value(ms, &vars);
-		else if (str[vars.i] == '\"' && ((ms->input.squote == 0 \
-		&& ms->input.dquote == 1) || (ms->input.squote == 0 \
-		&& ms->input.dquote == 0)))
+		else if (str[vars.i] == '\"' && ((ms->parse.comma1 == 0 \
+		&& ms->parse.comma2 == 1) || (ms->parse.comma1 == 0 \
+		&& ms->parse.comma2 == 0)))
 			continue ;
-		else if (str[vars.i] == '\'' && ((ms->input.dquote == 0 \
-		&& ms->input.squote == 1) || (ms->input.squote == 0 \
-		&& ms->input.dquote == 0)))
+		else if (str[vars.i] == '\'' && ((ms->parse.comma2 == 0 \
+		&& ms->parse.comma1 == 1) || (ms->parse.comma1 == 0 \
+		&& ms->parse.comma2 == 0)))
 			continue ;
 		else
 			vars.newstr[vars.x] = str[vars.i];

@@ -48,14 +48,14 @@ void	input_syntax_quotes(t_ms *ms)
 	{
 		if (!ms->line.array)
 			return ;
-		ms->input.squote = 0;
-		ms->input.dquote = 0;
+		ms->parse.comma1 = 0;
+		ms->parse.comma2 = 0;
 		while (ms->line.array[i])
 		{
 			check_quote(ms, &ms->line.array[i]);
 			i++;
 		}
-		if (ms->input.squote == 1 || ms->input.dquote == 1)
+		if (ms->parse.comma1 == 1 || ms->parse.comma2 == 1)
 			quote(ms);
 		else
 			break ;
