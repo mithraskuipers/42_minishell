@@ -6,7 +6,7 @@
 /*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/11/27 15:01:52 by rkieboom      #+#    #+#                 */
-/*   Updated: 2022/10/29 17:50:20 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/29 18:46:12 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,6 @@ char	*heredoc_create_str(t_ms *ms, char *str, int length);
 
 void	get_heredoc_eof(t_ms *ms, int k);
 int		get_heredoc_input(t_ms *ms, int k);
-
-int		array_thingy(int *p);
 
 int		ft_execve(t_ms *ms, char **str, int ret);
 

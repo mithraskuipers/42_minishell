@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   set_cmd.c                                          :+:    :+:            */
+/*   executor_get_command.c                                          :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/07 15:57:41 by rkieboom      #+#    #+#                 */
-/*   Updated: 2022/10/29 18:13:47 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/29 18:37:52 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static char	*get_str(t_cmdlist *cmd, int i)
 	return (0);
 }
 
-char	**set_cmd(t_cmdlist *cmd)
+char	**executor_get_command(t_cmdlist *cmd)
 {
 	int		i;
 	int		length;

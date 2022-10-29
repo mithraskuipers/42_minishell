@@ -45,7 +45,7 @@ static int	start_commands(t_ms *ms, t_cmdlist *temp, pid_t *pids, int i)
 			close(temp->read_pipe);
 			if (redirs(temp))
 				return_exit(1, NO_PRNT);
-			run_cmd(ms, set_cmd(temp), 1);
+			executor_cmd_wrapper(ms, executor_get_command(temp), 1);
 		}
 		else
 		{
@@ -86,7 +86,7 @@ static int	last_command(t_ms *ms, t_cmdlist *temp, pid_t *pids, int len)
 		close(temp->read_pipe);
 		if (redirs(temp))
 			return_exit(1, NO_PRNT);
-		run_cmd(ms, set_cmd(temp), 1);
+		executor_cmd_wrapper(ms, executor_get_command(temp), 1);
 	}
 	else
 	{

@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   run_cmd.c                                          :+:    :+:            */
+/*   executor_command_wrapper.c                         :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
+/*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/10/11 15:34:15 by rkieboom      #+#    #+#                 */
-/*   Updated: 2022/10/29 15:13:31 by mikuiper      ########   odam.nl         */
+/*   Created: 2022/10/29 18:35:13 by mikuiper      #+#    #+#                 */
+/*   Updated: 2022/10/29 18:35:15 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "execute.h"
 
-void	run_cmd(t_ms *ms, char **cmd, int quit)
+void	executor_cmd_wrapper(t_ms *ms, char **cmd, int quit)
 {
 	if ((!cmd || !cmd[0]) && quit == 1)
 		exit(0);

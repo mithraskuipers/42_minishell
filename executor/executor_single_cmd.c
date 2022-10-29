@@ -57,7 +57,7 @@ static void	executor_execve(t_ms *ms, t_cmdlist *cmd, char **command)
 		env_lst_new(ft_strdup(__DUP__), ft_strdup("")));
 		if (redirs(cmd))
 			return_exit(1, NO_PRNT);
-		run_cmd(ms, command, 1);
+		executor_cmd_wrapper(ms, command, 1);
 	}
 	else
 		waitpid(g_global.pid, &status, 0);
@@ -70,7 +70,7 @@ void	executor_single_cmd(t_ms *ms, t_cmdlist *cmd)
 {
 	char	**command;
 
-	command = set_cmd(cmd);
+	command = executor_get_command(cmd);
 	if (is_builtin(command[0]))
 		executor_builtin(ms, cmd, command, tokens_present(cmd));
 	else

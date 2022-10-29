@@ -12,7 +12,7 @@
 
 #include "execute.h"
 
-static void	cpy_fds(t_ms *ms)
+static void	filedescriptors_copy(t_ms *ms)
 {
 	ms->stdin_cpy = dup(0);
 	ms->stdout_cpy = dup(1);
@@ -20,7 +20,7 @@ static void	cpy_fds(t_ms *ms)
 		return_exit(1, PRNT_ERRNO_NL);
 }
 
-static void	reset_fds(t_ms *ms, t_cmdlist *cmd)
+static void	filedescriptors_reset(t_ms *ms, t_cmdlist *cmd)
 {
 	if (cmd->tokens->last_l != -1)
 		dup2(ms->stdin_cpy, STDIN_FILENO);
@@ -32,27 +32,27 @@ static void	reset_fds(t_ms *ms, t_cmdlist *cmd)
 
 static void	with_tokens(t_ms *ms, t_cmdlist *cmd, char **command)
 {
-	cpy_fds(ms);
+	filedescriptors_copy(ms);
 	if (redirs_looper(cmd, 0, cmd->tokens->n_tokens))
 	{
-		reset_fds(ms, cmd);
+		filedescriptors_reset(ms, cmd);
 		g_global.status = 1;
 		return ;
 	}
 	if (cmd->tokens->last_l != -1 && redir_left(cmd))
 	{
-		reset_fds(ms, cmd);
+		filedescriptors_reset(ms, cmd);
 		g_global.status = 1;
 		return ;
 	}
 	if (cmd->tokens->last_r != -1 && redir_right(cmd))
 	{
-		reset_fds(ms, cmd);
+		filedescriptors_reset(ms, cmd);
 		g_global.status = 1;
 		return ;
 	}
-	run_cmd(ms, command, 0);
-	reset_fds(ms, cmd);
+	executor_cmd_wrapper(ms, command, 0);
+	filedescriptors_reset(ms, cmd);
 }
 
 void	executor_builtin(t_ms *ms, t_cmdlist *cmd, char **command, int token_exist)
@@ -60,5 +60,5 @@ void	executor_builtin(t_ms *ms, t_cmdlist *cmd, char **command, int token_exist)
 	if (token_exist)
 		with_tokens(ms, cmd, command);
 	else
-		run_cmd(ms, command, 0);
+		executor_cmd_wrapper(ms, command, 0);
 }

@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/29 01:32:56 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/10/29 17:27:30 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/29 18:46:20 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,15 @@ typedef struct s_vars
 	int		start;
 	char	**newstr;
 }				t_vars;
+
+static int	array_thingy(int *p)
+{
+	if (*p == 1)
+		*p = 0;
+	else if (*p == 0)
+		*p = 1;
+	return (1);
+}
 
 void	free_old_and_set(t_ms *ms, int k, char **str, char **newstr)
 {

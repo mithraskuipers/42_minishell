@@ -6,7 +6,7 @@
 /*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/06 00:34:52 by rkieboom      #+#    #+#                 */
-/*   Updated: 2022/10/29 17:27:30 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/29 18:46:05 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,15 @@ typedef struct s_vars
 	int	p;
 	int	length;
 }				t_vars;
+
+static int	array_thingy(int *p)
+{
+	if (*p == 1)
+		*p = 0;
+	else if (*p == 0)
+		*p = 1;
+	return (1);
+}
 
 static void	check_len(t_ms *ms, t_vars *vars, char **str)
 {

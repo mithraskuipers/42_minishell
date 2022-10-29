@@ -6,7 +6,7 @@
 #    By: mikuiper <mikuiper@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/10/28 21:58:30 by mikuiper      #+#    #+#                  #
-#    Updated: 2022/10/29 18:28:25 by mikuiper      ########   odam.nl          #
+#    Updated: 2022/10/29 18:45:52 by mikuiper      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -63,11 +63,12 @@ SRCS =					main.c \
 						$(SRCS.LINE) \
 						$(SRCS.PARSER) \
 						$(SRCS.CREATE.CMD) \
-						$(SRCS.EXECUTE)
+						$(SRCS.EXECUTE) \
+
+#$(SRCS.NEWEXECUTE)
 						
 						
 TOOLS =					tools/str_skip_whitespace.c \
-						tools/array_thingy.c \
 						tools/ft_error.c \
 						tools/signal_handler.c \
 						tools/cmd_len.c \
@@ -119,9 +120,10 @@ SRCS.ENV.LIST.FUNC =	env_list/tools/env_init.c \
 						env_list/tools/env_tools_check.c \
 						env_list/tools/env_tools_get.c \
 
-SRCS.EXECUTE =			executor/execute.c executor/run_cmd.c \
+SRCS.EXECUTE =			executor/execute.c \
+						executor/executor_command_wrapper.c \
 						executor/exec_functions.c \
-						executor/set_cmd.c \
+						executor/executor_get_command.c \
 						executor/redirs/redirs_looper.c \
 						executor/redirs/redirs.c \
 						executor/redirs/heredoc.c \
@@ -130,8 +132,9 @@ SRCS.EXECUTE =			executor/execute.c executor/run_cmd.c \
 						executor/executor_builtin.c \
 						
 
-SRCS.NEWEXECUTE =		newexecute/execute.c newexecute/run_cmd.c \
-						newexecute/set_cmd.c \
+SRCS.NEWEXECUTE =		newexecute/execute.c \
+						newexecute/executor_command_wrapper.c \
+						newexecute/executor_get_command.c \
 						newexecute/redirs/redirection_functions.c \
 						newexecute/redirs/redirs.c \
 						newexecute/redirs/set_redirs.c \
