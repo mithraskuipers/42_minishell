@@ -6,7 +6,7 @@
 /*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/03/17 13:45:45 by rkieboom      #+#    #+#                 */
-/*   Updated: 2022/10/29 00:10:00 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/29 10:04:56 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include "../header.h"
 
-void	declaring_values(t_ms *v, t_newcommand *temp, int pipes, int k);
+void	parser_command_pipes(t_ms *v, t_newcommand *temp, int pipes, int k);
 void	tokens_cmd(t_ms *v, t_newcommand *pipes, int k);
 
 #endif

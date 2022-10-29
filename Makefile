@@ -6,7 +6,7 @@
 #    By: mikuiper <mikuiper@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/10/28 21:58:30 by mikuiper      #+#    #+#                  #
-#    Updated: 2022/10/29 09:38:08 by mikuiper      ########   odam.nl          #
+#    Updated: 2022/10/29 10:04:56 by mikuiper      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -147,8 +147,8 @@ SRCS.PARSING =			parsing/parse.c \
 						parsing/search_env.c \
 						parsing/tilde_expansion.c \
 
-SRCS.CREATE.CMD =		cmd/create_cmd.c \
-						cmd/declaring_values.c \
+SRCS.CREATE.CMD =		cmd/parser_command_creation.c \
+						cmd/parser_command_pipes.c \
 						cmd/tokens_cmd/tokens_cmd.c \
 						cmd/tokens_cmd/set_tokens.c \
 						cmd/tokens_cmd/init_new_tokens.c \

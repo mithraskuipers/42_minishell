@@ -6,7 +6,7 @@
 /*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/18 10:21:40 by rkieboom      #+#    #+#                 */
-/*   Updated: 2022/10/29 00:11:05 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/29 10:02:49 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static int	check_double_pipe_error(t_vars *vars, t_ms *ms)
 }
 
 //Checks if 2 tokens are next to each other
-static int	loop_over_tokens(t_vars *vars, t_ms *ms)
+static int	tokens_syntax_neighboring(t_vars *vars, t_ms *ms)
 {
 	while (vars->j < ms->tokens[vars->i].total)
 	{
@@ -94,7 +94,7 @@ int	syntax_error_parse(t_ms *ms)
 			return (0);
 		else if (vars.temp == 2)
 			return (1);
-		if (loop_over_tokens(&vars, ms))
+		if (tokens_syntax_neighboring(&vars, ms))
 			return (1);
 		vars.i++;
 	}

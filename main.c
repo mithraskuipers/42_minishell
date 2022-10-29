@@ -6,7 +6,7 @@
 /*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/23 22:40:21 by rkieboom      #+#    #+#                 */
-/*   Updated: 2022/10/29 09:51:53 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/29 09:59:10 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 t_global	g_global;
 
 //loop where minishell will be in continous
-static void	minishell(t_ms *ms)
+static void	minishell_start(t_ms *ms)
 {
 	while (1)
 	{
@@ -30,7 +30,7 @@ static void	minishell(t_ms *ms)
 			continue ;
 		if (!parser_wrapper(ms) && !ms->hdoc_break)//heredoc break before here
 		{
-			create_cmd(ms, 0);
+			parser_command_creation(ms, 0);
 			if (!syntax_error(ms->cmd, 0))
 				execution(ms, ms->cmd, 0);
 		}
@@ -65,6 +65,13 @@ void	init_minishell(int argc, char **argv, t_ms *ms)
 	ft_bzero(&g_global, sizeof(t_global));
 }
 
+void	init_terminal_params(void)
+{
+	tcgetattr(0, &g_global.termios_save);
+	g_global.termios_new = g_global.termios_save;
+	g_global.termios_new.c_lflag &= ~ECHOCTL;
+}
+
 int	main(int argc, char **argv, char **envp)
 {
 	t_ms	ms;
@@ -73,10 +80,8 @@ int	main(int argc, char **argv, char **envp)
 	ms.env = create_envp(ms.env, envp);
 	init_signals(&ms.env);
 	init_shell_level(&ms);
-	tcgetattr(0, &g_global.termios_save);
-	g_global.termios_new = g_global.termios_save;
-	g_global.termios_new.c_lflag &= ~ECHOCTL;
-	minishell(&ms);
+	init_terminal_params();
+	minishell_start(&ms);
 	return (0);
 }
 

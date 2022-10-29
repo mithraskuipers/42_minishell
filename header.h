@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/28 21:57:11 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/10/29 09:48:03 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/29 10:06:01 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,7 +133,7 @@ int		input_syntax_semicolons(t_ms *v);
 void	input_read(t_ms *ms, int mode);
 void	input_syntax_quotes(t_ms *ms);
 
-int		create_cmd(t_ms *v, int k);
+int		parser_command_creation(t_ms *ms, int k);
 
 void	sig_handler(int sign_num);
 

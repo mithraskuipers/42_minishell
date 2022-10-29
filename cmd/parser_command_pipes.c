@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   declaring_values.c                                 :+:    :+:            */
+/*   parser_command_pipes.c                                 :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
@@ -127,7 +127,7 @@ static void	last_cmd(t_ms *v, t_newcommand *temp, int pipes, int k)
 }
 
 //Make multiple commands
-void	declaring_values(t_ms *v, t_newcommand *pipes_cmd, int pipes, int k)
+void	parser_command_pipes(t_ms *v, t_newcommand *pipes_cmd, int pipes, int k)
 {
 	int				i;
 	t_newcommand	*temp;
