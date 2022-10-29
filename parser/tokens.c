@@ -6,13 +6,13 @@
 /*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/11/30 00:29:12 by rkieboom      #+#    #+#                 */
-/*   Updated: 2022/10/29 10:31:31 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/29 17:55:44 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parse.h"
 
-static void	allocate_tokens_vars(t_ms *ms)
+static void	tokens_allocation(t_ms *ms)
 {
 	int	j;
 	int	cmd;
@@ -41,7 +41,7 @@ static void	allocate_tokens_vars(t_ms *ms)
 	}
 }
 
-static void	set_tokens(t_ms *ms)
+static void	tokens_dup(t_ms *ms)
 {
 	int	tkn;
 	int	wrd;
@@ -67,7 +67,7 @@ static void	set_tokens(t_ms *ms)
 }
 
 // Counts occurence of every token
-static void	identify_tokens(t_ms *ms)
+static void	tokens_count(t_ms *ms)
 {
 	int	i;
 	int	j;
@@ -96,9 +96,9 @@ static void	identify_tokens(t_ms *ms)
 
 //It saves wich word is a token
 //And it saves the location of the token
-void	tokens(t_ms *ms)
+void	tokens_wrapper(t_ms *ms)
 {
-	allocate_tokens_vars(ms);
-	set_tokens(ms);
-	identify_tokens(ms);
+	tokens_allocation(ms);
+	tokens_dup(ms);
+	tokens_count(ms);
 }

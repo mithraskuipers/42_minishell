@@ -6,11 +6,12 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/24 14:34:50 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/10/29 10:18:42 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/29 17:52:38 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parse.h"
+#include "../expander/expander.h"
 
 typedef struct s_vars
 {
@@ -35,7 +36,7 @@ static void	freemem(char **result)
 }
 
 //The actual big parser and expanding
-static void	parser(t_ms *ms)
+static void	expander_wrapper(t_ms *ms)
 {
 	int	i;
 	int	j;
@@ -49,8 +50,7 @@ static void	parser(t_ms *ms)
 		x = 0;
 		while (ms->parse.commands[j][i] != NULL)
 		{
-			ms->parse.commands[j][i - x] = \
-			checkword(ms, ms->parse.commands[j][i]);
+			ms->parse.commands[j][i - x] = expander(ms, ms->parse.commands[j][i]);
 			if (!ms->parse.commands[j][i])
 				x++;
 			i++;
@@ -89,10 +89,10 @@ int	parser_wrapper(t_ms *ms)
 	t_vars	vars;
 
 	parser_input_splitter(ms, &vars);
-	tokens(ms);
+	tokens_wrapper(ms);
 	while (vars.splitted[vars.n_words])
 		vars.n_words++;
-	tilde_expansion(ms, vars.n_words);
+	expander_tilde(ms, vars.n_words);
 	if (syntax_error_parse(ms))
 	{
 		freemem(vars.splitted);
@@ -100,7 +100,7 @@ int	parser_wrapper(t_ms *ms)
 	}
 	allocate_heredoc(ms, vars.n_words);
 	freemem(vars.splitted);
-	parser(ms);
+	expander_wrapper(ms);
 	set_heredoc(ms, vars.n_words);
 	return (0);
 }

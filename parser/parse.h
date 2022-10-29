@@ -6,7 +6,7 @@
 /*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/11/27 15:01:52 by rkieboom      #+#    #+#                 */
-/*   Updated: 2022/10/29 12:56:02 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/29 17:50:20 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,8 @@ char	**parser_splitter_semicolon(t_ms *ms, char c);
 char	**parser_splitter_spaces(t_ms *ms, const char *str, char c);
 void	parser_separate_words_tokens(t_ms *ms, int size, int k);
 
-void	tokens(t_ms *ms);
-char	*checkword(t_ms *ms, char *str);
-int		checkword_calclen(t_ms *ms, char *str, int i, int length);
+void	tokens_wrapper(t_ms *ms);
+
 char	*createstring(t_ms *ms, char *str, int length);
 
 void	check_quote(t_ms *ms, char *c);
@@ -46,7 +45,6 @@ int		array_thingy(int *p);
 int		ft_execve(t_ms *ms, char **str, int ret);
 
 char	*search_env(t_env *v, char *name, int length, char *temp);
-void	tilde_expansion(t_ms *ms, int length);
 
 int		ft_fork(pid_t *pid, int *fd);
 int		ft_pipe(int *fd);

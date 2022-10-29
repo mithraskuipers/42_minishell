@@ -6,7 +6,7 @@
 /*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/08/29 14:08:53 by rkieboom      #+#    #+#                 */
-/*   Updated: 2022/10/29 12:42:28 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/29 17:31:22 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ static int	get_token_pos(t_ms *v, int k, int token_count)
 }
 
 //Set the token values
-void	set_tokens(t_ms *v, t_cmdlist *pipes, int k)
+void	tokens_dup(t_ms *v, t_cmdlist *pipes, int k)
 {
 	t_vars	vars;
 

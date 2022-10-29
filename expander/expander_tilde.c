@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   tilde_expansion.c                                  :+:    :+:            */
+/*   expander_tilde.c                                  :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parse.h"
+#include "../parser/parse.h"
 
 static int	is_tilde(char *str)
 {
@@ -56,7 +56,7 @@ static char	*expand(t_env *env, char *str)
 	return (newstr);
 }
 
-void	tilde_expansion(t_ms *ms, int length)
+void	expander_tilde(t_ms *ms, int length)
 {
 	int	i;
 	int	k;

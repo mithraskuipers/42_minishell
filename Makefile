@@ -6,7 +6,7 @@
 #    By: mikuiper <mikuiper@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/10/28 21:58:30 by mikuiper      #+#    #+#                  #
-#    Updated: 2022/10/29 16:01:14 by mikuiper      ########   odam.nl          #
+#    Updated: 2022/10/29 17:55:11 by mikuiper      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,8 @@ OBJDIR	= bin/
 LIBFTDIR = libft/
 
 INCLUDES = header.h parser/parse.h executor/execute.h cosmetics/splash.h \
-libft/libft.h env_list/env_list.h builtin/commands.h cmd/cmd.h cmd/tokens_cmd/tokens.h
+libft/libft.h env_list/env_list.h builtin/commands.h cmd/cmd.h cmd/tokens_cmd/tokens.h \
+expander/expander.h
 
 LIBFTLIB = $(LIBFTDIR)/libft.a
 
@@ -47,6 +48,7 @@ SRCS =					main.c \
 						$(SPLASH) \
 						$(TOOLS) \
 						$(INPUT) \
+						$(EXPANDER) \
 						$(SRCS.COMMANDS.CD) \
 						$(SRCS.COMMANDS.ECHO) \
 						$(SRCS.COMMANDS.ENV) \
@@ -70,7 +72,9 @@ TOOLS =					tools/str_skip_whitespace.c \
 						tools/signal_handler.c \
 						tools/cmd_len.c \
 
-EXPANDER =				expander/env_var_len.c \
+EXPANDER =				expander/expander.c \
+						expander/expander_calclen.c \
+						expander/expander_tilde.c \
 
 INPUT =					input/input_read.c \
 						input/input_add_newline.c \
@@ -147,8 +151,6 @@ SRCS.parser =			parser/parse.c \
 						parser/splitting/parser_splitter_spaces.c \
 						parser/splitting/parser_splitter_semicolons.c \
 						parser/splitting/parser_separate_words_tokens.c \
-						parser/checkword.c \
-						parser/checkword_calclen.c \
 						parser/createstring.c \
 						parser/tokens.c \
 						parser/heredoc/allocate_heredoc.c \
@@ -159,12 +161,11 @@ SRCS.parser =			parser/parse.c \
 						parser/heredoc/set_heredoc.c \
 						parser/check_chars.c \
 						parser/search_env.c \
-						parser/tilde_expansion.c \
 
 SRCS.CREATE.CMD =		cmd/parser_command_creation.c \
 						cmd/parser_command_pipes.c \
 						cmd/tokens_cmd/tokens_cmd.c \
-						cmd/tokens_cmd/set_tokens.c \
+						cmd/tokens_cmd/tokens_dup.c \
 						cmd/tokens_cmd/init_new_tokens.c \
 						cmd/tokens_cmd/count_tokens.c \
 						cmd/tokens_cmd/set_heredoc_tokens.c \

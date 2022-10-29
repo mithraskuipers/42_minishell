@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   checkword.c                                        :+:    :+:            */
+/*   expander.c                                        :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
@@ -10,17 +10,18 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parse.h"
+#include "../parser/parse.h"
+#include "expander.h"
 
 //Expands string to new value
-char	*checkword(t_ms *ms, char *str)
+char	*expander(t_ms *ms, char *str)
 {
 	int		length;
 	char	*temp;
 
 	if (!ft_strchr(str, '$') && !ft_strchr(str, '\'') && !ft_strchr(str, '\"'))
 		return (str);
-	length = checkword_calclen(ms, str, 0, 0);
+	length = expander_calclen(ms, str, 0, 0);
 	if (length == 0)
 	{
 		free(str);

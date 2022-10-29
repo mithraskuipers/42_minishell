@@ -6,7 +6,7 @@
 /*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/05/11 16:35:27 by rkieboom      #+#    #+#                 */
-/*   Updated: 2022/10/29 15:13:31 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/29 17:45:01 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	ms_exit(char **str);
 
 int		cd_check_permissions(char *path);
 int		cd_exec_cmd(t_env *env, char *path);
-int		cd_tilde_expansion(t_ms *ms, char *str);
+int		cd_expander_tilde(t_ms *ms, char *str);
 
 char	*relative_path(char *PATH, t_env *env);
 char	*absolute_path(char *PATH);

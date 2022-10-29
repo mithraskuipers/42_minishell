@@ -6,7 +6,7 @@
 /*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/03/17 16:25:48 by rkieboom      #+#    #+#                 */
-/*   Updated: 2022/10/29 12:42:28 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/29 17:31:22 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,5 @@ void	tokens_cmd(t_ms *v, t_cmdlist *cmd, int k)
 	}
 	count_tokens(v, cmd, k);
 	init_new_tokens(cmd);
-	set_tokens(v, cmd, k);
+	tokens_dup(v, cmd, k);
 }

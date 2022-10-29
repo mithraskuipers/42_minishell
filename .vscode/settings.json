@@ -2,6 +2,7 @@
 	"files.associations": {
 		"splash.h": "c",
 		"unistd.h": "c",
-		"execute.h": "c"
+		"execute.h": "c",
+		"parse.h": "c"
 	}
 }

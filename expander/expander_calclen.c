@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   checkword_calclen.c                                :+:    :+:            */
+/*   expander_calclen.c                                :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
@@ -10,10 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parse.h"
+#include "../parser/parse.h"
 
-static void	calculate_dollar_length_2(\
-t_ms *ms, char *str, int *i, int *length)
+static void	calculate_dollar_length_2(t_ms *ms, char *str, int *i, int *length)
 {
 	if (str[*i + 1] == '\0' || \
 	(!ft_isdigit(str[*i + 1]) && \
@@ -34,8 +33,7 @@ t_ms *ms, char *str, int *i, int *length)
 	}
 }
 
-static void	calculate_dollar_length(\
-t_ms *ms, char *str, int *i, int *length)
+static void	calculate_dollar_length(t_ms *ms, char *str, int *i, int *length)
 {
 	char	*temp;
 
@@ -82,7 +80,7 @@ static void	single_quote(t_ms *ms, char *str, int *i, int *length)
 	(*length)--;
 }
 
-int	checkword_calclen(t_ms *ms, char *str, int i, int length)
+int	expander_calclen(t_ms *ms, char *str, int i, int length)
 {
 	while (str[i] && str[i] == ' ')
 		i++;
