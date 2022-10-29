@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   check_chars.c                                      :+:    :+:            */
+/*   char_is_tokens.c                                      :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/24 14:35:16 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/10/29 20:30:54 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/29 22:42:37 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parse.h"
 
-int	check_char(char *c)
+int	char_is_token(char *c)
 {
 	if ((c[0] == '>' && c[1] == '>') || (c[0] == '<' && c[1] == '<'))
 		return (2);
@@ -21,7 +21,7 @@ int	check_char(char *c)
 	return (0);
 }
 
-int	check_char_str(t_ms *ms, char *str)
+int	str_has_token(t_ms *ms, char *str)
 {
 	int	i;
 

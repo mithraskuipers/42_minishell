@@ -6,7 +6,7 @@
 /*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/11/27 15:01:52 by rkieboom      #+#    #+#                 */
-/*   Updated: 2022/10/29 20:30:54 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/29 22:42:47 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@
 # include "../header.h"
 
 int		parser_wrapper(t_ms *ms);
-int		parse_arraysize(char **str, t_ms *ms);
+int		parser_command_len_wrapper(char **str, t_ms *ms);
 
-char	**parser_splitter_semicolon(t_ms *ms, char c);
-char	**parser_splitter_spaces(t_ms *ms, const char *str, char c);
+char	**parser_split_semicolon(t_ms *ms, char c);
+char	**parser_split_spaces(t_ms *ms, const char *str, char c);
 void	parser_separate_words_tokens(t_ms *ms, int size, int k);
 
 void	tokens_wrapper(t_ms *ms);
@@ -27,8 +27,8 @@ void	tokens_wrapper(t_ms *ms);
 char	*expander_expand_dollar(t_ms *ms, char *str, int length);
 
 void	quote_toggle(t_ms *ms, char *c);
-int		check_char_str(t_ms *ms, char *str);
-int		check_char(char *c);
+int		str_has_token(t_ms *ms, char *str);
+int		char_is_token(char *c);
 int		check_exist(char *PATH);
 
 void	allocate_heredoc(t_ms *ms, int k);

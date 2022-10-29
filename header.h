@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/28 21:57:11 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/10/29 20:30:54 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/29 22:53:38 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ typedef struct s_parse
 
 typedef struct s_line
 {
-	int			fd; // TODO: ONGEBRUIKT?
 	char		*array;
 }				t_line;
 

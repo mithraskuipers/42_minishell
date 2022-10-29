@@ -6,7 +6,7 @@
 /*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/23 22:40:21 by rkieboom      #+#    #+#                 */
-/*   Updated: 2022/10/29 20:48:06 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/29 21:18:16 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,9 @@
 
 t_global	g_global;
 
+// minishell_start() is the (infinite) loop during which input reading,
+// parsing, tokenization, expansion, syntax checking, redirections, and
+// executions are performed.
 static void	minishell_start(t_ms *ms)
 {
 	splash();

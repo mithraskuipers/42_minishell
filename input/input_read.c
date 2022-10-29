@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/28 21:56:51 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/10/29 17:27:21 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/29 22:07:26 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,9 @@
 #include <readline/readline.h>
 #include <readline/history.h>
 
-static int	input_is_whitespace(t_ms *ms)
+// input_is_ws() checks whether the user inputted line consists solely of
+// whitespace.
+static int	input_is_ws(t_ms *ms)
 {
 	int	i;
 
@@ -27,6 +29,8 @@ static int	input_is_whitespace(t_ms *ms)
 	return (1);
 }
 
+// input_clean_array() frees the memory that was allocated for storing the
+// user inputted line.
 static void	input_clean_array(t_ms *ms)
 {
 	if (ms->line.array)
@@ -36,6 +40,8 @@ static void	input_clean_array(t_ms *ms)
 	}
 }
 
+// input_error() is called when an error occurred while storing the user
+// inputted line.
 static void	input_error(t_ms *ms)
 {
 	ft_putstr_fd(\
@@ -46,6 +52,8 @@ static void	input_error(t_ms *ms)
 		ft_putstr_fd("\"'\n", 2);
 }
 
+// terminal_params() configures the terminal settings prior to reading in
+// the user input.
 static void	terminal_params(t_ms *ms)
 {
 	ms->hdoc_break = 0;
@@ -55,6 +63,9 @@ static void	terminal_params(t_ms *ms)
 	input_clean_array(ms);
 }
 
+// input_read() configures the terminal settings and prompts the user for
+// input. Mode 0 is called if the inputted line does not contain unclosed
+// quotes. If unclosed quotes were detected 
 void	input_read(t_ms *ms, int mode)
 {
 	terminal_params(ms);
@@ -69,7 +80,7 @@ void	input_read(t_ms *ms, int mode)
 				tcsetattr(0, 0, &g_global.termios_save);
 				exit(0);
 			}
-			if (ms->line.array && input_is_whitespace(ms))
+			if (ms->line.array && input_is_ws(ms))
 				input_clean_array(ms);
 		}
 	}

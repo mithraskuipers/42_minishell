@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   parser_splitter_semicolons.c                       :+:    :+:            */
+/*   parser_split_semicolons.c                       :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
@@ -76,7 +76,7 @@ static char	**splitter(t_ms *ms, char c, char **result, int i)
 	return (result);
 }
 
-char	**parser_splitter_semicolon(t_ms *ms, char c)
+char	**parser_split_semicolon(t_ms *ms, char c)
 {
 	char	**result;
 

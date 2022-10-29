@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/24 14:34:50 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/10/29 20:07:00 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/29 22:48:51 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,55 +15,60 @@
 
 typedef struct s_vars
 {
-	int		i;
+	int		cmd_i;
 	int		n_words;
-	char	**splitted;
+	char	**split_cmd;
 }				t_vars;
 
 //Free the temporily struct
-static void	freemem(char **result)
+static void	clean_splitted_commands(char **split_cmd)
 {
 	int	i;
 
 	i = 0;
-	while (result[i])
+	while (split_cmd[i])
 	{
-		free(result[i]);
+		free(split_cmd[i]);
 		i++;
 	}
-	if (result)
-		free(result);
+	if (split_cmd)
+		free(split_cmd);
 }
 
-//The actual big parser and expanding
+// expander_loop() iterates over each semicolon splitted command and each of its
+// space splitted words.
 static void	expander_loop(t_ms *ms)
 {
 	int	i;
-	int	j;
+	int	cmd;
 	int	x;
 
-	j = 0;
+	cmd = 0;
 	x = 0;
-	while (ms->parse.commands[j])
+	while (ms->parse.commands[cmd])
 	{
 		i = 0;
 		x = 0;
-		while (ms->parse.commands[j][i] != NULL)
+		while (ms->parse.commands[cmd][i] != NULL)
 		{
-			ms->parse.commands[j][i - x] = expander_wrapper(ms, ms->parse.commands[j][i]);
-			if (!ms->parse.commands[j][i])
+			ms->parse.commands[cmd][i - x] = expander_wrapper\
+			(ms, ms->parse.commands[cmd][i]);
+			if (!ms->parse.commands[cmd][i])
 				x++;
 			i++;
 		}
-		j++;
+		cmd++;
 	}
 }
 
+// parser_input_splitter() is a wrapper function, handling the command splitting
+// process on semicolons and spaces. It also detects if redirections are stuck
+// to a word, and splits them accordingly.
 static void	parser_input_splitter(t_ms *ms, t_vars *vars)
 {
 	ft_bzero(vars, sizeof(t_vars));
-	vars->splitted = parser_splitter_semicolon(ms, ';');
-	while (vars->splitted[vars->n_words])
+	vars->split_cmd = parser_split_semicolon(ms, ';');
+	while (vars->split_cmd[vars->n_words])
 		vars->n_words++;
 	ms->parse.commands = ft_calloc(vars->n_words + 1, sizeof(char **));
 	if (!ms->parse.commands)
@@ -74,32 +79,33 @@ static void	parser_input_splitter(t_ms *ms, t_vars *vars)
 		return_exit(1, PRNT_ERRNO_NL);
 	while (vars->n_words)
 	{
-		ms->parse.commands[vars->i] = parser_splitter_spaces(ms, vars->splitted[vars->i], ' ');
-		parser_separate_words_tokens(ms, parse_arraysize(ms->parse.commands[vars->i], ms), vars->i);
+		ms->parse.commands[vars->cmd_i] = parser_split_spaces(ms, vars->split_cmd[vars->cmd_i], ' ');
+		parser_separate_words_tokens(ms, parser_command_len_wrapper(ms->parse.commands[vars->cmd_i], ms), vars->cmd_i);
 		vars->n_words--;
-		vars->i++;
+		vars->cmd_i++;
 	}
 }
 
-// (1) scans input and allocates memory
-// (2) adjusts input for easy parser
-// (3) extracts and stores tokens
+// parser_wrapper() is a wrapper function for the entire input line parsing
+// tasks. It appropriately splits the input line, extracts and stores detected
+// redirections from the input, handles heredoc, and expands the line if
+// applicable.
 int	parser_wrapper(t_ms *ms)
 {
 	t_vars	vars;
 
 	parser_input_splitter(ms, &vars);
 	tokens_wrapper(ms);
-	while (vars.splitted[vars.n_words])
+	while (vars.split_cmd[vars.n_words])
 		vars.n_words++;
 	expander_tilde(ms, vars.n_words);
 	if (syntax_error_parse(ms))
 	{
-		freemem(vars.splitted);
+		clean_splitted_commands(vars.split_cmd);
 		return (1);
 	}
 	allocate_heredoc(ms, vars.n_words);
-	freemem(vars.splitted);
+	clean_splitted_commands(vars.split_cmd);
 	expander_loop(ms);
 	set_heredoc(ms, vars.n_words);
 	return (0);

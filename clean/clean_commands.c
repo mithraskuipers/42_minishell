@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/29 13:04:03 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/10/29 13:04:41 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/29 22:36:20 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,22 @@
 
 void	clean_commands(t_ms *ms)
 {
-	int	i;
-	int	j;
+	int	cmd;
+	int	wrd;
 
-	i = 0;
+	cmd = 0;
 	if (ms->parse.commands)
 	{
-		while (ms->parse.commands[i])
+		while (ms->parse.commands[cmd])
 		{
-			j = 0;
-			while (ms->parse.commands[i][j])
+			wrd = 0;
+			while (ms->parse.commands[cmd][wrd])
 			{
-				free(ms->parse.commands[i][j]);
-				j++;
+				free(ms->parse.commands[cmd][wrd]);
+				wrd++;
 			}
-			free(ms->parse.commands[i]);
-			i++;
+			free(ms->parse.commands[cmd]);
+			cmd++;
 		}
 		free(ms->parse.commands);
 	}

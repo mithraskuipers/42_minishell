@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   parser_splitter_spaces.c                               :+:    :+:            */
+/*   parser_split_spaces.c                               :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
@@ -82,7 +82,7 @@ static char	**splitter(t_ms *ms, const char *str, char **result)
 }
 
 //Splits on spaces
-char	**parser_splitter_spaces(t_ms *ms, const char *str, char c)
+char	**parser_split_spaces(t_ms *ms, const char *str, char c)
 {
 	int		length;
 	char	**result;

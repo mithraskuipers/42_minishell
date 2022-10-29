@@ -6,13 +6,13 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/29 09:32:40 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/10/29 09:47:37 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/29 22:18:47 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-// Handles SIGUSR1 SIGNAL
+// sighand() handles the SIGUSR1 signal.
 static void	sighand(int signum)
 {
 	(void)signum;
@@ -25,7 +25,8 @@ static void	sighand(int signum)
 	signal(SIGQUIT, SIG_IGN);
 }
 
-// Fixing signals in multiple minishells
+// init_signals() configures the appropriate signal settings for running
+// nested minishell(s).
 void	init_signals(t_env **env)
 {
 	signal(SIGUSR1, sighand);

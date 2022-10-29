@@ -6,35 +6,42 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/29 15:16:36 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/10/29 20:30:54 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/29 22:17:27 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header.h"
 
-static void	quote(t_ms *ms)
+// input_getnextline() handles the processing of an additional input prompt
+// whenever the user had inputted a line with unclosed quotation marks. It adds
+// a newline to the previous input line, and joins the previous input line with
+// the new input line, storing the result in ms->line.array.
+static void	input_getnextline(t_ms *ms)
 {
-	char	*newstr;
-	char	*temp;
+	char	*s_new;
+	char	*s_prev;
 
-	newstr = ft_strdup(ms->line.array);
-	if (!newstr)
+	s_new = ft_strdup(ms->line.array);
+	if (!s_new)
 		return_exit(1, PRNT_ERRNO_NL);
 	input_read(ms, 1);
 	if (!ms->line.array)
 	{
-		free(newstr);
+		free(s_new);
 		return ;
 	}
-	temp = ms->line.array;
-	newstr = input_add_newline(newstr);
-	ms->line.array = ft_strjoin(newstr, ms->line.array);
+	s_prev = ms->line.array;
+	s_new = input_add_newline(s_new);
+	ms->line.array = ft_strjoin(s_new, ms->line.array);
 	if (!ms->line.array)
 		return_exit(1, PRNT_ERRNO_NL);
-	free(temp);
-	free(newstr);
+	free(s_prev);
+	free(s_new);
 }
 
+// input_syntax_quotes() parses the user input on a char-by-char basis and
+// checks if the input contains closed quotation marks. If so, it prompts the
+// user for a new input line.
 void	input_syntax_quotes(t_ms *ms)
 {
 	int		i;
@@ -52,7 +59,7 @@ void	input_syntax_quotes(t_ms *ms)
 			i++;
 		}
 		if (ms->parse.squote == 1 || ms->parse.dquote == 1)
-			quote(ms);
+			input_getnextline(ms);
 		else
 			break ;
 		i = 0;

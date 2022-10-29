@@ -6,7 +6,7 @@
 #    By: mikuiper <mikuiper@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/10/28 21:58:30 by mikuiper      #+#    #+#                  #
-#    Updated: 2022/10/29 21:11:35 by mikuiper      ########   odam.nl          #
+#    Updated: 2022/10/29 22:44:02 by mikuiper      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -135,9 +135,9 @@ SRCS.CLEAN =			clean/clean_ms.c \
 						clean/free_heredoc.c \
 
 SRCS.PARSER =			parser/parse.c \
-						parser/parse_arraysize.c \
-						parser/splitting/parser_splitter_spaces.c \
-						parser/splitting/parser_splitter_semicolons.c \
+						parser/parser_command_len_wrapper.c \
+						parser/splitting/parser_split_spaces.c \
+						parser/splitting/parser_split_semicolons.c \
 						parser/splitting/parser_separate_words_tokens.c \
 						parser/tokens.c \
 						parser/heredoc/allocate_heredoc.c \
@@ -146,7 +146,7 @@ SRCS.PARSER =			parser/parse.c \
 						parser/heredoc/heredoc_create_str.c \
 						parser/heredoc/heredoc_parsing.c \
 						parser/heredoc/set_heredoc.c \
-						parser/check_chars.c \
+						parser/parser_token_check.c \
 						parser/search_env.c \
 
 SRCS.CREATE.CMD =		cmd/parser_command_creation.c \
