@@ -6,7 +6,7 @@
 #    By: mikuiper <mikuiper@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/10/28 21:58:30 by mikuiper      #+#    #+#                  #
-#    Updated: 2022/10/29 10:04:56 by mikuiper      ########   odam.nl          #
+#    Updated: 2022/10/29 10:21:41 by mikuiper      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,6 +43,7 @@ INCLUDES_L = -L./libft/.
 
 SRCS =					main.c \
 						signals.c \
+						$(INIT) \
 						$(FUNCTIONS) \
 						$(SRCS.COMMANDS.CD) \
 						$(SRCS.COMMANDS.ECHO) \
@@ -56,7 +57,7 @@ SRCS =					main.c \
 						$(SRCS.ENV.LIST.FUNC) \
 						$(SRCS.FREE) \
 						$(SRCS.line) \
-						$(SRCS.PARSING) \
+						$(SRCS.parser) \
 						$(SRCS.CREATE.CMD) \
 						$(SRCS.EXECUTE)
 						
@@ -69,6 +70,8 @@ FUNCTIONS =				functions/str_skip_whitespace.c \
 						functions/array_thingy.c \
 						functions/functions.c \
 						functions/signal_handler.c \
+
+INIT =					init/init.c \
 
 SRCS.COMMANDS.CD =		builtin/cd/cd.c \
 						builtin/cd/cd_check_permissions.c \
@@ -128,7 +131,7 @@ SRCS.FREE =				free/free_all.c \
 						free/free_commands.c \
 						free/free_heredoc.c \
 
-SRCS.PARSING =			parsing/parse.c \
+SRCS.parser =			parsing/parse.c \
 						parsing/parse_arraysize.c \
 						parsing/splitting/parser_splitter_spaces.c \
 						parsing/splitting/parser_splitter_semicolons.c \

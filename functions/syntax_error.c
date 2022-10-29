@@ -6,7 +6,7 @@
 /*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/18 10:21:40 by rkieboom      #+#    #+#                 */
-/*   Updated: 2022/10/29 10:02:49 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/29 10:18:42 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ int	syntax_error_parse(t_ms *ms)
 }
 
 //Checks syntax errors for tokens
-int	syntax_error(t_newcommand *cmd, int i)
+int	parser_syntax_tokens(t_newcommand *cmd, int i)
 {
 	if (!cmd->tokens || cmd->tokens->total == 0)
 		return (0);

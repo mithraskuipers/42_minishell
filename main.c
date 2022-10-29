@@ -6,7 +6,7 @@
 /*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/23 22:40:21 by rkieboom      #+#    #+#                 */
-/*   Updated: 2022/10/29 09:59:10 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/29 10:18:42 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 
 t_global	g_global;
 
-//loop where minishell will be in continous
 static void	minishell_start(t_ms *ms)
 {
 	while (1)
@@ -31,45 +30,11 @@ static void	minishell_start(t_ms *ms)
 		if (!parser_wrapper(ms) && !ms->hdoc_break)//heredoc break before here
 		{
 			parser_command_creation(ms, 0);
-			if (!syntax_error(ms->cmd, 0))
+			if (!parser_syntax_tokens(ms->cmd, 0))
 				execution(ms, ms->cmd, 0);
 		}
 		free_all(ms);
 	}
-}
-
-//Increases the ENV SHLVL
-static void	init_shell_level(t_ms *ms)
-{
-	int		current_level;
-	char	*incremented_level;
-
-	if (!ms->env)
-		return ;
-	if (!env_exist(ms->env, "SHLVL") && !env_has_data(ms->env, "SHLVL"))
-		return ;
-	current_level = ft_atoi(env_get_content(ms->env, "SHLVL"));
-	current_level++;
-	incremented_level = ft_itoa(current_level);
-	if (!incremented_level)
-		return_exit(1, PRNT_ERRNO_NL);
-	env_change_content(ms->env, "SHLVL", incremented_level);
-	free(incremented_level);
-}
-
-void	init_minishell(int argc, char **argv, t_ms *ms)
-{
-	(void)argc;
-	(void)argv;
-	ft_bzero(ms, sizeof(t_ms));
-	ft_bzero(&g_global, sizeof(t_global));
-}
-
-void	init_terminal_params(void)
-{
-	tcgetattr(0, &g_global.termios_save);
-	g_global.termios_new = g_global.termios_save;
-	g_global.termios_new.c_lflag &= ~ECHOCTL;
 }
 
 int	main(int argc, char **argv, char **envp)
@@ -84,8 +49,3 @@ int	main(int argc, char **argv, char **envp)
 	minishell_start(&ms);
 	return (0);
 }
-
-// TODO:
-// combine the first few initalization lines in separate function
-// rename fix_signals
-// combine terminal parameters configuration lines in separate function

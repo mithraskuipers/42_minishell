@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/24 14:34:50 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/10/29 01:32:28 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/29 10:18:42 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ static void	freemem(char **result)
 		free(result);
 }
 
-//The actual big parsing and expanding
-static void	parsing(t_ms *ms)
+//The actual big parser and expanding
+static void	parser(t_ms *ms)
 {
 	int	i;
 	int	j;
@@ -82,7 +82,7 @@ static void	parser_input_splitter(t_ms *ms, t_vars *vars)
 }
 
 // (1) scans input and allocates memory
-// (2) adjusts input for easy parsing
+// (2) adjusts input for easy parser
 // (3) extracts and stores tokens
 int	parser_wrapper(t_ms *ms)
 {
@@ -100,7 +100,7 @@ int	parser_wrapper(t_ms *ms)
 	}
 	allocate_heredoc(ms, vars.n_words);
 	freemem(vars.splitted);
-	parsing(ms);
+	parser(ms);
 	set_heredoc(ms, vars.n_words);
 	return (0);
 }

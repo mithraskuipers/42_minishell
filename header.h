@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/28 21:57:11 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/10/29 10:06:01 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/29 10:18:42 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,7 +120,7 @@ void	free_heredoc(t_ms *ms, int totalcommands);
 
 void	ft_error(char *msg);
 int		syntax_error_parse(t_ms *ms);
-int		syntax_error(t_newcommand *cmd, int i);
+int		parser_syntax_tokens(t_newcommand *cmd, int i);
 
 void	execution(t_ms *ms, t_newcommand *cmd, int k);
 int		str_skip_whitespace(const char *str);
@@ -138,5 +138,9 @@ int		parser_command_creation(t_ms *ms, int k);
 void	sig_handler(int sign_num);
 
 void	init_signals(t_env **env);
+
+void	init_shell_level(t_ms *ms);
+void	init_minishell(int argc, char **argv, t_ms *ms);
+void	init_terminal_params(void);
 
 #endif

@@ -1,0 +1,6 @@
+// TODO:
+// [DONE] combine the first few initalization lines in separate function
+// [DONE] rename fix_signals
+// [DONE] combine terminal parameters configuration lines in separate function
+
+

@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/28 21:57:24 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/10/29 01:06:46 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/29 10:18:42 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static void	heredoc_allocation(t_ms *ms, int k)
 
 /*We see if the EOF is in between quotes
 If it is we should not expand anything
-We do this here because after the parsing 
+We do this here because after the parser 
 it removes the quotes*/
 static void	get_heredoc_q(t_ms *ms, int k)
 {

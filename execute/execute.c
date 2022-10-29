@@ -6,7 +6,7 @@
 /*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/11 15:26:49 by rkieboom      #+#    #+#                 */
-/*   Updated: 2022/10/29 00:11:22 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/29 10:24:38 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 //This is were we execute our Command
 /**
- * todo Redirections in pipes
+ * TODO: Redirections in pipes
 **/
 void	execution(t_ms *ms, t_newcommand *cmd, int k)
 {
