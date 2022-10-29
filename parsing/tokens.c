@@ -6,7 +6,7 @@
 /*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/11/30 00:29:12 by rkieboom      #+#    #+#                 */
-/*   Updated: 2022/10/29 01:06:46 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/29 10:31:31 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,55 +15,54 @@
 static void	allocate_tokens_vars(t_ms *ms)
 {
 	int	j;
-	int	k;
+	int	cmd;
 	int	total;
 
-	k = 0;
+	cmd = 0;
 	total = 0;
-	while (ms->parse.commands[k])
+	while (ms->parse.commands[cmd])
 	{
 		j = 0;
-		while (ms->parse.commands[k][j])
+		while (ms->parse.commands[cmd][j])
 		{
-			if (check_char(ms->parse.commands[k][j]))
+			if (check_char(ms->parse.commands[cmd][j]))
 				total++;
 			j++;
 		}
-		ms->tokens[k].token = ft_calloc(total + 1, sizeof(char *));
-		if (!ms->tokens[k].token)
+		ms->tokens[cmd].token = ft_calloc(total + 1, sizeof(char *));
+		if (!ms->tokens[cmd].token)
 			return_exit(1, PRNT_ERRNO_NL);
-		ms->tokens[k].token_pos = ft_calloc(total + 1, sizeof(int));
-		if (!ms->tokens[k].token_pos)
+		ms->tokens[cmd].token_pos = ft_calloc(total + 1, sizeof(int));
+		if (!ms->tokens[cmd].token_pos)
 			return_exit(1, PRNT_ERRNO_NL);
-		ms->tokens[k].total = total;
+		ms->tokens[cmd].total = total;
 		total = 0;
-		k++;
+		cmd++;
 	}
 }
 
 static void	set_tokens(t_ms *ms)
 {
-	int	i;
-	int	j;
-	int	k;
+	int	tkn;
+	int	wrd;
+	int	cmd;
 
-	k = 0;
-	while (ms->parse.commands[k])
+	cmd = 0;
+	while (ms->parse.commands[cmd])
 	{
-		i = 0;
-		j = 0;
-		while (ms->parse.commands[k][j])
+		tkn = 0;
+		wrd = 0;
+		while (ms->parse.commands[cmd][wrd])
 		{
-			if (check_char(ms->parse.commands[k][j]))
+			if (check_char(ms->parse.commands[cmd][wrd]))
 			{
-				ms->tokens[k].token[i] = \
-				ft_strdup(ms->parse.commands[k][j]);
-				ms->tokens[k].token_pos[i] = j;
-				i++;
+				ms->tokens[cmd].token[tkn] = ft_strdup(ms->parse.commands[cmd][wrd]);
+				ms->tokens[cmd].token_pos[tkn] = wrd;
+				tkn++;
 			}
-			j++;
+			wrd++;
 		}
-		k++;
+		cmd++;
 	}
 }
 
