@@ -12,18 +12,18 @@
 
 #include "../header.h"
 
-char	*input_add_newline(char *str)
+char	*input_add_newline(char *s)
 {
-	int		length;
-	char	*result;
+	int		len;
+	char	*s_newline;
 
-	length = ft_strlen(str);
-	result = ft_calloc(length + 2, sizeof(char));
-	if (!result)
+	len = ft_strlen(s);
+	s_newline = ft_calloc(len + 2, sizeof(char));
+	if (!s_newline)
 		return_exit(1, PRNT_ERRNO_NL);
-	ft_strlcpy(result, str, length + 1);
-	result[length] = '\n';
-	result[length + 1] = '\0';
-	free(str);
-	return (result);
+	ft_strlcpy(s_newline, s, len + 1);
+	s_newline[len] = '\n';
+	s_newline[len + 1] = '\0';
+	free(s);
+	return (s_newline);
 }

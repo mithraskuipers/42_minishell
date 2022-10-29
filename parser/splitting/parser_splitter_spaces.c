@@ -33,7 +33,7 @@ static int	arraysize(const char *s, char c, t_ms *ms)
 	ms->parse.dquote = 0;
 	while (s[i])
 	{
-		check_quote(ms, (char *)s + i);
+		quote_toggle(ms, (char *)s + i);
 		if (s[i] == c && \
 			(ms->parse.squote == 0 && ms->parse.dquote == 0) && \
 			i > 0 && s[i - 1] != c)
@@ -59,7 +59,7 @@ static char	**splitter(t_ms *ms, const char *str, char **result)
 	init_vars(ms, &vars);
 	while (str[vars.i])
 	{
-		check_quote(ms, (char *)str + vars.i);
+		quote_toggle(ms, (char *)str + vars.i);
 		if (str[vars.i] != ' ' || ms->parse.squote || ms->parse.dquote)
 			vars.length++;
 		else

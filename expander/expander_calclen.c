@@ -12,7 +12,7 @@
 
 #include "../parser/parse.h"
 
-static void	calculate_dollar_length_2(t_ms *ms, char *str, int *i, int *length)
+static void	expander_get_dollar_len_var(t_ms *ms, char *str, int *i, int *length)
 {
 	if (str[*i + 1] == '\0' || \
 	(!ft_isdigit(str[*i + 1]) && \
@@ -33,7 +33,7 @@ static void	calculate_dollar_length_2(t_ms *ms, char *str, int *i, int *length)
 	}
 }
 
-static void	calculate_dollar_length(t_ms *ms, char *str, int *i, int *length)
+static void	expander_get_dollar_len(t_ms *ms, char *str, int *i, int *length)
 {
 	char	*temp;
 
@@ -48,16 +48,16 @@ static void	calculate_dollar_length(t_ms *ms, char *str, int *i, int *length)
 		(*length)--;
 	}
 	else
-		calculate_dollar_length_2(ms, str, i, length);
+		expander_get_dollar_len_var(ms, str, i, length);
 }
 
-static void	double_quote(t_ms *ms, char *str, int *i, int *length)
+static void	expander_dquote(t_ms *ms, char *str, int *i, int *length)
 {
 	(*i)++;
 	while (str[*i] && str[*i] != '\"')
 	{
 		if (str[*i] == '$')
-			calculate_dollar_length(ms, str, i, length);
+			expander_get_dollar_len(ms, str, i, length);
 		else
 		{
 			(*i)++;
@@ -68,7 +68,7 @@ static void	double_quote(t_ms *ms, char *str, int *i, int *length)
 	(*length)--;
 }
 
-static void	single_quote(t_ms *ms, char *str, int *i, int *length)
+static void	expander_squote(t_ms *ms, char *str, int *i, int *length)
 {
 	(*i)++;
 	while (str[*i] && str[*i] != '\'')
@@ -86,7 +86,7 @@ int	expander_calclen(t_ms *ms, char *str, int i, int length)
 		i++;
 	while (str[i])
 	{
-		check_quote(ms, &str[i]);
+		quote_toggle(ms, &str[i]);
 		while (str[i] == ' ' && str[i + 1] && \
 		ms->parse.squote == 0 && ms->parse.dquote == 0)
 			i++;
@@ -95,12 +95,12 @@ int	expander_calclen(t_ms *ms, char *str, int i, int length)
 			if (!(!ft_isdigit(str[i + 1]) \
 			&& !ft_isalpha(str[i + 1]) \
 			&& str[i + 1] != '_' && str[i + 1] != '?'))
-				calculate_dollar_length(ms, str, &i, &length);
+				expander_get_dollar_len(ms, str, &i, &length);
 		}
 		else if (str[i] == '\"')
-			double_quote(ms, str, &i, &length);
+			expander_dquote(ms, str, &i, &length);
 		else if (str[i] == '\'')
-			single_quote(ms, str, &i, &length);
+			expander_squote(ms, str, &i, &length);
 		i++;
 		length++;
 	}

@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/28 21:57:11 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/10/29 18:18:05 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/29 20:30:54 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,8 +125,8 @@ int		parser_syntax_tokens(t_cmdlist *cmd, int i);
 void	executor(t_ms *ms, t_cmdlist *cmd);
 int		str_skip_whitespace(const char *str);
 
-void	check_quote(t_ms *ms, char *c);
-char	*input_add_newline(char *str);
+void	quote_toggle(t_ms *ms, char *c);
+char	*input_add_newline(char *s);
 int		cmd_len(char **str);
 
 int		input_syntax_semicolons(t_ms *v);

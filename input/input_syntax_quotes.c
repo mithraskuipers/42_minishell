@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/29 15:16:36 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/10/29 17:27:30 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/29 20:30:54 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	input_syntax_quotes(t_ms *ms)
 		ms->parse.dquote = 0;
 		while (ms->line.array[i])
 		{
-			check_quote(ms, &ms->line.array[i]);
+			quote_toggle(ms, &ms->line.array[i]);
 			i++;
 		}
 		if (ms->parse.squote == 1 || ms->parse.dquote == 1)
@@ -61,7 +61,7 @@ void	input_syntax_quotes(t_ms *ms)
 
 // Receives char and checks whether it is a quote.
 // If so, turn on quote toggle.
-void	check_quote(t_ms *ms, char *c)
+void	quote_toggle(t_ms *ms, char *c)
 {
 	if (*c == '\'')
 	{

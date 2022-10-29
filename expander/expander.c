@@ -56,7 +56,7 @@ char	*expander_expand_dollar(t_ms *ms, char *s, int length)
 	while (vars.length > 0)
 	{
 		vars.i++;
-		check_quote(ms, &s[vars.i]);
+		quote_toggle(ms, &s[vars.i]);
 		if (s[vars.i] == '$' && ms->parse.squote == 0)
 			expander_get_value(ms, &vars);
 		else if (s[vars.i] == '\"' && ((ms->parse.squote == 0 \

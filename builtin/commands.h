@@ -6,7 +6,7 @@
 /*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/05/11 16:35:27 by rkieboom      #+#    #+#                 */
-/*   Updated: 2022/10/29 17:45:01 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/29 20:48:45 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,24 +29,15 @@ int		unset(t_env **v, char **str);
 void	ft_execve(t_ms *ms, char **str);
 void	return_exit(int ret, int print);
 void	ms_exit(char **str);
-
-/*
-###
-###		Functions
-###
-*/
-
 int		cd_check_permissions(char *path);
 int		cd_exec_cmd(t_env *env, char *path);
 int		cd_expander_tilde(t_ms *ms, char *str);
-
 char	*relative_path(char *PATH, t_env *env);
 char	*absolute_path(char *PATH);
 int		is_absolute_path(char *str);
 int		check_exist(char *PATH);
 int		check_permission(char *PATH);
 void	export_declare_list(t_env *v);
-void	ft_swap(char **s1, char **s2);//Not ness
 void	update_signals_handler(void);
 void	update_signals_default(void);
 

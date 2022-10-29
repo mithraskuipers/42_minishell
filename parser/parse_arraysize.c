@@ -6,7 +6,7 @@
 /*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/06 00:34:52 by rkieboom      #+#    #+#                 */
-/*   Updated: 2022/10/29 19:47:55 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/29 20:30:54 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static void	check_len(t_ms *ms, t_vars *vars, char **str)
 		vars->p = 0;
 	while (str[vars->j][vars->i])
 	{	
-		check_quote(ms, &str[vars->j][vars->i]);
+		quote_toggle(ms, &str[vars->j][vars->i]);
 		if (ms->parse.squote == 0 && ms->parse.dquote == 0 \
 		&& ((vars->p == 1 && !check_char(&str[vars->j][vars->i]) \
 		&& binary_toggler(&vars->p))))

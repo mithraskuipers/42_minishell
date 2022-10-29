@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/29 00:58:15 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/10/29 17:27:30 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/29 20:30:54 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static int	arraysize(const char *s, char c, t_ms *ms)
 	ms->parse.dquote = 0;
 	while (s[i])
 	{
-		check_quote(ms, (char *)s + i);
+		quote_toggle(ms, (char *)s + i);
 		if (s[i] == c && (ms->parse.squote == 0 && ms->parse.dquote == 0))
 			k++;
 		while (s[i] && s[i + 1] && s[i] == c)
@@ -61,7 +61,7 @@ static char	**splitter(t_ms *ms, char c, char **result, int i)
 		while (ms->line.array[i] && (ms->line.array[i] != c || \
 				(ms->parse.squote == 1 || ms->parse.dquote == 1)))
 		{
-			check_quote(ms, &ms->line.array[i]);
+			quote_toggle(ms, &ms->line.array[i]);
 			i++;
 			strlength++;
 		}
