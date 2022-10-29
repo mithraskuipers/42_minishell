@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/28 21:57:11 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/10/29 10:18:42 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/29 10:37:36 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,5 +142,8 @@ void	init_signals(t_env **env);
 void	init_shell_level(t_ms *ms);
 void	init_minishell(int argc, char **argv, t_ms *ms);
 void	init_terminal_params(void);
+
+
+void	splash(void);
 
 #endif

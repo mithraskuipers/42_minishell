@@ -6,7 +6,7 @@
 #    By: mikuiper <mikuiper@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/10/28 21:58:30 by mikuiper      #+#    #+#                  #
-#    Updated: 2022/10/29 10:21:41 by mikuiper      ########   odam.nl          #
+#    Updated: 2022/10/29 10:38:19 by mikuiper      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,7 @@ SRCDIR	= ./
 OBJDIR	= bin/
 LIBFTDIR = libft/
 
-INCLUDES = header.h parsing/parse.h execute/execute.h \
+INCLUDES = header.h parsing/parse.h execute/execute.h cosmetics/splash.h \
 libft/libft.h env_list/env_list.h builtin/commands.h cmd/cmd.h cmd/tokens_cmd/tokens.h
 
 LIBFTLIB = $(LIBFTDIR)/libft.a
@@ -44,6 +44,7 @@ INCLUDES_L = -L./libft/.
 SRCS =					main.c \
 						signals.c \
 						$(INIT) \
+						$(SPLASH) \
 						$(FUNCTIONS) \
 						$(SRCS.COMMANDS.CD) \
 						$(SRCS.COMMANDS.ECHO) \
@@ -72,6 +73,8 @@ FUNCTIONS =				functions/str_skip_whitespace.c \
 						functions/signal_handler.c \
 
 INIT =					init/init.c \
+
+SPLASH =				cosmetics/splash.c
 
 SRCS.COMMANDS.CD =		builtin/cd/cd.c \
 						builtin/cd/cd_check_permissions.c \
