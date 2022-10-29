@@ -6,7 +6,7 @@
 /*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/11 15:34:15 by rkieboom      #+#    #+#                 */
-/*   Updated: 2022/10/29 00:11:25 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/29 15:13:31 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	run_cmd(t_ms *ms, char **cmd, int quit)
 	else if (!ft_strncmp(cmd[0], "env", 4))
 		g_global.status = env(ms->env);
 	else if (!ft_strncmp(cmd[0], "exit", 5))
-		ft_exit(cmd);
+		ms_exit(cmd);
 	else
 		ft_execve(ms, cmd);
 	if (quit)

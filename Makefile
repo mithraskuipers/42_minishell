@@ -6,7 +6,7 @@
 #    By: mikuiper <mikuiper@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/10/28 21:58:30 by mikuiper      #+#    #+#                  #
-#    Updated: 2022/10/29 15:08:07 by mikuiper      ########   odam.nl          #
+#    Updated: 2022/10/29 15:37:01 by mikuiper      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -65,14 +65,17 @@ SRCS =					main.c \
 						
 						
 FUNCTIONS =				functions/str_skip_whitespace.c \
-						functions/check_input.c \
 						functions/syntax_error.c \
 						functions/array_thingy.c \
 						functions/functions.c \
 						functions/signal_handler.c \
 
+EXPANDER =				expander/env_var_len.c \
+
 INPUT =					input/input_read.c \
 						input/input_add_newline.c \
+						input/input_check.c \
+						input/input_syntax_quotes.c \
 
 INIT =					init/init.c \
 
@@ -97,8 +100,8 @@ SRCS.COMMANDS.EXECVE =	builtin/execve/execve.c \
 						builtin/execve/relative_path.c \
 						builtin/execve/absolute_path.c \
 
-SRCS.COMMANDS.EXIT = 	builtin/exit/ft_exit.c \
-						builtin/exit/ret_exit.c \
+SRCS.COMMANDS.EXIT = 	builtin/exit/ms_exit.c \
+						builtin/exit/ms_return_exit.c \
 
 SRCS.ENV.LIST =			env_list/env_lst_new.c \
 						env_list/env_lstadd_back.c \
@@ -198,10 +201,16 @@ $(OBJDIR)%.o : %.c $(INCLUDES)
 	@printf "$(GR)+$(RC)"
 	@$(CC) $(CFLAGS) -c $< -o $@ -I/usr/local/opt/readline/include
 
+#voor rowan:
+#@$(CC) $(CFLAGS) -c $< -o $@ -I/opt/homebrew/opt/readline/include
+
 # Linking
 $(NAME)	: $(LIBFTLIB) $(SRCS)  $(OBJS) $(INCLUDES)
 	@printf "\n$(GR)=== Compiled [$(CC) $(CFLAGS)] ===\n--- $(SRC)$(RC)\n"
 	@$(CC) $(CFLAGS) $(LIBFTLIB) $(OBJS) -o $(NAME) -lreadline -L/usr/local/opt/readline/lib
+
+#voor rowan:
+#@$(CC) $(CFLAGS) $(LIBFTLIB) $(OBJS) -o $(NAME) -lreadline -L/opt/homebrew/opt/readline/lib
 
 $(LIBFTLIB) :
 	make -C $(LIBFTDIR)

@@ -6,7 +6,7 @@
 /*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/04 12:03:50 by rkieboom      #+#    #+#                 */
-/*   Updated: 2022/10/27 16:36:40 by rkieboom      ########   odam.nl         */
+/*   Updated: 2022/10/29 15:13:31 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int	check_errors(char **str, int i)
 	return (0);
 }
 
-void	ft_exit(char **str)
+void	ms_exit(char **str)
 {
 	int				i;
 	unsigned char	ret;

@@ -1,39 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   splash.c                                           :+:    :+:            */
+/*   env_var_len.c                                      :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/10/29 10:33:21 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/10/29 15:33:37 by mikuiper      ########   odam.nl         */
+/*   Created: 2022/10/29 15:23:50 by mikuiper      #+#    #+#                 */
+/*   Updated: 2022/10/29 15:24:04 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "splash.h"
-#include <stdio.h>
-#include <unistd.h>
+#include "../header.h"
 
-static void	color_green()
+int	env_str_length(char *str)
 {
-	printf("\033[0;32m");
-}
+	int	i;
 
-static void	color_reset()
-{
-	printf("\033[0m");
-}
-
-static void	clear_screen(void)
-{
-	write(1, "\x1b[2J", 4);
-	write(1, "\x1b[H", 3);
-}
-
-void	splash(void)
-{
-	clear_screen();
-	color_green();
-	printf("%s", SPLASH);
-	color_reset();
+	i = 0;
+	if (str[i] == '$')
+		i++;
+	while (str[i] && (ft_isdigit(str[i]) || \
+	ft_isalpha(str[i]) || str[i] == '_'))
+		i++;
+	return (i);
 }

@@ -1,19 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   input_syntax.c                                      :+:    :+:            */
+/*   input_syntax_quotes.c                              :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
+/*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/02/02 17:32:12 by rkieboom      #+#    #+#                 */
-/*   Updated: 2022/10/29 00:20:49 by mikuiper      ########   odam.nl         */
+/*   Created: 2022/10/29 15:16:36 by mikuiper      #+#    #+#                 */
+/*   Updated: 2022/10/29 15:17:00 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header.h"
 
-// Called when user input has unclosed quotes.
-// Stores current line.array and prompts user for input again using input_read()
 static void	quote(t_ms *ms)
 {
 	char	*newstr;
@@ -37,8 +35,6 @@ static void	quote(t_ms *ms)
 	free(newstr);
 }
 
-// Checks if line.array contains unclosed quotes.
-// User remains in this function unrtil input has closed quotes.
 void	input_syntax_quotes(t_ms *ms)
 {
 	int		i;
@@ -63,36 +59,22 @@ void	input_syntax_quotes(t_ms *ms)
 	}
 }
 
-static int	input_error(t_ms *v)
+// Receives char and checks whether it is a quote.
+// If so, turn on quote toggle.
+void	check_quote(t_ms *ms, char *c)
 {
-	ft_putendl_fd("minishell-4.2$: \
-syntax error near unexpected token ;", 2);
-	free(v->line.array);
-	v->line.array = 0;
-	g_global.status = 258;
-	return (1);
-}
-
-// Checking semicolons syntax error
-int	input_syntax_semicolons(t_ms *v)
-{
-	int		i;
-	char	*str;
-
-	i = 0;
-	str = v->line.array;
-	while (str[i])
+	if (*c == '\'')
 	{
-		i += str_skip_whitespace(str + i);
-		if (!str[i])
-			return (1);
-		if (str[i] == ';')
-			return (input_error(v));
+		if (ms->parse.comma1 == 0 && ms->parse.comma2 == 0)
+			ms->parse.comma1 = 1;
 		else
-			while (str[i] && str[i] != ';')
-				i++;
-		if (str[i])
-			i++;
+			ms->parse.comma1 = 0;
 	}
-	return (0);
+	if (*c == '\"')
+	{
+		if (ms->parse.comma2 == 0 && ms->parse.comma1 == 0)
+			ms->parse.comma2 = 1;
+		else
+			ms->parse.comma2 = 0;
+	}
 }

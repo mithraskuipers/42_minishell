@@ -2,3 +2,4 @@
 Reorganize header files
 Reorganize makefile
 Add comments basically everywhere for easy readability
+Check alle print messages of die nog kloppen
