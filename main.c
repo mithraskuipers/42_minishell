@@ -6,7 +6,7 @@
 /*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/23 22:40:21 by rkieboom      #+#    #+#                 */
-/*   Updated: 2022/10/29 01:35:29 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/29 09:51:53 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static void	minishell(t_ms *ms)
 }
 
 //Increases the ENV SHLVL
-static void	update_shell_level(t_ms *ms)
+static void	init_shell_level(t_ms *ms)
 {
 	int		current_level;
 	char	*incremented_level;
@@ -57,42 +57,22 @@ static void	update_shell_level(t_ms *ms)
 	free(incremented_level);
 }
 
-// Handles SIGUSR1 SIGNAL
-static void	sighand(int signum)
+void	init_minishell(int argc, char **argv, t_ms *ms)
 {
-	(void)signum;
-	if (g_global.__dup__ == 1)
-	{
-		g_global.__dup__ = 0;
-		return ;
-	}
-	signal(SIGINT, SIG_IGN);
-	signal(SIGQUIT, SIG_IGN);
-}
-
-// Fixing signals in multiple minishells
-static void	fix_signals(t_env **env)
-{
-	signal(SIGUSR1, sighand);
-	if (env_exist(*env, __DUP__))
-	{
-		g_global.__dup__ = 1;
-		env_lst_remove(env, __DUP__);
-	}
-	kill(g_global.pid, SIGUSR1);
+	(void)argc;
+	(void)argv;
+	ft_bzero(ms, sizeof(t_ms));
+	ft_bzero(&g_global, sizeof(t_global));
 }
 
 int	main(int argc, char **argv, char **envp)
 {
 	t_ms	ms;
 
-	(void)argc;
-	(void)argv;
-	ft_bzero(&ms, sizeof(t_ms));
-	ft_bzero(&g_global, sizeof(t_global));
+	init_minishell(argc, argv, &ms);
 	ms.env = create_envp(ms.env, envp);
-	fix_signals(&ms.env);
-	update_shell_level(&ms);
+	init_signals(&ms.env);
+	init_shell_level(&ms);
 	tcgetattr(0, &g_global.termios_save);
 	g_global.termios_new = g_global.termios_save;
 	g_global.termios_new.c_lflag &= ~ECHOCTL;

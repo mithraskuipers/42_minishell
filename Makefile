@@ -6,7 +6,7 @@
 #    By: mikuiper <mikuiper@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/10/28 21:58:30 by mikuiper      #+#    #+#                  #
-#    Updated: 2022/10/29 01:32:28 by mikuiper      ########   odam.nl          #
+#    Updated: 2022/10/29 09:38:08 by mikuiper      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,6 +42,7 @@ LIBFTLIB = $(LIBFTDIR)/libft.a
 INCLUDES_L = -L./libft/.
 
 SRCS =					main.c \
+						signals.c \
 						$(FUNCTIONS) \
 						$(SRCS.COMMANDS.CD) \
 						$(SRCS.COMMANDS.ECHO) \
