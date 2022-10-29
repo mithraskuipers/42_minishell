@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/29 15:05:19 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/10/29 15:05:43 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/29 19:51:04 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,33 +14,33 @@
 #include <stdio.h>
 #include "../../header.h"
 
-char	*env_get_name(t_env *v, char *find)
+char	*env_get_name(t_env *v, char *key)
 {
 	while (v)
 	{
-		if (!ft_strncmp(v->name, find, ft_strlen(find) + 1))
+		if (!ft_strncmp(v->name, key, ft_strlen(key) + 1))
 			return (v->name);
 		v = v->next;
 	}
 	return (NULL);
 }
 
-char	*env_get_content(t_env *v, char *find)
+char	*env_get_content(t_env *v, char *key)
 {
 	while (v)
 	{
-		if (!ft_strncmp(v->name, find, ft_strlen(find) + 1))
+		if (!ft_strncmp(v->name, key, ft_strlen(key) + 1))
 			return (v->content);
 		v = v->next;
 	}
 	return (NULL);
 }
 
-t_env	*env_get(t_env *v, char *find)
+t_env	*env_get(t_env *v, char *key)
 {
 	while (v)
 	{
-		if (!ft_strncmp(v->name, find, ft_strlen(find) + 1))
+		if (!ft_strncmp(v->name, key, ft_strlen(key) + 1))
 			return (v);
 		v = v->next;
 	}

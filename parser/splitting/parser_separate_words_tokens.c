@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/29 01:32:56 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/10/29 18:46:20 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/29 19:47:55 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ typedef struct s_vars
 	char	**newstr;
 }				t_vars;
 
-static int	array_thingy(int *p)
+static int	binary_toggler(int *p)
 {
 	if (*p == 1)
 		*p = 0;
@@ -64,8 +64,8 @@ static void	func(t_ms *ms, t_vars *vars, int k)
 	if (ms->parse.squote == 0 && ms->parse.dquote == 0 \
 	&& ((vars->p == 1 && \
 	!check_char(&ms->parse.commands[k][vars->j][vars->i + 1]) \
-	&& array_thingy(&vars->p)) || (!ms->parse.commands[k] \
-	[vars->j][vars->i + 1] && array_thingy(&vars->p))))
+	&& binary_toggler(&vars->p)) || (!ms->parse.commands[k] \
+	[vars->j][vars->i + 1] && binary_toggler(&vars->p))))
 	{
 		if (!ms->parse.commands[k][vars->j][vars->i + 1] \
 		&& ft_strlen(ms->parse.commands[k][vars->j]) == 1)
@@ -78,7 +78,7 @@ static void	func(t_ms *ms, t_vars *vars, int k)
 	}
 	else if (ms->parse.squote == 0 && ms->parse.dquote == 0 \
 	&& (((vars->p == 0 && check_char(&ms->parse.commands[k] \
-	[vars->j][vars->i + 1]) && array_thingy(&vars->p)))))
+	[vars->j][vars->i + 1]) && binary_toggler(&vars->p)))))
 	{
 		vars->newstr[vars->j + vars->x] = ft_substr(ms-> \
 		parse.commands[k][vars->j], vars->start, vars->i - vars->start + 1);

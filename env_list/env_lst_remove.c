@@ -6,17 +6,17 @@
 /*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/22 17:40:45 by rkieboom      #+#    #+#                 */
-/*   Updated: 2022/10/29 00:12:30 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/29 19:50:45 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "env_list.h"
 
-void	env_lst_remove(t_env **v, char *find)
+void	env_lst_remove(t_env **v, char *key)
 {
 	t_env	*cur;
 
-	cur = env_get(*v, find);
+	cur = env_get(*v, key);
 	if (!cur)
 		return ;
 	if (!cur->prev)

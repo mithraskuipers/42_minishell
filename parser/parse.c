@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/24 14:34:50 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/10/29 17:52:38 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/29 20:07:00 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static void	freemem(char **result)
 }
 
 //The actual big parser and expanding
-static void	expander_wrapper(t_ms *ms)
+static void	expander_loop(t_ms *ms)
 {
 	int	i;
 	int	j;
@@ -50,7 +50,7 @@ static void	expander_wrapper(t_ms *ms)
 		x = 0;
 		while (ms->parse.commands[j][i] != NULL)
 		{
-			ms->parse.commands[j][i - x] = expander(ms, ms->parse.commands[j][i]);
+			ms->parse.commands[j][i - x] = expander_wrapper(ms, ms->parse.commands[j][i]);
 			if (!ms->parse.commands[j][i])
 				x++;
 			i++;
@@ -100,7 +100,7 @@ int	parser_wrapper(t_ms *ms)
 	}
 	allocate_heredoc(ms, vars.n_words);
 	freemem(vars.splitted);
-	expander_wrapper(ms);
+	expander_loop(ms);
 	set_heredoc(ms, vars.n_words);
 	return (0);
 }

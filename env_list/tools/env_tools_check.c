@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   env_functions2.c                                   :+:    :+:            */
+/*   env_tools_check.c                                  :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/23 22:52:25 by rkieboom      #+#    #+#                 */
-/*   Updated: 2022/10/29 01:09:35 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/29 19:50:56 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../env_list.h"
 #include "../../header.h"
 
-int	env_has_data(t_env *v, char *find)
+int	env_has_data(t_env *v, char *key)
 {
 	while (v)
 	{
-		if (!ft_strncmp(v->name, find, ft_strlen(find) + 1))
+		if (!ft_strncmp(v->name, key, ft_strlen(key) + 1))
 		{
 			if (v->content)
 				return (1);
@@ -29,11 +29,11 @@ int	env_has_data(t_env *v, char *find)
 	return (0);
 }
 
-int	env_exist(t_env *v, char *find)
+int	env_exist(t_env *v, char *key)
 {
 	while (v)
 	{
-		if (!ft_strncmp(v->name, find, ft_strlen(find) + 1))
+		if (!ft_strncmp(v->name, key, ft_strlen(key) + 1))
 			return (1);
 		v = v->next;
 	}

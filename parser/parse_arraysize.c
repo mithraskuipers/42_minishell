@@ -6,7 +6,7 @@
 /*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/06 00:34:52 by rkieboom      #+#    #+#                 */
-/*   Updated: 2022/10/29 18:46:05 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/29 19:47:55 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ typedef struct s_vars
 	int	length;
 }				t_vars;
 
-static int	array_thingy(int *p)
+static int	binary_toggler(int *p)
 {
 	if (*p == 1)
 		*p = 0;
@@ -41,11 +41,11 @@ static void	check_len(t_ms *ms, t_vars *vars, char **str)
 		check_quote(ms, &str[vars->j][vars->i]);
 		if (ms->parse.squote == 0 && ms->parse.dquote == 0 \
 		&& ((vars->p == 1 && !check_char(&str[vars->j][vars->i]) \
-		&& array_thingy(&vars->p))))
+		&& binary_toggler(&vars->p))))
 			vars->length++;
 		else if (ms->parse.squote == 0 && ms->parse.dquote == 0 \
 		&& (((vars->p == 0 && check_char(&str[vars->j][vars->i]) \
-		&& array_thingy(&vars->p)))))
+		&& binary_toggler(&vars->p)))))
 			vars->length++;
 		vars->i++;
 	}

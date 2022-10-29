@@ -6,7 +6,7 @@
 /*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/11/27 15:01:52 by rkieboom      #+#    #+#                 */
-/*   Updated: 2022/10/29 18:46:12 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/29 19:55:57 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	parser_separate_words_tokens(t_ms *ms, int size, int k);
 
 void	tokens_wrapper(t_ms *ms);
 
-char	*createstring(t_ms *ms, char *str, int length);
+char	*expander_expand_dollar(t_ms *ms, char *str, int length);
 
 void	check_quote(t_ms *ms, char *c);
 int		check_char_str(t_ms *ms, char *str);

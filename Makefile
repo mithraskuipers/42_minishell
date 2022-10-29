@@ -6,7 +6,7 @@
 #    By: mikuiper <mikuiper@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/10/28 21:58:30 by mikuiper      #+#    #+#                  #
-#    Updated: 2022/10/29 18:45:52 by mikuiper      ########   odam.nl          #
+#    Updated: 2022/10/29 20:19:02 by mikuiper      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -71,17 +71,18 @@ SRCS =					main.c \
 TOOLS =					tools/str_skip_whitespace.c \
 						tools/ft_error.c \
 						tools/signal_handler.c \
-						tools/cmd_len.c \
 
 EXPANDER =				expander/expander.c \
 						expander/expander_calclen.c \
 						expander/expander_tilde.c \
+						expander/expander_tools.c \
 
 INPUT =					input/input_read.c \
 						input/input_add_newline.c \
 						input/input_check.c \
 						input/input_syntax_quotes.c \
 						input/input_syntax_error.c \
+						input/input_cmd_len.c \
 
 INIT =					init/init.c \
 
@@ -154,7 +155,6 @@ SRCS.PARSER =			parser/parse.c \
 						parser/splitting/parser_splitter_spaces.c \
 						parser/splitting/parser_splitter_semicolons.c \
 						parser/splitting/parser_separate_words_tokens.c \
-						parser/createstring.c \
 						parser/tokens.c \
 						parser/heredoc/allocate_heredoc.c \
 						parser/heredoc/get_heredoc_input.c \
