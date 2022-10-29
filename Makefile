@@ -6,7 +6,7 @@
 #    By: mikuiper <mikuiper@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/10/28 21:58:30 by mikuiper      #+#    #+#                  #
-#    Updated: 2022/10/29 17:55:11 by mikuiper      ########   odam.nl          #
+#    Updated: 2022/10/29 17:57:44 by mikuiper      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,9 +59,9 @@ SRCS =					main.c \
 						$(SRCS.COMMANDS.EXIT) \
 						$(SRCS.ENV.LIST) \
 						$(SRCS.ENV.LIST.FUNC) \
-						$(SRCS.FREE) \
-						$(SRCS.line) \
-						$(SRCS.parser) \
+						$(SRCS.CLEAN) \
+						$(SRCS.LINE) \
+						$(SRCS.PARSER) \
 						$(SRCS.CREATE.CMD) \
 						$(SRCS.EXECUTE)
 						
@@ -141,12 +141,12 @@ SRCS.NEWEXECUTE =		newexecute/execute.c newexecute/run_cmd.c \
 						newexecute/pipes/setup_pipes.c \
 						newexecute/pipes/clear_pipes.c \
 
-SRCS.FREE =				free/clean_ms.c \
-						free/clean_commands.c \
-						free/clean_cmdlist.c \
-						free/free_heredoc.c \
+SRCS.CLEAN =			clean/clean_ms.c \
+						clean/clean_commands.c \
+						clean/clean_cmdlist.c \
+						clean/free_heredoc.c \
 
-SRCS.parser =			parser/parse.c \
+SRCS.PARSER =			parser/parse.c \
 						parser/parse_arraysize.c \
 						parser/splitting/parser_splitter_spaces.c \
 						parser/splitting/parser_splitter_semicolons.c \
