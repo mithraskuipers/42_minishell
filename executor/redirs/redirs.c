@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   redirections.c                                     :+:    :+:            */
+/*   redirs.c                                           :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
+/*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/10/11 22:09:17 by rkieboom      #+#    #+#                 */
-/*   Updated: 2022/10/29 12:42:28 by mikuiper      ########   odam.nl         */
+/*   Created: 2022/10/29 18:08:07 by mikuiper      #+#    #+#                 */
+/*   Updated: 2022/10/29 18:14:02 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../execute.h"
 
-int	tokens_exist(t_cmdlist *cmd)
+int	tokens_present(t_cmdlist *cmd)
 {
-	if (cmd->tokens && cmd->tokens->total > 0)
+	if (cmd->tokens && cmd->tokens->n_tokens > 0)
 		return (1);
 	else
 		return (0);
@@ -67,18 +67,18 @@ int	redir_right(t_cmdlist *v)
 	return (0);
 }
 
-int	redirections(t_cmdlist *cmd)
+int	redirs(t_cmdlist *cmdlist)
 {
-	if (tokens_exist(cmd) && loop_over_redirs(cmd, 0, cmd->tokens->total))
+	if (tokens_present(cmdlist) && redirs_looper(cmdlist, 0, cmdlist->tokens->n_tokens))
 		return (1);
-	if (tokens_exist(cmd) && cmd->tokens->last_l != -1)
+	if (tokens_present(cmdlist) && cmdlist->tokens->last_l != -1)
 	{
-		if (redir_left(cmd))
+		if (redir_left(cmdlist))
 			return (1);
 	}
-	if (tokens_exist(cmd) && cmd->tokens->last_r != -1)
+	if (tokens_present(cmdlist) && cmdlist->tokens->last_r != -1)
 	{
-		if (redir_right(cmd))
+		if (redir_right(cmdlist))
 			return (1);
 	}
 	return (0);

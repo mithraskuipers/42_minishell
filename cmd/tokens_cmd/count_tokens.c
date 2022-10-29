@@ -6,7 +6,7 @@
 /*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/08/27 03:28:59 by rkieboom      #+#    #+#                 */
-/*   Updated: 2022/10/29 12:42:28 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/29 18:13:14 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,14 +62,14 @@ void	count_tokens(t_ms *v, t_cmdlist *temp, int k)
 		vars.i++;
 		if (!temp->command[vars.i])
 		{
-			temp->tokens->total = temp->tokens->single_redirection_left + \
+			temp->tokens->n_tokens = temp->tokens->single_redirection_left + \
 			temp->tokens->single_redirection_right + \
 			temp->tokens->double_redirection_left + \
 			temp->tokens->double_redirection_right;
 			vars.wc += vars.i;
 			vars.i = 0;
 			temp = temp->next;
-			if (vars.t == v->tokens[k].total)
+			if (vars.t == v->tokens[k].n_tokens)
 				break ;
 		}
 	}

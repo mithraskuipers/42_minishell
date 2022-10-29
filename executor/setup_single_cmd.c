@@ -6,7 +6,7 @@
 /*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/12 00:44:55 by rkieboom      #+#    #+#                 */
-/*   Updated: 2022/10/29 12:54:28 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/29 18:10:20 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ static void	setup_execve(t_ms *ms, t_cmdlist *cmd, char **command)
 		update_signals_default();
 		env_lstadd_back(&ms->env, \
 		env_lst_new(ft_strdup(__DUP__), ft_strdup("")));
-		if (redirections(cmd))
+		if (redirs(cmd))
 			return_exit(1, NO_PRNT);
 		run_cmd(ms, command, 1);
 	}
@@ -65,16 +65,16 @@ static void	setup_execve(t_ms *ms, t_cmdlist *cmd, char **command)
 }
 
 // Executes one command no Pipes
-// Command is the temp command with the redirections removed as arguments
+// Command is the temp command with the redirs removed as arguments
 void	setup_single_cmd(t_ms *ms, t_cmdlist *cmd)
 {
 	char	**command;
 
 	command = set_cmd(cmd);
 	if (is_builtin(command[0]))
-		setup_builtin(ms, cmd, command, tokens_exist(cmd));
+		setup_builtin(ms, cmd, command, tokens_present(cmd));
 	else
 		setup_execve(ms, cmd, command);
-	if (command && tokens_exist(cmd))
+	if (command && tokens_present(cmd))
 		free(command);
 }

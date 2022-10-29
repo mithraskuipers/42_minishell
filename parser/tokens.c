@@ -6,7 +6,7 @@
 /*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/11/30 00:29:12 by rkieboom      #+#    #+#                 */
-/*   Updated: 2022/10/29 17:55:44 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/29 18:15:02 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static void	tokens_allocation(t_ms *ms)
 		ms->tokens[cmd].token_pos = ft_calloc(total + 1, sizeof(int));
 		if (!ms->tokens[cmd].token_pos)
 			return_exit(1, PRNT_ERRNO_NL);
-		ms->tokens[cmd].total = total;
+		ms->tokens[cmd].n_tokens = total;
 		total = 0;
 		cmd++;
 	}
@@ -76,7 +76,7 @@ static void	tokens_count(t_ms *ms)
 	while (ms->parse.commands[i])
 	{
 		j = 0;
-		while (j < ms->tokens[i].total)
+		while (j < ms->tokens[i].n_tokens)
 		{
 			if (!ft_strncmp(ms->tokens[i].token[j], "<<", 3))
 				ms->tokens[i].double_redirection_left++;

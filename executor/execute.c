@@ -6,7 +6,7 @@
 /*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/11 15:26:49 by rkieboom      #+#    #+#                 */
-/*   Updated: 2022/10/29 12:55:15 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/29 18:07:21 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 //This is were we execute our Command
 /**
- * TODO: Redirections in pipes
+ * TODO: redirs in pipes
  * @Rowan, I removed the unnecessary 3rd argument, as it made the code
  * more difficult to read.
 **/

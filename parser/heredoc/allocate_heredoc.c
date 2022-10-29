@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/28 21:57:24 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/10/29 10:18:42 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/29 18:15:07 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static void	get_heredoc_q(t_ms *ms, int k)
 
 	i = 0;
 	current = 0;
-	while (i < ms->tokens[k].total)
+	while (i < ms->tokens[k].n_tokens)
 	{
 		if (!ft_strncmp(ms->tokens[k].token[i], "<<", 3))
 		{

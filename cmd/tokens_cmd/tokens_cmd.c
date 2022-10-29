@@ -6,7 +6,7 @@
 /*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/03/17 16:25:48 by rkieboom      #+#    #+#                 */
-/*   Updated: 2022/10/29 17:31:22 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/29 18:13:30 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	tokens_cmd(t_ms *v, t_cmdlist *cmd, int k)
 	t_cmdlist	*temp;
 
 	temp = cmd;
-	if (v->tokens[k].total == 0)
+	if (v->tokens[k].n_tokens == 0)
 		return ;
 	while (temp)
 	{

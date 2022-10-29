@@ -6,7 +6,7 @@
 /*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/08 15:13:45 by rkieboom      #+#    #+#                 */
-/*   Updated: 2022/10/29 12:42:28 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/29 18:13:27 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	set_heredoc_tokens(t_ms *ms, t_cmdlist *cmd, int k)
 
 	i = 0;
 	heredoc_c = 0;
-	while (i < ms->tokens[k].total)
+	while (i < ms->tokens[k].n_tokens)
 	{
 		if (!ft_strncmp(ms->tokens[k].token[i], "|", 2))
 		{

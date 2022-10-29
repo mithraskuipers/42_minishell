@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   set_tokens.c                                       :+:    :+:            */
+/*   tokens_dup.c                                       :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/08/29 14:08:53 by rkieboom      #+#    #+#                 */
-/*   Updated: 2022/10/29 17:31:22 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/29 18:13:33 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ void	tokens_dup(t_ms *v, t_cmdlist *pipes, int k)
 	while (vars.temp)
 	{
 		vars.i = 0;
-		vars.tokens = vars.temp->tokens->total;
+		vars.tokens = vars.temp->tokens->n_tokens;
 		while (vars.tokens)
 		{
 			vars.temp->tokens->token[vars.token_local_c] = \

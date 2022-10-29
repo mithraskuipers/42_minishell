@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/28 21:57:11 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/10/29 17:32:10 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/29 18:18:05 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ typedef struct s_heredoc
 
 typedef struct s_tokens
 {
-	int			total;
+	int			n_tokens;
 	int			stdin_fd;
 	int			stdout_fd;
 	char		**token;
@@ -114,9 +114,9 @@ extern t_global	g_global;
 int		parser_wrapper(t_ms *ms);
 
 void	clean_ms(t_ms *ms);
-void	clean_cmdlist(t_ms *ms, int totalcommands);
+void	clean_cmdlist(t_ms *ms, int n_cmds);
 void	clean_commands(t_ms *ms);
-void	free_heredoc(t_ms *ms, int totalcommands);
+void	free_heredoc(t_ms *ms, int n_cmds);
 
 void	ft_error(char *msg);
 int		syntax_error_parse(t_ms *ms);

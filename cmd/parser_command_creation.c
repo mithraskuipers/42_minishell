@@ -53,7 +53,7 @@ int	parser_command_creation(t_ms *ms, int k)
 			parser_command_no_pipes(ms, &ms->cmd[i], i);
 		else
 			parser_command_pipes(ms, &ms->cmd[i], pipes, i);
-		if (ms->tokens[i].total)
+		if (ms->tokens[i].n_tokens)
 			tokens_cmd(ms, &ms->cmd[i], i);
 		i++;
 	}

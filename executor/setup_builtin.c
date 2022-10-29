@@ -6,7 +6,7 @@
 /*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/17 15:28:34 by rkieboom      #+#    #+#                 */
-/*   Updated: 2022/10/29 12:42:28 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/29 18:13:51 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static void	reset_fds(t_ms *ms, t_cmdlist *cmd)
 static void	with_tokens(t_ms *ms, t_cmdlist *cmd, char **command)
 {
 	cpy_fds(ms);
-	if (loop_over_redirs(cmd, 0, cmd->tokens->total))
+	if (redirs_looper(cmd, 0, cmd->tokens->n_tokens))
 	{
 		reset_fds(ms, cmd);
 		g_global.status = 1;

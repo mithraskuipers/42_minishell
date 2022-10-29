@@ -6,7 +6,7 @@
 #    By: mikuiper <mikuiper@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/10/28 21:58:30 by mikuiper      #+#    #+#                  #
-#    Updated: 2022/10/29 17:57:44 by mikuiper      ########   odam.nl          #
+#    Updated: 2022/10/29 18:07:21 by mikuiper      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -122,9 +122,9 @@ SRCS.ENV.LIST.FUNC =	env_list/tools/env_init.c \
 SRCS.EXECUTE =			executor/execute.c executor/run_cmd.c \
 						executor/exec_functions.c \
 						executor/set_cmd.c \
-						executor/redirections/loop_over_redirs.c \
-						executor/redirections/redirections.c \
-						executor/redirections/heredoc.c \
+						executor/redirs/redirs_looper.c \
+						executor/redirs/redirs.c \
+						executor/redirs/heredoc.c \
 						executor/setup_single_cmd.c \
 						executor/setup_pipes_cmd.c \
 						executor/setup_builtin.c \
@@ -132,10 +132,10 @@ SRCS.EXECUTE =			executor/execute.c executor/run_cmd.c \
 
 SRCS.NEWEXECUTE =		newexecute/execute.c newexecute/run_cmd.c \
 						newexecute/set_cmd.c \
-						newexecute/redirections/redirection_functions.c \
-						newexecute/redirections/redirections.c \
-						newexecute/redirections/set_redirections.c \
-						newexecute/redirections/get_last_redir.c \
+						newexecute/redirs/redirection_functions.c \
+						newexecute/redirs/redirs.c \
+						newexecute/redirs/set_redirs.c \
+						newexecute/redirs/get_last_redir.c \
 						newexecute/pipes/heredoc_pipes.c \
 						newexecute/pipes/pipes.c \
 						newexecute/pipes/setup_pipes.c \

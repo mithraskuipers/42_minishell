@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/29 15:55:39 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/10/29 15:55:42 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/29 18:14:11 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static int	check_double_pipe_error(t_vars *vars, t_ms *ms)
 //Checks if 2 tokens are next to each other
 static int	tokens_syntax_neighboring(t_vars *vars, t_ms *ms)
 {
-	while (vars->j < ms->tokens[vars->i].total)
+	while (vars->j < ms->tokens[vars->i].n_tokens)
 	{
 		if (ms->tokens[vars->i].token_pos[vars->j] + 1 == \
 		ms->tokens[vars->i].token_pos[vars->j + 1] && \
@@ -64,7 +64,7 @@ static int	first(t_vars *vars, t_ms *ms)
 {
 	vars->j = 0;
 	while (vars->i < vars->k && (&ms->tokens[vars->i] == NULL \
-	|| ms->tokens[vars->i].total == 0))
+	|| ms->tokens[vars->i].n_tokens == 0))
 		vars->i++;
 	if (vars->i == vars->k)
 		return (1);
@@ -104,11 +104,11 @@ int	syntax_error_parse(t_ms *ms)
 //Checks syntax errors for tokens
 int	parser_syntax_tokens(t_cmdlist *cmd, int i)
 {
-	if (!cmd->tokens || cmd->tokens->total == 0)
+	if (!cmd->tokens || cmd->tokens->n_tokens == 0)
 		return (0);
-	while (i < cmd->tokens->total)
+	while (i < cmd->tokens->n_tokens)
 	{
-		if (i + 1 == cmd->tokens->total)
+		if (i + 1 == cmd->tokens->n_tokens)
 		{
 			if (cmd->tokens->token_pos[i] == cmd_len(cmd->command) - 1) 
 			{

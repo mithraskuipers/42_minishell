@@ -30,7 +30,7 @@ int	pipe_location(t_ms *v, int k, int token_pos)
 
 	i = 0;
 	len = 0;
-	while (i < v->tokens[k].total)
+	while (i < v->tokens[k].n_tokens)
 	{
 		if (v->tokens[k].token[i][0] == '|')
 		{
