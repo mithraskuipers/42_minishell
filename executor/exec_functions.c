@@ -6,7 +6,7 @@
 /*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/24 12:02:32 by rkieboom      #+#    #+#                 */
-/*   Updated: 2022/10/30 12:38:29 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/30 13:22:34 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	ft_fork(pid_t *pid, int *fd)
 		g_global.status = 1;
 		return (1);
 	}
-	return(0);
+	return (0);
 }
 
 int	ft_pipe(int *fd)

@@ -1,17 +1,29 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        ::::::::            */
+/*   expander.h                                         :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2022/10/30 13:16:26 by mikuiper      #+#    #+#                 */
+/*   Updated: 2022/10/30 13:23:30 by mikuiper      ########   odam.nl         */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef EXPANDER_H
 # define EXPANDER_H
 
-#include "../header.h"
+# include "../header.h"
 
-typedef struct	s_varsexp
+typedef struct s_varsexp
 {
-	int			i;
-	int			x;
-	int			length;
-	char		*str;
-	char		*newstr;
-	char		*temp;
-}				t_varsexp;
+	int		i;
+	int		x;
+	int		length;
+	char	*str;
+	char	*newstr;
+	char	*temp;
+}			t_varsexp;
 
 char	*expander_wrapper(t_ms *ms, char *str);
 int		expander_get_len(t_ms *ms, char *str, int i, int length);
@@ -19,6 +31,5 @@ void	expander_tilde(t_ms *ms, int length);
 void	set_env_value(t_ms *ms, t_varsexp *vars);
 void	return_ret_status(t_varsexp *vars);
 void	init_vars(t_ms *ms, t_varsexp *vars, int length, char *str);
-
 
 #endif

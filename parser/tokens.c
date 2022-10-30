@@ -6,7 +6,7 @@
 /*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/11/30 00:29:12 by rkieboom      #+#    #+#                 */
-/*   Updated: 2022/10/29 22:42:47 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/30 13:10:46 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,8 @@ static void	tokens_dup(t_ms *ms)
 		{
 			if (char_is_token(ms->parse.commands[cmd][wrd]))
 			{
-				ms->tokens[cmd].token[tkn] = ft_strdup(ms->parse.commands[cmd][wrd]);
+				ms->tokens[cmd].token[tkn] = ft_strdup(\
+				ms->parse.commands[cmd][wrd]);
 				ms->tokens[cmd].token_pos[tkn] = wrd;
 				tkn++;
 			}

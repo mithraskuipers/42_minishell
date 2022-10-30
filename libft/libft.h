@@ -6,7 +6,7 @@
 /*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/11 09:19:19 by rkieboom      #+#    #+#                 */
-/*   Updated: 2022/10/30 12:51:16 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/30 13:09:54 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include <stdlib.h>
 
-typedef struct		s_libft
+typedef struct s_libft
 {
 	void			*content;
 	struct s_libft	*next;

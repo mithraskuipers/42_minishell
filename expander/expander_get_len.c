@@ -80,7 +80,7 @@ static void	expander_squote(t_ms *ms, char *str, int *i, int *len)
 	(*len)--;
 }
 
-int			expander_get_len(t_ms *ms, char *str, int i, int len)
+int	expander_get_len(t_ms *ms, char *str, int i, int len)
 {
 	while (str[i] && str[i] == ' ')
 		i++;

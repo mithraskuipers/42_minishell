@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   executor_builtin.c                                    :+:    :+:            */
+/*   executor_builtin.c                                 :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
+/*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/10/17 15:28:34 by rkieboom      #+#    #+#                 */
-/*   Updated: 2022/10/29 18:27:21 by mikuiper      ########   odam.nl         */
+/*   Created: 2022/10/30 13:14:53 by mikuiper      #+#    #+#                 */
+/*   Updated: 2022/10/30 13:15:29 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,10 +55,11 @@ static void	with_tokens(t_ms *ms, t_cmdlist *cmd, char **command)
 	filedescriptors_reset(ms, cmd);
 }
 
-void	executor_builtin(t_ms *ms, t_cmdlist *cmd, char **command, int token_exist)
+void	executor_builtin(\
+t_ms *ms, t_cmdlist *cmdlist, char **command, int token_exist)
 {
 	if (token_exist)
-		with_tokens(ms, cmd, command);
+		with_tokens(ms, cmdlist, command);
 	else
 		executor_cmd_portal(ms, command, 0);
 }

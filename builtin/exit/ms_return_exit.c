@@ -6,34 +6,31 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/29 15:14:15 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/10/29 15:14:17 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/30 13:05:03 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../commands.h"
 
-/**
- * @param ret exits with ret as value if not 0
- * @param print 1 prints errno with newline
- * @param print 2 prints errno without newline
- * @param print 0 doesn't print
-**/
-void	return_exit(int ret, int print)
+// return_exit() prints an error and exits with provided exit code if != 0.
+// The error message ends with a newline if print_mode == 1, and without newline
+// if print_mode == 2.
+void	return_exit(int exit_code, int print_mode)
 {
-	if (print == 1)
+	if (print_mode == 1)
 	{
 		ft_putstr_fd("minishell-4.2$: ", 2);
 		ft_putendl_fd(strerror(errno), 2);
 	}
-	else if (print == 2)
+	else if (print_mode == 2)
 	{
 		ft_putstr_fd("minishell-4.2$: ", 2);
 		ft_putstr_fd(strerror(errno), 2);
 		ft_putchar_fd(' ', 2);
 	}
-	if (ret != 0)
+	if (exit_code != 0)
 	{
 		tcsetattr(0, 0, &g_global.termios_save);
-		exit(ret);
+		exit(exit_code);
 	}
 }

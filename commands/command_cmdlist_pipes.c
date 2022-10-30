@@ -132,29 +132,29 @@ static void	command_cmdlist_last(t_ms *v, t_cmdlist *temp, int pipes, int k)
 // It will result in a linked list neighbouring nodes (i.e. next nodes).
 void	command_cmdlist_pipes(t_ms *v, t_cmdlist *pipes_cmd, int pipes, int k)
 {
-	int				i;
-	t_cmdlist	*temp;
+	int			i;
+	t_cmdlist	*cmdlist;
 
-	temp = pipes_cmd;
+	cmdlist = pipes_cmd;
 	i = 0;
 	while (pipes + 1)
 	{
-		temp->id = i;
+		cmdlist->id = i;
 		if (i == 0)
-			command_cmdlist_first(v, temp, k);
+			command_cmdlist_first(v, cmdlist, k);
 		else if (pipes == 0)
-			command_cmdlist_last(v, temp, v->tokens[k].pipe - 1, k);
+			command_cmdlist_last(v, cmdlist, v->tokens[k].pipe - 1, k);
 		else
-			command_cmdlist_middle(v, temp, i, k);
+			command_cmdlist_middle(v, cmdlist, i, k);
 		i++;
 		pipes--;
 		if (pipes >= 0)
 		{
-			temp->next = ft_calloc(1, sizeof(t_cmdlist));
-			if (!temp->next)
+			cmdlist->next = ft_calloc(1, sizeof(t_cmdlist));
+			if (!cmdlist->next)
 				return_exit(1, PRNT_ERRNO_NL);
-			temp->next->prev = temp;
-			temp = temp->next;
+			cmdlist->next->prev = cmdlist;
+			cmdlist = cmdlist->next;
 		}
 	}
 }

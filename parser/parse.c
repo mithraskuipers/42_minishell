@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/24 14:34:50 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/10/29 22:48:51 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/30 13:20:33 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static void	expander_loop(t_ms *ms)
 		x = 0;
 		while (ms->parse.commands[cmd][i] != NULL)
 		{
-			ms->parse.commands[cmd][i - x] = expander_wrapper\
+			ms->parse.commands[cmd][i - x] = expander_wrapper \
 			(ms, ms->parse.commands[cmd][i]);
 			if (!ms->parse.commands[cmd][i])
 				x++;
@@ -79,8 +79,10 @@ static void	parser_input_splitter(t_ms *ms, t_vars *vars)
 		return_exit(1, PRNT_ERRNO_NL);
 	while (vars->n_words)
 	{
-		ms->parse.commands[vars->cmd_i] = parser_split_spaces(ms, vars->split_cmd[vars->cmd_i], ' ');
-		parser_separate_words_tokens(ms, parser_command_len_wrapper(ms->parse.commands[vars->cmd_i], ms), vars->cmd_i);
+		ms->parse.commands[vars->cmd_i] = parser_split_spaces(\
+		ms, vars->split_cmd[vars->cmd_i], ' ');
+		parser_separate_words_tokens(ms, parser_command_len_wrapper(\
+		ms->parse.commands[vars->cmd_i], ms), vars->cmd_i);
 		vars->n_words--;
 		vars->cmd_i++;
 	}

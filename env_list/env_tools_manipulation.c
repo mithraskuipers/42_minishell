@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/29 15:07:13 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/10/29 21:06:27 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/30 13:17:17 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,4 +52,3 @@ void	env_change_content(t_env *v, char *envname, char *envcontent)
 			temp->content = 0;
 	}
 }
-

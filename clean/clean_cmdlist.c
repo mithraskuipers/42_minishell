@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/29 13:13:34 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/10/29 18:18:05 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/30 13:24:22 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void	free_cmdlist_tokens(t_cmdlist *temp)
 {
 	free(temp->tokens->token);
 	free(temp->tokens->token_pos);
-	free(temp->tokens);	
+	free(temp->tokens);
 }
 
 static void	free_cmdlist(t_cmdlist *temp, int k)
@@ -50,12 +50,11 @@ static void	free_cmdlist(t_cmdlist *temp, int k)
 		free(temp);
 }
 
-
 // TODO: Removed arguments 2 and 3, added those inside the function
 void	clean_cmdlist(t_ms *ms, int n_cmds)
 {
-	int	i;
-	int	k;
+	int			i;
+	int			k;
 	t_cmdlist	*temp1;
 	t_cmdlist	*temp2;
 

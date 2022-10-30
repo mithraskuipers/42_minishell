@@ -14,7 +14,7 @@
 
 static void	heredoc_allocate(t_heredoc *heredoc, int len)
 {
-	t_heredoc_data *data;
+	t_heredoc_data	*data;
 
 	while (len)
 	{

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   executor_run_single_command.c                                 :+:    :+:            */
+/*   executor_single_cmd.c                              :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
+/*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/10/12 00:44:55 by rkieboom      #+#    #+#                 */
-/*   Updated: 2022/10/29 18:10:20 by mikuiper      ########   odam.nl         */
+/*   Created: 2022/10/30 13:14:20 by mikuiper      #+#    #+#                 */
+/*   Updated: 2022/10/30 13:14:21 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 

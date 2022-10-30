@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/30 11:38:56 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/10/30 11:47:39 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/30 13:14:14 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,8 +105,9 @@ void	executor_multiple_cmds(t_ms *ms, t_cmdlist *cmdlist)
 {
 	pid_t		*pids;
 	const int	len = get_cmd_len(cmdlist);
-	int i = 0;
+	int			i;
 
+	i = 0;
 	pids = ft_calloc(len + 1, sizeof(pid_t));
 	if (!pids)
 		return_exit(1, PRNT_ERRNO_NL);

@@ -6,7 +6,7 @@
 /*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/05/25 17:00:06 by rkieboom      #+#    #+#                 */
-/*   Updated: 2022/10/29 01:06:46 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/30 13:18:45 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static char	*get_full_env(t_env *env)
 	return (str);
 }
 
-static	int	get_length(t_env *temp)
+static int	get_length(t_env *temp)
 {
 	int	length;
 

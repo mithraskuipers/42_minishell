@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/29 18:08:07 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/10/29 18:14:02 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/30 13:12:21 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,8 @@ int	redir_right(t_cmdlist *v)
 
 int	redirs(t_cmdlist *cmdlist)
 {
-	if (tokens_present(cmdlist) && redirs_looper(cmdlist, 0, cmdlist->tokens->n_tokens))
+	if (tokens_present(cmdlist) && redirs_looper(cmdlist, 0, \
+	cmdlist->tokens->n_tokens))
 		return (1);
 	if (tokens_present(cmdlist) && cmdlist->tokens->last_l != -1)
 	{

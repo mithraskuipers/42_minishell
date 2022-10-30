@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   parser_split_spaces.c                               :+:    :+:            */
+/*   parser_split_spaces.c                              :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/10/24 14:35:06 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/10/29 00:25:23 by mikuiper      ########   odam.nl         */
+/*   Created: 2022/10/30 13:20:54 by mikuiper      #+#    #+#                 */
+/*   Updated: 2022/10/30 13:21:18 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ typedef struct s_vars
 {
 	int	i;
 	int	k;
-	int	length;
+	int	len;
 }				t_vars;
 
 static int	arraysize(const char *s, char c, t_ms *ms)
@@ -61,39 +61,39 @@ static char	**splitter(t_ms *ms, const char *str, char **result)
 	{
 		quote_toggle(ms, (char *)str + vars.i);
 		if (str[vars.i] != ' ' || ms->parse.squote || ms->parse.dquote)
-			vars.length++;
+			vars.len++;
 		else
 		{
-			if (vars.length != 0)
+			if (vars.len != 0)
 			{
 				result[vars.k] = ft_substr \
-				(str, vars.i - vars.length, vars.length);
+				(str, vars.i - vars.len, vars.len);
 				if (!result[vars.k])
 					return_exit(1, PRNT_ERRNO_NL);
 				vars.k++;
-				vars.length = 0;
+				vars.len = 0;
 			}
 		}
 		vars.i++;
 	}
 	if (str[vars.i] == '\0' && vars.i > 0 && str[vars.i - 1] != ' ')
-		result[vars.k] = ft_substr(str, vars.i - vars.length, vars.length);
+		result[vars.k] = ft_substr(str, vars.i - vars.len, vars.len);
 	return (result);
 }
 
 //Splits on spaces
 char	**parser_split_spaces(t_ms *ms, const char *str, char c)
 {
-	int		length;
+	int		len;
 	char	**result;
 
 	if (!str)
 		return (NULL);
-	length = arraysize(str, c, ms);
-	result = ft_calloc(length + 1, sizeof(char *));
+	len = arraysize(str, c, ms);
+	result = ft_calloc(len + 1, sizeof(char *));
 	if (!result)
 		return_exit(1, PRNT_ERRNO_NL);
 	result = splitter(ms, str, result);
-	result[length] = NULL;
+	result[len] = NULL;
 	return (result);
 }
