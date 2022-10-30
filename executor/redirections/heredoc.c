@@ -6,11 +6,11 @@
 /*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/17 12:48:35 by rkieboom      #+#    #+#                 */
-/*   Updated: 2022/10/29 21:09:22 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/30 13:58:48 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../execute.h"
+#include "../executor.h"
 
 void	heredoc_set_pipe(t_heredoc *heredoc, t_heredoc_data *data)
 {

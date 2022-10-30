@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../execute.h"
+#include "../executor.h"
 
 static int	single_redirection_right(t_cmdlist *cmdlist, int i)
 {

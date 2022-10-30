@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   init_new_tokens.c                                  :+:    :+:            */
+/*   commands_tokens_init.c                             :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
+/*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/08/29 14:08:13 by rkieboom      #+#    #+#                 */
-/*   Updated: 2022/10/29 18:13:22 by mikuiper      ########   odam.nl         */
+/*   Created: 2022/10/30 14:32:04 by mikuiper      #+#    #+#                 */
+/*   Updated: 2022/10/30 14:36:23 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "tokens.h"
 
 //Allocate the token variables
-void	init_new_tokens(t_cmdlist *cmd)
+void	commands_cmd_tokens_init(t_cmdlist *cmd)
 {
 	t_cmdlist	*temp;
 

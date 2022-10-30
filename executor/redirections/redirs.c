@@ -6,11 +6,11 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/29 18:08:07 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/10/30 13:12:21 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/30 13:58:48 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../execute.h"
+#include "../executor.h"
 
 int	tokens_present(t_cmdlist *cmd)
 {

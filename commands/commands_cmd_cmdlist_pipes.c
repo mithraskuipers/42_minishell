@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   command_cmdlist_pipes.c                  :+:    :+:            */
+/*   commands_cmd_cmdlist_pipes.c                  :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cmd.h"
+#include "commands.h"
 
 //Returns location of the pipe
 // 
@@ -53,7 +53,7 @@ static void	command_cmdlist_first(t_ms *v, t_cmdlist *temp, int k)
 	i = 0;
 	j = command_get_pipe_pos(v, k, 0);
 	if (j == -1)
-		ft_error("Something went wrong func command_cmdlist_first!\n");
+		ms_error("Something went wrong func command_cmdlist_first!\n");
 	temp->command = ft_calloc(j + 1, sizeof(char *));
 	if (!temp->command)
 		return_exit(1, PRNT_ERRNO_NL);
@@ -76,10 +76,10 @@ static void	command_cmdlist_middle(t_ms *v, t_cmdlist *temp, int pipes, int k)
 
 	i = command_get_pipe_pos(v, k, pipes - 1);
 	if (i == -1)
-		ft_error("Something went wrong in func command_cmdlist_middle\n");
+		ms_error("Something went wrong in func command_cmdlist_middle\n");
 	j = command_get_pipe_pos(v, k, pipes);
 	if (j == -1)
-		ft_error("Something went wrong in func command_cmdlist_middle\n");
+		ms_error("Something went wrong in func command_cmdlist_middle\n");
 	temp->command = ft_calloc(j - i, sizeof(char *));
 	if (!temp->command)
 		return_exit(1, PRNT_ERRNO_NL);
@@ -127,10 +127,10 @@ static void	command_cmdlist_last(t_ms *v, t_cmdlist *temp, int pipes, int k)
 	}
 }
 
-// command_cmdlist_pipes() fills the t_cmdlist struct for a command that
+// commands_cmd_cmdlist_pipes() fills the t_cmdlist struct for a command that
 // contains multiple commands, separated from eachother by a pipe operator.
 // It will result in a linked list neighbouring nodes (i.e. next nodes).
-void	command_cmdlist_pipes(t_ms *v, t_cmdlist *pipes_cmd, int pipes, int k)
+void	commands_cmd_cmdlist_pipes(t_ms *v, t_cmdlist *pipes_cmd, int pipes, int k)
 {
 	int			i;
 	t_cmdlist	*cmdlist;

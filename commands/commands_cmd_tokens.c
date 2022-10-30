@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   tokens_cmd.c                                       :+:    :+:            */
+/*   commands_cmd_tokens.c                                       :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/03/17 16:25:48 by rkieboom      #+#    #+#                 */
-/*   Updated: 2022/10/29 18:13:30 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/30 14:29:26 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "tokens.h"
 
 //Sets the tokens to CMD
-void	tokens_cmd(t_ms *v, t_cmdlist *cmd, int k)
+void	commands_cmd_tokens(t_ms *v, t_cmdlist *cmdlist, int k)
 {
 	t_cmdlist	*temp;
 
-	temp = cmd;
+	temp = cmdlist;
 	if (v->tokens[k].n_tokens == 0)
 		return ;
 	while (temp)
@@ -27,7 +27,7 @@ void	tokens_cmd(t_ms *v, t_cmdlist *cmd, int k)
 			return_exit(1, PRNT_ERRNO_NL);
 		temp = temp->next;
 	}
-	count_tokens(v, cmd, k);
-	init_new_tokens(cmd);
-	tokens_dup(v, cmd, k);
+	commands_cmd_tokens_count(v, cmdlist, k);
+	commands_cmd_tokens_init(cmdlist);
+	commands_tokens_dup(v, cmdlist, k);
 }

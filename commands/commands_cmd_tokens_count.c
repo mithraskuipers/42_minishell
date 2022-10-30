@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   count_tokens.c                                     :+:    :+:            */
+/*   commands_cmd_tokens_count.c                                     :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
@@ -48,7 +48,7 @@ static void	check_token(t_ms *v, t_vars *vars, t_cmdlist *temp, int k)
 }
 
 //Counts the amount of tokens we have and wich ones
-void	count_tokens(t_ms *v, t_cmdlist *temp, int k)
+void	commands_cmd_tokens_count(t_ms *v, t_cmdlist *temp, int k)
 {
 	t_vars	vars;
 

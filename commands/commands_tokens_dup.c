@@ -6,7 +6,7 @@
 /*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/08/29 14:08:53 by rkieboom      #+#    #+#                 */
-/*   Updated: 2022/10/30 13:11:34 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/30 14:45:02 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static char	*ret_token(t_ms *v, int k, int token_count)
 				i++;
 		}
 		if (!v->tokens[k].token[i])
-			ft_error("Something went wrong in func: ret_token\n");
+			ms_error("Something went wrong in func: ret_token\n");
 	}
 	return (v->tokens[k].token[i]);
 }
@@ -82,13 +82,13 @@ static int	get_token_pos(t_ms *v, int k, int token_count)
 				i++;
 		}
 		if (!v->tokens[k].token[i])
-			ft_error("Something went wrong in func: get_token_pos\n");
+			ms_error("Something went wrong in func: get_token_pos\n");
 	}
 	return (v->tokens[k].token_pos[i] - get_resetter(v, k, i));
 }
 
 //Set the token values
-void	tokens_dup(t_ms *v, t_cmdlist *pipes, int k)
+void	commands_tokens_dup(t_ms *v, t_cmdlist *pipes, int k)
 {
 	t_vars	vars;
 

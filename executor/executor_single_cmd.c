@@ -6,13 +6,13 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/30 13:14:20 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/10/30 13:14:21 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/30 14:12:41 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "execute.h"
+#include "executor.h"
 
-static int	is_builtin(char *cmd)
+static int	is_builtins(char *cmd)
 {
 	if (!cmd || !cmd[0])
 		return (0);
@@ -71,8 +71,8 @@ void	executor_run_single_command(t_ms *ms, t_cmdlist *cmd)
 	char	**command;
 
 	command = executor_get_command(cmd);
-	if (is_builtin(command[0]))
-		executor_builtin(ms, cmd, command, tokens_present(cmd));
+	if (is_builtins(command[0]))
+		executor_builtins(ms, cmd, command, tokens_present(cmd));
 	else
 		executor_execve(ms, cmd, command);
 	if (command && tokens_present(cmd))

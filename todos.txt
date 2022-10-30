@@ -4,3 +4,4 @@ Reorganize makefile
 Add comments basically everywhere for easy readability
 Check alle print messages of die nog kloppen
 Remove nonsense comments
+Make fclean does not delete obj folder nor its contents

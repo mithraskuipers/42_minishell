@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   execute.c                                          :+:    :+:            */
+/*   executor.c                                          :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "execute.h"
+#include "executor.h"
 
 //This is were we execute our Command
 /**
@@ -18,23 +18,23 @@
  * @Rowan, I removed the unnecessary 3rd argument, as it made the code
  * more difficult to read.
 **/
-void	executor(t_ms *ms, t_cmdlist *cmd)
+void	executor(t_ms *ms, t_cmdlist *cmdlist)
 {
-	int	cur_cmd;
+	int	cmd_i;
 	int	n_cmds;
 
-	cur_cmd = 0;
+	cmd_i = 0;
 	n_cmds = 0;
 	while (ms->parse.commands[n_cmds])
 		n_cmds++;
 	tcsetattr(0, 0, &g_global.termios_save);
 	update_signals_handler();
-	while (cur_cmd < n_cmds)
+	while (cmd_i < n_cmds)
 	{
-		if (!cmd[cur_cmd].next)
-			executor_run_single_command(ms, &cmd[cur_cmd]);
+		if (!cmdlist[cmd_i].next)
+			executor_run_single_command(ms, &cmdlist[cmd_i]);
 		else
-			executor_multiple_cmds(ms, &cmd[cur_cmd]);
-		cur_cmd++;
+			executor_multiple_cmds(ms, &cmdlist[cmd_i]);
+		cmd_i++;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/28 21:57:11 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/10/30 13:08:14 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/30 14:37:44 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@ extern t_global	g_global;
 char	*input_add_newline(char *s);
 int		cmd_len(char **str);
 int		input_syntax_semicolons(t_ms *v);
-int		parser_command_creation(t_ms *ms, int k);
+int		commands_cmdlists_maker(t_ms *ms, int k);
 int		parser_syntax_tokens(t_cmdlist *cmd, int i);
 int		parser_wrapper(t_ms *ms);
 int		str_skip_whitespace(const char *str);
@@ -118,9 +118,9 @@ int		syntax_error_parse(t_ms *ms);
 void	clean_cmdlist(t_ms *ms, int n_cmds);
 void	clean_commands(t_ms *ms);
 void	clean_ms(t_ms *ms);
-void	executor(t_ms *ms, t_cmdlist *cmd);
+void	executor(t_ms *ms, t_cmdlist *cmdlist);
 void	free_heredoc(t_ms *ms, int n_cmds);
-void	ft_error(char *msg);
+void	ms_error(char *msg);
 void	init_minishell(int argc, char **argv, t_ms *ms);
 void	init_shell_level(t_ms *ms);
 void	init_signals(t_env **env);

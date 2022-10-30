@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   command_cmdlist_no_pipes.c               :+:    :+:            */
+/*   commands_cmd_cmdlist_no_pipes.c               :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
@@ -10,12 +10,12 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cmd.h"
+#include "commands.h"
 
-// command_cmdlist_no_pipes() fills the t_cmdlist struct for a single command 
+// commands_cmd_cmdlist_no_pipes() fills the t_cmdlist struct for a single command 
 // (i.e. command without pipes). It will result in a linked list without
 // neighbouring nodes (i.e. no next).
-static void	command_cmdlist_no_pipes(t_ms *v, t_cmdlist *cmd, int k)
+static void	commands_cmd_cmdlist_no_pipes(t_ms *v, t_cmdlist *cmd, int k)
 {
 	int	i;
 
@@ -37,7 +37,8 @@ static void	command_cmdlist_no_pipes(t_ms *v, t_cmdlist *cmd, int k)
 
 // Creates a command struct with the data from the parse and token structs.
 // Used to execute the commands
-int	parser_command_creation(t_ms *ms, int k)
+// 
+int	commands_cmdlists_maker(t_ms *ms, int k)
 {
 	int	i;
 	int	pipes;
@@ -52,11 +53,11 @@ int	parser_command_creation(t_ms *ms, int k)
 	{
 		pipes = ms->tokens[i].pipe;
 		if (pipes == 0)
-			command_cmdlist_no_pipes(ms, &ms->cmd[i], i);
+			commands_cmd_cmdlist_no_pipes(ms, &ms->cmd[i], i);
 		else
-			command_cmdlist_pipes(ms, &ms->cmd[i], pipes, i);
+			commands_cmd_cmdlist_pipes(ms, &ms->cmd[i], pipes, i);
 		if (ms->tokens[i].n_tokens)
-			tokens_cmd(ms, &ms->cmd[i], i);
+			commands_cmd_tokens(ms, &ms->cmd[i], i);
 		i++;
 	}
 	return (0);

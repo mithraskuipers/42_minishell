@@ -6,7 +6,7 @@
 #    By: mikuiper <mikuiper@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/10/28 21:58:30 by mikuiper      #+#    #+#                  #
-#    Updated: 2022/10/30 12:45:56 by mikuiper      ########   odam.nl          #
+#    Updated: 2022/10/30 14:46:50 by mikuiper      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,9 +34,9 @@ SRCDIR	= ./
 OBJDIR	= bin/
 LIBFTDIR = libft/
 
-INCLUDES = header.h parser/parse.h executor/execute.h cosmetics/splash.h \
-libft/libft.h env_list/env_list.h builtin/commands.h commands/cmd.h \
-commands/tokens_cmd/tokens.h expander/expander.h
+INCLUDES = header.h parser/parse.h executor/executor.h cosmetics/splash.h \
+libft/libft.h env_list/env_list.h builtins/commands.h commands/commands.h \
+commands/tokens.h expander/expander.h
 
 LIBFTLIB = $(LIBFTDIR)/libft.a
 
@@ -66,7 +66,7 @@ SRCS =					main.c \
 						$(SRCS.EXECUTE) \
 
 TOOLS =					tools/str_skip_whitespace.c \
-						tools/ft_error.c \
+						tools/ms_error.c \
 						tools/signal_handler.c \
 
 EXPANDER =				expander/expander.c \
@@ -85,27 +85,27 @@ INIT =					init/init.c \
 
 SPLASH =				cosmetics/splash.c
 
-SRCS.COMMANDS.CD =		builtin/cd/cd.c \
-						builtin/cd/cd_check_permissions.c \
+SRCS.COMMANDS.CD =		builtins/cd/cd.c \
+						builtins/cd/cd_check_permissions.c \
 
-SRCS.COMMANDS.ECHO =	builtin/echo/echo.c \
+SRCS.COMMANDS.ECHO =	builtins/echo/echo.c \
 
-SRCS.COMMANDS.ENV =		builtin/env/env.c \
+SRCS.COMMANDS.ENV =		builtins/env/env.c \
 
-SRCS.COMMANDS.PWD =		builtin/pwd/pwd.c \
+SRCS.COMMANDS.PWD =		builtins/pwd/pwd.c \
 
-SRCS.COMMANDS.EXPORT =	builtin/export/export.c \
-						builtin/export/export_utils.c \
+SRCS.COMMANDS.EXPORT =	builtins/export/export.c \
+						builtins/export/export_utils.c \
 
-SRCS.COMMANDS.UNSET =	builtin/unset/unset.c \
+SRCS.COMMANDS.UNSET =	builtins/unset/unset.c \
 
-SRCS.COMMANDS.EXECVE =	builtin/execve/execve.c \
-						builtin/execve/commands.c \
-						builtin/execve/relative_path.c \
-						builtin/execve/absolute_path.c \
+SRCS.COMMANDS.EXECVE =	builtins/execve/execve.c \
+						builtins/execve/commands.c \
+						builtins/execve/relative_path.c \
+						builtins/execve/absolute_path.c \
 
-SRCS.COMMANDS.EXIT = 	builtin/exit/ms_exit.c \
-						builtin/exit/ms_return_exit.c \
+SRCS.COMMANDS.EXIT = 	builtins/exit/ms_exit.c \
+						builtins/exit/ms_return_exit.c \
 
 SRCS.ENV.LIST =			env_list/env_lst_new.c \
 						env_list/env_lstadd_back.c \
@@ -118,7 +118,7 @@ SRCS.ENV.LIST.FUNC =	env_list/env_init.c \
 						env_list/env_tools_check.c \
 						env_list/env_tools_get.c \
 
-SRCS.EXECUTE =			executor/execute.c \
+SRCS.EXECUTE =			executor/executor.c \
 						executor/executor_command_wrapper.c \
 						executor/exec_functions.c \
 						executor/executor_get_command.c \
@@ -127,7 +127,7 @@ SRCS.EXECUTE =			executor/execute.c \
 						executor/redirections/heredoc.c \
 						executor/executor_single_cmd.c \
 						executor/executor_multiple_cmds.c \
-						executor/executor_builtin.c \
+						executor/executor_builtins.c \
 
 SRCS.CLEAN =			clean/clean_ms.c \
 						clean/clean_commands.c \
@@ -149,13 +149,13 @@ SRCS.PARSER =			parser/parse.c \
 						parser/parser_token_check.c \
 						parser/search_env.c \
 
-SRCS.CREATE.CMD =		commands/command_cmdlist_pipes.c \
-						commands/command_cmdlist_no_pipes.c \
-						commands/tokens_cmd/tokens_cmd.c \
-						commands/tokens_cmd/tokens_dup.c \
-						commands/tokens_cmd/init_new_tokens.c \
-						commands/tokens_cmd/count_tokens.c \
-						commands/tokens_cmd/set_heredoc_tokens.c \
+SRCS.CREATE.CMD =		commands/commands_cmd_cmdlist_pipes.c \
+						commands/commands_cmd_cmdlist_no_pipes.c \
+						commands/commands_cmd_tokens.c \
+						commands/commands_tokens_dup.c \
+						commands/commands_cmd_tokens_init.c \
+						commands/commands_cmd_tokens_count.c \
+						commands/set_heredoc_tokens.c \
 
 # String manipulation magic
 SRC		:= $(notdir $(SRCS))

@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   executor_builtin.c                                 :+:    :+:            */
+/*   executor_builtins.c                                 :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/30 13:14:53 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/10/30 13:15:29 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/30 13:58:48 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "execute.h"
+#include "executor.h"
 
 static void	filedescriptors_copy(t_ms *ms)
 {
@@ -55,7 +55,7 @@ static void	with_tokens(t_ms *ms, t_cmdlist *cmd, char **command)
 	filedescriptors_reset(ms, cmd);
 }
 
-void	executor_builtin(\
+void	executor_builtins(\
 t_ms *ms, t_cmdlist *cmdlist, char **command, int token_exist)
 {
 	if (token_exist)

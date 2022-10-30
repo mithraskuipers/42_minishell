@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   execute.h                                          :+:    :+:            */
+/*   executor.h                                          :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
@@ -13,7 +13,7 @@
 #ifndef EXECUTE_H
 # define EXECUTE_H
 
-# include "../builtin/commands.h"
+# include "../builtins/commands.h"
 # include "../header.h"
 # include <sys/wait.h>
 
@@ -35,7 +35,7 @@ int		ft_pipe(int *fd);
 int		ft_fork(pid_t *pid, int *fd);
 int		get_return_status(int status);
 char	**executor_get_command(t_cmdlist *cmd);
-void	executor_builtin(t_ms *ms, t_cmdlist *cmd, char **command, int token_exist);
+void	executor_builtins(t_ms *ms, t_cmdlist *cmd, char **command, int token_exist);
 void	executor_pipe_stuff(t_cmdlist *cmd);
 int		exit_status(int status);
 
