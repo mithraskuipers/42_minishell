@@ -6,11 +6,11 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/30 13:18:10 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/10/30 13:18:12 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/30 14:54:26 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parse.h"
+#include "parser.h"
 
 typedef struct s_vars
 {
@@ -39,11 +39,11 @@ static void	check_len(t_ms *ms, t_vars *vars, char **str)
 	while (str[vars->j][vars->i])
 	{	
 		quote_toggle(ms, &str[vars->j][vars->i]);
-		if (ms->parse.squote == 0 && ms->parse.dquote == 0 \
+		if (ms->parser.squote == 0 && ms->parser.dquote == 0 \
 		&& ((vars->p == 1 && !char_is_token(&str[vars->j][vars->i]) \
 		&& binary_toggler(&vars->p))))
 			vars->len++;
-		else if (ms->parse.squote == 0 && ms->parse.dquote == 0 \
+		else if (ms->parser.squote == 0 && ms->parser.dquote == 0 \
 		&& (((vars->p == 0 && char_is_token(&str[vars->j][vars->i]) \
 		&& binary_toggler(&vars->p)))))
 			vars->len++;

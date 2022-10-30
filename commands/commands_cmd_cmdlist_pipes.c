@@ -45,7 +45,7 @@ int	command_get_pipe_pos(t_ms *v, int k, int token_pos)
 }
 
 //Creates the first CMD
-static void	command_cmdlist_first(t_ms *v, t_cmdlist *temp, int k)
+static void	command_cmdlist_first(t_ms *v, t_cmdlist *cmdlist, int k)
 {
 	int	i;
 	int	j;
@@ -54,13 +54,13 @@ static void	command_cmdlist_first(t_ms *v, t_cmdlist *temp, int k)
 	j = command_get_pipe_pos(v, k, 0);
 	if (j == -1)
 		ms_error("Something went wrong func command_cmdlist_first!\n");
-	temp->command = ft_calloc(j + 1, sizeof(char *));
-	if (!temp->command)
+	cmdlist->cmd_array = ft_calloc(j + 1, sizeof(char *));
+	if (!cmdlist->cmd_array)
 		return_exit(1, PRNT_ERRNO_NL);
 	while (j)
 	{
-		temp->command[i] = ft_strdup(v->parse.commands[k][i]);
-		if (!temp->command[i])
+		cmdlist->cmd_array[i] = ft_strdup(v->parser.commands[k][i]);
+		if (!cmdlist->cmd_array[i])
 			return_exit(1, PRNT_ERRNO_NL);
 		j--;
 		i++;
@@ -68,7 +68,7 @@ static void	command_cmdlist_first(t_ms *v, t_cmdlist *temp, int k)
 }
 
 //Creates all CMD's in the middle
-static void	command_cmdlist_middle(t_ms *v, t_cmdlist *temp, int pipes, int k)
+static void	command_cmdlist_middle(t_ms *v, t_cmdlist *cmdlist, int pipes, int k)
 {
 	int	i;
 	int	j;
@@ -80,16 +80,16 @@ static void	command_cmdlist_middle(t_ms *v, t_cmdlist *temp, int pipes, int k)
 	j = command_get_pipe_pos(v, k, pipes);
 	if (j == -1)
 		ms_error("Something went wrong in func command_cmdlist_middle\n");
-	temp->command = ft_calloc(j - i, sizeof(char *));
-	if (!temp->command)
+	cmdlist->cmd_array = ft_calloc(j - i, sizeof(char *));
+	if (!cmdlist->cmd_array)
 		return_exit(1, PRNT_ERRNO_NL);
 	j = j - i - 1;
 	i++;
 	l = 0;
 	while (j)
 	{
-		temp->command[l] = ft_strdup(v->parse.commands[k][i]);
-		if (!temp->command[l])
+		cmdlist->cmd_array[l] = ft_strdup(v->parser.commands[k][i]);
+		if (!cmdlist->cmd_array[l])
 			return_exit(1, PRNT_ERRNO_NL);
 		l++;
 		i++;
@@ -98,7 +98,7 @@ static void	command_cmdlist_middle(t_ms *v, t_cmdlist *temp, int pipes, int k)
 }
 
 //Creates the last CMD
-static void	command_cmdlist_last(t_ms *v, t_cmdlist *temp, int pipes, int k)
+static void	command_cmdlist_last(t_ms *v, t_cmdlist *cmdlist, int pipes, int k)
 {
 	int	i;
 	int	j;
@@ -106,21 +106,21 @@ static void	command_cmdlist_last(t_ms *v, t_cmdlist *temp, int pipes, int k)
 
 	i = 0;
 	j = command_get_pipe_pos(v, k, pipes);
-	while (v->parse.commands[k][i + j])
+	while (v->parser.commands[k][i + j])
 		i++;
 	i += j;
 	if (i - j == 1)
 		return ;
-	temp->command = ft_calloc(i - j, sizeof(char *));
-	if (!temp->command)
+	cmdlist->cmd_array = ft_calloc(i - j, sizeof(char *));
+	if (!cmdlist->cmd_array)
 		return_exit(1, PRNT_ERRNO_NL);
 	j = i - j - 1;
 	i = 0;
 	l = command_get_pipe_pos(v, k, pipes) + 1;
 	while (j)
 	{
-		temp->command[i] = ft_strdup(v->parse.commands[k][l + i]);
-		if (!temp->command[i])
+		cmdlist->cmd_array[i] = ft_strdup(v->parser.commands[k][l + i]);
+		if (!cmdlist->cmd_array[i])
 			return_exit(1, PRNT_ERRNO_NL);
 		i++;
 		j--;

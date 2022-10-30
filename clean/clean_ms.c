@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/29 13:13:29 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/10/29 18:18:05 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/30 16:10:32 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void	clean_tokens(t_ms *ms)
 	int	i;
 
 	i = 0;
-	while (ms->parse.commands[i])
+	while (ms->parser.commands[i])
 	{
 		while (ms->tokens[i].n_tokens)
 		{
@@ -46,13 +46,13 @@ void	clean_ms(t_ms *ms)
 	int	n_cmds;
 
 	n_cmds = 0;
-	while (ms->parse.commands[n_cmds])
+	while (ms->parser.commands[n_cmds])
 		n_cmds++;
 	clean_line_array(ms);
 	free_heredoc(ms, n_cmds);
 	clean_tokens(ms);
 	clean_commands(ms);
 	clean_cmdlist(ms, n_cmds);
-	ms->cmd = 0;
+	ms->cmdlists = 0;
 	ms->tokens = 0;
 }

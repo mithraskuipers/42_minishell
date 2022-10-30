@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/30 13:14:20 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/10/30 14:12:41 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/30 16:13:10 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static int	return_status(int status)
 	return (1);
 }
 
-static void	executor_execve(t_ms *ms, t_cmdlist *cmd, char **command)
+static void	executor_execve(t_ms *ms, t_cmdlist *cmdlist, char **command)
 {
 	int	status;
 
@@ -55,7 +55,7 @@ static void	executor_execve(t_ms *ms, t_cmdlist *cmd, char **command)
 		update_signals_default();
 		env_lstadd_back(&ms->env, \
 		env_lst_new(ft_strdup(__DUP__), ft_strdup("")));
-		if (redirs(cmd))
+		if (redirs(cmdlist))
 			return_exit(1, NO_PRNT);
 		executor_cmd_portal(ms, command, 1);
 	}
@@ -66,15 +66,15 @@ static void	executor_execve(t_ms *ms, t_cmdlist *cmd, char **command)
 
 // Executes one command no Pipes
 // Command is the temp command with the redirs removed as arguments
-void	executor_run_single_command(t_ms *ms, t_cmdlist *cmd)
+void	executor_run_single_command(t_ms *ms, t_cmdlist *cmdlist)
 {
 	char	**command;
 
-	command = executor_get_command(cmd);
+	command = executor_get_command(cmdlist);
 	if (is_builtins(command[0]))
-		executor_builtins(ms, cmd, command, tokens_present(cmd));
+		executor_builtins(ms, cmdlist, command, tokens_present(cmdlist));
 	else
-		executor_execve(ms, cmd, command);
-	if (command && tokens_present(cmd))
+		executor_execve(ms, cmdlist, command);
+	if (command && tokens_present(cmdlist))
 		free(command);
 }

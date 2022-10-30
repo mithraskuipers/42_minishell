@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../parse.h"
+#include "../parser.h"
 #include "../../header.h"
 
 static int	arraysize(const char *s, char c, t_ms *ms)
@@ -23,19 +23,19 @@ static int	arraysize(const char *s, char c, t_ms *ms)
 	i = str_skip_whitespace(s);
 	if (s[i] == '\0')
 		return (0);
-	ms->parse.squote = 0;
-	ms->parse.dquote = 0;
+	ms->parser.squote = 0;
+	ms->parser.dquote = 0;
 	while (s[i])
 	{
 		quote_toggle(ms, (char *)s + i);
-		if (s[i] == c && (ms->parse.squote == 0 && ms->parse.dquote == 0))
+		if (s[i] == c && (ms->parser.squote == 0 && ms->parser.dquote == 0))
 			k++;
 		while (s[i] && s[i + 1] && s[i] == c)
 			i++;
 		i++;
 	}
-	ms->parse.squote = 0;
-	ms->parse.dquote = 0;
+	ms->parser.squote = 0;
+	ms->parser.dquote = 0;
 	return (k + 1);
 }
 
@@ -59,7 +59,7 @@ static char	**splitter(t_ms *ms, char c, char **result, int i)
 	{
 		findstart(ms->line.array, c, &i, &start);
 		while (ms->line.array[i] && (ms->line.array[i] != c || \
-				(ms->parse.squote == 1 || ms->parse.dquote == 1)))
+				(ms->parser.squote == 1 || ms->parser.dquote == 1)))
 		{
 			quote_toggle(ms, &ms->line.array[i]);
 			i++;

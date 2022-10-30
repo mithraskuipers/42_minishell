@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../parse.h"
+#include "../parser.h"
 
 static void	heredoc_allocate(t_heredoc *heredoc, int len)
 {

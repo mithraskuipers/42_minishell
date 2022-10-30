@@ -6,7 +6,7 @@
 #    By: mikuiper <mikuiper@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/10/28 21:58:30 by mikuiper      #+#    #+#                  #
-#    Updated: 2022/10/30 14:46:50 by mikuiper      ########   odam.nl          #
+#    Updated: 2022/10/30 14:52:22 by mikuiper      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,7 @@ SRCDIR	= ./
 OBJDIR	= bin/
 LIBFTDIR = libft/
 
-INCLUDES = header.h parser/parse.h executor/executor.h cosmetics/splash.h \
+INCLUDES = header.h parser/parser.h executor/executor.h cosmetics/splash.h \
 libft/libft.h env_list/env_list.h builtins/commands.h commands/commands.h \
 commands/tokens.h expander/expander.h
 
@@ -111,7 +111,9 @@ SRCS.ENV.LIST =			env_list/env_lst_new.c \
 						env_list/env_lstadd_back.c \
 						env_list/env_lstlast.c \
 						env_list/env_lstsize.c \
-						env_lst_remove.c \
+						env_list/env_lst_remove.c \
+						env_list/env_search.c \
+
 
 SRCS.ENV.LIST.FUNC =	env_list/env_init.c \
 						env_list/env_tools_manipulation.c \
@@ -134,7 +136,7 @@ SRCS.CLEAN =			clean/clean_ms.c \
 						clean/clean_cmdlist.c \
 						clean/free_heredoc.c \
 
-SRCS.PARSER =			parser/parse.c \
+SRCS.PARSER =			parser/parser.c \
 						parser/parser_command_len_wrapper.c \
 						parser/splitting/parser_split_spaces.c \
 						parser/splitting/parser_split_semicolons.c \
@@ -147,7 +149,6 @@ SRCS.PARSER =			parser/parse.c \
 						parser/heredoc/heredoc_parsing.c \
 						parser/heredoc/set_heredoc.c \
 						parser/parser_token_check.c \
-						parser/search_env.c \
 
 SRCS.CREATE.CMD =		commands/commands_cmd_cmdlist_pipes.c \
 						commands/commands_cmd_cmdlist_no_pipes.c \

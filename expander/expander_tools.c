@@ -6,11 +6,11 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/29 20:08:58 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/10/29 20:15:00 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/30 14:54:26 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../parser/parse.h"
+#include "../parser/parser.h"
 #include "expander.h"
 
 void	init_vars(t_ms *ms, t_varsexp *vars, int length, char *str)
@@ -21,8 +21,8 @@ void	init_vars(t_ms *ms, t_varsexp *vars, int length, char *str)
 	vars->newstr = ft_calloc(vars->length + 1, sizeof(char));
 	if (!vars->newstr)
 		return_exit(1, PRNT_ERRNO_NL);
-	ms->parse.squote = 0;
-	ms->parse.dquote = 0;
+	ms->parser.squote = 0;
+	ms->parser.dquote = 0;
 	vars->i = -1;
 }
 

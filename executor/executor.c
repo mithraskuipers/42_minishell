@@ -25,7 +25,7 @@ void	executor(t_ms *ms, t_cmdlist *cmdlist)
 
 	cmd_i = 0;
 	n_cmds = 0;
-	while (ms->parse.commands[n_cmds])
+	while (ms->parser.commands[n_cmds])
 		n_cmds++;
 	tcsetattr(0, 0, &g_global.termios_save);
 	update_signals_handler();

@@ -6,11 +6,11 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/29 01:32:56 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/10/29 22:42:47 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/30 14:54:26 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../parse.h"
+#include "../parser.h"
 
 typedef struct s_vars
 {
@@ -45,7 +45,7 @@ void	free_old_and_set(t_ms *ms, int k, char **str, char **newstr)
 		}
 		free(str);
 	}
-	ms->parse.commands[k] = newstr;
+	ms->parser.commands[k] = newstr;
 }
 
 static void	init_vars(t_vars *vars, int size)
@@ -61,27 +61,27 @@ static void	init_vars(t_vars *vars, int size)
 
 static void	func(t_ms *ms, t_vars *vars, int k)
 {
-	if (ms->parse.squote == 0 && ms->parse.dquote == 0 \
+	if (ms->parser.squote == 0 && ms->parser.dquote == 0 \
 	&& ((vars->p == 1 && \
-	!char_is_token(&ms->parse.commands[k][vars->j][vars->i + 1]) \
-	&& binary_toggler(&vars->p)) || (!ms->parse.commands[k] \
+	!char_is_token(&ms->parser.commands[k][vars->j][vars->i + 1]) \
+	&& binary_toggler(&vars->p)) || (!ms->parser.commands[k] \
 	[vars->j][vars->i + 1] && binary_toggler(&vars->p))))
 	{
-		if (!ms->parse.commands[k][vars->j][vars->i + 1] \
-		&& ft_strlen(ms->parse.commands[k][vars->j]) == 1)
+		if (!ms->parser.commands[k][vars->j][vars->i + 1] \
+		&& ft_strlen(ms->parser.commands[k][vars->j]) == 1)
 			vars->i++;
 		vars->newstr[vars->j + vars->x] = \
-		ft_substr(ms->parse.commands[k][vars->j], \
+		ft_substr(ms->parser.commands[k][vars->j], \
 		vars->start, vars->i - vars->start + 1);
 		vars->start = vars->i + 1;
 		vars->x++;
 	}
-	else if (ms->parse.squote == 0 && ms->parse.dquote == 0 \
-	&& (((vars->p == 0 && char_is_token(&ms->parse.commands[k] \
+	else if (ms->parser.squote == 0 && ms->parser.dquote == 0 \
+	&& (((vars->p == 0 && char_is_token(&ms->parser.commands[k] \
 	[vars->j][vars->i + 1]) && binary_toggler(&vars->p)))))
 	{
 		vars->newstr[vars->j + vars->x] = ft_substr(ms-> \
-		parse.commands[k][vars->j], vars->start, vars->i - vars->start + 1);
+		parser.commands[k][vars->j], vars->start, vars->i - vars->start + 1);
 		vars->start = vars->i + 1;
 		vars->x++;
 	}
@@ -95,25 +95,25 @@ void	parser_separate_words_tokens(t_ms *ms, int size, int k)
 	t_vars	vars;
 
 	init_vars(&vars, size);
-	while (vars.j < size && ms->parse.commands[k][vars.j])
+	while (vars.j < size && ms->parser.commands[k][vars.j])
 	{
-		if (!str_has_token(ms, ms->parse.commands[k][vars.j]))
+		if (!str_has_token(ms, ms->parser.commands[k][vars.j]))
 			vars.newstr[vars.j + vars.x] = \
-			ft_strdup(ms->parse.commands[k][vars.j]);
+			ft_strdup(ms->parser.commands[k][vars.j]);
 		else
 		{
-			if (char_is_token(&ms->parse.commands[k][vars.j][vars.i]))
+			if (char_is_token(&ms->parser.commands[k][vars.j][vars.i]))
 				vars.p = 1;
 			else
 				vars.p = 0;
 			vars.start = vars.i;
-			while (vars.i < (int)ft_strlen(ms->parse.commands[k] \
-			[vars.j]) && ms->parse.commands[k][vars.j][vars.i])
+			while (vars.i < (int)ft_strlen(ms->parser.commands[k] \
+			[vars.j]) && ms->parser.commands[k][vars.j][vars.i])
 				func(ms, &vars, k);
 			vars.x -= 1;
 		}
 		vars.i = 0;
 		vars.j++;
 	}
-	free_old_and_set(ms, k, ms->parse.commands[k], vars.newstr);
+	free_old_and_set(ms, k, ms->parser.commands[k], vars.newstr);
 }

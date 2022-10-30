@@ -20,39 +20,39 @@ static void	filedescriptors_copy(t_ms *ms)
 		return_exit(1, PRNT_ERRNO_NL);
 }
 
-static void	filedescriptors_reset(t_ms *ms, t_cmdlist *cmd)
+static void	filedescriptors_reset(t_ms *ms, t_cmdlist *cmdlist)
 {
-	if (cmd->tokens->last_l != -1)
+	if (cmdlist->tokens->last_l != -1)
 		dup2(ms->stdin_cpy, STDIN_FILENO);
-	if (cmd->tokens->last_r != -1)
+	if (cmdlist->tokens->last_r != -1)
 		dup2(ms->stdout_cpy, STDOUT_FILENO);
 	close(ms->stdin_cpy);
 	close(ms->stdout_cpy);
 }
 
-static void	with_tokens(t_ms *ms, t_cmdlist *cmd, char **command)
+static void	with_tokens(t_ms *ms, t_cmdlist *cmdlist, char **command)
 {
 	filedescriptors_copy(ms);
-	if (redirs_looper(cmd, 0, cmd->tokens->n_tokens))
+	if (redirs_looper(cmdlist, 0, cmdlist->tokens->n_tokens))
 	{
-		filedescriptors_reset(ms, cmd);
+		filedescriptors_reset(ms, cmdlist);
 		g_global.status = 1;
 		return ;
 	}
-	if (cmd->tokens->last_l != -1 && redir_left(cmd))
+	if (cmdlist->tokens->last_l != -1 && redir_left(cmdlist))
 	{
-		filedescriptors_reset(ms, cmd);
+		filedescriptors_reset(ms, cmdlist);
 		g_global.status = 1;
 		return ;
 	}
-	if (cmd->tokens->last_r != -1 && redir_right(cmd))
+	if (cmdlist->tokens->last_r != -1 && redir_right(cmdlist))
 	{
-		filedescriptors_reset(ms, cmd);
+		filedescriptors_reset(ms, cmdlist);
 		g_global.status = 1;
 		return ;
 	}
 	executor_cmd_portal(ms, command, 0);
-	filedescriptors_reset(ms, cmd);
+	filedescriptors_reset(ms, cmdlist);
 }
 
 void	executor_builtins(\

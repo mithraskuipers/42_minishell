@@ -6,11 +6,11 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/30 13:18:18 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/10/30 13:18:19 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/30 14:54:26 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parse.h"
+#include "parser.h"
 
 int	char_is_token(char *c)
 {
@@ -29,11 +29,11 @@ int	str_has_token(t_ms *ms, char *str)
 	while (str[i])
 	{
 		quote_toggle(ms, &str[i]);
-		if ((ms->parse.squote == 0 && ms->parse.dquote == 0) && \
+		if ((ms->parser.squote == 0 && ms->parser.dquote == 0) && \
 			((str[i] == '>' && str[i + 1] == '>') || \
 			(str[i] == '<' && str[i + 1] == '<')))
 			return (2);
-		if ((ms->parse.squote == 0 && ms->parse.dquote == 0) && \
+		if ((ms->parser.squote == 0 && ms->parser.dquote == 0) && \
 			((str[i] == '>' || str[i] == '<') || str[i] == '|'))
 			return (1);
 		i++;

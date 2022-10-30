@@ -19,56 +19,57 @@ typedef struct s_vars
 	int				t;
 }				t_vars;
 
-static void	check_token(t_ms *v, t_vars *vars, t_cmdlist *temp, int k)
+static void	check_token(t_ms *v, t_vars *vars, t_cmdlist *cmdlist, int k)
 {
-	if (!ft_strncmp(temp->command[vars->i], ">>", 3) \
-	&& v->tokens[k].token_pos[vars->t] == vars->i + vars->wc + temp->id)
+	if (!ft_strncmp(cmdlist->cmd_array[vars->i], ">>", 3) \
+	&& v->tokens[k].token_pos[vars->t] == vars->i + vars->wc + cmdlist->id)
 	{
-		temp->tokens->double_redirection_right++;
+		cmdlist->tokens->double_redirection_right++;
 		vars->t++;
 	}
-	else if (!ft_strncmp(temp->command[vars->i], "<<", 3) \
-	&& v->tokens[k].token_pos[vars->t] == vars->i + vars->wc + temp->id)
+	else if (!ft_strncmp(cmdlist->cmd_array[vars->i], "<<", 3) \
+	&& v->tokens[k].token_pos[vars->t] == vars->i + vars->wc + cmdlist->id)
 	{
-		temp->tokens->double_redirection_left++;
+		cmdlist->tokens->double_redirection_left++;
 		vars->t++;
 	}
-	else if (!ft_strncmp(temp->command[vars->i], ">", 2) \
-	&& v->tokens[k].token_pos[vars->t] == vars->i + vars->wc + temp->id)
+	else if (!ft_strncmp(cmdlist->cmd_array[vars->i], ">", 2) \
+	&& v->tokens[k].token_pos[vars->t] == vars->i + vars->wc + cmdlist->id)
 	{
-		temp->tokens->single_redirection_right++;
+		cmdlist->tokens->single_redirection_right++;
 		vars->t++;
 	}
-	else if (!ft_strncmp(temp->command[vars->i], "<", 2) \
-	&& v->tokens[k].token_pos[vars->t] == vars->i + vars->wc + temp->id)
+	else if (!ft_strncmp(cmdlist->cmd_array[vars->i], "<", 2) \
+	&& v->tokens[k].token_pos[vars->t] == vars->i + vars->wc + cmdlist->id)
 	{
-		temp->tokens->single_redirection_left++;
+		cmdlist->tokens->single_redirection_left++;
 		vars->t++;
 	}
 }
 
 //Counts the amount of tokens we have and wich ones
-void	commands_cmd_tokens_count(t_ms *v, t_cmdlist *temp, int k)
+void	commands_cmd_tokens_count(t_ms *v, t_cmdlist *cmdlist, int k)
 {
 	t_vars	vars;
 
 	ft_bzero(&vars, sizeof(t_vars));
-	while (temp)
+	while (cmdlist)
 	{
 		if (v->tokens[k].token[vars.t] && \
 		!ft_strncmp(v->tokens[k].token[vars.t], "|", 2))
 			vars.t++;
-		check_token(v, &vars, temp, k);
+		check_token(v, &vars, cmdlist, k);
 		vars.i++;
-		if (!temp->command[vars.i])
+		if (!cmdlist->cmd_array[vars.i])
 		{
-			temp->tokens->n_tokens = temp->tokens->single_redirection_left + \
-			temp->tokens->single_redirection_right + \
-			temp->tokens->double_redirection_left + \
-			temp->tokens->double_redirection_right;
+			cmdlist->tokens->n_tokens = \
+			cmdlist->tokens->single_redirection_left + \
+			cmdlist->tokens->single_redirection_right + \
+			cmdlist->tokens->double_redirection_left + \
+			cmdlist->tokens->double_redirection_right;
 			vars.wc += vars.i;
 			vars.i = 0;
-			temp = temp->next;
+			cmdlist = cmdlist->next;
 			if (vars.t == v->tokens[k].n_tokens)
 				break ;
 		}

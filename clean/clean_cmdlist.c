@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/29 13:13:34 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/10/30 13:24:22 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/30 16:30:39 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,13 @@ static void	free_cmdlist(t_cmdlist *temp, int k)
 	int	j;
 
 	j = 0;
-	while (temp->command && temp->command[j])
+	while (temp->cmd_array && temp->cmd_array[j])
 	{
-		free(temp->command[j]);
+		free(temp->cmd_array[j]);
 		j++;
 	}
-	if (temp->command)
-		free(temp->command);
+	if (temp->cmd_array)
+		free(temp->cmd_array);
 	if (temp->tokens && temp->tokens->n_tokens == 0)
 		free(temp->tokens);
 	else if (temp->tokens)
@@ -64,7 +64,7 @@ void	clean_cmdlist(t_ms *ms, int n_cmds)
 	while (n_cmds)
 	{
 		k = 0;
-		temp1 = &ms->cmd[i];
+		temp1 = &ms->cmdlists[i];
 		while (temp1)
 		{
 			temp2 = temp1->next;
@@ -75,5 +75,5 @@ void	clean_cmdlist(t_ms *ms, int n_cmds)
 		i++;
 		n_cmds--;
 	}
-	free(ms->cmd);
+	free(ms->cmdlists);
 }

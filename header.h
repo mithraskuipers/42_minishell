@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/28 21:57:11 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/10/30 14:37:44 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/30 16:30:26 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ typedef struct s_cmdlist
 	int					id;
 	int					fd[2];
 	int					read_pipe;
-	char				**command;
+	char				**cmd_array;
 	struct s_tokens		*tokens;
 	struct s_cmdlist	*next;
 	struct s_cmdlist	*prev;
@@ -88,11 +88,11 @@ typedef struct s_ms
 {
 	int			stdout_cpy;
 	int			stdin_cpy;
-	t_parse		parse;
+	t_parse		parser;
 	t_line		line;
 	t_env		*env;
 	t_tokens	*tokens;
-	t_cmdlist	*cmd;
+	t_cmdlist	*cmdlists;
 	int			hdoc_break;
 }				t_ms;
 
@@ -110,7 +110,7 @@ extern t_global	g_global;
 char	*input_add_newline(char *s);
 int		cmd_len(char **str);
 int		input_syntax_semicolons(t_ms *v);
-int		commands_cmdlists_maker(t_ms *ms, int k);
+int		commands_cmdlists_maker(t_ms *ms);
 int		parser_syntax_tokens(t_cmdlist *cmd, int i);
 int		parser_wrapper(t_ms *ms);
 int		str_skip_whitespace(const char *str);

@@ -6,11 +6,11 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/28 21:57:30 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/10/29 12:54:28 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/30 14:50:15 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../parse.h"
+#include "../parser.h"
 #include <sys/wait.h>
 
 static void	free_and_get_data(t_ms *ms, int k, int i)

@@ -6,11 +6,11 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/28 21:57:24 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/10/29 18:15:07 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/30 14:50:15 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../parse.h"
+#include "../parser.h"
 
 //Allocates heredoc struct * the double redir left
 static void	heredoc_allocation(t_ms *ms, int k)
@@ -49,10 +49,10 @@ static void	get_heredoc_q(t_ms *ms, int k)
 		if (!ft_strncmp(ms->tokens[k].token[i], "<<", 3))
 		{
 			pos = ms->tokens[k].token_pos[i] + 1;
-			if (!ms->parse.commands[k][pos])
+			if (!ms->parser.commands[k][pos])
 				return ;
-			if (ms->parse.commands[k][pos][0] == '\"' \
-			|| ms->parse.commands[k][pos][0] == '\'')
+			if (ms->parser.commands[k][pos][0] == '\"' \
+			|| ms->parser.commands[k][pos][0] == '\'')
 				ms->tokens[k].heredoc[current].heredoc_q = 1;
 			current++;
 		}

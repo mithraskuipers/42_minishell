@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../parser/parse.h"
+#include "../parser/parser.h"
 
 static int	is_tilde(char *str)
 {
@@ -65,11 +65,11 @@ void	expander_tilde(t_ms *ms, int length)
 	while (k < length)
 	{
 		i = 0;
-		while (ms->parse.commands[k][i])
+		while (ms->parser.commands[k][i])
 		{
-			if (is_tilde(ms->parse.commands[k][i]))
-				ms->parse.commands[k][i] = \
-				expand(ms->env, ms->parse.commands[k][i]);
+			if (is_tilde(ms->parser.commands[k][i]))
+				ms->parser.commands[k][i] = \
+				expand(ms->env, ms->parser.commands[k][i]);
 			i++;
 		}
 		k++;

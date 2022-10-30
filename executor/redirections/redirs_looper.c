@@ -15,7 +15,7 @@
 static int	single_redirection_right(t_cmdlist *cmdlist, int i)
 {
 	cmdlist->tokens->stdout_fd = open(\
-	cmdlist->command[cmdlist->tokens->token_pos[i] + 1] \
+	cmdlist->cmd_array[cmdlist->tokens->token_pos[i] + 1] \
 	, O_RDWR | O_TRUNC | O_CREAT, 0644);
 	if (cmdlist->tokens->stdout_fd < 0)
 	{
@@ -30,7 +30,7 @@ static int	single_redirection_right(t_cmdlist *cmdlist, int i)
 static int	double_redirection_right(t_cmdlist *cmdlist, int i)
 {
 	cmdlist->tokens->stdout_fd = open(\
-	cmdlist->command[cmdlist->tokens->token_pos[i] + 1] \
+	cmdlist->cmd_array[cmdlist->tokens->token_pos[i] + 1] \
 	, O_RDWR | O_APPEND | O_CREAT, 0644);
 	if (cmdlist->tokens->stdout_fd < 0)
 	{
@@ -45,11 +45,11 @@ static int	double_redirection_right(t_cmdlist *cmdlist, int i)
 static int	single_redirection_left(t_cmdlist *cmdlist, int i)
 {
 	cmdlist->tokens->stdin_fd = open(\
-	cmdlist->command[cmdlist->tokens->token_pos[i] + 1], O_RDONLY);
+	cmdlist->cmd_array[cmdlist->tokens->token_pos[i] + 1], O_RDONLY);
 	if (cmdlist->tokens->stdin_fd < 0)
 	{
 		ft_putstr_fd("minishell-4.2$: no such file or directory: ", 2);
-		ft_putstr_fd(cmdlist->command[cmdlist->tokens->token_pos[i] + 1], 2);
+		ft_putstr_fd(cmdlist->cmd_array[cmdlist->tokens->token_pos[i] + 1], 2);
 		ft_putchar_fd('\n', 2);
 		return (1);
 	}

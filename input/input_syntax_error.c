@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/29 15:55:39 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/10/30 13:57:27 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/30 16:35:08 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ int	syntax_error_parse(t_ms *ms)
 	t_vars	vars;
 
 	ft_bzero(&vars, sizeof(t_vars));
-	while (ms->parse.commands[vars.n_cmds])
+	while (ms->parser.commands[vars.n_cmds])
 		vars.n_cmds++;
 	while (vars.cmd_i < vars.n_cmds)
 	{
@@ -115,7 +115,7 @@ int	parser_syntax_tokens(t_cmdlist *cmd, int i)
 	{
 		if (i + 1 == cmd->tokens->n_tokens)
 		{
-			if (cmd->tokens->token_pos[i] == cmd_len(cmd->command) - 1) 
+			if (cmd->tokens->token_pos[i] == cmd_len(cmd->cmd_array) - 1) 
 			{
 				ft_putendl_fd(\
 "minishell-4.2$: syntax error near unexpected token `newline'", 2);

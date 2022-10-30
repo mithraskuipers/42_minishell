@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/29 13:04:03 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/10/29 22:36:20 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/30 14:50:10 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,19 +18,19 @@ void	clean_commands(t_ms *ms)
 	int	wrd;
 
 	cmd = 0;
-	if (ms->parse.commands)
+	if (ms->parser.commands)
 	{
-		while (ms->parse.commands[cmd])
+		while (ms->parser.commands[cmd])
 		{
 			wrd = 0;
-			while (ms->parse.commands[cmd][wrd])
+			while (ms->parser.commands[cmd][wrd])
 			{
-				free(ms->parse.commands[cmd][wrd]);
+				free(ms->parser.commands[cmd][wrd]);
 				wrd++;
 			}
-			free(ms->parse.commands[cmd]);
+			free(ms->parser.commands[cmd]);
 			cmd++;
 		}
-		free(ms->parse.commands);
+		free(ms->parser.commands);
 	}
 }

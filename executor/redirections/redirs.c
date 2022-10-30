@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/29 18:08:07 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/10/30 13:58:48 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/30 16:38:01 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	tokens_present(t_cmdlist *cmd)
 
 int	redir_left(t_cmdlist *v)
 {
-	if (!ft_strncmp(v->command[v->tokens->last_l], "<<", 3))
+	if (!ft_strncmp(v->cmd_array[v->tokens->last_l], "<<", 3))
 	{
 		heredoc_set_pipe(&v->tokens->heredoc \
 	[v->tokens->double_redirection_left - 1], \
@@ -34,11 +34,11 @@ v->tokens->heredoc[v->tokens->double_redirection_left - 1].data);
 	[v->tokens->double_redirection_left - 1].pipe[0]);
 		return (0);
 	}
-	v->tokens->stdin_fd = open(v->command[v->tokens->last_l + 1], O_RDONLY);
+	v->tokens->stdin_fd = open(v->cmd_array[v->tokens->last_l + 1], O_RDONLY);
 	if (v->tokens->stdin_fd < 0)
 	{
 		ft_putstr_fd("minishell-4.2$: no such file or directory: ", 2);
-		ft_putstr_fd(v->command[v->tokens->last_l + 1], 2);
+		ft_putstr_fd(v->cmd_array[v->tokens->last_l + 1], 2);
 		ft_putchar_fd('\n', 2);
 		return (1);
 	}
@@ -50,12 +50,12 @@ v->tokens->heredoc[v->tokens->double_redirection_left - 1].data);
 
 int	redir_right(t_cmdlist *v)
 {
-	if (!strncmp(v->command[v->tokens->last_r], ">>", 3))
+	if (!strncmp(v->cmd_array[v->tokens->last_r], ">>", 3))
 		v->tokens->stdout_fd = open(\
-		v->command[v->tokens->last_r + 1], O_RDWR | O_APPEND | O_CREAT, 0644);
+		v->cmd_array[v->tokens->last_r + 1], O_RDWR | O_APPEND | O_CREAT, 0644);
 	else
 		v->tokens->stdout_fd = open(\
-		v->command[v->tokens->last_r + 1], O_RDWR | O_TRUNC | O_CREAT, 0644);
+		v->cmd_array[v->tokens->last_r + 1], O_RDWR | O_TRUNC | O_CREAT, 0644);
 	if (v->tokens->stdout_fd < 0)
 	{
 		return_exit(0, 1);

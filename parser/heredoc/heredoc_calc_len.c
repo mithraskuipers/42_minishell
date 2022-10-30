@@ -6,11 +6,11 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/28 21:57:34 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/10/29 00:11:22 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/30 14:50:15 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../parse.h"
+#include "../parser.h"
 
 static void	heredoc_env(char *str, t_env *env, int *length, int *i)
 {

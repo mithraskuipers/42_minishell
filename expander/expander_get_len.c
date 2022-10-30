@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../parser/parse.h"
+#include "../parser/parser.h"
 
 static void	expander_get_dollar_len_var(t_ms *ms, char *str, int *i, int *len)
 {
@@ -63,7 +63,7 @@ static void	expander_dquote(t_ms *ms, char *str, int *i, int *len)
 			(*i)++;
 			(*len)++;
 		}
-		ms->parse.dquote = 0;
+		ms->parser.dquote = 0;
 	}
 	(*len)--;
 }
@@ -75,7 +75,7 @@ static void	expander_squote(t_ms *ms, char *str, int *i, int *len)
 	{
 		(*i)++;
 		(*len)++;
-		ms->parse.squote = 0;
+		ms->parser.squote = 0;
 	}
 	(*len)--;
 }
@@ -88,7 +88,7 @@ int	expander_get_len(t_ms *ms, char *str, int i, int len)
 	{
 		quote_toggle(ms, &str[i]);
 		while (str[i] == ' ' && str[i + 1] && \
-		ms->parse.squote == 0 && ms->parse.dquote == 0)
+		ms->parser.squote == 0 && ms->parser.dquote == 0)
 			i++;
 		if (str[i] == '$')
 		{

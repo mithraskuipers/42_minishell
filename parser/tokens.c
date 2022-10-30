@@ -6,11 +6,11 @@
 /*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/11/30 00:29:12 by rkieboom      #+#    #+#                 */
-/*   Updated: 2022/10/30 13:45:45 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/30 14:50:15 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parse.h"
+#include "parser.h"
 
 static void	tokens_allocation(t_ms *ms)
 {
@@ -20,12 +20,12 @@ static void	tokens_allocation(t_ms *ms)
 
 	cmd = 0;
 	total = 0;
-	while (ms->parse.commands[cmd])
+	while (ms->parser.commands[cmd])
 	{
 		j = 0;
-		while (ms->parse.commands[cmd][j])
+		while (ms->parser.commands[cmd][j])
 		{
-			if (char_is_token(ms->parse.commands[cmd][j]))
+			if (char_is_token(ms->parser.commands[cmd][j]))
 				total++;
 			j++;
 		}
@@ -48,16 +48,16 @@ static void	tokens_dup(t_ms *ms)
 	int	cmd;
 
 	cmd = 0;
-	while (ms->parse.commands[cmd])
+	while (ms->parser.commands[cmd])
 	{
 		tkn = 0;
 		wrd = 0;
-		while (ms->parse.commands[cmd][wrd])
+		while (ms->parser.commands[cmd][wrd])
 		{
-			if (char_is_token(ms->parse.commands[cmd][wrd]))
+			if (char_is_token(ms->parser.commands[cmd][wrd]))
 			{
 				ms->tokens[cmd].token[tkn] = ft_strdup(\
-				ms->parse.commands[cmd][wrd]);
+				ms->parser.commands[cmd][wrd]);
 				ms->tokens[cmd].token_pos[tkn] = wrd;
 				tkn++;
 			}
@@ -74,7 +74,7 @@ static void	tokens_count(t_ms *ms)
 	int	j;
 
 	i = 0;
-	while (ms->parse.commands[i])
+	while (ms->parser.commands[i])
 	{
 		j = 0;
 		while (j < ms->tokens[i].n_tokens)

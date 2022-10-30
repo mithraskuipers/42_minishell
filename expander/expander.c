@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../parser/parse.h"
+#include "../parser/parser.h"
 #include "expander.h"
 
 //Expands string to new value
@@ -57,15 +57,15 @@ char	*expander_expand_dollar(t_ms *ms, char *s, int length)
 	{
 		vars.i++;
 		quote_toggle(ms, &s[vars.i]);
-		if (s[vars.i] == '$' && ms->parse.squote == 0)
+		if (s[vars.i] == '$' && ms->parser.squote == 0)
 			expander_get_value(ms, &vars);
-		else if (s[vars.i] == '\"' && ((ms->parse.squote == 0 \
-		&& ms->parse.dquote == 1) || (ms->parse.squote == 0 \
-		&& ms->parse.dquote == 0)))
+		else if (s[vars.i] == '\"' && ((ms->parser.squote == 0 \
+		&& ms->parser.dquote == 1) || (ms->parser.squote == 0 \
+		&& ms->parser.dquote == 0)))
 			continue ;
-		else if (s[vars.i] == '\'' && ((ms->parse.dquote == 0 \
-		&& ms->parse.squote == 1) || (ms->parse.squote == 0 \
-		&& ms->parse.dquote == 0)))
+		else if (s[vars.i] == '\'' && ((ms->parser.dquote == 0 \
+		&& ms->parser.squote == 1) || (ms->parser.squote == 0 \
+		&& ms->parser.dquote == 0)))
 			continue ;
 		else
 			vars.newstr[vars.x] = s[vars.i];

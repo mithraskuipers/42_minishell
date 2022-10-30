@@ -6,23 +6,23 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/30 11:30:51 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/10/30 13:58:48 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/30 16:33:16 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "executor.h"
 
-static int	calc_len(t_cmdlist *cmd)
+static int	calc_len(t_cmdlist *cmdlist)
 {
 	int	i;
 
 	i = 0;
-	while (cmd->command[i])
+	while (cmdlist->cmd_array[i])
 		i++;
-	return (i - (cmd->tokens->n_tokens * 2));
+	return (i - (cmdlist->tokens->n_tokens * 2));
 }
 
-static char	*get_str(t_cmdlist *cmd, int i)
+static char	*get_str(t_cmdlist *cmdlist, int i)
 {
 	int	token_c;
 	int	c;
@@ -31,35 +31,35 @@ static char	*get_str(t_cmdlist *cmd, int i)
 	token_c = 0;
 	c = 0;
 	s = 0;
-	while (cmd->command[c + s])
+	while (cmdlist->cmd_array[c + s])
 	{
-		if (token_c < cmd->tokens->n_tokens && \
-		((c + s) == cmd->tokens->token_pos[token_c]))
+		if (token_c < cmdlist->tokens->n_tokens && \
+		((c + s) == cmdlist->tokens->token_pos[token_c]))
 		{
 			s += 2;
 			token_c++;
 		}
 		if (c == i)
-			return (cmd->command[c + s]);
+			return (cmdlist->cmd_array[c + s]);
 		c++;
 	}
 	return (0);
 }
 
-char	**executor_get_command(t_cmdlist *cmd)
+char	**executor_get_command(t_cmdlist *cmdlist)
 {
 	int		i;
 	int		length;
 	char	**newstr;
 
 	i = 0;
-	if (!cmd->tokens || cmd->tokens->n_tokens == 0)
-		return (cmd->command);
-	length = calc_len(cmd);
+	if (!cmdlist->tokens || cmdlist->tokens->n_tokens == 0)
+		return (cmdlist->cmd_array);
+	length = calc_len(cmdlist);
 	newstr = ft_calloc(length + 1, sizeof(char *));
 	while (i < length)
 	{
-		newstr[i] = get_str(cmd, i);
+		newstr[i] = get_str(cmdlist, i);
 		i++;
 	}
 	newstr[length] = 0;

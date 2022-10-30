@@ -6,11 +6,11 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/30 13:20:54 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/10/30 13:21:18 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/30 14:54:26 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../parse.h"
+#include "../parser.h"
 
 typedef struct s_vars
 {
@@ -29,13 +29,13 @@ static int	arraysize(const char *s, char c, t_ms *ms)
 	i = str_skip_whitespace(s);
 	if (s[i] == '\0')
 		return (0);
-	ms->parse.squote = 0;
-	ms->parse.dquote = 0;
+	ms->parser.squote = 0;
+	ms->parser.dquote = 0;
 	while (s[i])
 	{
 		quote_toggle(ms, (char *)s + i);
 		if (s[i] == c && \
-			(ms->parse.squote == 0 && ms->parse.dquote == 0) && \
+			(ms->parser.squote == 0 && ms->parser.dquote == 0) && \
 			i > 0 && s[i - 1] != c)
 			k++;
 		i++;
@@ -48,8 +48,8 @@ static int	arraysize(const char *s, char c, t_ms *ms)
 static void	init_vars(t_ms *ms, t_vars *vars)
 {
 	ft_bzero(vars, sizeof(t_vars));
-	ms->parse.squote = 0;
-	ms->parse.dquote = 0;
+	ms->parser.squote = 0;
+	ms->parser.dquote = 0;
 }
 
 static char	**splitter(t_ms *ms, const char *str, char **result)
@@ -60,7 +60,7 @@ static char	**splitter(t_ms *ms, const char *str, char **result)
 	while (str[vars.i])
 	{
 		quote_toggle(ms, (char *)str + vars.i);
-		if (str[vars.i] != ' ' || ms->parse.squote || ms->parse.dquote)
+		if (str[vars.i] != ' ' || ms->parser.squote || ms->parser.dquote)
 			vars.len++;
 		else
 		{

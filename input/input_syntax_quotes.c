@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/29 15:16:36 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/10/29 22:17:27 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/30 14:54:26 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,14 +51,14 @@ void	input_syntax_quotes(t_ms *ms)
 	{
 		if (!ms->line.array)
 			return ;
-		ms->parse.squote = 0;
-		ms->parse.dquote = 0;
+		ms->parser.squote = 0;
+		ms->parser.dquote = 0;
 		while (ms->line.array[i])
 		{
 			quote_toggle(ms, &ms->line.array[i]);
 			i++;
 		}
-		if (ms->parse.squote == 1 || ms->parse.dquote == 1)
+		if (ms->parser.squote == 1 || ms->parser.dquote == 1)
 			input_getnextline(ms);
 		else
 			break ;
@@ -72,16 +72,16 @@ void	quote_toggle(t_ms *ms, char *c)
 {
 	if (*c == '\'')
 	{
-		if (ms->parse.squote == 0 && ms->parse.dquote == 0)
-			ms->parse.squote = 1;
+		if (ms->parser.squote == 0 && ms->parser.dquote == 0)
+			ms->parser.squote = 1;
 		else
-			ms->parse.squote = 0;
+			ms->parser.squote = 0;
 	}
 	if (*c == '\"')
 	{
-		if (ms->parse.dquote == 0 && ms->parse.squote == 0)
-			ms->parse.dquote = 1;
+		if (ms->parser.dquote == 0 && ms->parser.squote == 0)
+			ms->parser.dquote = 1;
 		else
-			ms->parse.dquote = 0;
+			ms->parser.dquote = 0;
 	}
 }
