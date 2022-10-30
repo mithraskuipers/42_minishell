@@ -6,13 +6,13 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/29 18:35:13 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/10/29 20:41:25 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/30 11:47:39 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "execute.h"
 
-void	executor_cmd_wrapper(t_ms *ms, char **cmd, int quit)
+void	executor_cmd_portal(t_ms *ms, char **cmd, int quit)
 {
 	if ((!cmd || !cmd[0]) && quit == 1)
 		exit(0);

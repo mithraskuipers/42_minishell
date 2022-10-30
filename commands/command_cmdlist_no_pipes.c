@@ -1,19 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   parser_command_creation.c                                       :+:    :+:            */
+/*   command_cmdlist_no_pipes.c               :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
+/*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/03/17 12:47:40 by rkieboom      #+#    #+#                 */
-/*   Updated: 2022/10/29 01:06:46 by mikuiper      ########   odam.nl         */
+/*   Created: 2022/10/30 11:20:23 by mikuiper      #+#    #+#                 */
+/*   Updated: 2022/10/30 11:29:05 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cmd.h"
 
-//If there is no pipes we just create one simpe CMD
-static void	parser_command_no_pipes(t_ms *v, t_cmdlist *cmd, int k)
+// command_cmdlist_no_pipes() fills the t_cmdlist struct for a single command 
+// (i.e. command without pipes). It will result in a linked list without
+// neighbouring nodes (i.e. no next).
+static void	command_cmdlist_no_pipes(t_ms *v, t_cmdlist *cmd, int k)
 {
 	int	i;
 
@@ -50,9 +52,9 @@ int	parser_command_creation(t_ms *ms, int k)
 	{
 		pipes = ms->tokens[i].pipe;
 		if (pipes == 0)
-			parser_command_no_pipes(ms, &ms->cmd[i], i);
+			command_cmdlist_no_pipes(ms, &ms->cmd[i], i);
 		else
-			parser_command_pipes(ms, &ms->cmd[i], pipes, i);
+			command_cmdlist_pipes(ms, &ms->cmd[i], pipes, i);
 		if (ms->tokens[i].n_tokens)
 			tokens_cmd(ms, &ms->cmd[i], i);
 		i++;

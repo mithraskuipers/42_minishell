@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   executor_single_cmd.c                                 :+:    :+:            */
+/*   executor_run_single_command.c                                 :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
@@ -57,7 +57,7 @@ static void	executor_execve(t_ms *ms, t_cmdlist *cmd, char **command)
 		env_lst_new(ft_strdup(__DUP__), ft_strdup("")));
 		if (redirs(cmd))
 			return_exit(1, NO_PRNT);
-		executor_cmd_wrapper(ms, command, 1);
+		executor_cmd_portal(ms, command, 1);
 	}
 	else
 		waitpid(g_global.pid, &status, 0);
@@ -66,7 +66,7 @@ static void	executor_execve(t_ms *ms, t_cmdlist *cmd, char **command)
 
 // Executes one command no Pipes
 // Command is the temp command with the redirs removed as arguments
-void	executor_single_cmd(t_ms *ms, t_cmdlist *cmd)
+void	executor_run_single_command(t_ms *ms, t_cmdlist *cmd)
 {
 	char	**command;
 

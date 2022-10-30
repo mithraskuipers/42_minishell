@@ -6,7 +6,7 @@
 /*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/11 15:26:49 by rkieboom      #+#    #+#                 */
-/*   Updated: 2022/10/29 18:28:25 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/30 12:34:46 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,21 +20,21 @@
 **/
 void	executor(t_ms *ms, t_cmdlist *cmd)
 {
-	int	i;
-	int	cmd_i;
+	int	cur_cmd;
+	int	n_cmds;
 
-	i = 0;
-	cmd_i = 0;
-	while (ms->parse.commands[cmd_i])
-		cmd_i++;
+	cur_cmd = 0;
+	n_cmds = 0;
+	while (ms->parse.commands[n_cmds])
+		n_cmds++;
 	tcsetattr(0, 0, &g_global.termios_save);
 	update_signals_handler();
-	while (i < cmd_i)
+	while (cur_cmd < n_cmds)
 	{
-		if (!cmd[i].next)
-			executor_single_cmd(ms, &cmd[i]);
+		if (!cmd[cur_cmd].next)
+			executor_run_single_command(ms, &cmd[cur_cmd]);
 		else
-			executor_pipe_cmd(ms, &cmd[i]);
-		i++;
+			executor_multiple_cmds(ms, &cmd[cur_cmd]);
+		cur_cmd++;
 	}
 }

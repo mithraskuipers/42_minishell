@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   executor_get_command.c                                          :+:    :+:            */
+/*   executor_get_command.c                             :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
+/*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/05/07 15:57:41 by rkieboom      #+#    #+#                 */
-/*   Updated: 2022/10/29 18:37:52 by mikuiper      ########   odam.nl         */
+/*   Created: 2022/10/30 11:30:51 by mikuiper      #+#    #+#                 */
+/*   Updated: 2022/10/30 11:30:52 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   parser_command_pipes.c                                 :+:    :+:            */
+/*   command_cmdlist_pipes.c                  :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
+/*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/03/17 13:14:16 by rkieboom      #+#    #+#                 */
-/*   Updated: 2022/10/29 01:06:46 by mikuiper      ########   odam.nl         */
+/*   Created: 2022/10/30 11:20:38 by mikuiper      #+#    #+#                 */
+/*   Updated: 2022/10/30 11:28:30 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@
  * *token_pos = 0 will return 4
  * *token_pos = 1 will return 6
 **/
-int	pipe_location(t_ms *v, int k, int token_pos)
+
+int	command_get_pipe_pos(t_ms *v, int k, int token_pos)
 {
 	int	i;
 	int	len;
@@ -44,15 +45,15 @@ int	pipe_location(t_ms *v, int k, int token_pos)
 }
 
 //Creates the first CMD
-static void	first_cmd(t_ms *v, t_cmdlist *temp, int k)
+static void	command_cmdlist_first(t_ms *v, t_cmdlist *temp, int k)
 {
 	int	i;
 	int	j;
 
 	i = 0;
-	j = pipe_location(v, k, 0);
+	j = command_get_pipe_pos(v, k, 0);
 	if (j == -1)
-		ft_error("Something went wrong func first_cmd!\n");
+		ft_error("Something went wrong func command_cmdlist_first!\n");
 	temp->command = ft_calloc(j + 1, sizeof(char *));
 	if (!temp->command)
 		return_exit(1, PRNT_ERRNO_NL);
@@ -67,18 +68,18 @@ static void	first_cmd(t_ms *v, t_cmdlist *temp, int k)
 }
 
 //Creates all CMD's in the middle
-static void	middle_cmd(t_ms *v, t_cmdlist *temp, int pipes, int k)
+static void	command_cmdlist_middle(t_ms *v, t_cmdlist *temp, int pipes, int k)
 {
 	int	i;
 	int	j;
 	int	l;
 
-	i = pipe_location(v, k, pipes - 1);
+	i = command_get_pipe_pos(v, k, pipes - 1);
 	if (i == -1)
-		ft_error("Something went wrong in func middle_cmd\n");
-	j = pipe_location(v, k, pipes);
+		ft_error("Something went wrong in func command_cmdlist_middle\n");
+	j = command_get_pipe_pos(v, k, pipes);
 	if (j == -1)
-		ft_error("Something went wrong in func middle_cmd\n");
+		ft_error("Something went wrong in func command_cmdlist_middle\n");
 	temp->command = ft_calloc(j - i, sizeof(char *));
 	if (!temp->command)
 		return_exit(1, PRNT_ERRNO_NL);
@@ -97,14 +98,14 @@ static void	middle_cmd(t_ms *v, t_cmdlist *temp, int pipes, int k)
 }
 
 //Creates the last CMD
-static void	last_cmd(t_ms *v, t_cmdlist *temp, int pipes, int k)
+static void	command_cmdlist_last(t_ms *v, t_cmdlist *temp, int pipes, int k)
 {
 	int	i;
 	int	j;
 	int	l;
 
 	i = 0;
-	j = pipe_location(v, k, pipes);
+	j = command_get_pipe_pos(v, k, pipes);
 	while (v->parse.commands[k][i + j])
 		i++;
 	i += j;
@@ -115,7 +116,7 @@ static void	last_cmd(t_ms *v, t_cmdlist *temp, int pipes, int k)
 		return_exit(1, PRNT_ERRNO_NL);
 	j = i - j - 1;
 	i = 0;
-	l = pipe_location(v, k, pipes) + 1;
+	l = command_get_pipe_pos(v, k, pipes) + 1;
 	while (j)
 	{
 		temp->command[i] = ft_strdup(v->parse.commands[k][l + i]);
@@ -126,8 +127,10 @@ static void	last_cmd(t_ms *v, t_cmdlist *temp, int pipes, int k)
 	}
 }
 
-//Make multiple commands
-void	parser_command_pipes(t_ms *v, t_cmdlist *pipes_cmd, int pipes, int k)
+// command_cmdlist_pipes() fills the t_cmdlist struct for a command that
+// contains multiple commands, separated from eachother by a pipe operator.
+// It will result in a linked list neighbouring nodes (i.e. next nodes).
+void	command_cmdlist_pipes(t_ms *v, t_cmdlist *pipes_cmd, int pipes, int k)
 {
 	int				i;
 	t_cmdlist	*temp;
@@ -138,11 +141,11 @@ void	parser_command_pipes(t_ms *v, t_cmdlist *pipes_cmd, int pipes, int k)
 	{
 		temp->id = i;
 		if (i == 0)
-			first_cmd(v, temp, k);
+			command_cmdlist_first(v, temp, k);
 		else if (pipes == 0)
-			last_cmd(v, temp, v->tokens[k].pipe - 1, k);
+			command_cmdlist_last(v, temp, v->tokens[k].pipe - 1, k);
 		else
-			middle_cmd(v, temp, i, k);
+			command_cmdlist_middle(v, temp, i, k);
 		i++;
 		pipes--;
 		if (pipes >= 0)
@@ -155,6 +158,5 @@ void	parser_command_pipes(t_ms *v, t_cmdlist *pipes_cmd, int pipes, int k)
 		}
 	}
 }
+
 //cat main.c | cat | cat | cat | cat | cat
-
-

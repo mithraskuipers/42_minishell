@@ -6,7 +6,7 @@
 #    By: mikuiper <mikuiper@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/10/28 21:58:30 by mikuiper      #+#    #+#                  #
-#    Updated: 2022/10/29 22:44:02 by mikuiper      ########   odam.nl          #
+#    Updated: 2022/10/30 11:40:38 by mikuiper      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,8 +35,8 @@ OBJDIR	= bin/
 LIBFTDIR = libft/
 
 INCLUDES = header.h parser/parse.h executor/execute.h cosmetics/splash.h \
-libft/libft.h env_list/env_list.h builtin/commands.h cmd/cmd.h cmd/tokens_cmd/tokens.h \
-expander/expander.h
+libft/libft.h env_list/env_list.h builtin/commands.h commands/cmd.h \
+commands/tokens_cmd/tokens.h expander/expander.h
 
 LIBFTLIB = $(LIBFTDIR)/libft.a
 
@@ -126,7 +126,7 @@ SRCS.EXECUTE =			executor/execute.c \
 						executor/redirections/redirs.c \
 						executor/redirections/heredoc.c \
 						executor/executor_single_cmd.c \
-						executor/executor_pipes_cmd.c \
+						executor/executor_multiple_cmds.c \
 						executor/executor_builtin.c \
 
 SRCS.CLEAN =			clean/clean_ms.c \
@@ -149,13 +149,13 @@ SRCS.PARSER =			parser/parse.c \
 						parser/parser_token_check.c \
 						parser/search_env.c \
 
-SRCS.CREATE.CMD =		cmd/parser_command_creation.c \
-						cmd/parser_command_pipes.c \
-						cmd/tokens_cmd/tokens_cmd.c \
-						cmd/tokens_cmd/tokens_dup.c \
-						cmd/tokens_cmd/init_new_tokens.c \
-						cmd/tokens_cmd/count_tokens.c \
-						cmd/tokens_cmd/set_heredoc_tokens.c \
+SRCS.CREATE.CMD =		commands/command_cmdlist_pipes.c \
+						commands/command_cmdlist_no_pipes.c \
+						commands/tokens_cmd/tokens_cmd.c \
+						commands/tokens_cmd/tokens_dup.c \
+						commands/tokens_cmd/init_new_tokens.c \
+						commands/tokens_cmd/count_tokens.c \
+						commands/tokens_cmd/set_heredoc_tokens.c \
 
 # String manipulation magic
 SRC		:= $(notdir $(SRCS))

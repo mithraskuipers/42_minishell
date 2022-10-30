@@ -51,7 +51,7 @@ static void	with_tokens(t_ms *ms, t_cmdlist *cmd, char **command)
 		g_global.status = 1;
 		return ;
 	}
-	executor_cmd_wrapper(ms, command, 0);
+	executor_cmd_portal(ms, command, 0);
 	filedescriptors_reset(ms, cmd);
 }
 
@@ -60,5 +60,5 @@ void	executor_builtin(t_ms *ms, t_cmdlist *cmd, char **command, int token_exist)
 	if (token_exist)
 		with_tokens(ms, cmd, command);
 	else
-		executor_cmd_wrapper(ms, command, 0);
+		executor_cmd_portal(ms, command, 0);
 }
