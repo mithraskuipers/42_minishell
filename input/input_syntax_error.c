@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/29 15:55:39 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/10/30 16:35:08 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/30 17:29:43 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ typedef struct s_vars
 //Checks for double tokens
 static int	check_double_pipe_error(t_vars *vars, t_ms *ms)
 {
-	if (ms->tokens[vars->cmd_i].token_pos[vars->j] + 1 == \
-	ms->tokens[vars->cmd_i].token_pos[vars->j + 1] && \
+	if (ms->tokens[vars->cmd_i].tkn_pos[vars->j] + 1 == \
+	ms->tokens[vars->cmd_i].tkn_pos[vars->j + 1] && \
 	!ft_strncmp(ms->tokens[vars->cmd_i].token[vars->j], "|", 2) && \
 	!ft_strncmp(ms->tokens[vars->cmd_i].token[vars->j + 1], "|", 2))
 	{
@@ -41,8 +41,8 @@ static int	tokens_syntax_neighboring(t_vars *vars, t_ms *ms)
 {
 	while (vars->j < ms->tokens[vars->cmd_i].n_tokens)
 	{
-		if (ms->tokens[vars->cmd_i].token_pos[vars->j] + 1 == \
-		ms->tokens[vars->cmd_i].token_pos[vars->j + 1] && \
+		if (ms->tokens[vars->cmd_i].tkn_pos[vars->j] + 1 == \
+		ms->tokens[vars->cmd_i].tkn_pos[vars->j + 1] && \
 		ft_strncmp(ms->tokens[vars->cmd_i].token[vars->j], "|", 2))
 		{
 			ft_putstr_fd(\
@@ -69,7 +69,7 @@ static int	first(t_vars *vars, t_ms *ms)
 	if (vars->cmd_i == vars->n_cmds)
 		return (1);
 	if (!ft_strncmp(ms->tokens[vars->cmd_i].token[0], "|", 2) \
-	&& ms->tokens[vars->cmd_i].token_pos[vars->j] == 0)
+	&& ms->tokens[vars->cmd_i].tkn_pos[vars->j] == 0)
 	{
 		ft_putendl_fd(\
 "minishell-4.2$: syntax error near unexpected token `|'", 2);
@@ -80,7 +80,7 @@ static int	first(t_vars *vars, t_ms *ms)
 }
 
 //Check for syntax errors otherwise quit
-int	syntax_error_parse(t_ms *ms)
+int	parser_syntax_tokens(t_ms *ms)
 {
 	t_vars	vars;
 
@@ -101,21 +101,21 @@ int	syntax_error_parse(t_ms *ms)
 	return (0);
 }
 
-// parser_syntax_tokens() checks if the tokens respect the syntax rules of bash.
-// It is not allowed to have two tokens next to eachother, nor is it allowed
-// to end the command with a token without a corresponding argument.
+// commands_cmdlist_syntax_tokens() checks if the tokens respect the syntax 
+// rules of bash. It is not allowed to have two tokens next to eachother, nor 
+// is it allowed to end the command with a token without a corresponding arg.
 // In the first half it checks if the token position is not the last position
 // of the entire command. In the second half it checks if there are two tokens
 // next to eachother.
-int	parser_syntax_tokens(t_cmdlist *cmd, int i)
+int	commands_cmdlist_syntax_tokens(t_cmdlist *cmdlist, int i)
 {
-	if (!cmd->tokens || cmd->tokens->n_tokens == 0)
+	if (!cmdlist->tokens || cmdlist->tokens->n_tokens == 0)
 		return (0);
-	while (i < cmd->tokens->n_tokens)
+	while (i < cmdlist->tokens->n_tokens)
 	{
-		if (i + 1 == cmd->tokens->n_tokens)
+		if (i + 1 == cmdlist->tokens->n_tokens)
 		{
-			if (cmd->tokens->token_pos[i] == cmd_len(cmd->cmd_array) - 1) 
+			if (cmdlist->tokens->tkn_pos[i] == cmd_len(cmdlist->cmd_array) - 1)
 			{
 				ft_putendl_fd(\
 "minishell-4.2$: syntax error near unexpected token `newline'", 2);
@@ -123,10 +123,11 @@ int	parser_syntax_tokens(t_cmdlist *cmd, int i)
 				return (1);
 			}
 		}
-		else if (cmd->tokens->token_pos[i] + 1 == cmd->tokens->token_pos[i + 1])
+		else if (cmdlist->tokens->tkn_pos[i] + 1 == \
+		cmdlist->tokens->tkn_pos[i + 1])
 		{
 			ft_putstr_fd("minishell-4.2$: syntax error near token ", 2);
-			ft_putendl_fd(cmd->tokens->token[i + 1], 2);
+			ft_putendl_fd(cmdlist->tokens->token[i + 1], 2);
 			g_global.status = 258;
 			return (1);
 		}

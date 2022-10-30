@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   executor.c                                          :+:    :+:            */
+/*   executor.c                                         :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
+/*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/10/11 15:26:49 by rkieboom      #+#    #+#                 */
-/*   Updated: 2022/10/30 12:34:46 by mikuiper      ########   odam.nl         */
+/*   Created: 2022/10/30 17:22:17 by mikuiper      #+#    #+#                 */
+/*   Updated: 2022/10/30 18:32:28 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,21 +20,21 @@
 **/
 void	executor(t_ms *ms, t_cmdlist *cmdlist)
 {
-	int	cmd_i;
+	int	cmdlist_i;
 	int	n_cmds;
 
-	cmd_i = 0;
+	cmdlist_i = 0;
 	n_cmds = 0;
 	while (ms->parser.commands[n_cmds])
 		n_cmds++;
 	tcsetattr(0, 0, &g_global.termios_save);
 	update_signals_handler();
-	while (cmd_i < n_cmds)
+	while (cmdlist_i < n_cmds)
 	{
-		if (!cmdlist[cmd_i].next)
-			executor_run_single_command(ms, &cmdlist[cmd_i]);
+		if (!cmdlist[cmdlist_i].next)
+			executor_run_single_command(ms, &cmdlist[cmdlist_i]);
 		else
-			executor_multiple_cmds(ms, &cmdlist[cmd_i]);
-		cmd_i++;
+			executor_run_multiple_cmds(ms, &cmdlist[cmdlist_i]);
+		cmdlist_i++;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/29 13:13:34 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/10/30 16:30:39 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/30 17:16:39 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 static void	free_cmdlist_tokens(t_cmdlist *temp)
 {
 	free(temp->tokens->token);
-	free(temp->tokens->token_pos);
+	free(temp->tokens->tkn_pos);
 	free(temp->tokens);
 }
 

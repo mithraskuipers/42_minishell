@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/30 11:30:51 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/10/30 16:33:16 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/30 18:32:55 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static char	*get_str(t_cmdlist *cmdlist, int i)
 	while (cmdlist->cmd_array[c + s])
 	{
 		if (token_c < cmdlist->tokens->n_tokens && \
-		((c + s) == cmdlist->tokens->token_pos[token_c]))
+		((c + s) == cmdlist->tokens->tkn_pos[token_c]))
 		{
 			s += 2;
 			token_c++;
@@ -49,19 +49,19 @@ static char	*get_str(t_cmdlist *cmdlist, int i)
 char	**executor_get_command(t_cmdlist *cmdlist)
 {
 	int		i;
-	int		length;
+	int		len;
 	char	**newstr;
 
 	i = 0;
 	if (!cmdlist->tokens || cmdlist->tokens->n_tokens == 0)
 		return (cmdlist->cmd_array);
-	length = calc_len(cmdlist);
-	newstr = ft_calloc(length + 1, sizeof(char *));
-	while (i < length)
+	len = calc_len(cmdlist);
+	newstr = ft_calloc(len + 1, sizeof(char *));
+	while (i < len)
 	{
 		newstr[i] = get_str(cmdlist, i);
 		i++;
 	}
-	newstr[length] = 0;
+	newstr[len] = 0;
 	return (newstr);
 }

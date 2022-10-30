@@ -5,8 +5,8 @@
 /*                                                     +:+                    */
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/10/30 11:38:56 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/10/30 13:58:48 by mikuiper      ########   odam.nl         */
+/*   Created: 2022/10/30 18:14:52 by mikuiper      #+#    #+#                 */
+/*   Updated: 2022/10/30 18:14:53 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ static int	last_command(t_ms *ms, t_cmdlist *cmdlist, pid_t *pids, int len)
 }
 
 //Multiple commands with Pipes executor
-void	executor_multiple_cmds(t_ms *ms, t_cmdlist *cmdlist)
+void	executor_run_multiple_cmds(t_ms *ms, t_cmdlist *cmdlist)
 {
 	pid_t		*pids;
 	const int	len = get_cmd_len(cmdlist);

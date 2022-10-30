@@ -16,15 +16,15 @@
 // 
 
 /**
- * @param token_pos = Is the x token we want
+ * @param tkn_pos = Is the x token we want
  * 
  * *		 [0]  [1]  [2][3][4][5][6][7]
  * *Example: cat main.c > out | cat | head
- * *token_pos = 0 will return 4
- * *token_pos = 1 will return 6
+ * *tkn_pos = 0 will return 4
+ * *tkn_pos = 1 will return 6
 **/
 
-int	command_get_pipe_pos(t_ms *v, int k, int token_pos)
+int	command_get_pipe_pos(t_ms *v, int k, int tkn_pos)
 {
 	int	i;
 	int	len;
@@ -35,8 +35,8 @@ int	command_get_pipe_pos(t_ms *v, int k, int token_pos)
 	{
 		if (v->tokens[k].token[i][0] == '|')
 		{
-			if (len == token_pos)
-				return (v->tokens[k].token_pos[i]);
+			if (len == tkn_pos)
+				return (v->tokens[k].tkn_pos[i]);
 			len++;
 		}
 		i++;

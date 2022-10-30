@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/29 13:13:29 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/10/30 16:10:32 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/30 17:16:39 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static void	clean_tokens(t_ms *ms)
 			ms->tokens[i].n_tokens--;
 		}
 		free(ms->tokens[i].token);
-		free(ms->tokens[i].token_pos);
+		free(ms->tokens[i].tkn_pos);
 		i++;
 	}
 	free(ms->tokens);

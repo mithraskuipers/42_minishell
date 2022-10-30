@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   tokens_dup.c                                       :+:    :+:            */
+/*   commands_tokens_dup.c                              :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/08/29 14:08:53 by rkieboom      #+#    #+#                 */
-/*   Updated: 2022/10/30 14:45:02 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/30 17:16:39 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,18 +52,18 @@ static int	get_resetter(t_ms *v, int k, int i)
 	{
 		i--;
 		if (!ft_strncmp(v->tokens[k].token[i], "|", 2))
-			return (v->tokens[k].token_pos[i] + 1);
+			return (v->tokens[k].tkn_pos[i] + 1);
 	}
 	return (0);
 }
 
-// @param token_pos = Is the x token we want
+// @param tkn_pos = Is the x token we want
 // 
 // *		 [-1] [-1] [0] [-1][1] [-1] [2][-1]
 // *Example: cat main.c >  out  <  out2 > Makefile
-// *token_pos = 0 will return >
-// *token_pos = 1 will return <
-static int	get_token_pos(t_ms *v, int k, int token_count)
+// *tkn_pos = 0 will return >
+// *tkn_pos = 1 will return <
+static int	get_tkn_pos(t_ms *v, int k, int token_count)
 {
 	int	i;
 	int	count;
@@ -82,9 +82,9 @@ static int	get_token_pos(t_ms *v, int k, int token_count)
 				i++;
 		}
 		if (!v->tokens[k].token[i])
-			ms_error("Something went wrong in func: get_token_pos\n");
+			ms_error("Something went wrong in func: get_tkn_pos\n");
 	}
-	return (v->tokens[k].token_pos[i] - get_resetter(v, k, i));
+	return (v->tokens[k].tkn_pos[i] - get_resetter(v, k, i));
 }
 
 //Set the token values
@@ -104,8 +104,8 @@ void	commands_tokens_dup(t_ms *v, t_cmdlist *pipes, int k)
 			ft_strdup(ret_token(v, k, vars.token_c + 1));
 			if (!vars.temp->tokens->token[vars.token_local_c])
 				return_exit(1, PRNT_ERRNO_NL);
-			vars.temp->tokens->token_pos[vars.token_local_c] = \
-			get_token_pos(v, k, vars.token_c + 1);
+			vars.temp->tokens->tkn_pos[vars.token_local_c] = \
+			get_tkn_pos(v, k, vars.token_c + 1);
 			vars.token_c++;
 			vars.token_local_c++;
 			vars.tokens--;

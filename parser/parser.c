@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   parser.c                                            :+:    :+:            */
+/*   parser.c                                           :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/10/24 14:34:50 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/10/30 13:20:33 by mikuiper      ########   odam.nl         */
+/*   Created: 2022/10/30 17:20:32 by mikuiper      #+#    #+#                 */
+/*   Updated: 2022/10/30 17:29:43 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ int	parser_wrapper(t_ms *ms)
 	while (vars.split_cmd[vars.n_cmds])
 		vars.n_cmds++;
 	expander_tilde(ms, vars.n_cmds);
-	if (syntax_error_parse(ms))
+	if (parser_syntax_tokens(ms))
 	{
 		clean_splitted_commands(vars.split_cmd);
 		return (1);

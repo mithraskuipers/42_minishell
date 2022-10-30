@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   executor.h                                          :+:    :+:            */
+/*   executor.h                                         :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
+/*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/10/11 15:33:40 by rkieboom      #+#    #+#                 */
-/*   Updated: 2022/10/30 12:37:14 by mikuiper      ########   odam.nl         */
+/*   Created: 2022/10/30 17:19:41 by mikuiper      #+#    #+#                 */
+/*   Updated: 2022/10/30 18:14:41 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef EXECUTE_H
-# define EXECUTE_H
+#ifndef EXECUTOR_H
+# define EXECUTOR_H
 
 # include "../builtins/commands.h"
 # include "../header.h"
@@ -19,7 +19,7 @@
 
 // Executor
 void	executor_cmd_portal(t_ms *ms, char **cmd, int quit);
-void	executor_multiple_cmds(t_ms *ms, t_cmdlist *cmdlist);
+void	executor_run_multiple_cmds(t_ms *ms, t_cmdlist *cmdlist);
 void	executor_run_single_command(t_ms *ms, t_cmdlist *cmdlist);
 
 // Redirections

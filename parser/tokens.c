@@ -6,7 +6,7 @@
 /*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/11/30 00:29:12 by rkieboom      #+#    #+#                 */
-/*   Updated: 2022/10/30 14:50:15 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/30 17:16:39 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ static void	tokens_allocation(t_ms *ms)
 		ms->tokens[cmd].token = ft_calloc(total + 1, sizeof(char *));
 		if (!ms->tokens[cmd].token)
 			return_exit(1, PRNT_ERRNO_NL);
-		ms->tokens[cmd].token_pos = ft_calloc(total + 1, sizeof(int));
-		if (!ms->tokens[cmd].token_pos)
+		ms->tokens[cmd].tkn_pos = ft_calloc(total + 1, sizeof(int));
+		if (!ms->tokens[cmd].tkn_pos)
 			return_exit(1, PRNT_ERRNO_NL);
 		ms->tokens[cmd].n_tokens = total;
 		total = 0;
@@ -58,7 +58,7 @@ static void	tokens_dup(t_ms *ms)
 			{
 				ms->tokens[cmd].token[tkn] = ft_strdup(\
 				ms->parser.commands[cmd][wrd]);
-				ms->tokens[cmd].token_pos[tkn] = wrd;
+				ms->tokens[cmd].tkn_pos[tkn] = wrd;
 				tkn++;
 			}
 			wrd++;

@@ -6,7 +6,7 @@
 #    By: mikuiper <mikuiper@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/10/28 21:58:30 by mikuiper      #+#    #+#                  #
-#    Updated: 2022/10/30 14:52:22 by mikuiper      ########   odam.nl          #
+#    Updated: 2022/10/30 18:16:19 by mikuiper      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -127,8 +127,8 @@ SRCS.EXECUTE =			executor/executor.c \
 						executor/redirections/redirs_looper.c \
 						executor/redirections/redirs.c \
 						executor/redirections/heredoc.c \
-						executor/executor_single_cmd.c \
-						executor/executor_multiple_cmds.c \
+						executor/executor_run_single_cmd.c \
+						executor/executor_run_multiple_cmds.c \
 						executor/executor_builtins.c \
 
 SRCS.CLEAN =			clean/clean_ms.c \

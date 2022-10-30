@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   commands_cmd_tokens_count.c                                     :+:    :+:            */
+/*   commands_cmd_tokens_count.c                        :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
+/*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/08/27 03:28:59 by rkieboom      #+#    #+#                 */
-/*   Updated: 2022/10/29 18:13:14 by mikuiper      ########   odam.nl         */
+/*   Created: 2022/10/30 17:26:57 by mikuiper      #+#    #+#                 */
+/*   Updated: 2022/10/30 17:26:58 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,25 +22,25 @@ typedef struct s_vars
 static void	check_token(t_ms *v, t_vars *vars, t_cmdlist *cmdlist, int k)
 {
 	if (!ft_strncmp(cmdlist->cmd_array[vars->i], ">>", 3) \
-	&& v->tokens[k].token_pos[vars->t] == vars->i + vars->wc + cmdlist->id)
+	&& v->tokens[k].tkn_pos[vars->t] == vars->i + vars->wc + cmdlist->id)
 	{
 		cmdlist->tokens->double_redirection_right++;
 		vars->t++;
 	}
 	else if (!ft_strncmp(cmdlist->cmd_array[vars->i], "<<", 3) \
-	&& v->tokens[k].token_pos[vars->t] == vars->i + vars->wc + cmdlist->id)
+	&& v->tokens[k].tkn_pos[vars->t] == vars->i + vars->wc + cmdlist->id)
 	{
 		cmdlist->tokens->double_redirection_left++;
 		vars->t++;
 	}
 	else if (!ft_strncmp(cmdlist->cmd_array[vars->i], ">", 2) \
-	&& v->tokens[k].token_pos[vars->t] == vars->i + vars->wc + cmdlist->id)
+	&& v->tokens[k].tkn_pos[vars->t] == vars->i + vars->wc + cmdlist->id)
 	{
 		cmdlist->tokens->single_redirection_right++;
 		vars->t++;
 	}
 	else if (!ft_strncmp(cmdlist->cmd_array[vars->i], "<", 2) \
-	&& v->tokens[k].token_pos[vars->t] == vars->i + vars->wc + cmdlist->id)
+	&& v->tokens[k].tkn_pos[vars->t] == vars->i + vars->wc + cmdlist->id)
 	{
 		cmdlist->tokens->single_redirection_left++;
 		vars->t++;

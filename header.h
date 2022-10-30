@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/28 21:57:11 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/10/30 16:30:26 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/30 17:38:39 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ typedef struct s_tokens
 	int			stdin_fd;
 	int			stdout_fd;
 	char		**token;
-	int			*token_pos;
+	int			*tkn_pos;
 	int			single_redirection_left;
 	int			single_redirection_right;
 	int			double_redirection_left;
@@ -111,10 +111,10 @@ char	*input_add_newline(char *s);
 int		cmd_len(char **str);
 int		input_syntax_semicolons(t_ms *v);
 int		commands_cmdlists_maker(t_ms *ms);
-int		parser_syntax_tokens(t_cmdlist *cmd, int i);
+int		commands_cmdlist_syntax_tokens(t_cmdlist *cmd, int i);
 int		parser_wrapper(t_ms *ms);
 int		str_skip_whitespace(const char *str);
-int		syntax_error_parse(t_ms *ms);
+int		parser_syntax_tokens(t_ms *ms);
 void	clean_cmdlist(t_ms *ms, int n_cmds);
 void	clean_commands(t_ms *ms);
 void	clean_ms(t_ms *ms);

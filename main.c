@@ -6,7 +6,7 @@
 /*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/23 22:40:21 by rkieboom      #+#    #+#                 */
-/*   Updated: 2022/10/30 16:10:32 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/30 17:19:07 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static void	minishell_start(t_ms *ms)
 		if (!parser_wrapper(ms) && !ms->hdoc_break)//heredoc break before here
 		{
 			commands_cmdlists_maker(ms);
-			if (!parser_syntax_tokens(ms->cmdlists, 0))
+			if (!commands_cmdlist_syntax_tokens(ms->cmdlists, 0))
 				executor(ms, ms->cmdlists);
 		}
 		clean_ms(ms);
