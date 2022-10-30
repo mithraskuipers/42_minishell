@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   expander_calclen.c                                :+:    :+:            */
+/*   expander_get_len.c                                :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
@@ -12,19 +12,19 @@
 
 #include "../parser/parse.h"
 
-static void	expander_get_dollar_len_var(t_ms *ms, char *str, int *i, int *length)
+static void	expander_get_dollar_len_var(t_ms *ms, char *str, int *i, int *len)
 {
 	if (str[*i + 1] == '\0' || \
 	(!ft_isdigit(str[*i + 1]) && \
 	!ft_isalpha(str[*i + 1]) && str[*i + 1] != '_'))
 	{
 		(*i)++;
-		(*length)++;
+		(*len)++;
 	}
 	else
 	{
-		*length += ft_strlen(search_env(ms->env, str + *i, 0, 0));
-		(*length)--;
+		*len += ft_strlen(search_env(ms->env, str + *i, 0, 0));
+		(*len)--;
 		(*i)++;
 		while (str[*i] && (ft_isdigit(str[*i]) || \
 		ft_isalpha(str[*i]) || (str[*i] == '_')))
@@ -33,7 +33,7 @@ static void	expander_get_dollar_len_var(t_ms *ms, char *str, int *i, int *length
 	}
 }
 
-static void	expander_get_dollar_len(t_ms *ms, char *str, int *i, int *length)
+static void	expander_get_dollar_len(t_ms *ms, char *str, int *i, int *len)
 {
 	char	*temp;
 
@@ -42,45 +42,45 @@ static void	expander_get_dollar_len(t_ms *ms, char *str, int *i, int *length)
 		temp = ft_itoa(g_global.status);
 		if (!temp)
 			return_exit(1, PRNT_ERRNO_NL);
-		(*length) += ft_strlen(temp);
+		(*len) += ft_strlen(temp);
 		free(temp);
 		(*i)++;
-		(*length)--;
+		(*len)--;
 	}
 	else
-		expander_get_dollar_len_var(ms, str, i, length);
+		expander_get_dollar_len_var(ms, str, i, len);
 }
 
-static void	expander_dquote(t_ms *ms, char *str, int *i, int *length)
+static void	expander_dquote(t_ms *ms, char *str, int *i, int *len)
 {
 	(*i)++;
 	while (str[*i] && str[*i] != '\"')
 	{
 		if (str[*i] == '$')
-			expander_get_dollar_len(ms, str, i, length);
+			expander_get_dollar_len(ms, str, i, len);
 		else
 		{
 			(*i)++;
-			(*length)++;
+			(*len)++;
 		}
 		ms->parse.dquote = 0;
 	}
-	(*length)--;
+	(*len)--;
 }
 
-static void	expander_squote(t_ms *ms, char *str, int *i, int *length)
+static void	expander_squote(t_ms *ms, char *str, int *i, int *len)
 {
 	(*i)++;
 	while (str[*i] && str[*i] != '\'')
 	{
 		(*i)++;
-		(*length)++;
+		(*len)++;
 		ms->parse.squote = 0;
 	}
-	(*length)--;
+	(*len)--;
 }
 
-int	expander_calclen(t_ms *ms, char *str, int i, int length)
+int			expander_get_len(t_ms *ms, char *str, int i, int len)
 {
 	while (str[i] && str[i] == ' ')
 		i++;
@@ -95,14 +95,14 @@ int	expander_calclen(t_ms *ms, char *str, int i, int length)
 			if (!(!ft_isdigit(str[i + 1]) \
 			&& !ft_isalpha(str[i + 1]) \
 			&& str[i + 1] != '_' && str[i + 1] != '?'))
-				expander_get_dollar_len(ms, str, &i, &length);
+				expander_get_dollar_len(ms, str, &i, &len);
 		}
 		else if (str[i] == '\"')
-			expander_dquote(ms, str, &i, &length);
+			expander_dquote(ms, str, &i, &len);
 		else if (str[i] == '\'')
-			expander_squote(ms, str, &i, &length);
+			expander_squote(ms, str, &i, &len);
 		i++;
-		length++;
+		len++;
 	}
-	return (length);
+	return (len);
 }

@@ -6,7 +6,7 @@
 #    By: mikuiper <mikuiper@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/10/28 21:58:30 by mikuiper      #+#    #+#                  #
-#    Updated: 2022/10/30 11:40:38 by mikuiper      ########   odam.nl          #
+#    Updated: 2022/10/30 12:45:56 by mikuiper      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -70,7 +70,7 @@ TOOLS =					tools/str_skip_whitespace.c \
 						tools/signal_handler.c \
 
 EXPANDER =				expander/expander.c \
-						expander/expander_calclen.c \
+						expander/expander_get_len.c \
 						expander/expander_tilde.c \
 						expander/expander_tools.c \
 

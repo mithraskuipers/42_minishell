@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/28 21:57:11 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/10/30 12:37:38 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/30 12:49:19 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,34 +29,34 @@
 # define NO_PRNT 0
 # define PRNT_ERRNO_NL 1
 
-typedef struct s_parse
+typedef struct	s_parse
 {
 	char		***commands;
 	int			squote;
 	int			dquote;
 }				t_parse;
 
-typedef struct s_line
+typedef struct	s_line
 {
 	char		*array;
 }				t_line;
 
-typedef struct s_heredoc_data
+typedef struct				s_heredoc_data
 {
 	char					*str;
 	struct s_heredoc_data	*next;
-}				t_heredoc_data;
+}							t_heredoc_data;
 
-typedef struct s_heredoc
+typedef struct				s_heredoc
 {
-	int				pipe[2];
-	int				heredoc_q;
-	char			*eof;
-	t_heredoc_data	*data;
+	int						pipe[2];
+	int						heredoc_q;
+	char					*eof;
+	t_heredoc_data			*data;
 
 }				t_heredoc;
 
-typedef struct s_tokens
+typedef struct	s_tokens
 {
 	int			n_tokens;
 	int			stdin_fd;
@@ -74,37 +74,37 @@ typedef struct s_tokens
 	t_heredoc	*heredoc;
 }				t_tokens;
 
-typedef struct s_cmdlist
+typedef struct			s_cmdlist
 {
-	int						id;
-	int						fd[2];
-	int						read_pipe;
-	char					**command;
-	struct s_tokens			*tokens;
-	struct s_cmdlist		*next;
-	struct s_cmdlist		*prev;
-}				t_cmdlist;
+	int					id;
+	int					fd[2];
+	int					read_pipe;
+	char				**command;
+	struct s_tokens		*tokens;
+	struct s_cmdlist	*next;
+	struct s_cmdlist	*prev;
+}						t_cmdlist;
 
-typedef struct s_ms
+typedef struct	s_ms
 {
-	int				stdout_cpy;
-	int				stdin_cpy;
-	t_parse			parse;
-	t_line			line;
-	t_env			*env;
-	t_tokens		*tokens;
+	int			stdout_cpy;
+	int			stdin_cpy;
+	t_parse		parse;
+	t_line		line;
+	t_env		*env;
+	t_tokens	*tokens;
 	t_cmdlist	*cmd;
-	int				hdoc_break;
+	int			hdoc_break;
 }				t_ms;
 
-typedef struct s_global
+typedef struct		s_global
 {
 	int				status;
 	pid_t			pid;
 	struct termios	termios_save;
 	struct termios	termios_new;
 	int				__dup__;
-}				t_global;
+}					t_global;
 
 extern t_global	g_global;
 

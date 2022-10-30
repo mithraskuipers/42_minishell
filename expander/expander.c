@@ -21,7 +21,7 @@ char	*expander_wrapper(t_ms *ms, char *str)
 
 	if (!ft_strchr(str, '$') && !ft_strchr(str, '\'') && !ft_strchr(str, '\"'))
 		return (str);
-	length = expander_calclen(ms, str, 0, 0);
+	length = expander_get_len(ms, str, 0, 0);
 	if (length == 0)
 	{
 		free(str);
