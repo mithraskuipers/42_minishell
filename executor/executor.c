@@ -6,18 +6,12 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/30 17:22:17 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/10/30 18:32:28 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/31 15:55:53 by rkieboom      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "executor.h"
 
-//This is were we execute our Command
-/**
- * TODO: redirs in pipes
- * @Rowan, I removed the unnecessary 3rd argument, as it made the code
- * more difficult to read.
-**/
 void	executor(t_ms *ms, t_cmdlist *cmdlist)
 {
 	int	cmdlist_i;

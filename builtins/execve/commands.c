@@ -6,11 +6,11 @@
 /*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/07 10:17:11 by rkieboom      #+#    #+#                 */
-/*   Updated: 2022/10/31 07:41:40 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/31 12:57:00 by rkieboom      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cmds.h"
+#include "../builtin.h"
 #include <unistd.h>
 
 int	check_exist(char *PATH)

@@ -6,11 +6,11 @@
 /*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/05/25 17:00:06 by rkieboom      #+#    #+#                 */
-/*   Updated: 2022/10/31 07:41:40 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/31 12:57:06 by rkieboom      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cmds.h"
+#include "../builtin.h"
 #include <errno.h>
 #include <string.h>
 #include <stdio.h>

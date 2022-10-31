@@ -13,7 +13,7 @@
 #include "../parser/parser.h"
 #include "expander.h"
 
-//Expands string to new value
+// Expands string to new value
 char	*expander_wrapper(t_ms *ms, char *str)
 {
 	int		length;

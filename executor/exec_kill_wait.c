@@ -1,24 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   pwd.c                                              :+:    :+:            */
+/*   exec_kill_wait.c                                   :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2021/05/16 22:47:48 by rkieboom      #+#    #+#                 */
-/*   Updated: 2022/10/31 12:57:27 by rkieboom      ########   odam.nl         */
+/*   Created: 2022/10/31 15:06:55 by rkieboom      #+#    #+#                 */
+/*   Updated: 2022/10/31 15:11:31 by rkieboom      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../builtin.h"
+#include "executor.h"
 
-int	pwd(void)
+void	exec_kill_wait(pid_t *pids)
 {
-	char	*cwd;
+	int	i;
 
-	cwd = getcwd(0, 0);
-	ft_putendl_fd(cwd, 1);
-	if (cwd)
-		free(cwd);
-	return (0);
+	i = 0;
+	while (pids[i])
+	{
+		kill(pids[i], 9);
+		i++;
+	}
+	i = 0;
+	while (pids[i])
+	{
+		waitpid(pids[i], NULL, WUNTRACED);
+		i++;
+	}
 }

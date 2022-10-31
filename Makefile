@@ -3,10 +3,10 @@
 #                                                         ::::::::             #
 #    Makefile                                           :+:    :+:             #
 #                                                      +:+                     #
-#    By: mikuiper <mikuiper@student.codam.nl>         +#+                      #
+#    By: rkieboom <rkieboom@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
-#    Created: 2022/10/28 21:58:30 by mikuiper      #+#    #+#                  #
-#    Updated: 2022/10/31 07:47:38 by mikuiper      ########   odam.nl          #
+#    Created: 2022/02/03 16:05:06 by rkieboom      #+#    #+#                  #
+#    Updated: 2022/10/31 15:12:48 by rkieboom      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,11 +21,12 @@ CFLAGS	= -Wall -Werror -Wextra
 ifeq ($(DEBUG),1)
 CFLAGS	+= -g3
 endif
+
 ifeq ($(DEBUG),2)
 CFLAGS	+= -g3 -fsanitize=address -fno-omit-frame-pointer
 endif
-ifeq ($(DEBUG),3)
 
+ifeq ($(DEBUG),3)
 CFLAGS	+= -g3 -fsanitize=leak
 endif
 
@@ -35,7 +36,7 @@ OBJDIR	= bin/
 LIBFTDIR = libft/
 
 INCLUDES = header.h parser/parser.h executor/executor.h cosmetics/splash.h \
-libft/libft.h env_list/env_list.h builtins/cmds.h commands/cmds.h \
+libft/libft.h env_list/env_list.h builtins/builtin.h commands/cmds.h \
 commands/cmds_tokens.h expander/expander.h
 
 LIBFTLIB = $(LIBFTDIR)/libft.a
@@ -62,7 +63,7 @@ SRCS =					main.c \
 						$(SRCS.LINE) \
 						$(SRCS.PARSER) \
 						$(SRCS.CREATE.CMD) \
-						$(SRCS.EXECUTE) \
+						$(SRCS.EXECUTE)
 
 TOOLS =					tools/str_skip_whitespace.c \
 						tools/ms_error.c \
@@ -130,11 +131,12 @@ SRCS.EXECUTE =			executor/executor.c \
 						executor/executor_run_single_cmd.c \
 						executor/executor_run_multiple_cmds.c \
 						executor/executor_run_builtin.c \
+						executor/exec_kill_wait.c \
 
-SRCS.CLEAN =			clean/clean_ms.c \
-						clean/clean_commands.c \
-						clean/clean_cmdlist.c \
-						clean/free_heredoc.c \
+SRCS.CLEAN =			free/clean_ms.c \
+						free/clean_commands.c \
+						free/clean_cmdlist.c \
+						free/free_heredoc.c \
 
 SRCS.PARSER =			parser/parser.c \
 						parser/parser_command_len_wrapper.c \
@@ -181,35 +183,16 @@ VPATH := $(SRCDIR) $(OBJDIR) $(shell find $(SRCDIR) -type d)
 
 all : $(NAME)
 
-linux : $(LIBFTLIB) $(SRCS)  $(OBJS)
-	@printf "\n$(GR)=== Compiled [$(CC) $(CFLAGS)] ===\n--- $(SRC)$(RC)\n"
-	@$(CC) $(INCLUDES_L) $(CFLAGS) $(LIBFTLIB) $(OBJS) -o $(NAME) -lreadline -l:libft.a
-
 # Compiling
 $(OBJDIR)%.o : %.c $(INCLUDES)
 	@mkdir -p $(OBJDIR)
 	@printf "$(GR)+$(RC)"
-	@$(CC) $(CFLAGS) -c $< -o $@ -I/Users/mikuiper/.brew/opt/readline/include
-
-#voor rowan:
-#@$(CC) $(CFLAGS) -c $< -o $@ -I/opt/homebrew/opt/readline/include
-#codam imac brew
-#@$(CC) $(CFLAGS) -c $< -o $@ -I/Users/mikuiper/.brew/opt/readline/include
-#linux
-#@$(CC) $(CFLAGS) -c $< -o $@ -I/usr/local/opt/readline/include
-
+	@$(CC) $(CFLAGS) -c $< -o $@ -I/Users/rkieboom/.brew/opt/readline/include
 
 # Linking
 $(NAME)	: $(LIBFTLIB) $(SRCS)  $(OBJS) $(INCLUDES)
 	@printf "\n$(GR)=== Compiled [$(CC) $(CFLAGS)] ===\n--- $(SRC)$(RC)\n"
-	@$(CC) $(CFLAGS) $(LIBFTLIB) $(OBJS) -o $(NAME) -lreadline -L/Users/mikuiper/.brew/opt/readline/lib
-
-#voor rowan:
-#@$(CC) $(CFLAGS) $(LIBFTLIB) $(OBJS) -o $(NAME) -lreadline -L/opt/homebrew/opt/readline/lib
-#codam imac brew
-#@$(CC) $(CFLAGS) $(LIBFTLIB) $(OBJS) -o $(NAME) -lreadline -L/Users/mikuiper/.brew/opt/readline/lib
-#linux
-#@$(CC) $(CFLAGS) $(LIBFTLIB) $(OBJS) -o $(NAME) -lreadline -L/usr/local/opt/readline/lib
+	@$(CC) $(CFLAGS) $(LIBFTLIB) $(OBJS) -o $(NAME) -lreadline -L/Users/rkieboom/.brew/opt/readline/lib
 
 $(LIBFTLIB) :
 	make -C $(LIBFTDIR)

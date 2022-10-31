@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/28 21:57:11 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/10/31 11:52:39 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/31 13:55:35 by rkieboom      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,7 @@ typedef struct s_global
 {
 	int				status;
 	pid_t			pid;
+	pid_t			*pids;
 	struct termios	termios_save;
 	struct termios	termios_new;
 	int				__dup__;

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   executor_single_cmd.c                              :+:    :+:            */
+/*   executor_run_single_cmd.c                          :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/30 18:14:56 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/10/30 18:14:57 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/31 16:00:36 by rkieboom      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,15 +33,6 @@ static int	executor_cmd_is_builtin(char *cmd_array_first)
 	return (0);
 }
 
-static int	return_status(int status)
-{
-	if (WIFEXITED(status))
-		return (WEXITSTATUS(status));
-	else if (WIFSIGNALED(status))
-		return (WTERMSIG(status) + 128);
-	return (1);
-}
-
 static void	executor_execve(t_ms *ms, t_cmdlist *cmdlist, char **command)
 {
 	int	status;
@@ -49,7 +40,11 @@ static void	executor_execve(t_ms *ms, t_cmdlist *cmdlist, char **command)
 	status = 0;
 	g_global.pid = fork();
 	if (g_global.pid < 0)
-		return_exit(1, PRNT_ERRNO_NL);
+	{
+		return_exit(0, PRNT_ERRNO_NL);
+		g_global.status = 1;
+		return ;
+	}
 	if (g_global.pid == 0)
 	{
 		update_signals_default();
@@ -61,7 +56,7 @@ static void	executor_execve(t_ms *ms, t_cmdlist *cmdlist, char **command)
 	}
 	else
 		waitpid(g_global.pid, &status, 0);
-	g_global.status = return_status(status);
+	g_global.status = get_return_status(status);
 }
 
 // Executes one command no Pipes

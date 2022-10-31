@@ -6,7 +6,7 @@
 /*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/23 22:40:21 by rkieboom      #+#    #+#                 */
-/*   Updated: 2022/10/31 11:52:39 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/31 15:53:26 by rkieboom      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static void	minishell_start(t_ms *ms)
 		add_history(ms->line.array);
 		if (input_syntax_semicolons(ms))
 			continue ;
-		if (!parser_wrapper(ms) && !ms->hdoc_break)//heredoc break before here
+		if (!parser_wrapper(ms) && !ms->hdoc_break)
 		{
 			cmds_cmdlists_maker(ms);
 			if (!cmds_cmdlist_syntax_tokens(ms->cmdlists, 0))

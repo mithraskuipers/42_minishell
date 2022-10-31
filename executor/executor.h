@@ -6,16 +6,18 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/30 17:19:41 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/10/31 07:41:40 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/31 15:13:30 by rkieboom      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef EXECUTOR_H
 # define EXECUTOR_H
 
-# include "../builtins/cmds.h"
+# include "../builtins/builtin.h"
 # include "../header.h"
 # include <sys/wait.h>
+# include <signal.h>
+# include <stdlib.h>
 
 // Executor
 void	executor_cmd_portal(t_ms *ms, char **cmd, int quit);
@@ -39,5 +41,6 @@ void	executor_run_builtin(t_ms *ms, t_cmdlist *cmdlist, char **command, \
 int token_exist);
 void	executor_pipe_stuff(t_cmdlist *cmd);
 int		exit_status(int status);
+void	exec_kill_wait(pid_t *pids);
 
 #endif

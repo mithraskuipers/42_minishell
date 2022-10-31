@@ -1,0 +1,7 @@
+{
+	"files.associations": {
+		"cmds.h": "c",
+		"builtin.h": "c",
+		"executor.h": "c"
+	}
+}

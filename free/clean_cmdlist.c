@@ -6,12 +6,9 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/29 13:13:34 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/10/30 17:16:39 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/31 15:05:15 by rkieboom      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
-
-// TODO: created separate function free_cmdlist_tokens() for clarity and 
-// improving readability of free_cmdlist().
 
 #include "../header.h"
 

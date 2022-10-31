@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   cmds.h                                             :+:    :+:            */
+/*   builtin.h                                          :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/31 10:26:48 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/10/31 10:26:50 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/31 16:01:20 by rkieboom      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef COMMANDS_H
-# define COMMANDS_H
+#ifndef BUILTIN_H
+# define BUILTIN_H
 
 # include "../header.h"
 # include "../libft/libft.h"
