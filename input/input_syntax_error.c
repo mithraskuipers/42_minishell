@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/29 15:55:39 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/10/31 11:52:39 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/31 12:29:25 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static int	check_double_pipe_error(t_vars *vars, t_ms *ms)
 	!ft_strncmp(ms->tokens[vars->cmd_i].token[vars->j + 1], "|", 2))
 	{
 		ft_putstr_fd(\
-"minishell-4.2$: syntax error near unexpected token '|'\n", 2);
+"minishell-4.2$: syntax error near unexpected token `|'\n", 2);
 		g_global.status = 258;
 		return (1);
 	}
@@ -46,7 +46,7 @@ static int	tokens_syntax_neighboring(t_vars *vars, t_ms *ms)
 		ft_strncmp(ms->tokens[vars->cmd_i].token[vars->j], "|", 2))
 		{
 			ft_putstr_fd(\
-"minishell-4.2$: syntax error near unexpected token '", 2);
+"minishell-4.2$: syntax error near unexpected token `", 2);
 			ft_putstr_fd(ms->tokens[vars->cmd_i].token[vars->j + 1], 2);
 			ft_putendl_fd("'", 2);
 			g_global.status = 258;
@@ -72,7 +72,7 @@ static int	first(t_vars *vars, t_ms *ms)
 	&& ms->tokens[vars->cmd_i].tkn_pos[vars->j] == 0)
 	{
 		ft_putendl_fd(\
-"minishell-4.2$: syntax error near unexpected token '|'", 2);
+"minishell-4.2$: syntax error near unexpected token `|'", 2);
 		g_global.status = 258;
 		return (2);
 	}
@@ -118,7 +118,7 @@ int	cmds_cmdlist_syntax_tokens(t_cmdlist *cmdlist, int i)
 			if (cmdlist->tokens->tkn_pos[i] == cmd_len(cmdlist->cmd_array) - 1)
 			{
 				ft_putendl_fd(\
-"minishell-4.2$: syntax error near unexpected token 'newline'", 2);
+"minishell-4.2$: syntax error near unexpected token `newline'", 2);
 				g_global.status = 258;
 				return (1);
 			}
