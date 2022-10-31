@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/31 14:57:59 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/10/31 15:58:35 by rkieboom      ########   odam.nl         */
+/*   Updated: 2022/10/31 16:08:06 by rkieboom      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ static void	heredoc_parse_str(t_ms *ms, t_heredoc *heredoc, int expand)
 void	heredoc_parse(t_ms *ms, int k, int i)
 {
 	if (ms->tokens[k].heredoc[i].heredoc_q == 0)
-		heredoc_parse_str(ms, &ms->tokens[k].heredoc[i], NULL, 1);
+		heredoc_parse_str(ms, &ms->tokens[k].heredoc[i], 1);
 	else
-		heredoc_parse_str(ms, &ms->tokens[k].heredoc[i], NULL, 0);
+		heredoc_parse_str(ms, &ms->tokens[k].heredoc[i], 0);
 }
