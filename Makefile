@@ -189,18 +189,27 @@ linux : $(LIBFTLIB) $(SRCS)  $(OBJS)
 $(OBJDIR)%.o : %.c $(INCLUDES)
 	@mkdir -p $(OBJDIR)
 	@printf "$(GR)+$(RC)"
-	@$(CC) $(CFLAGS) -c $< -o $@ -I/usr/local/opt/readline/include
+	@$(CC) $(CFLAGS) -c $< -o $@ -I/Users/mikuiper/.brew/opt/readline/include
 
 #voor rowan:
 #@$(CC) $(CFLAGS) -c $< -o $@ -I/opt/homebrew/opt/readline/include
+#codam imac brew
+#@$(CC) $(CFLAGS) -c $< -o $@ -I/Users/mikuiper/.brew/opt/readline/include
+#linux
+#@$(CC) $(CFLAGS) -c $< -o $@ -I/usr/local/opt/readline/include
+
 
 # Linking
 $(NAME)	: $(LIBFTLIB) $(SRCS)  $(OBJS) $(INCLUDES)
 	@printf "\n$(GR)=== Compiled [$(CC) $(CFLAGS)] ===\n--- $(SRC)$(RC)\n"
-	@$(CC) $(CFLAGS) $(LIBFTLIB) $(OBJS) -o $(NAME) -lreadline -L/usr/local/opt/readline/lib
+	@$(CC) $(CFLAGS) $(LIBFTLIB) $(OBJS) -o $(NAME) -lreadline -L/Users/mikuiper/.brew/opt/readline/lib
 
 #voor rowan:
 #@$(CC) $(CFLAGS) $(LIBFTLIB) $(OBJS) -o $(NAME) -lreadline -L/opt/homebrew/opt/readline/lib
+#codam imac brew
+#@$(CC) $(CFLAGS) $(LIBFTLIB) $(OBJS) -o $(NAME) -lreadline -L/Users/mikuiper/.brew/opt/readline/lib
+#linux
+#@$(CC) $(CFLAGS) $(LIBFTLIB) $(OBJS) -o $(NAME) -lreadline -L/usr/local/opt/readline/lib
 
 $(LIBFTLIB) :
 	make -C $(LIBFTDIR)
