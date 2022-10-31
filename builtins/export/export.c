@@ -6,11 +6,11 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/29 15:49:35 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/10/30 13:19:01 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/31 07:41:40 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../commands.h"
+#include "../cmds.h"
 
 static int	valid_identifier(char *str)
 {

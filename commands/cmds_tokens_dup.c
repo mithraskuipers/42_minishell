@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   commands_tokens_dup.c                              :+:    :+:            */
+/*   cmds_tokens_dup.c                                  :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
+/*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/08/29 14:08:53 by rkieboom      #+#    #+#                 */
-/*   Updated: 2022/10/30 17:16:39 by mikuiper      ########   odam.nl         */
+/*   Created: 2022/10/31 07:40:12 by mikuiper      #+#    #+#                 */
+/*   Updated: 2022/10/31 07:42:16 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "tokens.h"
+#include "cmds_tokens.h"
 
 typedef struct s_vars
 {
@@ -88,7 +88,7 @@ static int	get_tkn_pos(t_ms *v, int k, int token_count)
 }
 
 //Set the token values
-void	commands_tokens_dup(t_ms *v, t_cmdlist *pipes, int k)
+void	cmds_tokens_dup(t_ms *v, t_cmdlist *pipes, int k)
 {
 	t_vars	vars;
 

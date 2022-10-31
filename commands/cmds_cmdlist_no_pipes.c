@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   cmds_cmdlist_no_pipes.c                    :+:    :+:            */
+/*   cmds_cmdlist_no_pipes.c                            :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/10/31 07:06:02 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/10/31 07:06:58 by mikuiper      ########   odam.nl         */
+/*   Created: 2022/10/31 07:40:30 by mikuiper      #+#    #+#                 */
+/*   Updated: 2022/10/31 07:41:40 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "commands.h"
+#include "cmds.h"
 
 // cmds_cmdlist_no_pipes() fills the t_cmdlist struct for a single command 
 // (i.e. command without pipes). It will result in a linked list without
@@ -59,7 +59,7 @@ int	cmds_cmdlists_maker(t_ms *ms)
 		else
 			cmds_cmdlist_pipes(ms, &ms->cmdlists[i], pipes, i);
 		if (ms->tokens[i].n_tokens)
-			commands_cmd_tokens(ms, &ms->cmdlists[i], i);
+			cmds_set_tokens_cmdlist(ms, &ms->cmdlists[i], i);
 		i++;
 	}
 	return (0);

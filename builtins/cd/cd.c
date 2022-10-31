@@ -6,11 +6,11 @@
 /*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/06/29 14:29:46 by rkieboom      #+#    #+#                 */
-/*   Updated: 2022/10/30 13:23:44 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/31 07:41:40 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../commands.h"
+#include "../cmds.h"
 
 static void	change_pwds(t_env *env, char *oldpwd)
 {

@@ -6,7 +6,7 @@
 #    By: mikuiper <mikuiper@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/10/28 21:58:30 by mikuiper      #+#    #+#                  #
-#    Updated: 2022/10/31 07:08:39 by mikuiper      ########   odam.nl          #
+#    Updated: 2022/10/31 07:42:16 by mikuiper      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,8 +35,8 @@ OBJDIR	= bin/
 LIBFTDIR = libft/
 
 INCLUDES = header.h parser/parser.h executor/executor.h cosmetics/splash.h \
-libft/libft.h env_list/env_list.h builtins/commands.h commands/commands.h \
-commands/tokens.h expander/expander.h
+libft/libft.h env_list/env_list.h builtins/cmds.h commands/cmds.h \
+commands/cmds_tokens.h expander/expander.h
 
 LIBFTLIB = $(LIBFTDIR)/libft.a
 
@@ -152,10 +152,10 @@ SRCS.PARSER =			parser/parser.c \
 
 SRCS.CREATE.CMD =		commands/cmds_cmdlist_pipes.c \
 						commands/cmds_cmdlist_no_pipes.c \
-						commands/commands_cmd_tokens.c \
-						commands/commands_tokens_dup.c \
-						commands/commands_cmd_tokens_init.c \
-						commands/commands_cmd_tokens_count.c \
+						commands/cmds_set_tokens_cmdlist.c \
+						commands/cmds_tokens_dup.c \
+						commands/cmds_tokens_init.c \
+						commands/cmds_tokens_count.c \
 						commands/set_heredoc_tokens.c \
 
 # String manipulation magic

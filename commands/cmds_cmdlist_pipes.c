@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   cmds_cmdlist_pipes.c                  :+:    :+:            */
+/*   cmds_cmdlist_pipes.c                               :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/10/30 11:20:38 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/10/30 11:28:30 by mikuiper      ########   odam.nl         */
+/*   Created: 2022/10/31 07:40:22 by mikuiper      #+#    #+#                 */
+/*   Updated: 2022/10/31 07:41:40 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "commands.h"
+#include "cmds.h"
 
 //Returns location of the pipe
 // 

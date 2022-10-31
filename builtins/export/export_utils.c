@@ -6,11 +6,11 @@
 /*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/19 17:32:03 by rkieboom      #+#    #+#                 */
-/*   Updated: 2022/10/19 20:30:42 by rkieboom      ########   odam.nl         */
+/*   Updated: 2022/10/31 07:41:40 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../commands.h"
+#include "../cmds.h"
 
 void	export_declare_list(t_env *v)
 {

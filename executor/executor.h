@@ -6,14 +6,14 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/30 17:19:41 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/10/30 18:14:41 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/31 07:41:40 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef EXECUTOR_H
 # define EXECUTOR_H
 
-# include "../builtins/commands.h"
+# include "../builtins/cmds.h"
 # include "../header.h"
 # include <sys/wait.h>
 

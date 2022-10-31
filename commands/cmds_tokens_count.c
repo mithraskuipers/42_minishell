@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   commands_cmd_tokens_count.c                        :+:    :+:            */
+/*   cmds_tokens_count.c                                :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/10/30 17:26:57 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/10/30 17:26:58 by mikuiper      ########   odam.nl         */
+/*   Created: 2022/10/31 07:40:45 by mikuiper      #+#    #+#                 */
+/*   Updated: 2022/10/31 07:42:16 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "tokens.h"
+#include "cmds_tokens.h"
 
 typedef struct s_vars
 {
@@ -48,7 +48,7 @@ static void	check_token(t_ms *v, t_vars *vars, t_cmdlist *cmdlist, int k)
 }
 
 //Counts the amount of tokens we have and wich ones
-void	commands_cmd_tokens_count(t_ms *v, t_cmdlist *cmdlist, int k)
+void	cmds_tokens_count(t_ms *v, t_cmdlist *cmdlist, int k)
 {
 	t_vars	vars;
 
