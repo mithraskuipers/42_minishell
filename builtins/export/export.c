@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/29 15:49:35 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/10/31 07:41:40 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/31 11:16:00 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static int	valid_identifier(char *str)
 		if (!str[i] || str[i] == '=')
 			return (1);
 	}
-	ft_putstr_fd("minishell-4.2$: export: `", 2);
+	ft_putstr_fd("minishell-4.2$: export: '", 2);
 	ft_putstr_fd(str, 2);
 	ft_putendl_fd("': not a valid identifier", 2);
 	return (0);
