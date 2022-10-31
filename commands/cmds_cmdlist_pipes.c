@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/31 07:40:22 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/10/31 07:41:40 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/31 12:09:14 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,8 @@ static void	cmds_cmdlist_first(t_ms *v, t_cmdlist *cmdlist, int k)
 	}
 }
 
-//Creates all CMD's in the middle
+// Creates all the commands that are after the first pipe and before the last
+// pipe.
 static void	cmds_cmdlist_middle(t_ms *v, t_cmdlist *cmdlist, int pipes, int k)
 {
 	int	i;

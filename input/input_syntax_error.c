@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/29 15:55:39 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/10/31 11:25:11 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/31 11:52:39 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,13 +101,13 @@ int	parser_syntax_tokens(t_ms *ms)
 	return (0);
 }
 
-// commands_cmdlist_syntax_tokens() checks if the tokens respect the syntax 
+// cmds_cmdlist_syntax_tokens() checks if the tokens respect the syntax 
 // rules of bash. It is not allowed to have two tokens next to eachother, nor 
 // is it allowed to end the command with a token without a corresponding arg.
 // In the first half it checks if the token position is not the last position
 // of the entire command. In the second half it checks if there are two tokens
 // next to eachother.
-int	commands_cmdlist_syntax_tokens(t_cmdlist *cmdlist, int i)
+int	cmds_cmdlist_syntax_tokens(t_cmdlist *cmdlist, int i)
 {
 	if (!cmdlist->tokens || cmdlist->tokens->n_tokens == 0)
 		return (0);

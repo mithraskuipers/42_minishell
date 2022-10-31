@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/31 07:40:30 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/10/31 07:41:40 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/31 11:54:47 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,27 +40,27 @@ static void	cmds_cmdlist_no_pipes(t_ms *v, t_cmdlist *cmdlist, int k)
 // 
 int	cmds_cmdlists_maker(t_ms *ms)
 {
-	int	i;
+	int	cmd_i;
 	int	n_cmds;
 	int	pipes;
 
-	i = 0;
+	cmd_i = 0;
 	n_cmds = 0;
 	while (ms->parser.commands[n_cmds])
 		n_cmds++;
 	ms->cmdlists = ft_calloc(n_cmds, sizeof(t_cmdlist));
 	if (!ms->cmdlists)
 		return_exit(1, PRNT_ERRNO_NL);
-	while (i < n_cmds)
+	while (cmd_i < n_cmds)
 	{
-		pipes = ms->tokens[i].pipe;
+		pipes = ms->tokens[cmd_i].pipe;
 		if (pipes == 0)
-			cmds_cmdlist_no_pipes(ms, &ms->cmdlists[i], i);
+			cmds_cmdlist_no_pipes(ms, &ms->cmdlists[cmd_i], cmd_i);
 		else
-			cmds_cmdlist_pipes(ms, &ms->cmdlists[i], pipes, i);
-		if (ms->tokens[i].n_tokens)
-			cmds_set_tokens_cmdlist(ms, &ms->cmdlists[i], i);
-		i++;
+			cmds_cmdlist_pipes(ms, &ms->cmdlists[cmd_i], pipes, cmd_i);
+		if (ms->tokens[cmd_i].n_tokens)
+			cmds_set_tokens_cmdlist(ms, &ms->cmdlists[cmd_i], cmd_i);
+		cmd_i++;
 	}
 	return (0);
 }
