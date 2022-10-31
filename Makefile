@@ -129,7 +129,7 @@ SRCS.EXECUTE =			executor/executor.c \
 						executor/redirections/heredoc.c \
 						executor/executor_run_single_cmd.c \
 						executor/executor_run_multiple_cmds.c \
-						executor/executor_builtins.c \
+						executor/executor_run_builtin.c \
 
 SRCS.CLEAN =			clean/clean_ms.c \
 						clean/clean_commands.c \

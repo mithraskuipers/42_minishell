@@ -35,7 +35,7 @@ int		ft_pipe(int *fd);
 int		ft_fork(pid_t *pid, int *fd);
 int		get_return_status(int status);
 char	**executor_get_command(t_cmdlist *cmd);
-void	executor_builtins(t_ms *ms, t_cmdlist *cmdlist, char **command, \
+void	executor_run_builtin(t_ms *ms, t_cmdlist *cmdlist, char **command, \
 int token_exist);
 void	executor_pipe_stuff(t_cmdlist *cmd);
 int		exit_status(int status);

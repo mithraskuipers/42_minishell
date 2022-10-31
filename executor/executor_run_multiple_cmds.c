@@ -100,7 +100,7 @@ static int	last_command(t_ms *ms, t_cmdlist *cmdlist, pid_t *pids, int len)
 	return (get_return_status(status));
 }
 
-//Multiple commands with Pipes executor
+//Multiple commands with pipes executor
 void	executor_run_multiple_cmds(t_ms *ms, t_cmdlist *cmdlist)
 {
 	pid_t		*pids;

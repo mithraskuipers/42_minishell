@@ -46,22 +46,24 @@ static char	*get_str(t_cmdlist *cmdlist, int i)
 	return (0);
 }
 
+// executor_get_command() parses the provided cmdlist and extracts its command
+// words, storing it in cmd_array and returning cmd_array.
 char	**executor_get_command(t_cmdlist *cmdlist)
 {
 	int		i;
 	int		len;
-	char	**newstr;
+	char	**cmd_array;
 
 	i = 0;
 	if (!cmdlist->tokens || cmdlist->tokens->n_tokens == 0)
 		return (cmdlist->cmd_array);
 	len = calc_len(cmdlist);
-	newstr = ft_calloc(len + 1, sizeof(char *));
+	cmd_array = ft_calloc(len + 1, sizeof(char *));
 	while (i < len)
 	{
-		newstr[i] = get_str(cmdlist, i);
+		cmd_array[i] = get_str(cmdlist, i);
 		i++;
 	}
-	newstr[len] = 0;
-	return (newstr);
+	cmd_array[len] = NULL;
+	return (cmd_array);
 }

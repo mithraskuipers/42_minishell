@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   executor_builtins.c                                :+:    :+:            */
+/*   executor_run_builtin.c                             :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/10/31 07:43:44 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/10/31 07:43:46 by mikuiper      ########   odam.nl         */
+/*   Created: 2022/10/31 10:27:05 by mikuiper      #+#    #+#                 */
+/*   Updated: 2022/10/31 10:27:07 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ static void	filedescriptors_reset(t_ms *ms, t_cmdlist *cmdlist)
 	close(ms->stdout_cpy);
 }
 
-static void	with_tokens(t_ms *ms, t_cmdlist *cmdlist, char **command)
+static void	executor_cmd_portal_tokens(\
+t_ms *ms, t_cmdlist *cmdlist, char **command)
 {
 	filedescriptors_copy(ms);
 	if (redirs_looper(cmdlist, 0, cmdlist->tokens->n_tokens))
@@ -55,11 +56,11 @@ static void	with_tokens(t_ms *ms, t_cmdlist *cmdlist, char **command)
 	filedescriptors_reset(ms, cmdlist);
 }
 
-void	executor_builtins(\
+void	executor_run_builtin(\
 t_ms *ms, t_cmdlist *cmdlist, char **command, int token_exist)
 {
 	if (token_exist)
-		with_tokens(ms, cmdlist, command);
+		executor_cmd_portal_tokens(ms, cmdlist, command);
 	else
 		executor_cmd_portal(ms, command, 0);
 }

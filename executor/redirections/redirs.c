@@ -12,9 +12,9 @@
 
 #include "../executor.h"
 
-int	tokens_present(t_cmdlist *cmd)
+int	tokens_present(t_cmdlist *cmdlist)
 {
-	if (cmd->tokens && cmd->tokens->n_tokens > 0)
+	if (cmdlist->tokens && cmdlist->tokens->n_tokens > 0)
 		return (1);
 	else
 		return (0);

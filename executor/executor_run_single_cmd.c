@@ -12,23 +12,23 @@
 
 #include "executor.h"
 
-static int	is_builtins(char *cmd)
+static int	executor_cmd_is_builtin(char *cmd_array_first)
 {
-	if (!cmd || !cmd[0])
+	if (!cmd_array_first || !cmd_array_first[0])
 		return (0);
-	if (!ft_strncmp(cmd, "echo", 5))
+	if (!ft_strncmp(cmd_array_first, "echo", 5))
 		return (1);
-	else if (!ft_strncmp(cmd, "cd", 3))
+	else if (!ft_strncmp(cmd_array_first, "cd", 3))
 		return (1);
-	else if (!ft_strncmp(cmd, "pwd", 4))
+	else if (!ft_strncmp(cmd_array_first, "pwd", 4))
 		return (1);
-	else if (!ft_strncmp(cmd, "export", 7))
+	else if (!ft_strncmp(cmd_array_first, "export", 7))
 		return (1);
-	else if (!ft_strncmp(cmd, "unset", 6))
+	else if (!ft_strncmp(cmd_array_first, "unset", 6))
 		return (1);
-	else if (!ft_strncmp(cmd, "env", 4))
+	else if (!ft_strncmp(cmd_array_first, "env", 4))
 		return (1);
-	else if (!ft_strncmp(cmd, "exit", 5))
+	else if (!ft_strncmp(cmd_array_first, "exit", 5))
 		return (1);
 	return (0);
 }
@@ -68,13 +68,13 @@ static void	executor_execve(t_ms *ms, t_cmdlist *cmdlist, char **command)
 // Command is the temp command with the redirs removed as arguments
 void	executor_run_single_command(t_ms *ms, t_cmdlist *cmdlist)
 {
-	char	**command;
+	char	**cmd_array;
 
-	command = executor_get_command(cmdlist);
-	if (is_builtins(command[0]))
-		executor_builtins(ms, cmdlist, command, tokens_present(cmdlist));
+	cmd_array = executor_get_command(cmdlist);
+	if (executor_cmd_is_builtin(cmd_array[0]))
+		executor_run_builtin(ms, cmdlist, cmd_array, tokens_present(cmdlist));
 	else
-		executor_execve(ms, cmdlist, command);
-	if (command && tokens_present(cmdlist))
-		free(command);
+		executor_execve(ms, cmdlist, cmd_array);
+	if (cmd_array && tokens_present(cmdlist))
+		free(cmd_array);
 }
