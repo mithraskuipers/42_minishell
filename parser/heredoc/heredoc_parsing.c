@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/31 14:57:59 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/10/31 16:08:06 by rkieboom      ########   odam.nl         */
+/*   Updated: 2022/10/31 17:07:38 by rkieboom      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ char **arr, int expand)
 	i = 0;
 	while (data)
 	{
-		if (!ft_strchr(arr[i], '$') || expand)
+		if (!ft_strchr(arr[i], '$') || !expand)
 		{
 			data->str = ft_strdup(arr[i]);
 			if (!data->str)

@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/29 13:13:29 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/10/30 17:16:39 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/31 17:03:52 by rkieboom      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,10 @@ void	clean_ms(t_ms *ms)
 	free_heredoc(ms, n_cmds);
 	clean_tokens(ms);
 	clean_commands(ms);
-	clean_cmdlist(ms, n_cmds);
+	if (ms->cmdlists)
+		clean_cmdlist(ms, n_cmds);
 	ms->cmdlists = 0;
 	ms->tokens = 0;
 }
+
+//ls | cat | | |;

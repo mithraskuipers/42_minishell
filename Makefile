@@ -6,7 +6,7 @@
 #    By: rkieboom <rkieboom@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/02/03 16:05:06 by rkieboom      #+#    #+#                  #
-#    Updated: 2022/10/31 15:12:48 by rkieboom      ########   odam.nl          #
+#    Updated: 2022/10/31 16:57:09 by rkieboom      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -79,7 +79,8 @@ INPUT =					input/input_read.c \
 						input/input_add_newline.c \
 						input/input_check.c \
 						input/input_syntax_quotes.c \
-						input/input_syntax_error.c \
+						input/input_syntax_error_parse.c \
+						input/input_syntax_error_exec.c \
 						input/input_cmd_len.c \
 
 INIT =					init/init.c \

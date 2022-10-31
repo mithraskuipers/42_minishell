@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/28 21:57:30 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/10/31 15:54:06 by rkieboom      ########   odam.nl         */
+/*   Updated: 2022/10/31 17:22:10 by rkieboom      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ static int	get_heredoc_input_helper(t_ms *ms, int k, int i, int status)
 		if (g_global.status != 0)
 		{
 			close(ms->tokens[k].heredoc[i].pipe[0]);
+			g_global.status = 1;
 			return (1);
 		}
 		heredoc_parse(ms, k, i);
