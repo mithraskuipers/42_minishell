@@ -6,7 +6,7 @@
 #    By: mikuiper <mikuiper@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/10/28 21:58:30 by mikuiper      #+#    #+#                  #
-#    Updated: 2022/10/31 07:42:16 by mikuiper      ########   odam.nl          #
+#    Updated: 2022/10/31 07:47:38 by mikuiper      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,7 +43,6 @@ LIBFTLIB = $(LIBFTDIR)/libft.a
 INCLUDES_L = -L./libft/.
 
 SRCS =					main.c \
-						signals.c \
 						$(INIT) \
 						$(SPLASH) \
 						$(TOOLS) \
@@ -68,6 +67,7 @@ SRCS =					main.c \
 TOOLS =					tools/str_skip_whitespace.c \
 						tools/ms_error.c \
 						tools/signal_handler.c \
+						tools/signals.c \
 
 EXPANDER =				expander/expander.c \
 						expander/expander_get_len.c \

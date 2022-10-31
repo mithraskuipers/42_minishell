@@ -6,11 +6,11 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/29 09:32:40 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/10/29 22:18:47 by mikuiper      ########   odam.nl         */
+/*   Updated: 2022/10/31 07:49:10 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "header.h"
+#include "../header.h"
 
 // sighand() handles the SIGUSR1 signal.
 static void	sighand(int signum)
