@@ -15,7 +15,7 @@
 
 # include "../header.h"
 
-void	commands_cmd_cmdlist_pipes(t_ms *v, t_cmdlist *temp, int pipes, int k);
+void	cmds_cmdlist_pipes(t_ms *v, t_cmdlist *temp, int pipes, int k);
 void	commands_cmd_tokens(t_ms *v, t_cmdlist *pipes, int k);
 
 #endif

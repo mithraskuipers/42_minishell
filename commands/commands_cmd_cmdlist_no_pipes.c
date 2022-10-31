@@ -1,21 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   commands_cmd_cmdlist_no_pipes.c               :+:    :+:            */
+/*   cmds_cmdlist_no_pipes.c                    :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/10/30 11:20:23 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/10/30 11:29:05 by mikuiper      ########   odam.nl         */
+/*   Created: 2022/10/31 07:06:02 by mikuiper      #+#    #+#                 */
+/*   Updated: 2022/10/31 07:06:58 by mikuiper      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "commands.h"
 
-// commands_cmd_cmdlist_no_pipes() fills the t_cmdlist struct for a single command 
+// cmds_cmdlist_no_pipes() fills the t_cmdlist struct for a single command 
 // (i.e. command without pipes). It will result in a linked list without
 // neighbouring nodes (i.e. no next).
-static void	commands_cmd_cmdlist_no_pipes(t_ms *v, t_cmdlist *cmdlist, int k)
+static void	cmds_cmdlist_no_pipes(t_ms *v, t_cmdlist *cmdlist, int k)
 {
 	int	i;
 
@@ -38,7 +38,7 @@ static void	commands_cmd_cmdlist_no_pipes(t_ms *v, t_cmdlist *cmdlist, int k)
 // Creates a command struct with the data from the parse and token structs.
 // Used to execute the commands
 // 
-int	commands_cmdlists_maker(t_ms *ms)
+int	cmds_cmdlists_maker(t_ms *ms)
 {
 	int	i;
 	int	n_cmds;
@@ -55,9 +55,9 @@ int	commands_cmdlists_maker(t_ms *ms)
 	{
 		pipes = ms->tokens[i].pipe;
 		if (pipes == 0)
-			commands_cmd_cmdlist_no_pipes(ms, &ms->cmdlists[i], i);
+			cmds_cmdlist_no_pipes(ms, &ms->cmdlists[i], i);
 		else
-			commands_cmd_cmdlist_pipes(ms, &ms->cmdlists[i], pipes, i);
+			cmds_cmdlist_pipes(ms, &ms->cmdlists[i], pipes, i);
 		if (ms->tokens[i].n_tokens)
 			commands_cmd_tokens(ms, &ms->cmdlists[i], i);
 		i++;

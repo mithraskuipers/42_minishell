@@ -6,7 +6,7 @@
 #    By: mikuiper <mikuiper@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/10/28 21:58:30 by mikuiper      #+#    #+#                  #
-#    Updated: 2022/10/30 18:16:19 by mikuiper      ########   odam.nl          #
+#    Updated: 2022/10/31 07:08:39 by mikuiper      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -150,8 +150,8 @@ SRCS.PARSER =			parser/parser.c \
 						parser/heredoc/set_heredoc.c \
 						parser/parser_token_check.c \
 
-SRCS.CREATE.CMD =		commands/commands_cmd_cmdlist_pipes.c \
-						commands/commands_cmd_cmdlist_no_pipes.c \
+SRCS.CREATE.CMD =		commands/cmds_cmdlist_pipes.c \
+						commands/cmds_cmdlist_no_pipes.c \
 						commands/commands_cmd_tokens.c \
 						commands/commands_tokens_dup.c \
 						commands/commands_cmd_tokens_init.c \
