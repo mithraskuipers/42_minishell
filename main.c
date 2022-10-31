@@ -6,7 +6,7 @@
 /*   By: rkieboom <rkieboom@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/23 22:40:21 by rkieboom      #+#    #+#                 */
-/*   Updated: 2022/10/31 17:12:03 by rkieboom      ########   odam.nl         */
+/*   Updated: 2022/10/31 17:25:01 by rkieboom      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ t_global	g_global;
 // executions are performed.
 static void	minishell_start(t_ms *ms)
 {
-	splash();
 	while (1)
 	{
 		input_read(ms, 0);

@@ -6,7 +6,7 @@
 /*   By: mikuiper <mikuiper@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/28 21:57:11 by mikuiper      #+#    #+#                 */
-/*   Updated: 2022/10/31 13:55:35 by rkieboom      ########   odam.nl         */
+/*   Updated: 2022/10/31 17:25:05 by rkieboom      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,6 +130,5 @@ void	input_read(t_ms *ms, int mode);
 void	input_syntax_quotes(t_ms *ms);
 void	quote_toggle(t_ms *ms, char *c);
 void	sig_handler(int signal_code);
-void	splash(void);
 
 #endif
